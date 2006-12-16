@@ -1,0 +1,18 @@
+<p>Welcome to TravellerBooks.com, <%= @visitor %>!</p>
+
+<p>This is the page where you can track your friends, your TravellerBooks, and anything else you want!</p>
+
+<div id="user_info">
+  <%= image_tag( "#{@photo.path}#{@photo.file_name}", :class => "main_photo", :size => "#{@photo.width}x#{@photo.height}") %>
+  <div id="personal_info">
+    <ul id="ilist">
+      <li><%= h(@person.first_name) %></li>
+      <li><%= h(@person.age) %></li>
+    </ul>
+  </div>
+</div>
+
+<%= ymap_div_tag %>
+<%= ymap_address_map(@location) %>
+
+

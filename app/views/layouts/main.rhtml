@@ -1,0 +1,15 @@
+<html>
+<head>
+  <title>Main: <%= controller.action_name %></title>
+  <%= stylesheet_link_tag 'main' %>
+  <%= ymap_js_tag %>
+  <%= ymap_div_style("300px", "150px") %>
+</head>
+<body>
+
+<p style="color: green"><%= flash[:notice] %></p>
+
+<%= @content_for_layout %>
+
+</body>
+</html>

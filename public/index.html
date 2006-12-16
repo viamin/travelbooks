@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>Welcome to TravellerBook.com</title>
+    <style type="text/css" media="screen">
+      body {
+        margin-top: 0;
+        margin-left: 52px;
+        margin-bottom: 0;
+        background: #333;
+      }
+      #main {
+        padding: 0;
+        margin: 0;
+        width: 780px;
+        height: 440px;
+        top: 78px;
+        background: #fff;
+      }
+      #title_bar {
+        padding: 0;
+        margin: 0;
+        width: 780px;
+        height: 78px;
+        top: 0;
+        left: 0;
+	background: #063;
+        font: 60px Verdana, Lucida, Arial, sans-serif;
+        font-variant: small-caps;
+        clear: right;
+      }
+      #book {
+        /*display: inline;*/
+        width: 234px;
+        height: 338px;
+        position: relative;
+        top: 26px;
+        left: 52px;
+        background: url(images/book.jpg);
+        float: left;
+      }
+      #book_logo {
+        width: 182px;
+        height: 130px;
+        position: relative;
+        top: 26px;
+        left: 40px;
+        background: url(images/templogo.jpg);
+      }
+      #login_pane {
+	width: 182px;
+	height: 130px;
+	position: relative;
+	top: 40px;
+	left: 40px;
+      }
+      #login_pane label {
+	color: #fff;
+	font-style: bold;
+      }
+      #link_bar {
+        width: 416px;
+        height: 30px;
+        position: relative;
+        top: -13px;
+        left: 338px;
+        border: 1px solid black;
+        background: #9cf;
+      }
+      #link_bar ul {
+	display: inline;
+	margin-left: 0;
+	padding-left: 0;
+	list-style: none;
+      }
+      #link_bar ul li {
+	width: 83px;
+	margin-left: 0;
+	padding: 3px 15px;
+	border-left: 1px solid #000;
+	display: inline;
+      }
+      #link_bar ul li.first {
+	width: 84px;
+	margin-left: 0;
+	border-left: none;
+	list-style: none;
+	display: inline;
+      }
+      #justasbadasatable {
+        width: 390px;
+        height: 338px;
+        position: relative;
+        top: 26px;
+        left: 338px;
+      }
+      #headline {
+        /*width: 156px;*/
+        width: 390px;
+        height: 52px;
+        position: relative;
+        /*top: 26px;
+        left: 338px;*/
+        top: 0;
+        left: 0;
+	text-align: center;
+        border: 1px solid black;
+        /*float: left;*/
+      }
+      #headline p {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      #search_box {
+        width: 208px;
+        height: 52px;
+        position: relative;
+        top: 26px;
+        left: 520px;
+        border: 1px dashed black;
+      }
+      #blurb {
+        width: 390px;
+        height: 52px;
+        position: relative;
+        /*top: 104px;
+        left: 338px;
+        top: 78px;*/
+        top: 26px;
+        left: 0;
+        border: 1px solid black;
+        /*float: left;*/
+      }
+      #blurb p {
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: .81em;
+      }
+      #world_map {
+        width: 390px;
+        height: 182px;
+        position: relative;
+        /*top: 186px;
+        left: 338px;
+        top: 156px;*/
+        top: 52px;
+        left: 0;
+        border: 1px solid black;
+        background: #fff;
+        /*float: left;*/
+      }
+    </style>
+  </head>
+  <body>
+    <div id="title_bar">
+      <span>TravellerBook.com</span>
+    </div>
+    <div id="main">
+      <div id="link_bar">
+	<ul>
+	  <li><a href="shop">Shop</a></li>
+	  <li><a href="about">About us</a></li>
+	  <li><a href="join">Join in!</a></li>
+	  <li><a href="search">Search</a></li>
+	  <li><a href="faq">FAQ</a></li>
+	</ul>
+      </div>
+      <div id="book">
+        <div id="book_logo">
+        </div>
+        <div id="login_pane">
+	  <form action="main/login" method="post">
+	    <label for="person_username">Username</label>
+	    <input type="text" name="person_username" id="person_username">
+	    <label for="person_password">Password</label>
+	    <input type="password" name="person_password" id="person_password">
+	    <p>
+	    <input type="submit" name="login" value="Login">
+	    <input type="reset" name="reset" value="Clear">
+	    </p>
+	  </form>
+        </div>
+      </div>
+      <div id="justasbadasatable">
+        <div id="headline">
+          <p>"7 degrees of reconnection"</p>
+        </div>
+        <div id="blurb">
+          <p>TravellerBooks.com allows you to track where your gifts go after you give them as well as see where they've gone to get to you.</p>
+        </div>
+        <div id="world_map">
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
