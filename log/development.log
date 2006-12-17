@@ -7784,3 +7784,312 @@ ActionController::RoutingError (Recognition failed for "/join"):
 
 
 Rendering /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/actionpack-1.12.5/lib/action_controller/templates/rescues/layout.rhtml (404 Page Not Found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2006-12-16 16:10:25) [GET]
+  Session ID: 05851ce2628464d7513c4f68ab684c98
+  Parameters: {}
+
+
+ActionController::RoutingError (no route found to match "/search" with {:method=>:get}):
+    .//vendor/rails/actionpack/lib/action_controller/routing.rb:1263:in `recognize_path'
+    .//vendor/rails/actionpack/lib/action_controller/routing.rb:1253:in `recognize'
+    .//vendor/rails/railties/lib/dispatcher.rb:40:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:84:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/sync.rb:229:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:83:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:580:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:267:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:127:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/command.rb:211:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:231
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/railties/lib/commands/servers/mongrel.rb:60
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    .//vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.rhtml (not_found)
+
+
+Processing TrackController#index (for 127.0.0.1 at 2006-12-16 16:11:18) [GET]
+  Session ID: 05851ce2628464d7513c4f68ab684c98
+  Parameters: {"action"=>"index", "controller"=>"track"}
+Redirected to http://localhost:3000/track/search
+Completed in 0.00140 (714 reqs/sec) | 302 Found [http://localhost/track]
+
+
+Processing TrackController#search (for 127.0.0.1 at 2006-12-16 16:11:18) [GET]
+  Session ID: 05851ce2628464d7513c4f68ab684c98
+  Parameters: {"action"=>"search", "controller"=>"track"}
+Rendering  within layouts/track
+Rendering track/search
+Completed in 0.00282 (354 reqs/sec) | Rendering: 0.00202 (71%) | 200 OK [http://localhost/track/search]
+
+
+Processing ShopController#index (for 127.0.0.1 at 2006-12-16 16:11:40) [GET]
+  Session ID: 05851ce2628464d7513c4f68ab684c98
+  Parameters: {"action"=>"index", "controller"=>"shop"}
+Redirected to http://localhost:3000/shop/store
+Completed in 0.00160 (624 reqs/sec) | 302 Found [http://localhost/shop]
+
+
+Processing ShopController#store (for 127.0.0.1 at 2006-12-16 16:11:40) [GET]
+  Session ID: 05851ce2628464d7513c4f68ab684c98
+  Parameters: {"action"=>"store", "controller"=>"shop"}
+  [4;36;1mSaleItem Load (0.001078)[0m   [0;1mSELECT * FROM sale_items WHERE (for_sale = 'yes' and quantity_in_stock > 0) [0m
+Rendering shop/store
+Completed in 0.09197 (10 reqs/sec) | Rendering: 0.00143 (1%) | DB: 0.00108 (1%) | 200 OK [http://localhost/shop/store]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2006-12-16 16:11:44) [GET]
+  Session ID: 05851ce2628464d7513c4f68ab684c98
+  Parameters: {}
+
+
+ActionController::RoutingError (no route found to match "/about" with {:method=>:get}):
+    .//vendor/rails/actionpack/lib/action_controller/routing.rb:1263:in `recognize_path'
+    .//vendor/rails/actionpack/lib/action_controller/routing.rb:1253:in `recognize'
+    .//vendor/rails/railties/lib/dispatcher.rb:40:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:84:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/sync.rb:229:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:83:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:580:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:267:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:127:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/command.rb:211:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:231
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/railties/lib/commands/servers/mongrel.rb:60
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    .//vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.rhtml (not_found)
+
+
+Processing MainController#about (for 127.0.0.1 at 2006-12-16 16:12:21) [GET]
+  Session ID: 05851ce2628464d7513c4f68ab684c98
+  Parameters: {"action"=>"about", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/about
+Completed in 0.00299 (334 reqs/sec) | Rendering: 0.00219 (73%) | 200 OK [http://localhost/main/about]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2006-12-16 16:12:25) [GET]
+  Session ID: 05851ce2628464d7513c4f68ab684c98
+  Parameters: {}
+
+
+ActionController::RoutingError (no route found to match "/join" with {:method=>:get}):
+    .//vendor/rails/actionpack/lib/action_controller/routing.rb:1263:in `recognize_path'
+    .//vendor/rails/actionpack/lib/action_controller/routing.rb:1253:in `recognize'
+    .//vendor/rails/railties/lib/dispatcher.rb:40:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:84:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/sync.rb:229:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:83:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:580:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:267:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:127:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/command.rb:211:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:231
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/railties/lib/commands/servers/mongrel.rb:60
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    .//vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.rhtml (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2006-12-16 16:13:10) [GET]
+  Session ID: 05851ce2628464d7513c4f68ab684c98
+  Parameters: {}
+
+
+ActionController::RoutingError (no route found to match "/join" with {:method=>:get}):
+    .//vendor/rails/actionpack/lib/action_controller/routing.rb:1263:in `recognize_path'
+    .//vendor/rails/actionpack/lib/action_controller/routing.rb:1253:in `recognize'
+    .//vendor/rails/railties/lib/dispatcher.rb:40:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:84:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/sync.rb:229:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:83:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:580:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:267:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:127:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/command.rb:211:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:231
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/railties/lib/commands/servers/mongrel.rb:60
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    .//vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.rhtml (not_found)
+
+
+Processing MainController#join (for 127.0.0.1 at 2006-12-16 16:13:16) [GET]
+  Session ID: 05851ce2628464d7513c4f68ab684c98
+  Parameters: {"action"=>"join", "controller"=>"main"}
+  [4;35;1mSQL (0.001929)[0m   [0mPRAGMA table_info(people)[0m
+  [4;36;1mSQL (0.001597)[0m   [0;1mPRAGMA table_info(locations)[0m
+Rendering  within layouts/main
+Rendering main/join
+DEPRECATION WARNING: end_form_tag is deprecated and will be removed from Rails 2.0  See http://www.rubyonrails.org/deprecation for details. (called from _run_rhtml_47app47views47main47join46rhtml at script/../config/../app/views/main/join.rhtml:44)
+Completed in 0.09520 (10 reqs/sec) | Rendering: 0.01189 (12%) | DB: 0.00353 (3%) | 200 OK [http://localhost/main/join]
+
+
+Processing TrackController#index (for 127.0.0.1 at 2006-12-16 16:13:24) [GET]
+  Session ID: 05851ce2628464d7513c4f68ab684c98
+  Parameters: {"action"=>"index", "controller"=>"track"}
+Redirected to http://localhost:3000/track/search
+Completed in 0.00139 (719 reqs/sec) | 302 Found [http://localhost/track]
+
+
+Processing TrackController#search (for 127.0.0.1 at 2006-12-16 16:13:24) [GET]
+  Session ID: 05851ce2628464d7513c4f68ab684c98
+  Parameters: {"action"=>"search", "controller"=>"track"}
+Rendering  within layouts/track
+Rendering track/search
+Completed in 0.00150 (668 reqs/sec) | Rendering: 0.00070 (46%) | 200 OK [http://localhost/track/search]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2006-12-16 16:13:27) [GET]
+  Session ID: 05851ce2628464d7513c4f68ab684c98
+  Parameters: {}
+
+
+ActionController::RoutingError (no route found to match "/faq" with {:method=>:get}):
+    .//vendor/rails/actionpack/lib/action_controller/routing.rb:1263:in `recognize_path'
+    .//vendor/rails/actionpack/lib/action_controller/routing.rb:1253:in `recognize'
+    .//vendor/rails/railties/lib/dispatcher.rb:40:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:84:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/sync.rb:229:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:83:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:580:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:267:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:127:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/command.rb:211:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:231
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/railties/lib/commands/servers/mongrel.rb:60
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    .//vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.rhtml (not_found)
+
+
+Processing TrackController#index (for 127.0.0.1 at 2006-12-16 16:13:36) [GET]
+  Session ID: 05851ce2628464d7513c4f68ab684c98
+  Parameters: {"action"=>"index", "controller"=>"track"}
+Redirected to http://localhost:3000/track/search
+Completed in 0.00136 (735 reqs/sec) | 302 Found [http://localhost/track]
+
+
+Processing TrackController#search (for 127.0.0.1 at 2006-12-16 16:13:36) [GET]
+  Session ID: 05851ce2628464d7513c4f68ab684c98
+  Parameters: {"action"=>"search", "controller"=>"track"}
+Rendering  within layouts/track
+Rendering track/search
+Completed in 0.00147 (678 reqs/sec) | Rendering: 0.00069 (46%) | 200 OK [http://localhost/track/search]
