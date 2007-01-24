@@ -1,0 +1,16 @@
+<%= error_messages_for 'item' %>
+
+<!--[form:item]-->
+<p><label for="item_tbid">Tbid</label><br/>
+<%= text_field 'item', 'tbid'  %></p>
+
+<p><label for="item_name">Name</label><br/>
+<%= text_field 'item', 'name'  %></p>
+
+<p><label for="item_description">Description</label><br/>
+<%= text_area 'item', 'description'  %></p>
+
+<p><label for="item_created_on">Created on</label><br/>
+<%= date_select 'item', 'created_on'  %></p>
+<!--[eoform:item]-->
+

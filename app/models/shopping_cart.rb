@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 10
+# Schema version: 12
 #
 # Table name: shopping_carts
 #
@@ -12,5 +12,6 @@
 
 class ShoppingCart < ActiveRecord::Base
   has_many :line_items
+  belongs_to :person
 
 end

@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 10
+# Schema version: 12
 #
 # Table name: sale_items
 #
@@ -15,6 +15,7 @@
 #
 
 class SaleItem < ActiveRecord::Base
-  belongs_to :shopping_cart
+  has_many :shopping_carts
+  belongs_to :category
 
 end

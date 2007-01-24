@@ -1,6 +1,7 @@
 class CreateItems < ActiveRecord::Migration
   def self.up
     create_table :items do |t|
+        t.column :tbid, :string
         t.column :name, :string, :length => 180
         t.column :description, :text
         t.column :person_id, :integer

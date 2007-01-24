@@ -37,7 +37,11 @@ module ApplicationHelper
 
   def ymap_address_map(location)
     output = '<script type="text/javascript">'
-    output += "\nvar myAddress = \"#{location.address_line_1} #{location.address_line_2}, #{location.city}, #{location.state} #{location.zip_code}\"\n"
+    if location.nil?
+      output += "\nvar myAddress = \"95054\"\n"
+    else
+      output += "\nvar myAddress = \"#{location.address_line_1} #{location.address_line_2}, #{location.city}, #{location.state} #{location.zip_code}\"\n"
+    end
     output += "var map = new YMap(document.getElementById('mapContainer'));\n"
     output += "map.drawZoomAndCenter(myAddress, 3);\n"
     output += "map.setMapType(YAHOO_MAP_REG);\n"

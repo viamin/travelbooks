@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 10
+# Schema version: 12
 #
 # Table name: credit_cards
 #
@@ -15,4 +15,6 @@
 #
 
 class CreditCard < ActiveRecord::Base
+  belongs_to :person
+  belongs_to :location
 end

@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 10
+# Schema version: 12
 #
 # Table name: orders
 #
@@ -12,4 +12,6 @@
 #
 
 class Order < ActiveRecord::Base
+  belongs_to :person
+  belongs_to :location
 end

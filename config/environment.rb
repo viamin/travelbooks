@@ -41,6 +41,12 @@ Rails::Initializer.run do |config|
   # See Rails::Configuration for more options
 end
 
+def timing(str)
+  time = Time.now
+  string = "[#{time.strftime "%H:%M:%S"}-#{ (time.usec / 1000).to_s.rjust(3,"0") }] #{str}"
+  RAILS_DEFAULT_LOGGER.info string
+end
+
 # Add new inflection rules using the following format 
 # (all these examples are active by default):
 # Inflector.inflections do |inflect|

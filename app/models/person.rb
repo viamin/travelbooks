@@ -1,27 +1,29 @@
 # == Schema Information
-# Schema version: 10
+# Schema version: 12
 #
 # Table name: people
 #
 #  id              :integer       default(0), not null, primary key
-#  title           :string(255)   default()
-#  first_name      :string(255)   default()
-#  middle_name     :string(255)   default()
-#  last_name       :string(255)   default()
-#  suffix          :string(255)   default()
+#  title           :string(255)   default('''''')
+#  first_name      :string(255)   default('''''')
+#  middle_name     :string(255)   default('''''')
+#  last_name       :string(255)   default('''''')
+#  suffix          :string(255)   default('''''')
 #  birthday        :date          
-#  email           :string(255)   default()
-#  login           :string(255)   default()
-#  hashed_password :text          default()
+#  email           :string(255)   default('''''')
+#  login           :string(255)   default('''''')
+#  hashed_password :text          default('''''')
 #  created_on      :date          
-#  notes           :text          default()
+#  notes           :text          default('''''')
+#  location_id     :integer       default(0)
 #
 
 class Person < ActiveRecord::Base
   require "digest/sha1"
 
-  has_one :location
+  belongs_to :location
   has_many :items
+  has_many :photos
   validates_uniqueness_of :login, :email
   validates_presence_of :email, :login, :password, :first_name
   validates_confirmation_of :password
@@ -55,18 +57,31 @@ class Person < ActiveRecord::Base
     find(:first, :conditions => ["email = ? and hashed_password = ?", name, hashed_password])
   end
 
-  def try_to_login
-    Person.login(self.login, self.password)
-  end
-
-  def try_email_login
-    Person.email_login(self.login, self.password)
-  end
-
   def age
-    age_in_seconds = Time.now - self.birthday
+=begin old way
+    age_in_seconds = Time.now.to_i - self.birthday.to_i
     age_in_years = age_in_seconds / 1.years
     age = age_in_years.floor.to_i
+=end
+    age_in_days = Date.today - self.birthday
+    age = (age_in_days / 365).floor.to_i
+  end
+  
+  def main_photo
+    #selects the main photo for profile page
+    main_photo = self.photos.detect { |photo| photo.photo_type == 1 } || self.photos.first
+  end
+  
+  def change_location(new_location, date = Time.now)
+    change = Change.new
+    change.change_type = Change.PERSON_LOCATION
+    change.old_value = self.location
+    change.new_value = new_location
+    change.effective_date = date
+    change.person_id = self.id
+    change.save!
+    self.location = new_location
+    self.save!
   end
 
   private

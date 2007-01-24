@@ -8093,3 +8093,2219 @@ Processing TrackController#search (for 127.0.0.1 at 2006-12-16 16:13:36) [GET]
 Rendering  within layouts/track
 Rendering track/search
 Completed in 0.00147 (678 reqs/sec) | Rendering: 0.00069 (46%) | 200 OK [http://localhost/track/search]
+
+
+Processing MainController#login (for 127.0.0.1 at 2006-12-18 23:21:56) [POST]
+  Session ID: 0a629342aa9d644ace376a0d93ffdda1
+  Parameters: {"person_username"=>"viamin", "action"=>"login", "person_password"=>"rsh56w", "controller"=>"main", "login"=>"Login"}
+  [4;36;1mSQL (0.003787)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mPerson Load (0.000301)[0m   [0mSELECT * FROM people WHERE (login = '' and hashed_password = 'da39a3ee5e6b4b0d3255bfef95601890afd80709') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000203)[0m   [0;1mSELECT * FROM people WHERE (email = '' and hashed_password = 'da39a3ee5e6b4b0d3255bfef95601890afd80709') LIMIT 1[0m
+Redirected to http://localhost:3000/main/login
+Completed in 0.16298 (6 reqs/sec) | DB: 0.00429 (2%) | 302 Found [http://localhost/main/login]
+
+
+Processing MainController#login (for 127.0.0.1 at 2006-12-18 23:21:56) [GET]
+  Session ID: 0a629342aa9d644ace376a0d93ffdda1
+  Parameters: {"action"=>"login", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/login
+DEPRECATION WARNING: end_form_tag is deprecated and will be removed from Rails 2.0  See http://www.rubyonrails.org/deprecation for details. (called from _run_rhtml_47app47views47main47login46rhtml at script/../config/../app/views/main/login.rhtml:9)
+Completed in 0.02965 (33 reqs/sec) | Rendering: 0.02882 (97%) | 200 OK [http://localhost/main/login]
+
+
+Processing MainController#join (for 127.0.0.1 at 2006-12-18 23:22:01) [GET]
+  Session ID: 0a629342aa9d644ace376a0d93ffdda1
+  Parameters: {"action"=>"join", "controller"=>"main"}
+  [4;35;1mSQL (0.001841)[0m   [0mPRAGMA table_info(people)[0m
+  [4;36;1mSQL (0.001981)[0m   [0;1mPRAGMA table_info(locations)[0m
+Rendering  within layouts/main
+Rendering main/join
+DEPRECATION WARNING: end_form_tag is deprecated and will be removed from Rails 2.0  See http://www.rubyonrails.org/deprecation for details. (called from _run_rhtml_47app47views47main47join46rhtml at script/../config/../app/views/main/join.rhtml:44)
+Completed in 0.05929 (16 reqs/sec) | Rendering: 0.02308 (38%) | DB: 0.00382 (6%) | 200 OK [http://localhost/main/join]
+
+
+Processing MainController#join (for 127.0.0.1 at 2006-12-18 23:22:39) [POST]
+  Session ID: 0a629342aa9d644ace376a0d93ffdda1
+  Parameters: {"commit"=>"Create Account", "action"=>"join", "controller"=>"main", "person"=>{"birthday(2i)"=>"5", "birthday(3i)"=>"23", "title"=>"Mr.", "password_confirmation"=>"rsh56w", "first_name"=>"Bart", "last_name"=>"Agapinan", "login"=>"viamin", "password"=>"rsh56w", "middle_name"=>"", "birthday(1i)"=>"1977", "email"=>"bart@sonic.net"}, "location"=>{"city"=>"Santa Clara", "zip_code"=>"95054", "country"=>"United States", "address_line_1"=>"4492 Lick Mill Rd.", "address_line_2"=>"4492 Lick Mill Rd.", "state"=>"CA"}}
+  [4;35;1mSQL (0.001757)[0m   [0mPRAGMA table_info(people)[0m
+  [4;36;1mSQL (0.001525)[0m   [0;1mPRAGMA table_info(locations)[0m
+  [4;35;1mPerson Load (0.000208)[0m   [0mSELECT * FROM people WHERE (people.login = 'viamin') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000104)[0m   [0;1mSELECT * FROM people WHERE (people.email = 'bart@sonic.net') LIMIT 1[0m
+  [4;35;1mSQL (0.000661)[0m   [0mINSERT INTO people ("created_on", "hashed_password", "title", "notes", "birthday", "first_name", "last_name", "login", "email", "middle_name", "suffix") VALUES('2006-12-18 23:22:39', '3872e63ee5249f69d82d1af4886974fb5d0a47e8', 'Mr.', '', '1977-05-23', 'Bart', 'Agapinan', 'viamin', 'bart@sonic.net', '', '')[0m
+  [4;36;1mSQL (0.000681)[0m   [0;1mINSERT INTO locations ("city", "item_id", "latitude", "altitude_feet", "country", "type", "zip_code", "address_line_1", "description", "address_line_2", "longitude", "person_id", "state") VALUES('Santa Clara', 0, '', 0, 'United States', '', '95054', '4492 Lick Mill Rd.', '', '4492 Lick Mill Rd.', '', 1, 'CA')[0m
+Redirected to http://localhost:3000/main/home
+Completed in 0.03480 (28 reqs/sec) | DB: 0.00494 (14%) | 302 Found [http://localhost/main/join]
+
+
+Processing MainController#home (for 127.0.0.1 at 2006-12-18 23:22:39) [GET]
+  Session ID: 0a629342aa9d644ace376a0d93ffdda1
+  Parameters: {"action"=>"home", "controller"=>"main"}
+  [4;35;1mPerson Load (0.001121)[0m   [0mSELECT * FROM people WHERE (id = 1) LIMIT 1[0m
+  [4;36;1mSQL (0.001288)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mLocation Load (0.000609)[0m   [0mSELECT * FROM locations WHERE (person_id = 1) LIMIT 1[0m
+  [4;36;1mItem Load (0.000274)[0m   [0;1mSELECT * FROM items WHERE (person_id = 1) [0m
+  [4;35;1mPhoto Load (0.000254)[0m   [0mSELECT * FROM photos WHERE (person_id = 1 and photo_type = 1) LIMIT 1[0m
+Rendering  within layouts/main
+Rendering main/home
+
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.path) on line #6 of app/views/main/home.rhtml:
+3: <p>This is the page where you can track your friends, your TravellerBooks, and anything else you want!</p>
+4: 
+5: <div id="user_info">
+6:   <%= image_tag( "#{@photo.path}#{@photo.file_name}", :class => "main_photo", :size => "#{@photo.width}x#{@photo.height}") %>
+7:   <div id="personal_info">
+8:     <ul id="ilist">
+9:       <li><%= h(@person.first_name) %></li>
+
+    #{RAILS_ROOT}/app/views/main/home.rhtml:6:in `_run_rhtml_47app47views47main47home46rhtml'
+    vendor/rails/actionpack/lib/action_view/base.rb:328:in `send'
+    vendor/rails/actionpack/lib/action_view/base.rb:328:in `compile_and_render_template'
+    vendor/rails/actionpack/lib/action_view/base.rb:303:in `render_template'
+    vendor/rails/actionpack/lib/action_view/base.rb:263:in `render_file'
+    vendor/rails/actionpack/lib/action_controller/base.rb:803:in `render_file'
+    vendor/rails/actionpack/lib/action_controller/base.rb:708:in `render_with_no_layout'
+    vendor/rails/actionpack/lib/action_controller/layout.rb:247:in `render_without_benchmark'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:50:in `render'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:50:in `render'
+    vendor/rails/actionpack/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+    vendor/rails/actionpack/lib/action_controller/filters.rb:632:in `call_filter'
+    vendor/rails/actionpack/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    vendor/rails/actionpack/lib/action_controller/rescue.rb:112:in `perform_action'
+    vendor/rails/actionpack/lib/action_controller/base.rb:427:in `send'
+    vendor/rails/actionpack/lib/action_controller/base.rb:427:in `process_without_filters'
+    vendor/rails/actionpack/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    vendor/rails/actionpack/lib/action_controller/session_management.rb:114:in `process'
+    vendor/rails/actionpack/lib/action_controller/base.rb:330:in `process'
+    vendor/rails/railties/lib/dispatcher.rb:41:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:84:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/sync.rb:229:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:83:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:580:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:267:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:127:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/command.rb:211:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:231
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    vendor/rails/railties/lib/commands/servers/mongrel.rb:60
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.rhtml (internal_server_error)
+
+
+Processing MainController#join (for 127.0.0.1 at 2006-12-18 23:23:19) [POST]
+  Session ID: 0a629342aa9d644ace376a0d93ffdda1
+  Parameters: {"commit"=>"Create Account", "action"=>"join", "controller"=>"main", "person"=>{"birthday(2i)"=>"5", "birthday(3i)"=>"23", "title"=>"Mr.", "password_confirmation"=>"", "first_name"=>"Bart", "last_name"=>"Agapinan", "login"=>"viamin", "password"=>"", "middle_name"=>"", "birthday(1i)"=>"1977", "email"=>"bart@sonic.net"}, "location"=>{"city"=>"Santa Clara", "zip_code"=>"95054", "country"=>"United States", "address_line_1"=>"4492 Lick Mill Rd.", "address_line_2"=>"4492 Lick Mill Rd.", "state"=>"CA"}}
+  [4;36;1mSQL (0.001772)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mSQL (0.001700)[0m   [0mPRAGMA table_info(locations)[0m
+  [4;36;1mPerson Load (0.000548)[0m   [0;1mSELECT * FROM people WHERE (people.login = 'viamin') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000330)[0m   [0mSELECT * FROM people WHERE (people.email = 'bart@sonic.net') LIMIT 1[0m
+Rendering  within layouts/main
+Rendering main/join
+DEPRECATION WARNING: end_form_tag is deprecated and will be removed from Rails 2.0  See http://www.rubyonrails.org/deprecation for details. (called from _run_rhtml_47app47views47main47join46rhtml at script/../config/../app/views/main/join.rhtml:44)
+Completed in 0.03193 (31 reqs/sec) | Rendering: 0.00821 (25%) | DB: 0.00435 (13%) | 200 OK [http://localhost/main/join]
+
+
+Processing MainController#login (for 127.0.0.1 at 2006-12-18 23:23:34) [POST]
+  Session ID: 0a629342aa9d644ace376a0d93ffdda1
+  Parameters: {"person_username"=>"viamin", "action"=>"login", "person_password"=>"rsh56w", "controller"=>"main", "login"=>"Login"}
+  [4;36;1mSQL (0.001741)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mPerson Load (0.000201)[0m   [0mSELECT * FROM people WHERE (login = '' and hashed_password = 'da39a3ee5e6b4b0d3255bfef95601890afd80709') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000157)[0m   [0;1mSELECT * FROM people WHERE (email = '' and hashed_password = 'da39a3ee5e6b4b0d3255bfef95601890afd80709') LIMIT 1[0m
+Redirected to http://localhost:3000/main/login
+Completed in 0.01696 (58 reqs/sec) | DB: 0.00210 (12%) | 302 Found [http://localhost/main/login]
+
+
+Processing MainController#login (for 127.0.0.1 at 2006-12-18 23:23:34) [GET]
+  Session ID: 0a629342aa9d644ace376a0d93ffdda1
+  Parameters: {"action"=>"login", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/login
+DEPRECATION WARNING: end_form_tag is deprecated and will be removed from Rails 2.0  See http://www.rubyonrails.org/deprecation for details. (called from _run_rhtml_47app47views47main47login46rhtml at script/../config/../app/views/main/login.rhtml:9)
+Completed in 0.07520 (13 reqs/sec) | Rendering: 0.07419 (98%) | 200 OK [http://localhost/main/login]
+
+
+Processing MainController#join (for 127.0.0.1 at 2006-12-18 23:23:38) [GET]
+  Session ID: 0a629342aa9d644ace376a0d93ffdda1
+  Parameters: {"action"=>"join", "controller"=>"main"}
+  [4;35;1mSQL (0.002852)[0m   [0mPRAGMA table_info(people)[0m
+  [4;36;1mSQL (0.001558)[0m   [0;1mPRAGMA table_info(locations)[0m
+Rendering  within layouts/main
+Rendering main/join
+DEPRECATION WARNING: end_form_tag is deprecated and will be removed from Rails 2.0  See http://www.rubyonrails.org/deprecation for details. (called from _run_rhtml_47app47views47main47join46rhtml at script/../config/../app/views/main/join.rhtml:44)
+Completed in 0.03221 (31 reqs/sec) | Rendering: 0.00917 (28%) | DB: 0.00441 (13%) | 200 OK [http://localhost/main/join]
+
+
+Processing MainController#join (for 127.0.0.1 at 2006-12-18 23:24:09) [POST]
+  Session ID: 0a629342aa9d644ace376a0d93ffdda1
+  Parameters: {"commit"=>"Create Account", "action"=>"join", "controller"=>"main", "person"=>{"birthday(2i)"=>"5", "birthday(3i)"=>"23", "title"=>"Mr.", "password_confirmation"=>"rsh56w", "first_name"=>"Bart", "last_name"=>"Agapinan", "login"=>"viamin", "password"=>"rsh56w", "middle_name"=>"", "birthday(1i)"=>"1977", "email"=>"bart@sonic.net"}, "location"=>{"city"=>"Santa Clara", "zip_code"=>"95054", "country"=>"United States", "address_line_1"=>"4492 Lick Mill Rd.", "address_line_2"=>"4492 Lick Mill Rd.", "state"=>"CA"}}
+  [4;35;1mSQL (0.001745)[0m   [0mPRAGMA table_info(people)[0m
+  [4;36;1mSQL (0.001517)[0m   [0;1mPRAGMA table_info(locations)[0m
+  [4;35;1mPerson Load (0.000441)[0m   [0mSELECT * FROM people WHERE (people.login = 'viamin') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000325)[0m   [0;1mSELECT * FROM people WHERE (people.email = 'bart@sonic.net') LIMIT 1[0m
+Rendering  within layouts/main
+Rendering main/join
+DEPRECATION WARNING: end_form_tag is deprecated and will be removed from Rails 2.0  See http://www.rubyonrails.org/deprecation for details. (called from _run_rhtml_47app47views47main47join46rhtml at script/../config/../app/views/main/join.rhtml:44)
+Completed in 0.03299 (30 reqs/sec) | Rendering: 0.00819 (24%) | DB: 0.00403 (12%) | 200 OK [http://localhost/main/join]
+
+
+Processing MainController#login (for 127.0.0.1 at 2006-12-18 23:24:25) [POST]
+  Session ID: 0a629342aa9d644ace376a0d93ffdda1
+  Parameters: {"person_username"=>"bart@sonic.net", "action"=>"login", "person_password"=>"rsh56w", "controller"=>"main", "login"=>"Login"}
+  [4;35;1mSQL (0.001808)[0m   [0mPRAGMA table_info(people)[0m
+  [4;36;1mPerson Load (0.000211)[0m   [0;1mSELECT * FROM people WHERE (login = '' and hashed_password = 'da39a3ee5e6b4b0d3255bfef95601890afd80709') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000158)[0m   [0mSELECT * FROM people WHERE (email = '' and hashed_password = 'da39a3ee5e6b4b0d3255bfef95601890afd80709') LIMIT 1[0m
+Redirected to http://localhost:3000/main/login
+Completed in 0.01675 (59 reqs/sec) | DB: 0.00218 (13%) | 302 Found [http://localhost/main/login]
+
+
+Processing MainController#login (for 127.0.0.1 at 2006-12-18 23:24:26) [GET]
+  Session ID: 0a629342aa9d644ace376a0d93ffdda1
+  Parameters: {"action"=>"login", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/login
+DEPRECATION WARNING: end_form_tag is deprecated and will be removed from Rails 2.0  See http://www.rubyonrails.org/deprecation for details. (called from _run_rhtml_47app47views47main47login46rhtml at script/../config/../app/views/main/login.rhtml:9)
+Completed in 0.00310 (322 reqs/sec) | Rendering: 0.00209 (67%) | 200 OK [http://localhost/main/login]
+
+
+Processing MainController#login (for 127.0.0.1 at 2006-12-18 23:31:46) [POST]
+  Session ID: 0a629342aa9d644ace376a0d93ffdda1
+  Parameters: {"person_username"=>"viamin", "action"=>"login", "person_password"=>"rsh56w", "controller"=>"main", "login"=>"Login"}
+
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.[]):
+    .//app/controllers/main_controller.rb:60:in `login'
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:1092:in `send'
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:1092:in `perform_action_without_filters'
+    .//vendor/rails/actionpack/lib/action_controller/filters.rb:632:in `call_filter'
+    .//vendor/rails/actionpack/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    .//vendor/rails/actionpack/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    .//vendor/rails/actionpack/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    .//vendor/rails/actionpack/lib/action_controller/rescue.rb:112:in `perform_action'
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:427:in `send'
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:427:in `process_without_filters'
+    .//vendor/rails/actionpack/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    .//vendor/rails/actionpack/lib/action_controller/session_management.rb:114:in `process'
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:330:in `process'
+    .//vendor/rails/railties/lib/dispatcher.rb:41:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:84:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/sync.rb:229:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:83:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:580:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:267:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:127:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/command.rb:211:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:231
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/railties/lib/commands/servers/mongrel.rb:60
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    .//vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.rhtml (internal_server_error)
+
+
+Processing MainController#login (for 127.0.0.1 at 2006-12-18 23:33:13) [POST]
+  Session ID: 0a629342aa9d644ace376a0d93ffdda1
+  Parameters: {"person_username"=>"viamin", "action"=>"login", "person_password"=>"rsh56w", "controller"=>"main", "login"=>"Login"}
+
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.[]):
+    .//app/controllers/main_controller.rb:60:in `login'
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:1092:in `send'
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:1092:in `perform_action_without_filters'
+    .//vendor/rails/actionpack/lib/action_controller/filters.rb:632:in `call_filter'
+    .//vendor/rails/actionpack/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    .//vendor/rails/actionpack/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    .//vendor/rails/actionpack/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    .//vendor/rails/actionpack/lib/action_controller/rescue.rb:112:in `perform_action'
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:427:in `send'
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:427:in `process_without_filters'
+    .//vendor/rails/actionpack/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    .//vendor/rails/actionpack/lib/action_controller/session_management.rb:114:in `process'
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:330:in `process'
+    .//vendor/rails/railties/lib/dispatcher.rb:41:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:84:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/sync.rb:229:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:83:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:580:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:267:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:127:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/command.rb:211:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:231
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/railties/lib/commands/servers/mongrel.rb:60
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    .//vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.rhtml (internal_server_error)
+
+
+Processing MainController#login (for 127.0.0.1 at 2006-12-18 23:34:04) [POST]
+  Session ID: 0a629342aa9d644ace376a0d93ffdda1
+  Parameters: {"action"=>"login", "controller"=>"main", "login"=>"Login", "person"=>{"username"=>"viamin", "password"=>"rsh56w"}}
+  [4;36;1mPerson Load (0.000924)[0m   [0;1mSELECT * FROM people WHERE (login = 'viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000175)[0m   [0mSELECT * FROM people WHERE (email = 'viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mSQL (0.001299)[0m   [0;1mPRAGMA table_info(people)[0m
+Redirected to http://localhost:3000/main/home
+Completed in 0.08159 (12 reqs/sec) | DB: 0.00240 (2%) | 302 Found [http://localhost/main/login]
+
+
+Processing MainController#home (for 127.0.0.1 at 2006-12-18 23:34:04) [GET]
+  Session ID: 0a629342aa9d644ace376a0d93ffdda1
+  Parameters: {"action"=>"home", "controller"=>"main"}
+  [4;35;1mSQL (0.001752)[0m   [0mPRAGMA table_info(people)[0m
+  [4;36;1mPerson Load (0.000396)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mLocation Load (0.000690)[0m   [0mSELECT * FROM locations WHERE (person_id = 1) LIMIT 1[0m
+  [4;36;1mItem Load (0.000273)[0m   [0;1mSELECT * FROM items WHERE (person_id = 1) [0m
+  [4;35;1mPhoto Load (0.000344)[0m   [0mSELECT * FROM photos WHERE (person_id = 1 and photo_type = 1) LIMIT 1[0m
+Rendering  within layouts/main
+Rendering main/home
+
+
+ActionView::TemplateError (can't convert Date into Float) on line #10 of app/views/main/home.rhtml:
+7:   <div id="personal_info">
+8:     <ul id="ilist">
+9:       <li><%= h(@person.first_name) %></li>
+10:       <li><%= h(@person.age) %></li>
+11:     </ul>
+12:   </div>
+13: </div>
+
+    app/models/person.rb:67:in `-'
+    app/models/person.rb:67:in `age'
+    #{RAILS_ROOT}/app/views/main/home.rhtml:10:in `_run_rhtml_47app47views47main47home46rhtml'
+    vendor/rails/actionpack/lib/action_view/base.rb:328:in `send'
+    vendor/rails/actionpack/lib/action_view/base.rb:328:in `compile_and_render_template'
+    vendor/rails/actionpack/lib/action_view/base.rb:303:in `render_template'
+    vendor/rails/actionpack/lib/action_view/base.rb:263:in `render_file'
+    vendor/rails/actionpack/lib/action_controller/base.rb:803:in `render_file'
+    vendor/rails/actionpack/lib/action_controller/base.rb:708:in `render_with_no_layout'
+    vendor/rails/actionpack/lib/action_controller/layout.rb:247:in `render_without_benchmark'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:50:in `render'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:50:in `render'
+    vendor/rails/actionpack/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+    vendor/rails/actionpack/lib/action_controller/filters.rb:632:in `call_filter'
+    vendor/rails/actionpack/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    vendor/rails/actionpack/lib/action_controller/rescue.rb:112:in `perform_action'
+    vendor/rails/actionpack/lib/action_controller/base.rb:427:in `send'
+    vendor/rails/actionpack/lib/action_controller/base.rb:427:in `process_without_filters'
+    vendor/rails/actionpack/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    vendor/rails/actionpack/lib/action_controller/session_management.rb:114:in `process'
+    vendor/rails/actionpack/lib/action_controller/base.rb:330:in `process'
+    vendor/rails/railties/lib/dispatcher.rb:41:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:84:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/sync.rb:229:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:83:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:580:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:267:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:127:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/command.rb:211:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:231
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    vendor/rails/railties/lib/commands/servers/mongrel.rb:60
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.rhtml (internal_server_error)
+
+
+Processing MainController#home (for 127.0.0.1 at 2006-12-18 23:36:28) [GET]
+  Session ID: 0a629342aa9d644ace376a0d93ffdda1
+  Parameters: {"action"=>"home", "controller"=>"main"}
+  [4;36;1mSQL (0.001907)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mPerson Load (0.000472)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mLocation Load (0.000553)[0m   [0;1mSELECT * FROM locations WHERE (person_id = 1) LIMIT 1[0m
+  [4;35;1mItem Load (0.000276)[0m   [0mSELECT * FROM items WHERE (person_id = 1) [0m
+  [4;36;1mPhoto Load (0.000301)[0m   [0;1mSELECT * FROM photos WHERE (person_id = 1 and photo_type = 1) LIMIT 1[0m
+Rendering  within layouts/main
+Rendering main/home
+
+
+ActionView::TemplateError (undefined method `to_i' for #<Date: 4886573/2,0,2299161>) on line #10 of app/views/main/home.rhtml:
+7:   <div id="personal_info">
+8:     <ul id="ilist">
+9:       <li><%= h(@person.first_name) %></li>
+10:       <li><%= h(@person.age) %></li>
+11:     </ul>
+12:   </div>
+13: </div>
+
+    app/models/person.rb:67:in `age'
+    #{RAILS_ROOT}/app/views/main/home.rhtml:10:in `_run_rhtml_47app47views47main47home46rhtml'
+    vendor/rails/actionpack/lib/action_view/base.rb:328:in `send'
+    vendor/rails/actionpack/lib/action_view/base.rb:328:in `compile_and_render_template'
+    vendor/rails/actionpack/lib/action_view/base.rb:303:in `render_template'
+    vendor/rails/actionpack/lib/action_view/base.rb:263:in `render_file'
+    vendor/rails/actionpack/lib/action_controller/base.rb:803:in `render_file'
+    vendor/rails/actionpack/lib/action_controller/base.rb:708:in `render_with_no_layout'
+    vendor/rails/actionpack/lib/action_controller/layout.rb:247:in `render_without_benchmark'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:50:in `render'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:50:in `render'
+    vendor/rails/actionpack/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+    vendor/rails/actionpack/lib/action_controller/filters.rb:632:in `call_filter'
+    vendor/rails/actionpack/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    vendor/rails/actionpack/lib/action_controller/rescue.rb:112:in `perform_action'
+    vendor/rails/actionpack/lib/action_controller/base.rb:427:in `send'
+    vendor/rails/actionpack/lib/action_controller/base.rb:427:in `process_without_filters'
+    vendor/rails/actionpack/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    vendor/rails/actionpack/lib/action_controller/session_management.rb:114:in `process'
+    vendor/rails/actionpack/lib/action_controller/base.rb:330:in `process'
+    vendor/rails/railties/lib/dispatcher.rb:41:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:84:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/sync.rb:229:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:83:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:580:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:267:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:127:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/command.rb:211:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:231
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    vendor/rails/railties/lib/commands/servers/mongrel.rb:60
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.rhtml (internal_server_error)
+
+
+Processing MainController#home (for 127.0.0.1 at 2006-12-18 23:39:16) [GET]
+  Session ID: 0a629342aa9d644ace376a0d93ffdda1
+  Parameters: {"action"=>"home", "controller"=>"main"}
+  [4;35;1mSQL (0.001775)[0m   [0mPRAGMA table_info(people)[0m
+  [4;36;1mPerson Load (0.000394)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mLocation Load (0.000563)[0m   [0mSELECT * FROM locations WHERE (person_id = 1) LIMIT 1[0m
+  [4;36;1mItem Load (0.000325)[0m   [0;1mSELECT * FROM items WHERE (person_id = 1) [0m
+  [4;35;1mPhoto Load (0.000286)[0m   [0mSELECT * FROM photos WHERE (person_id = 1 and photo_type = 1) LIMIT 1[0m
+Rendering  within layouts/main
+Rendering main/home
+  [4;36;1mSQL (0.001552)[0m   [0;1mPRAGMA table_info(locations)[0m
+Completed in 0.03583 (27 reqs/sec) | Rendering: 0.00271 (7%) | DB: 0.00489 (13%) | 200 OK [http://localhost/main/home]
+
+
+Processing MainController#login (for 127.0.0.1 at 2006-12-18 23:47:14) [POST]
+  Session ID: 0a629342aa9d644ace376a0d93ffdda1
+  Parameters: {"action"=>"login", "controller"=>"main", "login"=>"Login", "person"=>{"username"=>"viamin", "password"=>"rsh56w"}}
+  [4;35;1mPerson Load (0.000890)[0m   [0mSELECT * FROM people WHERE (login = 'viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000172)[0m   [0;1mSELECT * FROM people WHERE (email = 'viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mSQL (0.001324)[0m   [0mPRAGMA table_info(people)[0m
+Redirected to http://localhost:3000/main/home
+Completed in 0.01770 (56 reqs/sec) | DB: 0.00239 (13%) | 302 Found [http://localhost/main/login]
+
+
+Processing MainController#home (for 127.0.0.1 at 2006-12-18 23:47:14) [GET]
+  Session ID: 0a629342aa9d644ace376a0d93ffdda1
+  Parameters: {"action"=>"home", "controller"=>"main"}
+  [4;36;1mSQL (0.001873)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mPerson Load (0.000409)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mLocation Load (0.000573)[0m   [0;1mSELECT * FROM locations WHERE (locations.person_id = 1) LIMIT 1[0m
+Rendering  within layouts/main
+Rendering main/home
+  [4;35;1mSQL (0.001584)[0m   [0mPRAGMA table_info(locations)[0m
+Completed in 0.03138 (31 reqs/sec) | Rendering: 0.00406 (12%) | DB: 0.00444 (14%) | 200 OK [http://localhost/main/home]
+
+
+Processing MainController#login (for 127.0.0.1 at 2006-12-18 23:47:28) [POST]
+  Session ID: 0a629342aa9d644ace376a0d93ffdda1
+  Parameters: {"action"=>"login", "controller"=>"main", "login"=>"Login", "person"=>{"username"=>"bart@sonic.net", "password"=>"rsh56w"}}
+  [4;36;1mPerson Load (0.000634)[0m   [0;1mSELECT * FROM people WHERE (login = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000404)[0m   [0mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mSQL (0.001262)[0m   [0;1mPRAGMA table_info(people)[0m
+Redirected to http://localhost:3000/main/home
+Completed in 0.01489 (67 reqs/sec) | DB: 0.00230 (15%) | 302 Found [http://localhost/main/login]
+
+
+Processing MainController#home (for 127.0.0.1 at 2006-12-18 23:47:28) [GET]
+  Session ID: 0a629342aa9d644ace376a0d93ffdda1
+  Parameters: {"action"=>"home", "controller"=>"main"}
+  [4;35;1mSQL (0.001750)[0m   [0mPRAGMA table_info(people)[0m
+  [4;36;1mPerson Load (0.000409)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mLocation Load (0.000574)[0m   [0mSELECT * FROM locations WHERE (locations.person_id = 1) LIMIT 1[0m
+Rendering  within layouts/main
+Rendering main/home
+  [4;36;1mSQL (0.001637)[0m   [0;1mPRAGMA table_info(locations)[0m
+Completed in 0.02940 (34 reqs/sec) | Rendering: 0.00296 (10%) | DB: 0.00437 (14%) | 200 OK [http://localhost/main/home]
+  [4;36;1mSQL (0.002005)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000685)[0m   [0mPRAGMA table_info(categories)[0m
+  [4;36;1mSQL (0.000148)[0m   [0;1mPRAGMA table_info(changes)[0m
+  [4;36;1mSQL (0.000328)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000282)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000443)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000285)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000252)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000248)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000275)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000263)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.041792)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000310)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000196)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000191)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000189)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateChanges (11)
+  [4;36;1mSQL (0.003232)[0m   [0;1mCREATE TABLE changes ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "change_type" integer, "item_id" integer, "person_id" integer, "old_value" varchar(255), "new_value" varchar(255), "effective_date" date) [0m
+  [4;35;1mSQL (0.002093)[0m   [0mUPDATE schema_info SET version = 11[0m
+  [4;36;1mSQL (0.000401)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.001041)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.000532)[0m   [0;1mPRAGMA table_info(categories)[0m
+  [4;35;1mSQL (0.000104)[0m   [0mPRAGMA index_list(categories)[0m
+  [4;36;1mSQL (0.001061)[0m   [0;1mPRAGMA table_info(changes)[0m
+  [4;35;1mSQL (0.000172)[0m   [0mPRAGMA index_list(changes)[0m
+  [4;36;1mSQL (0.001342)[0m   [0;1mPRAGMA table_info(credit_cards)[0m
+  [4;35;1mSQL (0.000086)[0m   [0mPRAGMA index_list(credit_cards)[0m
+  [4;36;1mSQL (0.000795)[0m   [0;1mPRAGMA table_info(items)[0m
+  [4;35;1mSQL (0.000087)[0m   [0mPRAGMA index_list(items)[0m
+  [4;36;1mSQL (0.001039)[0m   [0;1mPRAGMA table_info(line_items)[0m
+  [4;35;1mSQL (0.000128)[0m   [0mPRAGMA index_list(line_items)[0m
+  [4;36;1mSQL (0.001841)[0m   [0;1mPRAGMA table_info(locations)[0m
+  [4;35;1mSQL (0.000072)[0m   [0mPRAGMA index_list(locations)[0m
+  [4;36;1mSQL (0.000819)[0m   [0;1mPRAGMA table_info(orders)[0m
+  [4;35;1mSQL (0.000073)[0m   [0mPRAGMA index_list(orders)[0m
+  [4;36;1mSQL (0.001423)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mSQL (0.000069)[0m   [0mPRAGMA index_list(people)[0m
+  [4;36;1mSQL (0.001664)[0m   [0;1mPRAGMA table_info(photos)[0m
+  [4;35;1mSQL (0.000070)[0m   [0mPRAGMA index_list(photos)[0m
+  [4;36;1mSQL (0.001025)[0m   [0;1mPRAGMA table_info(sale_items)[0m
+  [4;35;1mSQL (0.000064)[0m   [0mPRAGMA index_list(sale_items)[0m
+  [4;36;1mSQL (0.000602)[0m   [0;1mPRAGMA table_info(shopping_carts)[0m
+  [4;35;1mSQL (0.000068)[0m   [0mPRAGMA index_list(shopping_carts)[0m
+  [4;36;1mSQL (0.000839)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000679)[0m   [0mPRAGMA table_info(categories)[0m
+  [4;36;1mSQL (0.001142)[0m   [0;1mPRAGMA table_info(changes)[0m
+  [4;35;1mSQL (0.001520)[0m   [0mPRAGMA table_info(credit_cards)[0m
+  [4;36;1mSQL (0.000899)[0m   [0;1mPRAGMA table_info(items)[0m
+  [4;35;1mSQL (0.000946)[0m   [0mPRAGMA table_info(line_items)[0m
+  [4;36;1mSQL (0.001891)[0m   [0;1mPRAGMA table_info(locations)[0m
+  [4;35;1mSQL (0.001030)[0m   [0mPRAGMA table_info(orders)[0m
+  [4;36;1mSQL (0.001625)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mSQL (0.001785)[0m   [0mPRAGMA table_info(photos)[0m
+  [4;36;1mSQL (0.001422)[0m   [0;1mPRAGMA table_info(sale_items)[0m
+  [4;35;1mSQL (0.000892)[0m   [0mPRAGMA table_info(shopping_carts)[0m
+  [4;36;1mSQL (0.000463)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000415)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000276)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000423)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateChanges (11)
+  [4;36;1mSQL (0.003495)[0m   [0;1mDROP TABLE changes[0m
+  [4;35;1mSQL (0.002081)[0m   [0mUPDATE schema_info SET version = 10[0m
+  [4;36;1mSQL (0.046081)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateOrders (10)
+  [4;35;1mSQL (0.002604)[0m   [0mDROP TABLE orders[0m
+  [4;36;1mSQL (0.002129)[0m   [0;1mUPDATE schema_info SET version = 9[0m
+  [4;35;1mSQL (0.000395)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLineItems (9)
+  [4;36;1mSQL (0.002583)[0m   [0;1mDROP TABLE line_items[0m
+  [4;35;1mSQL (0.002149)[0m   [0mUPDATE schema_info SET version = 8[0m
+  [4;36;1mSQL (0.000403)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateShoppingCarts (8)
+  [4;35;1mSQL (0.002332)[0m   [0mDROP TABLE shopping_carts[0m
+  [4;36;1mSQL (0.004139)[0m   [0;1mUPDATE schema_info SET version = 7[0m
+  [4;35;1mSQL (0.000392)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreatePhotos (7)
+  [4;36;1mSQL (0.002542)[0m   [0;1mDROP TABLE photos[0m
+  [4;35;1mSQL (0.002022)[0m   [0mUPDATE schema_info SET version = 6[0m
+  [4;36;1mSQL (0.000327)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateCreditCards (6)
+  [4;35;1mSQL (0.002474)[0m   [0mDROP TABLE credit_cards[0m
+  [4;36;1mSQL (0.002044)[0m   [0;1mUPDATE schema_info SET version = 5[0m
+  [4;35;1mSQL (0.000352)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateSaleItems (5)
+  [4;36;1mSQL (0.002420)[0m   [0;1mDROP TABLE sale_items[0m
+  [4;35;1mSQL (0.002059)[0m   [0mUPDATE schema_info SET version = 4[0m
+  [4;36;1mSQL (0.000356)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateCategories (4)
+  [4;35;1mSQL (0.002289)[0m   [0mDROP TABLE categories[0m
+  [4;36;1mSQL (0.007790)[0m   [0;1mUPDATE schema_info SET version = 3[0m
+  [4;35;1mSQL (0.000404)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLocations (3)
+  [4;36;1mSQL (0.002442)[0m   [0;1mDROP TABLE locations[0m
+  [4;35;1mSQL (0.001898)[0m   [0mUPDATE schema_info SET version = 2[0m
+  [4;36;1mSQL (0.000329)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateItems (2)
+  [4;35;1mSQL (0.002447)[0m   [0mDROP TABLE items[0m
+  [4;36;1mSQL (0.002111)[0m   [0;1mUPDATE schema_info SET version = 1[0m
+Reached target version: 1
+  [4;35;1mSQL (0.000416)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.000345)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.001709)[0m   [0mPRAGMA table_info(people)[0m
+  [4;36;1mSQL (0.000092)[0m   [0;1mPRAGMA index_list(people)[0m
+  [4;36;1mSQL (0.000299)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000316)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000201)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateItems (2)
+  [4;35;1mSQL (0.038454)[0m   [0mCREATE TABLE items ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "tbid" varchar(255), "name" varchar(255), "description" text, "person_id" integer, "created_on" date) [0m
+  [4;36;1mSQL (0.003120)[0m   [0;1mUPDATE schema_info SET version = 2[0m
+  [4;35;1mSQL (0.000685)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLocations (3)
+  [4;36;1mSQL (0.011385)[0m   [0;1mCREATE TABLE locations ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar(255), "type" varchar(255), "person_id" integer, "item_id" integer, "address_line_1" varchar(255), "address_line_2" varchar(255), "city" varchar(255), "state" varchar(255), "zip_code" varchar(255), "country" varchar(255), "latitude" varchar(255), "longitude" varchar(255), "altitude_feet" integer) [0m
+  [4;35;1mSQL (0.002820)[0m   [0mUPDATE schema_info SET version = 3[0m
+  [4;36;1mSQL (0.000463)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateCategories (4)
+  [4;35;1mSQL (0.051121)[0m   [0mCREATE TABLE categories ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" varchar(255)) [0m
+  [4;36;1mSQL (0.002350)[0m   [0;1mUPDATE schema_info SET version = 4[0m
+  [4;35;1mSQL (0.000621)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateSaleItems (5)
+  [4;36;1mSQL (0.002881)[0m   [0;1mCREATE TABLE sale_items ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" varchar(255), "quantity_in_stock" integer, "price" float, "for_sale" varchar(255), "sale_price" float, "status" integer, "category_id" integer) [0m
+  [4;35;1mSQL (0.002622)[0m   [0mUPDATE schema_info SET version = 5[0m
+  [4;36;1mSQL (0.000396)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateCreditCards (6)
+  [4;35;1mSQL (0.017999)[0m   [0mCREATE TABLE credit_cards ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "person_id" integer, "card_type" varchar(255), "billing_location_id" integer, "name_on_card" varchar(255), "card_number" varchar(255), "expiration_date" date, "ccv" varchar(255), "created_on" date) [0m
+  [4;36;1mSQL (0.003481)[0m   [0;1mUPDATE schema_info SET version = 6[0m
+  [4;35;1mSQL (0.000465)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreatePhotos (7)
+  [4;36;1mSQL (0.019111)[0m   [0;1mCREATE TABLE photos ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "path" varchar(255), "file_name" varchar(255), "url" varchar(255), "data" blob, "content_type" varchar(255), "bytes" integer, "width" integer, "height" integer, "caption" varchar(255), "photo_type" integer, "location_id" integer, "person_id" integer, "item_id" integer, "created_on" date) [0m
+  [4;35;1mSQL (0.002311)[0m   [0mUPDATE schema_info SET version = 7[0m
+  [4;36;1mSQL (0.000401)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateShoppingCarts (8)
+  [4;35;1mSQL (0.002791)[0m   [0mCREATE TABLE shopping_carts ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "person_id" integer, "created_on" date, "modified_on" date, "last_viewed" date) [0m
+  [4;36;1mSQL (0.028756)[0m   [0;1mUPDATE schema_info SET version = 8[0m
+  [4;35;1mSQL (0.000632)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLineItems (9)
+  [4;36;1mSQL (0.003076)[0m   [0;1mCREATE TABLE line_items ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "shopping_cart_id" integer, "order_id" integer, "sale_item_id" integer, "quantity" integer, "price_per_item" float, "created_on" date) [0m
+  [4;35;1mSQL (0.002771)[0m   [0mUPDATE schema_info SET version = 9[0m
+  [4;36;1mSQL (0.000390)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateOrders (10)
+  [4;35;1mSQL (0.003480)[0m   [0mCREATE TABLE orders ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "person_id" integer, "shipping_location_id" integer, "created_on" date, "shipped_on" date, "paid_on" date) [0m
+  [4;36;1mSQL (0.005997)[0m   [0;1mUPDATE schema_info SET version = 10[0m
+  [4;35;1mSQL (0.000397)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateChanges (11)
+  [4;36;1mSQL (0.003145)[0m   [0;1mCREATE TABLE changes ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "change_type" integer, "item_id" integer, "person_id" integer, "old_value" varchar(255), "new_value" varchar(255), "effective_date" date) [0m
+  [4;35;1mSQL (0.034270)[0m   [0mUPDATE schema_info SET version = 11[0m
+  [4;36;1mSQL (0.000470)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.001296)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.000610)[0m   [0;1mPRAGMA table_info(categories)[0m
+  [4;35;1mSQL (0.000118)[0m   [0mPRAGMA index_list(categories)[0m
+  [4;36;1mSQL (0.001144)[0m   [0;1mPRAGMA table_info(changes)[0m
+  [4;35;1mSQL (0.000138)[0m   [0mPRAGMA index_list(changes)[0m
+  [4;36;1mSQL (0.001287)[0m   [0;1mPRAGMA table_info(credit_cards)[0m
+  [4;35;1mSQL (0.000111)[0m   [0mPRAGMA index_list(credit_cards)[0m
+  [4;36;1mSQL (0.001387)[0m   [0;1mPRAGMA table_info(items)[0m
+  [4;35;1mSQL (0.000090)[0m   [0mPRAGMA index_list(items)[0m
+  [4;36;1mSQL (0.000849)[0m   [0;1mPRAGMA table_info(line_items)[0m
+  [4;35;1mSQL (0.000092)[0m   [0mPRAGMA index_list(line_items)[0m
+  [4;36;1mSQL (0.001920)[0m   [0;1mPRAGMA table_info(locations)[0m
+  [4;35;1mSQL (0.000114)[0m   [0mPRAGMA index_list(locations)[0m
+  [4;36;1mSQL (0.000748)[0m   [0;1mPRAGMA table_info(orders)[0m
+  [4;35;1mSQL (0.000125)[0m   [0mPRAGMA index_list(orders)[0m
+  [4;36;1mSQL (0.001500)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mSQL (0.000341)[0m   [0mPRAGMA index_list(people)[0m
+  [4;36;1mSQL (0.001776)[0m   [0;1mPRAGMA table_info(photos)[0m
+  [4;35;1mSQL (0.000117)[0m   [0mPRAGMA index_list(photos)[0m
+  [4;36;1mSQL (0.001058)[0m   [0;1mPRAGMA table_info(sale_items)[0m
+  [4;35;1mSQL (0.000086)[0m   [0mPRAGMA index_list(sale_items)[0m
+  [4;36;1mSQL (0.000665)[0m   [0;1mPRAGMA table_info(shopping_carts)[0m
+  [4;35;1mSQL (0.000101)[0m   [0mPRAGMA index_list(shopping_carts)[0m
+  [4;36;1mSQL (0.000946)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000677)[0m   [0mPRAGMA table_info(categories)[0m
+  [4;36;1mSQL (0.001135)[0m   [0;1mPRAGMA table_info(changes)[0m
+  [4;35;1mSQL (0.001465)[0m   [0mPRAGMA table_info(credit_cards)[0m
+  [4;36;1mSQL (0.001032)[0m   [0;1mPRAGMA table_info(items)[0m
+  [4;35;1mSQL (0.000966)[0m   [0mPRAGMA table_info(line_items)[0m
+  [4;36;1mSQL (0.001875)[0m   [0;1mPRAGMA table_info(locations)[0m
+  [4;35;1mSQL (0.001187)[0m   [0mPRAGMA table_info(orders)[0m
+  [4;36;1mSQL (0.001554)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mSQL (0.002231)[0m   [0mPRAGMA table_info(photos)[0m
+  [4;36;1mSQL (0.001677)[0m   [0;1mPRAGMA table_info(sale_items)[0m
+  [4;35;1mSQL (0.000879)[0m   [0mPRAGMA table_info(shopping_carts)[0m
+  [4;36;1mSQL (0.000460)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000488)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000290)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000198)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000195)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000191)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000194)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000196)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000191)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000190)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000238)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000197)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000193)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to AddCurrentLocationToPeople (12)
+  [4;35;1mSQL (0.032987)[0m   [0mALTER TABLE people ADD "location_id" integer[0m
+  [4;36;1mSQL (0.039326)[0m   [0;1mVACUUM[0m
+  [4;35;1mSQL (0.002557)[0m   [0mUPDATE schema_info SET version = 12[0m
+  [4;36;1mSQL (0.000406)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.001288)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.000535)[0m   [0;1mPRAGMA table_info(categories)[0m
+  [4;35;1mSQL (0.000084)[0m   [0mPRAGMA index_list(categories)[0m
+  [4;36;1mSQL (0.001070)[0m   [0;1mPRAGMA table_info(changes)[0m
+  [4;35;1mSQL (0.000093)[0m   [0mPRAGMA index_list(changes)[0m
+  [4;36;1mSQL (0.001324)[0m   [0;1mPRAGMA table_info(credit_cards)[0m
+  [4;35;1mSQL (0.000085)[0m   [0mPRAGMA index_list(credit_cards)[0m
+  [4;36;1mSQL (0.000863)[0m   [0;1mPRAGMA table_info(items)[0m
+  [4;35;1mSQL (0.000074)[0m   [0mPRAGMA index_list(items)[0m
+  [4;36;1mSQL (0.000961)[0m   [0;1mPRAGMA table_info(line_items)[0m
+  [4;35;1mSQL (0.000069)[0m   [0mPRAGMA index_list(line_items)[0m
+  [4;36;1mSQL (0.001696)[0m   [0;1mPRAGMA table_info(locations)[0m
+  [4;35;1mSQL (0.000064)[0m   [0mPRAGMA index_list(locations)[0m
+  [4;36;1mSQL (0.000710)[0m   [0;1mPRAGMA table_info(orders)[0m
+  [4;35;1mSQL (0.000072)[0m   [0mPRAGMA index_list(orders)[0m
+  [4;36;1mSQL (0.001432)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mSQL (0.000068)[0m   [0mPRAGMA index_list(people)[0m
+  [4;36;1mSQL (0.001640)[0m   [0;1mPRAGMA table_info(photos)[0m
+  [4;35;1mSQL (0.000067)[0m   [0mPRAGMA index_list(photos)[0m
+  [4;36;1mSQL (0.001020)[0m   [0;1mPRAGMA table_info(sale_items)[0m
+  [4;35;1mSQL (0.000064)[0m   [0mPRAGMA index_list(sale_items)[0m
+  [4;36;1mSQL (0.000602)[0m   [0;1mPRAGMA table_info(shopping_carts)[0m
+  [4;35;1mSQL (0.000065)[0m   [0mPRAGMA index_list(shopping_carts)[0m
+  [4;36;1mSQL (0.000893)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000468)[0m   [0mPRAGMA table_info(categories)[0m
+  [4;36;1mSQL (0.000891)[0m   [0;1mPRAGMA table_info(changes)[0m
+  [4;35;1mSQL (0.001092)[0m   [0mPRAGMA table_info(credit_cards)[0m
+  [4;36;1mSQL (0.001034)[0m   [0;1mPRAGMA table_info(items)[0m
+  [4;35;1mSQL (0.000925)[0m   [0mPRAGMA table_info(line_items)[0m
+  [4;36;1mSQL (0.001636)[0m   [0;1mPRAGMA table_info(locations)[0m
+  [4;35;1mSQL (0.000817)[0m   [0mPRAGMA table_info(orders)[0m
+  [4;36;1mSQL (0.001553)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mSQL (0.001740)[0m   [0mPRAGMA table_info(photos)[0m
+  [4;36;1mSQL (0.001122)[0m   [0;1mPRAGMA table_info(sale_items)[0m
+  [4;35;1mSQL (0.000698)[0m   [0mPRAGMA table_info(shopping_carts)[0m
+  [4;36;1mSQL (0.000286)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000206)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000196)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000442)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to AddCurrentLocationToPeople (12)
+  [4;36;1mSQL (0.001523)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mSQL (0.001509)[0m   [0mPRAGMA table_info(people)[0m
+  [4;36;1mSQL (0.001938)[0m   [0;1mCREATE TEMPORARY TABLE altered_people ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255) DEFAULT '', "first_name" varchar(255) DEFAULT '', "middle_name" varchar(255) DEFAULT '', "last_name" varchar(255) DEFAULT '', "suffix" varchar(255) DEFAULT '', "birthday" date, "email" varchar(255) DEFAULT '', "login" varchar(255) DEFAULT '', "hashed_password" text DEFAULT '', "created_on" date, "notes" text DEFAULT '', "location_id" integer DEFAULT 0) [0m
+  [4;35;1mSQL (0.000074)[0m   [0mPRAGMA index_list(people)[0m
+  [4;36;1mSQL (0.001511)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mSQL (0.000501)[0m   [0mDROP TABLE people[0m
+  [4;36;1mSQL (0.001455)[0m   [0;1mPRAGMA table_info(altered_people)[0m
+  [4;35;1mSQL (0.001431)[0m   [0mPRAGMA table_info(altered_people)[0m
+  [4;36;1mSQL (0.000429)[0m   [0;1mCREATE TABLE people ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255) DEFAULT '''''', "first_name" varchar(255) DEFAULT '''''', "middle_name" varchar(255) DEFAULT '''''', "last_name" varchar(255) DEFAULT '''''', "suffix" varchar(255) DEFAULT '''''', "birthday" date, "email" varchar(255) DEFAULT '''''', "login" varchar(255) DEFAULT '''''', "hashed_password" text DEFAULT '''''', "created_on" date, "notes" text DEFAULT '''''') [0m
+  [4;35;1mSQL (0.000060)[0m   [0mPRAGMA index_list(altered_people)[0m
+  [4;36;1mSQL (0.001439)[0m   [0;1mPRAGMA table_info(altered_people)[0m
+  [4;35;1mSQL (0.000153)[0m   [0mDROP TABLE altered_people[0m
+  [4;36;1mSQL (0.001979)[0m   [0;1mUPDATE schema_info SET version = 11[0m
+  [4;35;1mSQL (0.000379)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateChanges (11)
+  [4;36;1mSQL (0.002537)[0m   [0;1mDROP TABLE changes[0m
+  [4;35;1mSQL (0.002027)[0m   [0mUPDATE schema_info SET version = 10[0m
+Reached target version: 10
+  [4;36;1mSQL (0.000397)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.001027)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.000536)[0m   [0;1mPRAGMA table_info(categories)[0m
+  [4;35;1mSQL (0.000083)[0m   [0mPRAGMA index_list(categories)[0m
+  [4;36;1mSQL (0.001310)[0m   [0;1mPRAGMA table_info(credit_cards)[0m
+  [4;35;1mSQL (0.000092)[0m   [0mPRAGMA index_list(credit_cards)[0m
+  [4;36;1mSQL (0.000854)[0m   [0;1mPRAGMA table_info(items)[0m
+  [4;35;1mSQL (0.000092)[0m   [0mPRAGMA index_list(items)[0m
+  [4;36;1mSQL (0.000887)[0m   [0;1mPRAGMA table_info(line_items)[0m
+  [4;35;1mSQL (0.000070)[0m   [0mPRAGMA index_list(line_items)[0m
+  [4;36;1mSQL (0.001594)[0m   [0;1mPRAGMA table_info(locations)[0m
+  [4;35;1mSQL (0.000066)[0m   [0mPRAGMA index_list(locations)[0m
+  [4;36;1mSQL (0.000723)[0m   [0;1mPRAGMA table_info(orders)[0m
+  [4;35;1mSQL (0.000073)[0m   [0mPRAGMA index_list(orders)[0m
+  [4;36;1mSQL (0.001352)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mSQL (0.000110)[0m   [0mPRAGMA index_list(people)[0m
+  [4;36;1mSQL (0.001736)[0m   [0;1mPRAGMA table_info(photos)[0m
+  [4;35;1mSQL (0.000091)[0m   [0mPRAGMA index_list(photos)[0m
+  [4;36;1mSQL (0.001083)[0m   [0;1mPRAGMA table_info(sale_items)[0m
+  [4;35;1mSQL (0.000077)[0m   [0mPRAGMA index_list(sale_items)[0m
+  [4;36;1mSQL (0.000632)[0m   [0;1mPRAGMA table_info(shopping_carts)[0m
+  [4;35;1mSQL (0.000076)[0m   [0mPRAGMA index_list(shopping_carts)[0m
+  [4;36;1mSQL (0.000287)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000459)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000215)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000191)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000191)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000188)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000192)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000188)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000188)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000192)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000189)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000191)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateChanges (11)
+  [4;36;1mSQL (0.256503)[0m   [0;1mCREATE TABLE changes ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "change_type" integer, "item_id" integer, "person_id" integer, "old_value" varchar(255), "new_value" varchar(255), "effective_date" date, "created_on" date) [0m
+  [4;35;1mSQL (0.001831)[0m   [0mUPDATE schema_info SET version = 11[0m
+  [4;36;1mSQL (0.000401)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to AddCurrentLocationToPeople (12)
+  [4;35;1mSQL (0.002188)[0m   [0mALTER TABLE people ADD "location_id" integer[0m
+  [4;36;1mSQL (0.009380)[0m   [0;1mVACUUM[0m
+  [4;35;1mSQL (0.002481)[0m   [0mUPDATE schema_info SET version = 12[0m
+  [4;36;1mSQL (0.000394)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.001041)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.000529)[0m   [0;1mPRAGMA table_info(categories)[0m
+  [4;35;1mSQL (0.000086)[0m   [0mPRAGMA index_list(categories)[0m
+  [4;36;1mSQL (0.001212)[0m   [0;1mPRAGMA table_info(changes)[0m
+  [4;35;1mSQL (0.000098)[0m   [0mPRAGMA index_list(changes)[0m
+  [4;36;1mSQL (0.001201)[0m   [0;1mPRAGMA table_info(credit_cards)[0m
+  [4;35;1mSQL (0.000072)[0m   [0mPRAGMA index_list(credit_cards)[0m
+  [4;36;1mSQL (0.000765)[0m   [0;1mPRAGMA table_info(items)[0m
+  [4;35;1mSQL (0.000065)[0m   [0mPRAGMA index_list(items)[0m
+  [4;36;1mSQL (0.000813)[0m   [0;1mPRAGMA table_info(line_items)[0m
+  [4;35;1mSQL (0.000064)[0m   [0mPRAGMA index_list(line_items)[0m
+  [4;36;1mSQL (0.001540)[0m   [0;1mPRAGMA table_info(locations)[0m
+  [4;35;1mSQL (0.000066)[0m   [0mPRAGMA index_list(locations)[0m
+  [4;36;1mSQL (0.000724)[0m   [0;1mPRAGMA table_info(orders)[0m
+  [4;35;1mSQL (0.000069)[0m   [0mPRAGMA index_list(orders)[0m
+  [4;36;1mSQL (0.001448)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mSQL (0.000067)[0m   [0mPRAGMA index_list(people)[0m
+  [4;36;1mSQL (0.001630)[0m   [0;1mPRAGMA table_info(photos)[0m
+  [4;35;1mSQL (0.000066)[0m   [0mPRAGMA index_list(photos)[0m
+  [4;36;1mSQL (0.001019)[0m   [0;1mPRAGMA table_info(sale_items)[0m
+  [4;35;1mSQL (0.000064)[0m   [0mPRAGMA index_list(sale_items)[0m
+  [4;36;1mSQL (0.000609)[0m   [0;1mPRAGMA table_info(shopping_carts)[0m
+  [4;35;1mSQL (0.000066)[0m   [0mPRAGMA index_list(shopping_carts)[0m
+  [4;36;1mSQL (0.000854)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000677)[0m   [0mPRAGMA table_info(categories)[0m
+  [4;36;1mSQL (0.001269)[0m   [0;1mPRAGMA table_info(changes)[0m
+  [4;35;1mSQL (0.002546)[0m   [0mPRAGMA table_info(credit_cards)[0m
+  [4;36;1mSQL (0.000840)[0m   [0;1mPRAGMA table_info(items)[0m
+  [4;35;1mSQL (0.000920)[0m   [0mPRAGMA table_info(line_items)[0m
+  [4;36;1mSQL (0.001718)[0m   [0;1mPRAGMA table_info(locations)[0m
+  [4;35;1mSQL (0.000865)[0m   [0mPRAGMA table_info(orders)[0m
+  [4;36;1mSQL (0.001534)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mSQL (0.001761)[0m   [0mPRAGMA table_info(photos)[0m
+  [4;36;1mSQL (0.001146)[0m   [0;1mPRAGMA table_info(sale_items)[0m
+  [4;35;1mSQL (0.000910)[0m   [0mPRAGMA table_info(shopping_carts)[0m
+  [4;36;1mSQL (0.002641)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;36;1mSQL (0.001350)[0m   [0;1mPRAGMA table_info(items)[0m
+
+
+Processing UserController#join (for 127.0.0.1 at 2006-12-25 20:07:38) [GET]
+  Session ID: f7eb79d47a222167824d2a260556903f
+  Parameters: {"action"=>"join", "controller"=>"user"}
+  [4;36;1mSQL (0.004564)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mSQL (0.001968)[0m   [0mPRAGMA table_info(locations)[0m
+Rendering  within layouts/user
+
+
+ActionController::MissingTemplate (Missing template script/../config/../app/views/user/join.rhtml):
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:1203:in `assert_existence_of_template_file'
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:801:in `render_file'
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:708:in `render_with_no_layout'
+    .//vendor/rails/actionpack/lib/action_controller/layout.rb:247:in `render_without_benchmark'
+    .//vendor/rails/actionpack/lib/action_controller/benchmarking.rb:50:in `render'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    .//vendor/rails/actionpack/lib/action_controller/benchmarking.rb:50:in `render'
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+    .//vendor/rails/actionpack/lib/action_controller/filters.rb:632:in `call_filter'
+    .//vendor/rails/actionpack/lib/action_controller/filters.rb:634:in `call_filter'
+    .//vendor/rails/actionpack/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    .//vendor/rails/actionpack/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    .//vendor/rails/actionpack/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    .//vendor/rails/actionpack/lib/action_controller/rescue.rb:112:in `perform_action'
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:427:in `send'
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:427:in `process_without_filters'
+    .//vendor/rails/actionpack/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    .//vendor/rails/actionpack/lib/action_controller/session_management.rb:114:in `process'
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:330:in `process'
+    .//vendor/rails/railties/lib/dispatcher.rb:41:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:84:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/sync.rb:229:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:83:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:580:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:267:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:127:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/command.rb:211:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:231
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/railties/lib/commands/servers/mongrel.rb:60
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    .//vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.rhtml (internal_server_error)
+
+
+Processing UserController#join (for 127.0.0.1 at 2006-12-25 20:08:49) [GET]
+  Session ID: f7eb79d47a222167824d2a260556903f
+  Parameters: {"action"=>"join", "controller"=>"user"}
+  [4;36;1mSQL (0.001948)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mSQL (0.001562)[0m   [0mPRAGMA table_info(locations)[0m
+Rendering  within layouts/user
+Rendering user/join
+DEPRECATION WARNING: end_form_tag is deprecated and will be removed from Rails 2.0  See http://www.rubyonrails.org/deprecation for details. (called from _run_rhtml_47app47views47user47join46rhtml at script/../config/../app/views/user/join.rhtml:44)
+Completed in 0.20814 (4 reqs/sec) | Rendering: 0.12785 (61%) | DB: 0.00351 (1%) | 200 OK [http://localhost/user/join]
+
+
+Processing UserController#join (for 127.0.0.1 at 2006-12-25 20:10:17) [POST]
+  Session ID: f7eb79d47a222167824d2a260556903f
+  Parameters: {"commit"=>"Create Account", "action"=>"join", "controller"=>"user", "person"=>{"birthday(2i)"=>"12", "birthday(3i)"=>"25", "title"=>"Mr.", "password_confirmation"=>"rsh56w", "first_name"=>"Bart", "last_name"=>"''''''", "login"=>"viamin", "password"=>"rsh56w", "middle_name"=>"''''''", "birthday(1i)"=>"2006", "email"=>"bart@sonic.net"}, "location"=>{"city"=>"Santa Clara", "zip_code"=>"95054", "country"=>"United States", "address_line_1"=>"4492 Lick Mill Rd.", "address_line_2"=>"", "state"=>"CA"}}
+  [4;36;1mSQL (0.001916)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mSQL (0.001623)[0m   [0mPRAGMA table_info(locations)[0m
+  [4;36;1mPerson Load (0.000586)[0m   [0;1mSELECT * FROM people WHERE (people.login = 'viamin') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000417)[0m   [0mSELECT * FROM people WHERE (people.email = 'bart@sonic.net') LIMIT 1[0m
+Rendering  within layouts/user
+Rendering user/join
+DEPRECATION WARNING: end_form_tag is deprecated and will be removed from Rails 2.0  See http://www.rubyonrails.org/deprecation for details. (called from _run_rhtml_47app47views47user47join46rhtml at script/../config/../app/views/user/join.rhtml:44)
+Completed in 0.03254 (30 reqs/sec) | Rendering: 0.00834 (25%) | DB: 0.00454 (13%) | 200 OK [http://localhost/user/join]
+
+
+Processing UserController#login (for 127.0.0.1 at 2006-12-25 20:10:53) [POST]
+  Session ID: f7eb79d47a222167824d2a260556903f
+  Parameters: {"action"=>"login", "controller"=>"user", "login"=>"Login", "person"=>{"username"=>"bart@sonic.net", "password"=>"rsh56w"}}
+  [4;36;1mPerson Load (0.000695)[0m   [0;1mSELECT * FROM people WHERE (login = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000418)[0m   [0mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mSQL (0.001340)[0m   [0;1mPRAGMA table_info(people)[0m
+Redirected to http://localhost:3000/user/home
+Completed in 0.01454 (68 reqs/sec) | DB: 0.00245 (16%) | 302 Found [http://localhost/user/login]
+
+
+Processing UserController#home (for 127.0.0.1 at 2006-12-25 20:10:53) [GET]
+  Session ID: f7eb79d47a222167824d2a260556903f
+  Parameters: {"action"=>"home", "controller"=>"user"}
+  [4;35;1mSQL (0.001942)[0m   [0mPRAGMA table_info(people)[0m
+  [4;36;1mPerson Load (0.000412)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+Rendering  within layouts/user
+Rendering user/home
+
+
+ActionView::TemplateError (undefined method `photos' for #<Person:0x2c9f354>) on line #6 of app/views/user/home.rhtml:
+3: <p>This is the page where you can track your friends, your TravellerBooks, and anything else you want!</p>
+4: 
+5: <div id="user_info">
+6:   <%= image_tag( "#{@person.main_photo.path}#{@person.main_photo.file_name}", :class => "main_photo", :size => "#{@person.main_photo.width}x#{@person.main_photo.height}") if @person.main_photo %>
+7:   <div id="personal_info">
+8:     <ul id="ilist">
+9:       <li><%= h(@person.first_name) %></li>
+
+    vendor/rails/activerecord/lib/active_record/base.rb:1853:in `method_missing'
+    app/models/person.rb:71:in `main_photo'
+    #{RAILS_ROOT}/app/views/user/home.rhtml:6:in `_run_rhtml_47app47views47user47home46rhtml'
+    vendor/rails/actionpack/lib/action_view/base.rb:328:in `send'
+    vendor/rails/actionpack/lib/action_view/base.rb:328:in `compile_and_render_template'
+    vendor/rails/actionpack/lib/action_view/base.rb:303:in `render_template'
+    vendor/rails/actionpack/lib/action_view/base.rb:263:in `render_file'
+    vendor/rails/actionpack/lib/action_controller/base.rb:803:in `render_file'
+    vendor/rails/actionpack/lib/action_controller/base.rb:708:in `render_with_no_layout'
+    vendor/rails/actionpack/lib/action_controller/layout.rb:247:in `render_without_benchmark'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:50:in `render'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:50:in `render'
+    vendor/rails/actionpack/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+    vendor/rails/actionpack/lib/action_controller/filters.rb:632:in `call_filter'
+    vendor/rails/actionpack/lib/action_controller/filters.rb:634:in `call_filter'
+    vendor/rails/actionpack/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    vendor/rails/actionpack/lib/action_controller/rescue.rb:112:in `perform_action'
+    vendor/rails/actionpack/lib/action_controller/base.rb:427:in `send'
+    vendor/rails/actionpack/lib/action_controller/base.rb:427:in `process_without_filters'
+    vendor/rails/actionpack/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    vendor/rails/actionpack/lib/action_controller/session_management.rb:114:in `process'
+    vendor/rails/actionpack/lib/action_controller/base.rb:330:in `process'
+    vendor/rails/railties/lib/dispatcher.rb:41:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:84:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/sync.rb:229:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:83:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:580:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:267:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:127:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/command.rb:211:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:231
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    vendor/rails/railties/lib/commands/servers/mongrel.rb:60
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.rhtml (internal_server_error)
+
+
+Processing UserController#home (for 127.0.0.1 at 2006-12-25 20:12:05) [GET]
+  Session ID: f7eb79d47a222167824d2a260556903f
+  Parameters: {"action"=>"home", "controller"=>"user"}
+  [4;35;1mSQL (0.001911)[0m   [0mPRAGMA table_info(people)[0m
+  [4;36;1mPerson Load (0.000665)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+Rendering  within layouts/user
+Rendering user/home
+  [4;35;1mPhoto Load (0.000270)[0m   [0mSELECT * FROM photos WHERE (photos.person_id = 1) [0m
+
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.address_line_1) on line #16 of app/views/user/home.rhtml:
+13: </div>
+14: 
+15: <%= ymap_div_tag %>
+16: <%= ymap_address_map(@location) %>
+17: 
+18: 
+
+    app/helpers/application_helper.rb:40:in `ymap_address_map'
+    #{RAILS_ROOT}/app/views/user/home.rhtml:16:in `_run_rhtml_47app47views47user47home46rhtml'
+    vendor/rails/actionpack/lib/action_view/base.rb:328:in `send'
+    vendor/rails/actionpack/lib/action_view/base.rb:328:in `compile_and_render_template'
+    vendor/rails/actionpack/lib/action_view/base.rb:303:in `render_template'
+    vendor/rails/actionpack/lib/action_view/base.rb:263:in `render_file'
+    vendor/rails/actionpack/lib/action_controller/base.rb:803:in `render_file'
+    vendor/rails/actionpack/lib/action_controller/base.rb:708:in `render_with_no_layout'
+    vendor/rails/actionpack/lib/action_controller/layout.rb:247:in `render_without_benchmark'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:50:in `render'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:50:in `render'
+    vendor/rails/actionpack/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+    vendor/rails/actionpack/lib/action_controller/filters.rb:632:in `call_filter'
+    vendor/rails/actionpack/lib/action_controller/filters.rb:634:in `call_filter'
+    vendor/rails/actionpack/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    vendor/rails/actionpack/lib/action_controller/rescue.rb:112:in `perform_action'
+    vendor/rails/actionpack/lib/action_controller/base.rb:427:in `send'
+    vendor/rails/actionpack/lib/action_controller/base.rb:427:in `process_without_filters'
+    vendor/rails/actionpack/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    vendor/rails/actionpack/lib/action_controller/session_management.rb:114:in `process'
+    vendor/rails/actionpack/lib/action_controller/base.rb:330:in `process'
+    vendor/rails/railties/lib/dispatcher.rb:41:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:84:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/sync.rb:229:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:83:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:580:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:267:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:127:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/command.rb:211:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:231
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    vendor/rails/railties/lib/commands/servers/mongrel.rb:60
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.rhtml (internal_server_error)
+
+
+Processing UserController#login (for 127.0.0.1 at 2006-12-25 20:16:36) [POST]
+  Session ID: f7eb79d47a222167824d2a260556903f
+  Parameters: {"action"=>"login", "controller"=>"user", "login"=>"Login", "person"=>{"username"=>"bart@sonic.net", "password"=>"rsh56w"}}
+  [4;36;1mPerson Load (0.000715)[0m   [0;1mSELECT * FROM people WHERE (login = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000424)[0m   [0mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mSQL (0.001382)[0m   [0;1mPRAGMA table_info(people)[0m
+Redirected to http://localhost:3000/user/home
+Completed in 0.01718 (58 reqs/sec) | DB: 0.00252 (14%) | 302 Found [http://localhost/user/login]
+
+
+Processing UserController#home (for 127.0.0.1 at 2006-12-25 20:16:36) [GET]
+  Session ID: f7eb79d47a222167824d2a260556903f
+  Parameters: {"action"=>"home", "controller"=>"user"}
+  [4;35;1mSQL (0.001917)[0m   [0mPRAGMA table_info(people)[0m
+  [4;36;1mPerson Load (0.000419)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+Rendering  within layouts/user
+Rendering user/home
+  [4;35;1mPhoto Load (0.000267)[0m   [0mSELECT * FROM photos WHERE (photos.person_id = 1) [0m
+
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.address_line_1) on line #16 of app/views/user/home.rhtml:
+13: </div>
+14: 
+15: <%= ymap_div_tag %>
+16: <%= ymap_address_map(@location) %>
+17: 
+18: 
+
+    app/helpers/application_helper.rb:40:in `ymap_address_map'
+    #{RAILS_ROOT}/app/views/user/home.rhtml:16:in `_run_rhtml_47app47views47user47home46rhtml'
+    vendor/rails/actionpack/lib/action_view/base.rb:328:in `send'
+    vendor/rails/actionpack/lib/action_view/base.rb:328:in `compile_and_render_template'
+    vendor/rails/actionpack/lib/action_view/base.rb:303:in `render_template'
+    vendor/rails/actionpack/lib/action_view/base.rb:263:in `render_file'
+    vendor/rails/actionpack/lib/action_controller/base.rb:803:in `render_file'
+    vendor/rails/actionpack/lib/action_controller/base.rb:708:in `render_with_no_layout'
+    vendor/rails/actionpack/lib/action_controller/layout.rb:247:in `render_without_benchmark'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:50:in `render'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:50:in `render'
+    vendor/rails/actionpack/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+    vendor/rails/actionpack/lib/action_controller/filters.rb:632:in `call_filter'
+    vendor/rails/actionpack/lib/action_controller/filters.rb:634:in `call_filter'
+    vendor/rails/actionpack/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    vendor/rails/actionpack/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    vendor/rails/actionpack/lib/action_controller/rescue.rb:112:in `perform_action'
+    vendor/rails/actionpack/lib/action_controller/base.rb:427:in `send'
+    vendor/rails/actionpack/lib/action_controller/base.rb:427:in `process_without_filters'
+    vendor/rails/actionpack/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    vendor/rails/actionpack/lib/action_controller/session_management.rb:114:in `process'
+    vendor/rails/actionpack/lib/action_controller/base.rb:330:in `process'
+    vendor/rails/railties/lib/dispatcher.rb:41:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:84:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/sync.rb:229:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:83:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:580:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:267:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:127:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/command.rb:211:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:231
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    vendor/rails/railties/lib/commands/servers/mongrel.rb:60
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.rhtml (internal_server_error)
+
+
+Processing UserController#home (for 127.0.0.1 at 2006-12-25 20:19:46) [GET]
+  Session ID: f7eb79d47a222167824d2a260556903f
+  Parameters: {"action"=>"home", "controller"=>"user"}
+  [4;36;1mSQL (0.002021)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mPerson Load (0.000650)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+Rendering  within layouts/user
+Rendering user/home
+  [4;36;1mPhoto Load (0.000275)[0m   [0;1mSELECT * FROM photos WHERE (photos.person_id = 1) [0m
+Completed in 0.03472 (28 reqs/sec) | Rendering: 0.00696 (20%) | DB: 0.00295 (8%) | 200 OK [http://localhost/user/home]
+  [4;36;1mSQL (0.000288)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000209)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000193)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000433)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to AddCurrentLocationToPeople (12)
+  [4;36;1mSQL (0.001894)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mSQL (0.001907)[0m   [0mPRAGMA table_info(people)[0m
+  [4;36;1mSQL (0.001676)[0m   [0;1mCREATE TEMPORARY TABLE altered_people ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255) DEFAULT '''''''''''''', "first_name" varchar(255) DEFAULT '''''''''''''', "middle_name" varchar(255) DEFAULT '''''''''''''', "last_name" varchar(255) DEFAULT '''''''''''''', "suffix" varchar(255) DEFAULT '''''''''''''', "birthday" date, "email" varchar(255) DEFAULT '''''''''''''', "login" varchar(255) DEFAULT '''''''''''''', "hashed_password" text DEFAULT '''''''''''''', "created_on" date, "notes" text DEFAULT '''''''''''''', "location_id" integer DEFAULT 0) [0m
+  [4;35;1mSQL (0.000079)[0m   [0mPRAGMA index_list(people)[0m
+  [4;36;1mSQL (0.001643)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mSQL (0.000557)[0m   [0mDROP TABLE people[0m
+  [4;36;1mSQL (0.001510)[0m   [0;1mPRAGMA table_info(altered_people)[0m
+  [4;35;1mSQL (0.001468)[0m   [0mPRAGMA table_info(altered_people)[0m
+  [4;36;1mSQL (0.000377)[0m   [0;1mCREATE TABLE people ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255) DEFAULT '''''''''''''''''''''''''''''', "first_name" varchar(255) DEFAULT '''''''''''''''''''''''''''''', "middle_name" varchar(255) DEFAULT '''''''''''''''''''''''''''''', "last_name" varchar(255) DEFAULT '''''''''''''''''''''''''''''', "suffix" varchar(255) DEFAULT '''''''''''''''''''''''''''''', "birthday" date, "email" varchar(255) DEFAULT '''''''''''''''''''''''''''''', "login" varchar(255) DEFAULT '''''''''''''''''''''''''''''', "hashed_password" text DEFAULT '''''''''''''''''''''''''''''', "created_on" date, "notes" text DEFAULT '''''''''''''''''''''''''''''') [0m
+  [4;35;1mSQL (0.000072)[0m   [0mPRAGMA index_list(altered_people)[0m
+  [4;36;1mSQL (0.001538)[0m   [0;1mPRAGMA table_info(altered_people)[0m
+  [4;35;1mSQL (0.000172)[0m   [0mDROP TABLE altered_people[0m
+  [4;36;1mSQL (0.001577)[0m   [0;1mUPDATE schema_info SET version = 11[0m
+  [4;35;1mSQL (0.000562)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateChanges (11)
+  [4;36;1mSQL (0.002703)[0m   [0;1mDROP TABLE changes[0m
+  [4;35;1mSQL (0.003298)[0m   [0mUPDATE schema_info SET version = 10[0m
+  [4;36;1mSQL (0.000409)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateOrders (10)
+  [4;35;1mSQL (0.002706)[0m   [0mDROP TABLE orders[0m
+  [4;36;1mSQL (0.002044)[0m   [0;1mUPDATE schema_info SET version = 9[0m
+  [4;35;1mSQL (0.000373)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLineItems (9)
+  [4;36;1mSQL (0.002953)[0m   [0;1mDROP TABLE line_items[0m
+  [4;35;1mSQL (0.002115)[0m   [0mUPDATE schema_info SET version = 8[0m
+  [4;36;1mSQL (0.000407)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateShoppingCarts (8)
+  [4;35;1mSQL (0.002592)[0m   [0mDROP TABLE shopping_carts[0m
+  [4;36;1mSQL (0.001957)[0m   [0;1mUPDATE schema_info SET version = 7[0m
+  [4;35;1mSQL (0.000393)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreatePhotos (7)
+  [4;36;1mSQL (0.002841)[0m   [0;1mDROP TABLE photos[0m
+  [4;35;1mSQL (0.002020)[0m   [0mUPDATE schema_info SET version = 6[0m
+  [4;36;1mSQL (0.000369)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateCreditCards (6)
+  [4;35;1mSQL (0.002283)[0m   [0mDROP TABLE credit_cards[0m
+  [4;36;1mSQL (0.001846)[0m   [0;1mUPDATE schema_info SET version = 5[0m
+  [4;35;1mSQL (0.000318)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateSaleItems (5)
+  [4;36;1mSQL (0.002815)[0m   [0;1mDROP TABLE sale_items[0m
+  [4;35;1mSQL (0.002056)[0m   [0mUPDATE schema_info SET version = 4[0m
+  [4;36;1mSQL (0.000374)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateCategories (4)
+  [4;35;1mSQL (0.002197)[0m   [0mDROP TABLE categories[0m
+  [4;36;1mSQL (0.001838)[0m   [0;1mUPDATE schema_info SET version = 3[0m
+  [4;35;1mSQL (0.000319)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLocations (3)
+  [4;36;1mSQL (0.002169)[0m   [0;1mDROP TABLE locations[0m
+  [4;35;1mSQL (0.001841)[0m   [0mUPDATE schema_info SET version = 2[0m
+  [4;36;1mSQL (0.000319)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateItems (2)
+  [4;35;1mSQL (0.002239)[0m   [0mDROP TABLE items[0m
+  [4;36;1mSQL (0.001842)[0m   [0;1mUPDATE schema_info SET version = 1[0m
+  [4;35;1mSQL (0.000322)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreatePeople (1)
+  [4;36;1mSQL (0.002161)[0m   [0;1mDROP TABLE people[0m
+  [4;35;1mSQL (0.001838)[0m   [0mUPDATE schema_info SET version = 0[0m
+  [4;36;1mSQL (0.000386)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.000326)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.000283)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000420)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreatePeople (1)
+  [4;36;1mSQL (0.002618)[0m   [0;1mCREATE TABLE people ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "first_name" varchar(255), "middle_name" varchar(255), "last_name" varchar(255), "suffix" varchar(255), "birthday" date, "email" varchar(255), "login" varchar(255), "hashed_password" text, "created_on" date, "notes" text) [0m
+  [4;35;1mSQL (0.001820)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.000382)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateItems (2)
+  [4;35;1mSQL (0.002269)[0m   [0mCREATE TABLE items ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "tbid" varchar(255), "name" varchar(255), "description" text, "person_id" integer, "created_on" date) [0m
+  [4;36;1mSQL (0.001734)[0m   [0;1mUPDATE schema_info SET version = 2[0m
+  [4;35;1mSQL (0.000331)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLocations (3)
+  [4;36;1mSQL (0.003490)[0m   [0;1mCREATE TABLE locations ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar(255), "type" varchar(255), "person_id" integer, "item_id" integer, "address_line_1" varchar(255), "address_line_2" varchar(255), "city" varchar(255), "state" varchar(255), "zip_code" varchar(255), "country" varchar(255), "latitude" varchar(255), "longitude" varchar(255), "altitude_feet" integer) [0m
+  [4;35;1mSQL (0.001942)[0m   [0mUPDATE schema_info SET version = 3[0m
+  [4;36;1mSQL (0.000371)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateCategories (4)
+  [4;35;1mSQL (0.002547)[0m   [0mCREATE TABLE categories ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" varchar(255)) [0m
+  [4;36;1mSQL (0.001990)[0m   [0;1mUPDATE schema_info SET version = 4[0m
+  [4;35;1mSQL (0.000366)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateSaleItems (5)
+  [4;36;1mSQL (0.002310)[0m   [0;1mCREATE TABLE sale_items ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" varchar(255), "quantity_in_stock" integer, "price" float, "for_sale" varchar(255), "sale_price" float, "status" integer, "category_id" integer) [0m
+  [4;35;1mSQL (0.001964)[0m   [0mUPDATE schema_info SET version = 5[0m
+  [4;36;1mSQL (0.000371)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateCreditCards (6)
+  [4;35;1mSQL (0.002336)[0m   [0mCREATE TABLE credit_cards ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "person_id" integer, "card_type" varchar(255), "billing_location_id" integer, "name_on_card" varchar(255), "card_number" varchar(255), "expiration_date" date, "ccv" varchar(255), "created_on" date) [0m
+  [4;36;1mSQL (0.001785)[0m   [0;1mUPDATE schema_info SET version = 6[0m
+  [4;35;1mSQL (0.000331)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreatePhotos (7)
+  [4;36;1mSQL (0.003620)[0m   [0;1mCREATE TABLE photos ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "path" varchar(255), "file_name" varchar(255), "url" varchar(255), "data" blob, "content_type" varchar(255), "bytes" integer, "width" integer, "height" integer, "caption" varchar(255), "photo_type" integer, "location_id" integer, "person_id" integer, "item_id" integer, "created_on" date) [0m
+  [4;35;1mSQL (0.001861)[0m   [0mUPDATE schema_info SET version = 7[0m
+  [4;36;1mSQL (0.000380)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateShoppingCarts (8)
+  [4;35;1mSQL (0.002622)[0m   [0mCREATE TABLE shopping_carts ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "person_id" integer, "created_on" date, "modified_on" date, "last_viewed" date) [0m
+  [4;36;1mSQL (0.001761)[0m   [0;1mUPDATE schema_info SET version = 8[0m
+  [4;35;1mSQL (0.000324)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateLineItems (9)
+  [4;36;1mSQL (0.002656)[0m   [0;1mCREATE TABLE line_items ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "shopping_cart_id" integer, "order_id" integer, "sale_item_id" integer, "quantity" integer, "price_per_item" float, "created_on" date) [0m
+  [4;35;1mSQL (0.001907)[0m   [0mUPDATE schema_info SET version = 9[0m
+  [4;36;1mSQL (0.000411)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateOrders (10)
+  [4;35;1mSQL (0.002390)[0m   [0mCREATE TABLE orders ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "person_id" integer, "shipping_location_id" integer, "created_on" date, "shipped_on" date, "paid_on" date) [0m
+  [4;36;1mSQL (0.001773)[0m   [0;1mUPDATE schema_info SET version = 10[0m
+  [4;35;1mSQL (0.000331)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateChanges (11)
+  [4;36;1mSQL (0.002366)[0m   [0;1mCREATE TABLE changes ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "change_type" integer, "item_id" integer, "person_id" integer, "old_value" varchar(255), "new_value" varchar(255), "effective_date" date, "created_on" date) [0m
+  [4;35;1mSQL (0.001835)[0m   [0mUPDATE schema_info SET version = 11[0m
+  [4;36;1mSQL (0.000330)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to AddCurrentLocationToPeople (12)
+  [4;35;1mSQL (0.002149)[0m   [0mALTER TABLE people ADD "location_id" integer[0m
+  [4;36;1mSQL (0.008891)[0m   [0;1mVACUUM[0m
+  [4;35;1mSQL (0.002544)[0m   [0mUPDATE schema_info SET version = 12[0m
+  [4;36;1mSQL (0.000403)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.001044)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.000528)[0m   [0;1mPRAGMA table_info(categories)[0m
+  [4;35;1mSQL (0.000084)[0m   [0mPRAGMA index_list(categories)[0m
+  [4;36;1mSQL (0.001169)[0m   [0;1mPRAGMA table_info(changes)[0m
+  [4;35;1mSQL (0.000090)[0m   [0mPRAGMA index_list(changes)[0m
+  [4;36;1mSQL (0.001213)[0m   [0;1mPRAGMA table_info(credit_cards)[0m
+  [4;35;1mSQL (0.000072)[0m   [0mPRAGMA index_list(credit_cards)[0m
+  [4;36;1mSQL (0.000780)[0m   [0;1mPRAGMA table_info(items)[0m
+  [4;35;1mSQL (0.000066)[0m   [0mPRAGMA index_list(items)[0m
+  [4;36;1mSQL (0.000810)[0m   [0;1mPRAGMA table_info(line_items)[0m
+  [4;35;1mSQL (0.000065)[0m   [0mPRAGMA index_list(line_items)[0m
+  [4;36;1mSQL (0.001537)[0m   [0;1mPRAGMA table_info(locations)[0m
+  [4;35;1mSQL (0.000065)[0m   [0mPRAGMA index_list(locations)[0m
+  [4;36;1mSQL (0.000707)[0m   [0;1mPRAGMA table_info(orders)[0m
+  [4;35;1mSQL (0.000065)[0m   [0mPRAGMA index_list(orders)[0m
+  [4;36;1mSQL (0.001420)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mSQL (0.000065)[0m   [0mPRAGMA index_list(people)[0m
+  [4;36;1mSQL (0.001626)[0m   [0;1mPRAGMA table_info(photos)[0m
+  [4;35;1mSQL (0.000069)[0m   [0mPRAGMA index_list(photos)[0m
+  [4;36;1mSQL (0.001020)[0m   [0;1mPRAGMA table_info(sale_items)[0m
+  [4;35;1mSQL (0.000064)[0m   [0mPRAGMA index_list(sale_items)[0m
+  [4;36;1mSQL (0.000604)[0m   [0;1mPRAGMA table_info(shopping_carts)[0m
+  [4;35;1mSQL (0.000065)[0m   [0mPRAGMA index_list(shopping_carts)[0m
+
+
+Processing UserController#login (for 127.0.0.1 at 2006-12-25 20:24:00) [POST]
+  Session ID: f7eb79d47a222167824d2a260556903f
+  Parameters: {"action"=>"login", "controller"=>"user", "login"=>"Login", "person"=>{"username"=>"bart@sonic.net", "password"=>"rsh56w"}}
+  [4;35;1mPerson Load (0.000722)[0m   [0mSELECT * FROM people WHERE (login = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000196)[0m   [0;1mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+Redirected to http://localhost:3000/user/login
+Completed in 0.01465 (68 reqs/sec) | DB: 0.00092 (6%) | 302 Found [http://localhost/user/login]
+
+
+Processing UserController#login (for 127.0.0.1 at 2006-12-25 20:24:00) [GET]
+  Session ID: f7eb79d47a222167824d2a260556903f
+  Parameters: {"action"=>"login", "controller"=>"user"}
+Rendering  within layouts/user
+
+
+ActionController::MissingTemplate (Missing template script/../config/../app/views/user/login.rhtml):
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:1203:in `assert_existence_of_template_file'
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:801:in `render_file'
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:708:in `render_with_no_layout'
+    .//vendor/rails/actionpack/lib/action_controller/layout.rb:247:in `render_without_benchmark'
+    .//vendor/rails/actionpack/lib/action_controller/benchmarking.rb:50:in `render'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    .//vendor/rails/actionpack/lib/action_controller/benchmarking.rb:50:in `render'
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+    .//vendor/rails/actionpack/lib/action_controller/filters.rb:632:in `call_filter'
+    .//vendor/rails/actionpack/lib/action_controller/filters.rb:634:in `call_filter'
+    .//vendor/rails/actionpack/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    .//vendor/rails/actionpack/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    .//vendor/rails/actionpack/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    .//vendor/rails/actionpack/lib/action_controller/rescue.rb:112:in `perform_action'
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:427:in `send'
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:427:in `process_without_filters'
+    .//vendor/rails/actionpack/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    .//vendor/rails/actionpack/lib/action_controller/session_management.rb:114:in `process'
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:330:in `process'
+    .//vendor/rails/railties/lib/dispatcher.rb:41:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:84:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/sync.rb:229:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:83:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:580:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:267:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:127:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/command.rb:211:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:231
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/railties/lib/commands/servers/mongrel.rb:60
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    .//vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.rhtml (internal_server_error)
+
+
+Processing UserController#login (for 127.0.0.1 at 2006-12-25 20:25:44) [GET]
+  Session ID: f7eb79d47a222167824d2a260556903f
+  Parameters: {"action"=>"login", "controller"=>"user"}
+Rendering  within layouts/user
+Rendering user/login
+DEPRECATION WARNING: end_form_tag is deprecated and will be removed from Rails 2.0  See http://www.rubyonrails.org/deprecation for details. (called from _run_rhtml_47app47views47user47login46rhtml at script/../config/../app/views/user/login.rhtml:9)
+Completed in 0.01800 (55 reqs/sec) | Rendering: 0.01694 (94%) | 200 OK [http://localhost/user/login]
+
+
+Processing UserController#login (for 127.0.0.1 at 2006-12-25 20:25:52) [POST]
+  Session ID: f7eb79d47a222167824d2a260556903f
+  Parameters: {"commit"=>"Login", "action"=>"login", "controller"=>"user", "person"=>{"login"=>"bart@sonic.net", "password"=>"rsh56w"}}
+  [4;35;1mPerson Load (0.000677)[0m   [0mSELECT * FROM people WHERE (login = NULL and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000157)[0m   [0;1mSELECT * FROM people WHERE (email = NULL and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+Redirected to http://localhost:3000/user/login
+Completed in 0.01320 (75 reqs/sec) | DB: 0.00083 (6%) | 302 Found [http://localhost/user/login]
+
+
+Processing UserController#login (for 127.0.0.1 at 2006-12-25 20:25:52) [GET]
+  Session ID: f7eb79d47a222167824d2a260556903f
+  Parameters: {"action"=>"login", "controller"=>"user"}
+Rendering  within layouts/user
+Rendering user/login
+DEPRECATION WARNING: end_form_tag is deprecated and will be removed from Rails 2.0  See http://www.rubyonrails.org/deprecation for details. (called from _run_rhtml_47app47views47user47login46rhtml at script/../config/../app/views/user/login.rhtml:9)
+Completed in 0.00300 (333 reqs/sec) | Rendering: 0.00213 (70%) | 200 OK [http://localhost/user/login]
+
+
+Processing UserController#join (for 127.0.0.1 at 2006-12-25 20:25:54) [GET]
+  Session ID: f7eb79d47a222167824d2a260556903f
+  Parameters: {"action"=>"join", "controller"=>"user"}
+  [4;35;1mSQL (0.002087)[0m   [0mPRAGMA table_info(people)[0m
+  [4;36;1mSQL (0.001567)[0m   [0;1mPRAGMA table_info(locations)[0m
+Rendering  within layouts/user
+Rendering user/join
+DEPRECATION WARNING: end_form_tag is deprecated and will be removed from Rails 2.0  See http://www.rubyonrails.org/deprecation for details. (called from _run_rhtml_47app47views47user47join46rhtml at script/../config/../app/views/user/join.rhtml:44)
+Completed in 0.03112 (32 reqs/sec) | Rendering: 0.00920 (29%) | DB: 0.00365 (11%) | 200 OK [http://localhost/user/join]
+
+
+Processing UserController#join (for 127.0.0.1 at 2006-12-25 20:26:44) [GET]
+  Session ID: f7eb79d47a222167824d2a260556903f
+  Parameters: {"action"=>"join", "controller"=>"user"}
+  [4;35;1mSQL (0.001976)[0m   [0mPRAGMA table_info(people)[0m
+  [4;36;1mSQL (0.001543)[0m   [0;1mPRAGMA table_info(locations)[0m
+Rendering  within layouts/user
+Rendering user/join
+DEPRECATION WARNING: end_form_tag is deprecated and will be removed from Rails 2.0  See http://www.rubyonrails.org/deprecation for details. (called from _run_rhtml_47app47views47user47join46rhtml at script/../config/../app/views/user/join.rhtml:44)
+Completed in 0.09719 (10 reqs/sec) | Rendering: 0.01150 (11%) | DB: 0.00352 (3%) | 200 OK [http://localhost/user/join]
+
+
+Processing UserController#join (for 127.0.0.1 at 2006-12-25 20:27:41) [POST]
+  Session ID: f7eb79d47a222167824d2a260556903f
+  Parameters: {"commit"=>"Create Account", "action"=>"join", "controller"=>"user", "person"=>{"birthday(2i)"=>"12", "birthday(3i)"=>"25", "title"=>"Mr.", "password_confirmation"=>"rsh56w", "first_name"=>"Bart", "last_name"=>"", "login"=>"Viamin", "password"=>"rsh56w", "middle_name"=>"", "birthday(1i)"=>"1978", "email"=>"bart@sonic.net"}, "location"=>{"city"=>"Santa Clara", "zip_code"=>"95054", "country"=>"United States", "address_line_1"=>"4492 Lick Mill Rd.", "address_line_2"=>"4492 Lick Mill Rd.", "state"=>"CA"}}
+  [4;35;1mSQL (0.001865)[0m   [0mPRAGMA table_info(people)[0m
+  [4;36;1mSQL (0.001485)[0m   [0;1mPRAGMA table_info(locations)[0m
+  [4;35;1mPerson Load (0.000212)[0m   [0mSELECT * FROM people WHERE (people.login = 'Viamin') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000103)[0m   [0;1mSELECT * FROM people WHERE (people.email = 'bart@sonic.net') LIMIT 1[0m
+  [4;35;1mSQL (0.000598)[0m   [0mINSERT INTO people ("created_on", "hashed_password", "title", "location_id", "notes", "birthday", "first_name", "last_name", "login", "email", "middle_name", "suffix") VALUES('2006-12-25 20:27:41', '3872e63ee5249f69d82d1af4886974fb5d0a47e8', 'Mr.', 0, '', '1978-12-25', 'Bart', '', 'Viamin', 'bart@sonic.net', '', '')[0m
+  [4;36;1mSQL (0.000604)[0m   [0;1mINSERT INTO locations ("city", "item_id", "latitude", "altitude_feet", "country", "type", "zip_code", "address_line_1", "description", "address_line_2", "longitude", "person_id", "state") VALUES('Santa Clara', 0, '', 0, 'United States', '', '95054', '4492 Lick Mill Rd.', '', '4492 Lick Mill Rd.', '', 1, 'CA')[0m
+Redirected to http://localhost:3000/user/home
+Completed in 0.03564 (28 reqs/sec) | DB: 0.00487 (13%) | 302 Found [http://localhost/user/join]
+
+
+Processing UserController#home (for 127.0.0.1 at 2006-12-25 20:27:41) [GET]
+  Session ID: f7eb79d47a222167824d2a260556903f
+  Parameters: {"action"=>"home", "controller"=>"user"}
+  [4;35;1mSQL (0.001999)[0m   [0mPRAGMA table_info(people)[0m
+  [4;36;1mPerson Load (0.000509)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.001528)[0m   [0mPRAGMA table_info(locations)[0m
+  [4;36;1mLocation Load (0.000263)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 0) [0m
+Rendering  within layouts/user
+Rendering user/home
+  [4;35;1mPhoto Load (0.000256)[0m   [0mSELECT * FROM photos WHERE (photos.person_id = 1) [0m
+Completed in 0.03543 (28 reqs/sec) | Rendering: 0.00573 (16%) | DB: 0.00455 (12%) | 200 OK [http://localhost/user/home]
+
+
+Processing ShopController#index (for 127.0.0.1 at 2007-01-17 18:41:13) [GET]
+  Session ID: b54792230cbe8854f8604f574868bc35
+  Parameters: {"action"=>"index", "controller"=>"shop"}
+Redirected to http://127.0.0.1:3000/shop/store
+Completed in 0.00156 (639 reqs/sec) | 302 Found [http://127.0.0.1/shop]
+
+
+Processing ShopController#store (for 127.0.0.1 at 2007-01-17 18:41:13) [GET]
+  Session ID: b54792230cbe8854f8604f574868bc35
+  Parameters: {"action"=>"store", "controller"=>"shop"}
+  [4;36;1mSaleItem Load (0.001933)[0m   [0;1mSELECT * FROM sale_items WHERE (for_sale = 'yes' and quantity_in_stock > 0) [0m
+Rendering shop/store
+Completed in 0.09150 (10 reqs/sec) | Rendering: 0.00178 (1%) | DB: 0.00193 (2%) | 200 OK [http://127.0.0.1/shop/store]
+
+
+Processing MainController#about (for 127.0.0.1 at 2007-01-17 18:41:17) [GET]
+  Session ID: b54792230cbe8854f8604f574868bc35
+  Parameters: {"action"=>"about", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/about
+Completed in 0.00419 (238 reqs/sec) | Rendering: 0.00338 (80%) | 200 OK [http://127.0.0.1/main/about]
+
+
+Processing UserController#join (for 127.0.0.1 at 2007-01-17 18:41:22) [GET]
+  Session ID: b54792230cbe8854f8604f574868bc35
+  Parameters: {"action"=>"join", "controller"=>"user"}
+  [4;35;1mSQL (0.002082)[0m   [0mPRAGMA table_info(people)[0m
+  [4;36;1mSQL (0.001585)[0m   [0;1mPRAGMA table_info(locations)[0m
+Rendering  within layouts/user
+Rendering user/join
+DEPRECATION WARNING: end_form_tag is deprecated and will be removed from Rails 2.0  See http://www.rubyonrails.org/deprecation for details. (called from _run_rhtml_47app47views47user47join46rhtml at script/../config/../app/views/user/join.rhtml:44)
+Completed in 0.11699 (8 reqs/sec) | Rendering: 0.03378 (28%) | DB: 0.00367 (3%) | 200 OK [http://127.0.0.1/user/join]
+
+
+Processing TrackController#index (for 127.0.0.1 at 2007-01-17 18:41:27) [GET]
+  Session ID: b54792230cbe8854f8604f574868bc35
+  Parameters: {"action"=>"index", "controller"=>"track"}
+Redirected to http://127.0.0.1:3000/track/search
+Completed in 0.00150 (665 reqs/sec) | 302 Found [http://127.0.0.1/track]
+
+
+Processing TrackController#search (for 127.0.0.1 at 2007-01-17 18:41:27) [GET]
+  Session ID: b54792230cbe8854f8604f574868bc35
+  Parameters: {"action"=>"search", "controller"=>"track"}
+Rendering  within layouts/track
+Rendering track/search
+Completed in 0.00406 (246 reqs/sec) | Rendering: 0.00322 (79%) | 200 OK [http://127.0.0.1/track/search]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2007-01-17 18:41:32) [GET]
+  Session ID: b54792230cbe8854f8604f574868bc35
+  Parameters: {}
+
+
+ActionController::RoutingError (no route found to match "/faq" with {:method=>:get}):
+    .//vendor/rails/actionpack/lib/action_controller/routing.rb:1263:in `recognize_path'
+    .//vendor/rails/actionpack/lib/action_controller/routing.rb:1253:in `recognize'
+    .//vendor/rails/railties/lib/dispatcher.rb:40:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:84:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/sync.rb:229:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:83:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:580:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:267:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:127:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/command.rb:211:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:231
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/railties/lib/commands/servers/mongrel.rb:60
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    .//vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.rhtml (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2007-01-17 18:41:46) [GET]
+  Session ID: b54792230cbe8854f8604f574868bc35
+  Parameters: {}
+
+
+ActionController::RoutingError (no route found to match "/faq" with {:method=>:get}):
+    .//vendor/rails/actionpack/lib/action_controller/routing.rb:1263:in `recognize_path'
+    .//vendor/rails/actionpack/lib/action_controller/routing.rb:1253:in `recognize'
+    .//vendor/rails/railties/lib/dispatcher.rb:40:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:84:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/sync.rb:229:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:83:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:580:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:267:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:127:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/command.rb:211:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:231
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/railties/lib/commands/servers/mongrel.rb:60
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    .//vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.rhtml (not_found)
+
+
+Processing ShopController#index (for 127.0.0.1 at 2007-01-17 18:42:10) [GET]
+  Session ID: b54792230cbe8854f8604f574868bc35
+  Parameters: {"action"=>"index", "controller"=>"shop"}
+Redirected to http://127.0.0.1:3000/shop/store
+Completed in 0.00142 (702 reqs/sec) | 302 Found [http://127.0.0.1/shop]
+
+
+Processing ShopController#store (for 127.0.0.1 at 2007-01-17 18:42:10) [GET]
+  Session ID: b54792230cbe8854f8604f574868bc35
+  Parameters: {"action"=>"store", "controller"=>"shop"}
+  [4;35;1mSaleItem Load (0.000668)[0m   [0mSELECT * FROM sale_items WHERE (for_sale = 'yes' and quantity_in_stock > 0) [0m
+Rendering shop/store
+Completed in 0.00876 (114 reqs/sec) | Rendering: 0.00051 (5%) | DB: 0.00067 (7%) | 200 OK [http://127.0.0.1/shop/store]
+
+
+Processing MainController#about (for 127.0.0.1 at 2007-01-17 18:42:13) [GET]
+  Session ID: b54792230cbe8854f8604f574868bc35
+  Parameters: {"action"=>"about", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/about
+Completed in 0.00153 (654 reqs/sec) | Rendering: 0.00070 (45%) | 200 OK [http://127.0.0.1/main/about]
+
+
+Processing UserController#join (for 127.0.0.1 at 2007-01-17 18:42:16) [GET]
+  Session ID: b54792230cbe8854f8604f574868bc35
+  Parameters: {"action"=>"join", "controller"=>"user"}
+  [4;36;1mSQL (0.001986)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mSQL (0.001538)[0m   [0mPRAGMA table_info(locations)[0m
+Rendering  within layouts/user
+Rendering user/join
+DEPRECATION WARNING: end_form_tag is deprecated and will be removed from Rails 2.0  See http://www.rubyonrails.org/deprecation for details. (called from _run_rhtml_47app47views47user47join46rhtml at script/../config/../app/views/user/join.rhtml:44)
+Completed in 0.02855 (35 reqs/sec) | Rendering: 0.00921 (32%) | DB: 0.00352 (12%) | 200 OK [http://127.0.0.1/user/join]
+
+
+Processing TrackController#index (for 127.0.0.1 at 2007-01-17 18:42:18) [GET]
+  Session ID: b54792230cbe8854f8604f574868bc35
+  Parameters: {"action"=>"index", "controller"=>"track"}
+Redirected to http://127.0.0.1:3000/track/search
+Completed in 0.00136 (733 reqs/sec) | 302 Found [http://127.0.0.1/track]
+
+
+Processing TrackController#search (for 127.0.0.1 at 2007-01-17 18:42:18) [GET]
+  Session ID: b54792230cbe8854f8604f574868bc35
+  Parameters: {"action"=>"search", "controller"=>"track"}
+Rendering  within layouts/track
+Rendering track/search
+Completed in 0.00149 (670 reqs/sec) | Rendering: 0.00068 (45%) | 200 OK [http://127.0.0.1/track/search]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2007-01-17 18:42:21) [GET]
+  Session ID: b54792230cbe8854f8604f574868bc35
+  Parameters: {}
+
+
+ActionController::RoutingError (no route found to match "/faq" with {:method=>:get}):
+    .//vendor/rails/actionpack/lib/action_controller/routing.rb:1263:in `recognize_path'
+    .//vendor/rails/actionpack/lib/action_controller/routing.rb:1253:in `recognize'
+    .//vendor/rails/railties/lib/dispatcher.rb:40:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:84:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/sync.rb:229:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:83:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:580:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:267:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:127:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/command.rb:211:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:231
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/railties/lib/commands/servers/mongrel.rb:60
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    .//vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.rhtml (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2007-01-17 18:45:21) [GET]
+  Session ID: b54792230cbe8854f8604f574868bc35
+  Parameters: {}
+
+
+ActionController::RoutingError (no route found to match "/faq" with {:method=>:get}):
+    .//vendor/rails/actionpack/lib/action_controller/routing.rb:1263:in `recognize_path'
+    .//vendor/rails/actionpack/lib/action_controller/routing.rb:1253:in `recognize'
+    .//vendor/rails/railties/lib/dispatcher.rb:40:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:84:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/sync.rb:229:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:83:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:580:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:267:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:127:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/lib/mongrel/command.rb:211:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/mongrel-0.3.13.4/bin/mongrel_rails:231
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/railties/lib/commands/servers/mongrel.rb:60
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    .//vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.rhtml (not_found)
+
+
+Processing MainController#faq (for 127.0.0.1 at 2007-01-17 18:45:39) [GET]
+  Session ID: b54792230cbe8854f8604f574868bc35
+  Parameters: {"action"=>"faq", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/faq
+Completed in 0.00207 (483 reqs/sec) | Rendering: 0.00125 (60%) | 200 OK [http://127.0.0.1/main/faq]
+
+
+Processing UserController#login (for 127.0.0.1 at 2007-01-17 18:47:12) [POST]
+  Session ID: b54792230cbe8854f8604f574868bc35
+  Parameters: {"action"=>"login", "controller"=>"user", "login"=>"Login", "person"=>{"username"=>"viamin", "password"=>"rsh56w"}}
+  [4;36;1mPerson Load (0.000920)[0m   [0;1mSELECT * FROM people WHERE (login = 'viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000211)[0m   [0mSELECT * FROM people WHERE (email = 'viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+Redirected to http://127.0.0.1:3000/user/login
+Completed in 0.01368 (73 reqs/sec) | DB: 0.00113 (8%) | 302 Found [http://127.0.0.1/user/login]
+
+
+Processing UserController#login (for 127.0.0.1 at 2007-01-17 18:47:12) [GET]
+  Session ID: b54792230cbe8854f8604f574868bc35
+  Parameters: {"action"=>"login", "controller"=>"user"}
+Rendering  within layouts/user
+Rendering user/login
+DEPRECATION WARNING: end_form_tag is deprecated and will be removed from Rails 2.0  See http://www.rubyonrails.org/deprecation for details. (called from _run_rhtml_47app47views47user47login46rhtml at script/../config/../app/views/user/login.rhtml:9)
+Completed in 0.02667 (37 reqs/sec) | Rendering: 0.02577 (96%) | 200 OK [http://127.0.0.1/user/login]
+
+
+Processing MainController#about (for 127.0.0.1 at 2007-01-23 00:31:43) [GET]
+  Session ID: 214dd02d52bffc01cbc23a7812d82f37
+  Parameters: {"action"=>"about", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/about
+Completed in 0.03151 (31 reqs/sec) | Rendering: 0.03039 (96%) | 200 OK [http://127.0.0.1/main/about]
+
+
+Processing UserController#join (for 127.0.0.1 at 2007-01-23 00:31:51) [GET]
+  Session ID: 214dd02d52bffc01cbc23a7812d82f37
+  Parameters: {"action"=>"join", "controller"=>"user"}
+  [4;36;1mSQL (0.003708)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mSQL (0.001549)[0m   [0mPRAGMA table_info(locations)[0m
+Rendering  within layouts/user
+Rendering user/join
+DEPRECATION WARNING: end_form_tag is deprecated and will be removed from Rails 2.0  See http://www.rubyonrails.org/deprecation for details. (called from _run_rhtml_47app47views47user47join46rhtml at script/../config/../app/views/user/join.rhtml:44)
+Completed in 0.25024 (3 reqs/sec) | Rendering: 0.03476 (13%) | DB: 0.00526 (2%) | 200 OK [http://127.0.0.1/user/join]
+
+
+Processing UserController#join (for 127.0.0.1 at 2007-01-23 00:32:11) [POST]
+  Session ID: 214dd02d52bffc01cbc23a7812d82f37
+  Parameters: {"commit"=>"Create Account", "action"=>"join", "controller"=>"user", "person"=>{"birthday(2i)"=>"1", "birthday(3i)"=>"23", "title"=>"Mr.", "password_confirmation"=>"rsh56w", "first_name"=>"Bart", "last_name"=>"", "login"=>"Viamin", "password"=>"rsh56w", "middle_name"=>"", "birthday(1i)"=>"2007", "email"=>"bart@sonic.net"}, "location"=>{"city"=>"", "zip_code"=>"", "country"=>"United States", "address_line_1"=>"", "address_line_2"=>"", "state"=>""}}
+  [4;36;1mSQL (0.001974)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mSQL (0.001531)[0m   [0mPRAGMA table_info(locations)[0m
+  [4;36;1mPerson Load (0.000654)[0m   [0;1mSELECT * FROM people WHERE (people.login = 'Viamin') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000386)[0m   [0mSELECT * FROM people WHERE (people.email = 'bart@sonic.net') LIMIT 1[0m
+Rendering  within layouts/user
+Rendering user/join
+DEPRECATION WARNING: end_form_tag is deprecated and will be removed from Rails 2.0  See http://www.rubyonrails.org/deprecation for details. (called from _run_rhtml_47app47views47user47join46rhtml at script/../config/../app/views/user/join.rhtml:44)
+Completed in 0.03444 (29 reqs/sec) | Rendering: 0.00979 (28%) | DB: 0.00455 (13%) | 200 OK [http://127.0.0.1/user/join]
+
+
+Processing UserController#login (for 127.0.0.1 at 2007-01-23 00:32:17) [GET]
+  Session ID: 214dd02d52bffc01cbc23a7812d82f37
+  Parameters: {"action"=>"login", "controller"=>"user"}
+Rendering  within layouts/user
+Rendering user/login
+DEPRECATION WARNING: end_form_tag is deprecated and will be removed from Rails 2.0  See http://www.rubyonrails.org/deprecation for details. (called from _run_rhtml_47app47views47user47login46rhtml at script/../config/../app/views/user/login.rhtml:9)
+Completed in 0.02068 (48 reqs/sec) | Rendering: 0.01986 (96%) | 200 OK [http://127.0.0.1/user/login]
+
+
+Processing UserController#login (for 127.0.0.1 at 2007-01-23 00:32:26) [POST]
+  Session ID: 214dd02d52bffc01cbc23a7812d82f37
+  Parameters: {"commit"=>"Login", "action"=>"login", "controller"=>"user", "person"=>{"login"=>"Viamin", "password"=>"rsh56w"}}
+  [4;36;1mPerson Load (0.000714)[0m   [0;1mSELECT * FROM people WHERE (login = NULL and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000161)[0m   [0mSELECT * FROM people WHERE (email = NULL and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+Redirected to http://127.0.0.1:3000/user/login
+Completed in 0.01343 (74 reqs/sec) | DB: 0.00087 (6%) | 302 Found [http://127.0.0.1/user/login]
+
+
+Processing UserController#login (for 127.0.0.1 at 2007-01-23 00:32:26) [GET]
+  Session ID: 214dd02d52bffc01cbc23a7812d82f37
+  Parameters: {"action"=>"login", "controller"=>"user"}
+Rendering  within layouts/user
+Rendering user/login
+DEPRECATION WARNING: end_form_tag is deprecated and will be removed from Rails 2.0  See http://www.rubyonrails.org/deprecation for details. (called from _run_rhtml_47app47views47user47login46rhtml at script/../config/../app/views/user/login.rhtml:9)
+Completed in 0.00304 (328 reqs/sec) | Rendering: 0.00218 (71%) | 200 OK [http://127.0.0.1/user/login]
+
+
+Processing UserController#login (for 127.0.0.1 at 2007-01-23 00:32:33) [POST]
+  Session ID: 214dd02d52bffc01cbc23a7812d82f37
+  Parameters: {"commit"=>"Login", "action"=>"login", "controller"=>"user", "person"=>{"login"=>"viamin", "password"=>"rsh56w"}}
+  [4;36;1mPerson Load (0.000751)[0m   [0;1mSELECT * FROM people WHERE (login = NULL and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000196)[0m   [0mSELECT * FROM people WHERE (email = NULL and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+Redirected to http://127.0.0.1:3000/user/login
+Completed in 0.01363 (73 reqs/sec) | DB: 0.00095 (6%) | 302 Found [http://127.0.0.1/user/login]
+
+
+Processing UserController#login (for 127.0.0.1 at 2007-01-23 00:32:33) [GET]
+  Session ID: 214dd02d52bffc01cbc23a7812d82f37
+  Parameters: {"action"=>"login", "controller"=>"user"}
+Rendering  within layouts/user
+Rendering user/login
+DEPRECATION WARNING: end_form_tag is deprecated and will be removed from Rails 2.0  See http://www.rubyonrails.org/deprecation for details. (called from _run_rhtml_47app47views47user47login46rhtml at script/../config/../app/views/user/login.rhtml:9)
+Completed in 0.00281 (355 reqs/sec) | Rendering: 0.00198 (70%) | 200 OK [http://127.0.0.1/user/login]
+
+
+Processing UserController#login (for 127.0.0.1 at 2007-01-23 00:32:41) [POST]
+  Session ID: 214dd02d52bffc01cbc23a7812d82f37
+  Parameters: {"commit"=>"Login", "action"=>"login", "controller"=>"user", "person"=>{"login"=>"bart@sonic.net", "password"=>"h45mmr"}}
+  [4;36;1mPerson Load (0.000686)[0m   [0;1mSELECT * FROM people WHERE (login = NULL and hashed_password = '3cadb3b1012870cec3423f0d01cd7c54e5892146') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000162)[0m   [0mSELECT * FROM people WHERE (email = NULL and hashed_password = '3cadb3b1012870cec3423f0d01cd7c54e5892146') LIMIT 1[0m
+Redirected to http://127.0.0.1:3000/user/login
+Completed in 0.01306 (76 reqs/sec) | DB: 0.00085 (6%) | 302 Found [http://127.0.0.1/user/login]
+
+
+Processing UserController#login (for 127.0.0.1 at 2007-01-23 00:32:42) [GET]
+  Session ID: 214dd02d52bffc01cbc23a7812d82f37
+  Parameters: {"action"=>"login", "controller"=>"user"}
+Rendering  within layouts/user
+Rendering user/login
+DEPRECATION WARNING: end_form_tag is deprecated and will be removed from Rails 2.0  See http://www.rubyonrails.org/deprecation for details. (called from _run_rhtml_47app47views47user47login46rhtml at script/../config/../app/views/user/login.rhtml:9)
+Completed in 0.00289 (345 reqs/sec) | Rendering: 0.00204 (70%) | 200 OK [http://127.0.0.1/user/login]
+
+
+Processing UserController#login (for 127.0.0.1 at 2007-01-23 00:32:50) [POST]
+  Session ID: 214dd02d52bffc01cbc23a7812d82f37
+  Parameters: {"commit"=>"Login", "action"=>"login", "controller"=>"user", "person"=>{"login"=>"bart@sonic.net", "password"=>"rsh56w"}}
+  [4;36;1mPerson Load (0.000716)[0m   [0;1mSELECT * FROM people WHERE (login = NULL and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000163)[0m   [0mSELECT * FROM people WHERE (email = NULL and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+Redirected to http://127.0.0.1:3000/user/login
+Completed in 0.01324 (75 reqs/sec) | DB: 0.00088 (6%) | 302 Found [http://127.0.0.1/user/login]
+
+
+Processing UserController#login (for 127.0.0.1 at 2007-01-23 00:32:50) [GET]
+  Session ID: 214dd02d52bffc01cbc23a7812d82f37
+  Parameters: {"action"=>"login", "controller"=>"user"}
+Rendering  within layouts/user
+Rendering user/login
+DEPRECATION WARNING: end_form_tag is deprecated and will be removed from Rails 2.0  See http://www.rubyonrails.org/deprecation for details. (called from _run_rhtml_47app47views47user47login46rhtml at script/../config/../app/views/user/login.rhtml:9)
+Completed in 0.00281 (355 reqs/sec) | Rendering: 0.00196 (69%) | 200 OK [http://127.0.0.1/user/login]
+
+
+Processing UserController#login (for 127.0.0.1 at 2007-01-23 00:33:01) [POST]
+  Session ID: 214dd02d52bffc01cbc23a7812d82f37
+  Parameters: {"commit"=>"Login", "action"=>"login", "controller"=>"user", "person"=>{"login"=>"bart@sonic.net", "password"=>"5srni6"}}
+  [4;36;1mPerson Load (0.000690)[0m   [0;1mSELECT * FROM people WHERE (login = NULL and hashed_password = '3f691a70ce753cf99c4f1b1eecbadaad158c5ae8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000165)[0m   [0mSELECT * FROM people WHERE (email = NULL and hashed_password = '3f691a70ce753cf99c4f1b1eecbadaad158c5ae8') LIMIT 1[0m
+Redirected to http://127.0.0.1:3000/user/login
+Completed in 0.01328 (75 reqs/sec) | DB: 0.00085 (6%) | 302 Found [http://127.0.0.1/user/login]
+
+
+Processing UserController#login (for 127.0.0.1 at 2007-01-23 00:33:01) [GET]
+  Session ID: 214dd02d52bffc01cbc23a7812d82f37
+  Parameters: {"action"=>"login", "controller"=>"user"}
+Rendering  within layouts/user
+Rendering user/login
+DEPRECATION WARNING: end_form_tag is deprecated and will be removed from Rails 2.0  See http://www.rubyonrails.org/deprecation for details. (called from _run_rhtml_47app47views47user47login46rhtml at script/../config/../app/views/user/login.rhtml:9)
+Completed in 0.00288 (346 reqs/sec) | Rendering: 0.00205 (71%) | 200 OK [http://127.0.0.1/user/login]
+
+
+Processing UserController#join (for 127.0.0.1 at 2007-01-23 00:33:03) [GET]
+  Session ID: 214dd02d52bffc01cbc23a7812d82f37
+  Parameters: {"action"=>"join", "controller"=>"user"}
+  [4;36;1mSQL (0.001851)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mSQL (0.001504)[0m   [0mPRAGMA table_info(locations)[0m
+Rendering  within layouts/user
+Rendering user/join
+DEPRECATION WARNING: end_form_tag is deprecated and will be removed from Rails 2.0  See http://www.rubyonrails.org/deprecation for details. (called from _run_rhtml_47app47views47user47join46rhtml at script/../config/../app/views/user/join.rhtml:44)
+Completed in 0.03017 (33 reqs/sec) | Rendering: 0.00957 (31%) | DB: 0.00336 (11%) | 200 OK [http://127.0.0.1/user/join]
+
+
+Processing UserController#join (for 127.0.0.1 at 2007-01-23 00:33:43) [POST]
+  Session ID: 214dd02d52bffc01cbc23a7812d82f37
+  Parameters: {"commit"=>"Create Account", "action"=>"join", "controller"=>"user", "person"=>{"birthday(2i)"=>"1", "birthday(3i)"=>"23", "title"=>"Mr.", "password_confirmation"=>"rsh56w", "first_name"=>"Bart", "last_name"=>"", "login"=>"Viamin", "password"=>"rsh56w", "middle_name"=>"", "birthday(1i)"=>"2007", "email"=>"bart@sonic.net"}, "location"=>{"city"=>"", "zip_code"=>"", "country"=>"United States", "address_line_1"=>"", "address_line_2"=>"", "state"=>""}}
+  [4;36;1mSQL (0.000406)[0m   [0;1mPRAGMA table_info(people)[0m
+
+
+ActiveRecord::StatementInvalid (ActiveRecord::StatementInvalid):
+    .//vendor/rails/activerecord/lib/active_record/connection_adapters/sqlite_adapter.rb:283:in `table_structure'
+    .//vendor/rails/activesupport/lib/active_support/core_ext/object/misc.rb:23:in `returning'
+    .//vendor/rails/activerecord/lib/active_record/connection_adapters/sqlite_adapter.rb:282:in `table_structure'
+    .//vendor/rails/activerecord/lib/active_record/connection_adapters/sqlite_adapter.rb:220:in `columns'
+    .//vendor/rails/activerecord/lib/active_record/base.rb:760:in `columns'
+    .//vendor/rails/activerecord/lib/active_record/base.rb:2045:in `attributes_from_column_definition_without_lock'
+    .//vendor/rails/activerecord/lib/active_record/locking/optimistic.rb:45:in `attributes_from_column_definition'
+    .//vendor/rails/activerecord/lib/active_record/base.rb:1495:in `initialize_without_callbacks'
+    .//vendor/rails/activerecord/lib/active_record/callbacks.rb:225:in `initialize'
+    .//app/controllers/user_controller.rb:93:in `new'
+    .//app/controllers/user_controller.rb:93:in `join'
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:1092:in `send'
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:1092:in `perform_action_without_filters'
+    .//vendor/rails/actionpack/lib/action_controller/filters.rb:632:in `call_filter'
+    .//vendor/rails/actionpack/lib/action_controller/filters.rb:634:in `call_filter'
+    .//vendor/rails/actionpack/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    .//vendor/rails/actionpack/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    .//vendor/rails/actionpack/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    .//vendor/rails/actionpack/lib/action_controller/rescue.rb:112:in `perform_action'
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:427:in `send'
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:427:in `process_without_filters'
+    .//vendor/rails/actionpack/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    .//vendor/rails/actionpack/lib/action_controller/session_management.rb:114:in `process'
+    .//vendor/rails/actionpack/lib/action_controller/base.rb:330:in `process'
+    .//vendor/rails/railties/lib/dispatcher.rb:41:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:84:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/sync.rb:229:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-0.3.13.4/lib/mongrel/rails.rb:83:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-0.3.13.4/lib/mongrel.rb:580:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-0.3.13.4/lib/mongrel.rb:579:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-0.3.13.4/lib/mongrel.rb:686:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-0.3.13.4/lib/mongrel.rb:673:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:267:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-0.3.13.4/lib/mongrel/configurator.rb:266:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-0.3.13.4/bin/mongrel_rails:127:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-0.3.13.4/lib/mongrel/command.rb:211:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-0.3.13.4/bin/mongrel_rails:231
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:483:in `load'
+    .//vendor/rails/railties/lib/commands/servers/mongrel.rb:60
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:337:in `new_constants_in'
+    .//vendor/rails/activesupport/lib/active_support/dependencies.rb:490:in `require'
+    .//vendor/rails/railties/lib/commands/server.rb:39
+    script/server:3:in `require'
+    script/server:3
+
+
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.rhtml (internal_server_error)
+  [4;36;1mSQL (0.000298)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.002000)[0m   [0mCREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001396)[0m   [0;1mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000386)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreatePeople (1)
+  [4;35;1mSQL (0.001773)[0m   [0mCREATE TABLE people ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "first_name" varchar(255), "middle_name" varchar(255), "last_name" varchar(255), "suffix" varchar(255), "birthday" date, "email" varchar(255), "login" varchar(255), "hashed_password" text, "created_on" date, "notes" text) [0m
+  [4;36;1mSQL (0.001469)[0m   [0;1mUPDATE schema_info SET version = 1[0m
+  [4;35;1mSQL (0.000285)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateItems (2)
+  [4;36;1mSQL (0.001687)[0m   [0;1mCREATE TABLE items ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "tbid" varchar(255), "name" varchar(255), "description" text, "person_id" integer, "created_on" date) [0m
+  [4;35;1mSQL (0.001406)[0m   [0mUPDATE schema_info SET version = 2[0m
+  [4;36;1mSQL (0.000266)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateLocations (3)
+  [4;35;1mSQL (0.001714)[0m   [0mCREATE TABLE locations ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar(255), "type" varchar(255), "person_id" integer, "item_id" integer, "address_line_1" varchar(255), "address_line_2" varchar(255), "city" varchar(255), "state" varchar(255), "zip_code" varchar(255), "country" varchar(255), "latitude" varchar(255), "longitude" varchar(255), "altitude_feet" integer) [0m
+  [4;36;1mSQL (0.001512)[0m   [0;1mUPDATE schema_info SET version = 3[0m
+  [4;35;1mSQL (0.000299)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateCategories (4)
+  [4;36;1mSQL (0.001998)[0m   [0;1mCREATE TABLE categories ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" varchar(255)) [0m
+  [4;35;1mSQL (0.001554)[0m   [0mUPDATE schema_info SET version = 4[0m
+  [4;36;1mSQL (0.000265)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateSaleItems (5)
+  [4;35;1mSQL (0.001796)[0m   [0mCREATE TABLE sale_items ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" varchar(255), "quantity_in_stock" integer, "price" float, "for_sale" varchar(255), "sale_price" float, "status" integer, "category_id" integer) [0m
+  [4;36;1mSQL (0.001502)[0m   [0;1mUPDATE schema_info SET version = 5[0m
+  [4;35;1mSQL (0.000278)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateCreditCards (6)
+  [4;36;1mSQL (0.001756)[0m   [0;1mCREATE TABLE credit_cards ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "person_id" integer, "card_type" varchar(255), "billing_location_id" integer, "name_on_card" varchar(255), "card_number" varchar(255), "expiration_date" date, "ccv" varchar(255), "created_on" date) [0m
+  [4;35;1mSQL (0.001488)[0m   [0mUPDATE schema_info SET version = 6[0m
+  [4;36;1mSQL (0.000268)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreatePhotos (7)
+  [4;35;1mSQL (0.002031)[0m   [0mCREATE TABLE photos ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "path" varchar(255), "file_name" varchar(255), "url" varchar(255), "data" blob, "content_type" varchar(255), "bytes" integer, "width" integer, "height" integer, "caption" varchar(255), "photo_type" integer, "location_id" integer, "person_id" integer, "item_id" integer, "created_on" date) [0m
+  [4;36;1mSQL (0.001665)[0m   [0;1mUPDATE schema_info SET version = 7[0m
+  [4;35;1mSQL (0.000302)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateShoppingCarts (8)
+  [4;36;1mSQL (0.002021)[0m   [0;1mCREATE TABLE shopping_carts ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "person_id" integer, "created_on" date, "modified_on" date, "last_viewed" date) [0m
+  [4;35;1mSQL (0.001510)[0m   [0mUPDATE schema_info SET version = 8[0m
+  [4;36;1mSQL (0.000271)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateLineItems (9)
+  [4;35;1mSQL (0.001830)[0m   [0mCREATE TABLE line_items ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "shopping_cart_id" integer, "order_id" integer, "sale_item_id" integer, "quantity" integer, "price_per_item" float, "created_on" date) [0m
+  [4;36;1mSQL (0.001512)[0m   [0;1mUPDATE schema_info SET version = 9[0m
+  [4;35;1mSQL (0.000266)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateOrders (10)
+  [4;36;1mSQL (0.002266)[0m   [0;1mCREATE TABLE orders ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "person_id" integer, "shipping_location_id" integer, "created_on" date, "shipped_on" date, "paid_on" date) [0m
+  [4;35;1mSQL (0.001473)[0m   [0mUPDATE schema_info SET version = 10[0m
+  [4;36;1mSQL (0.000269)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateChanges (11)
+  [4;35;1mSQL (0.002217)[0m   [0mCREATE TABLE changes ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "change_type" integer, "item_id" integer, "person_id" integer, "old_value" varchar(255), "new_value" varchar(255), "effective_date" date, "created_on" date) [0m
+  [4;36;1mSQL (0.001497)[0m   [0;1mUPDATE schema_info SET version = 11[0m
+  [4;35;1mSQL (0.000271)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to AddCurrentLocationToPeople (12)
+  [4;36;1mSQL (0.028602)[0m   [0;1mALTER TABLE people ADD "location_id" integer[0m
+  [4;35;1mSQL (0.007539)[0m   [0mVACUUM[0m
+  [4;36;1mSQL (0.002168)[0m   [0;1mUPDATE schema_info SET version = 12[0m
+  [4;35;1mSQL (0.000416)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.000808)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.000407)[0m   [0mPRAGMA table_info(categories)[0m
+  [4;36;1mSQL (0.000071)[0m   [0;1mPRAGMA index_list(categories)[0m
+  [4;35;1mSQL (0.000913)[0m   [0mPRAGMA table_info(changes)[0m
+  [4;36;1mSQL (0.000085)[0m   [0;1mPRAGMA index_list(changes)[0m
+  [4;35;1mSQL (0.001032)[0m   [0mPRAGMA table_info(credit_cards)[0m
+  [4;36;1mSQL (0.000079)[0m   [0;1mPRAGMA index_list(credit_cards)[0m
+  [4;35;1mSQL (0.000715)[0m   [0mPRAGMA table_info(items)[0m
+  [4;36;1mSQL (0.000064)[0m   [0;1mPRAGMA index_list(items)[0m
+  [4;35;1mSQL (0.000807)[0m   [0mPRAGMA table_info(line_items)[0m
+  [4;36;1mSQL (0.000068)[0m   [0;1mPRAGMA index_list(line_items)[0m
+  [4;35;1mSQL (0.001503)[0m   [0mPRAGMA table_info(locations)[0m
+  [4;36;1mSQL (0.000062)[0m   [0;1mPRAGMA index_list(locations)[0m
+  [4;35;1mSQL (0.000731)[0m   [0mPRAGMA table_info(orders)[0m
+  [4;36;1mSQL (0.000066)[0m   [0;1mPRAGMA index_list(orders)[0m
+  [4;35;1mSQL (0.001391)[0m   [0mPRAGMA table_info(people)[0m
+  [4;36;1mSQL (0.000067)[0m   [0;1mPRAGMA index_list(people)[0m
+  [4;35;1mSQL (0.001604)[0m   [0mPRAGMA table_info(photos)[0m
+  [4;36;1mSQL (0.000068)[0m   [0;1mPRAGMA index_list(photos)[0m
+  [4;35;1mSQL (0.001001)[0m   [0mPRAGMA table_info(sale_items)[0m
+  [4;36;1mSQL (0.000063)[0m   [0;1mPRAGMA index_list(sale_items)[0m
+  [4;35;1mSQL (0.000596)[0m   [0mPRAGMA table_info(shopping_carts)[0m
+  [4;36;1mSQL (0.000067)[0m   [0;1mPRAGMA index_list(shopping_carts)[0m
+
+
+Processing UserController#join (for 127.0.0.1 at 2007-01-23 00:34:28) [POST]
+  Session ID: 214dd02d52bffc01cbc23a7812d82f37
+  Parameters: {"commit"=>"Create Account", "action"=>"join", "controller"=>"user", "person"=>{"birthday(2i)"=>"1", "birthday(3i)"=>"23", "title"=>"Mr.", "password_confirmation"=>"rsh56w", "first_name"=>"Bart", "last_name"=>"", "login"=>"Viamin", "password"=>"rsh56w", "middle_name"=>"", "birthday(1i)"=>"2007", "email"=>"bart@sonic.net"}, "location"=>{"city"=>"", "zip_code"=>"", "country"=>"United States", "address_line_1"=>"", "address_line_2"=>"", "state"=>""}}
+  [4;36;1mSQL (0.002307)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mSQL (0.001574)[0m   [0mPRAGMA table_info(locations)[0m
+  [4;36;1mPerson Load (0.000235)[0m   [0;1mSELECT * FROM people WHERE (people.login = 'Viamin') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000116)[0m   [0mSELECT * FROM people WHERE (people.email = 'bart@sonic.net') LIMIT 1[0m
+  [4;36;1mSQL (0.000663)[0m   [0;1mINSERT INTO people ("created_on", "hashed_password", "title", "location_id", "notes", "birthday", "first_name", "last_name", "login", "email", "middle_name", "suffix") VALUES('2007-01-23 00:34:28', '3872e63ee5249f69d82d1af4886974fb5d0a47e8', 'Mr.', 0, '', '2007-01-23', 'Bart', '', 'Viamin', 'bart@sonic.net', '', '')[0m
+  [4;35;1mSQL (0.000610)[0m   [0mINSERT INTO locations ("city", "item_id", "latitude", "altitude_feet", "country", "type", "zip_code", "address_line_1", "description", "address_line_2", "longitude", "person_id", "state") VALUES('', 0, '', 0, 'United States', '', '', '', '', '', '', 1, '')[0m
+Redirected to http://127.0.0.1:3000/user/home
+Completed in 0.06774 (14 reqs/sec) | DB: 0.00550 (8%) | 302 Found [http://127.0.0.1/user/join]
+
+
+Processing UserController#home (for 127.0.0.1 at 2007-01-23 00:34:28) [GET]
+  Session ID: 214dd02d52bffc01cbc23a7812d82f37
+  Parameters: {"action"=>"home", "controller"=>"user"}
+  [4;36;1mSQL (0.002003)[0m   [0;1mPRAGMA table_info(people)[0m
+  [4;35;1mPerson Load (0.000441)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mSQL (0.001520)[0m   [0;1mPRAGMA table_info(locations)[0m
+  [4;35;1mLocation Load (0.000217)[0m   [0mSELECT * FROM locations WHERE (locations.id = 0) [0m
+Rendering  within layouts/user
+Rendering user/home
+  [4;36;1mPhoto Load (0.000276)[0m   [0;1mSELECT * FROM photos WHERE (photos.person_id = 1) [0m
+Completed in 0.09057 (11 reqs/sec) | Rendering: 0.04061 (44%) | DB: 0.00446 (4%) | 200 OK [http://127.0.0.1/user/home]

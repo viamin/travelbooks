@@ -1,9 +1,9 @@
-<p>Welcome to TravellerBooks.com, <%= @visitor %>!</p>
+<p>Welcome to TravellerBook.com, <%= @visitor %>!</p>
 
 <p>This is the page where you can track your friends, your TravellerBooks, and anything else you want!</p>
 
 <div id="user_info">
-  <%= image_tag( "#{@photo.path}#{@photo.file_name}", :class => "main_photo", :size => "#{@photo.width}x#{@photo.height}") %>
+  <%= image_tag( "#{@person.main_photo.path}#{@person.main_photo.file_name}", :class => "main_photo", :size => "#{@person.main_photo.width}x#{@person.main_photo.height}") if @person.main_photo %>
   <div id="personal_info">
     <ul id="ilist">
       <li><%= h(@person.first_name) %></li>
