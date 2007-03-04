@@ -1,11 +1,11 @@
 # == Schema Information
-# Schema version: 12
+# Schema version: 11
 #
 # Table name: categories
 #
-#  id          :integer       default(0), not null, primary key
-#  name        :string(255)   default()
-#  description :string(255)   default()
+#  id          :integer       not null, primary key
+#  name        :string(255)   default(NULL)
+#  description :string(255)   default(NULL)
 #
 
 class Category < ActiveRecord::Base

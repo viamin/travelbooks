@@ -1,21 +1,20 @@
 # == Schema Information
-# Schema version: 12
+# Schema version: 11
 #
 # Table name: people
 #
-#  id              :integer       default(0), not null, primary key
-#  title           :string(255)   default('''''')
-#  first_name      :string(255)   default('''''')
-#  middle_name     :string(255)   default('''''')
-#  last_name       :string(255)   default('''''')
-#  suffix          :string(255)   default('''''')
+#  id              :integer       not null, primary key
+#  title           :string(255)   default(NULL)
+#  first_name      :string(255)   default(NULL)
+#  middle_name     :string(255)   default(NULL)
+#  last_name       :string(255)   default(NULL)
+#  suffix          :string(255)   default(NULL)
 #  birthday        :date          
-#  email           :string(255)   default('''''')
-#  login           :string(255)   default('''''')
-#  hashed_password :text          default('''''')
+#  email           :string(255)   default(NULL)
+#  login           :string(255)   default(NULL)
+#  hashed_password :text          default(NULL)
 #  created_on      :date          
-#  notes           :text          default('''''')
-#  location_id     :integer       default(0)
+#  notes           :text          default(NULL)
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
@@ -28,3 +27,23 @@ first:
   hashed_password: 3872e63ee5249f69d82d1af4886974fb5d0a47e8
 another:
   id: 2
+  first_name: Kat
+  last_name: Notimportant
+  login: gokarte
+  email: gokarte@yahoo.com
+  hashed_pasword: 3872e63ee5249f69d82d1af4886974fb5d0a47e8
+more: 
+  id: 3
+  first_name: Kline
+  last_name: Williamson
+  login: klinewilliamson
+  email: klinewilliamson@yahoo.com
+  hashed_password: 3872e63ee5249f69d82d1af4886974fb5d0a47e8
+evenmore: 
+  id: 4
+  first_name: Nagib
+  last_name: Tharani
+  login: nagibtharani
+  email: nagibtharani@yahoo.com
+  hashed_password: 3872e63ee5249f69d82d1af4886974fb5d0a47e8
+  

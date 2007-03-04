@@ -1,12 +1,12 @@
 # == Schema Information
-# Schema version: 12
+# Schema version: 11
 #
 # Table name: items
 #
-#  id          :integer       default(0), not null, primary key
-#  tbid        :string(255)   default()
-#  name        :string(255)   default()
-#  description :text          default()
+#  id          :integer       not null, primary key
+#  tbid        :string(255)   default(NULL)
+#  name        :string(255)   default(NULL)
+#  description :text          default(NULL)
 #  person_id   :integer       default(0)
 #  created_on  :date          
 #
@@ -14,5 +14,26 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 first:
   id: 1
+  tbid: TB20G070225LX482Y
+  name: World Cup Leopard
+  description: A wood cover book with the special World Cup logo and Leopard print design
+  person_id: 1
+  created_on: 2007-02-25
 another:
   id: 2
+  tbid: TB20G070226LX482Z
+  name: World Cup Flowers
+  description: A wood cover book with the special World Cup logo and flowery cover
+  created_on: 2007-02-26
+more:
+  id: 3
+  tbid: TB20G070226LX483A
+  name: Green Leather
+  description: A Green leather bound book
+  created_on: 2007-02-26
+evenmore:
+  id: 4
+  tbid: TB20G070226LX483B
+  name: Red Leather
+  description: A red leather bound book
+  created_on: 2007-02-26

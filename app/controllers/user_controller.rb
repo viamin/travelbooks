@@ -60,6 +60,10 @@ class UserController < ApplicationController
       @location = @person.location
       @items = @person.items
     end
+    @map = GMap.new("map_div")
+    @map.control_init(:large_map => true,:map_type => true)
+    @map.center_zoom_init([38.134557,-95.537109],4)
+    
   end  
   
   def login
@@ -89,12 +93,14 @@ class UserController < ApplicationController
       @person = Person.new
       @person.birthday = "0000-00-00"
       @location = Location.new
+      @person.location = @location
     else
       @person = Person.new(params[:person])
       @location = Location.new(params[:location])
+      @location.loc_type = Location.ADDRESS
+      @person.location = @location
    # Change this to put the @person and @location saves in a transaction to make sure both of them go through or none. 
       if @person.save
-        @location.person_id = @person.id
         if @location.save
           flash[:notice] = "Thank you for joining TravellerBook.com"
           session[:user_id] = @person.id

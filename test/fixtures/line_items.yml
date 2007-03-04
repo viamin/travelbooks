@@ -1,9 +1,9 @@
 # == Schema Information
-# Schema version: 12
+# Schema version: 11
 #
 # Table name: line_items
 #
-#  id               :integer       default(0), not null, primary key
+#  id               :integer       not null, primary key
 #  shopping_cart_id :integer       default(0)
 #  order_id         :integer       default(0)
 #  sale_item_id     :integer       default(0)

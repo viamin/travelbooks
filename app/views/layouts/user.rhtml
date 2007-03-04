@@ -5,10 +5,18 @@
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>User: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag 'scaffold' %>
+  <%= javascript_include_tag :defaults %>
+  <%= ymap_js_tag %>
+  <%= stylesheet_link_tag 'main' %>
+  <%= stylesheet_link_tag 'traffic' %>
+  <%= ymap_div_style(600, 400) %>
+  <%= GMap.header(:with_vml => false) %>
+  <%= @map.to_html if controller.action_name == :home %>
 </head>
 <body>
-
+	<div id="titlebar">
+		<a href="http://www.travellerbook.com"><strong>TravellerBook.com - Give a little bit of the world</strong></a>
+	</div>
 <p style="color: green"><%= flash[:notice] %></p>
 
 <%= yield  %>

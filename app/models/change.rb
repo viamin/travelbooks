@@ -7,8 +7,8 @@
 #  change_type    :integer       default(0)
 #  item_id        :integer       default(0)
 #  person_id      :integer       default(0)
-#  old_value      :string(255)   default()
-#  new_value      :string(255)   default()
+#  old_value      :string(255)   default(NULL)
+#  new_value      :string(255)   default(NULL)
 #  effective_date :date          
 #  created_on     :date          
 #
@@ -16,13 +16,14 @@
 class Change < ActiveRecord::Base
   belongs_to :person
   belongs_to :item
+  belongs_to :location
   
-  # Not sure how to do this correctly, so I'll do it the weird way
-  def OWNERSHIP
-    1
-  end
+  # possible change_types:
+  OWNERSHIP = 1
+  PERSON_LOCATION = 2
   
-  def PERSON_LOCATION
-    2
-  end
+  # allow change types to be read from outside the class
+  attr_reader OWNERSHIP
+  attr_reader PERSON_LOCATION
+  
 end

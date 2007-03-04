@@ -7,8 +7,8 @@
 #  change_type    :integer       default(0)
 #  item_id        :integer       default(0)
 #  person_id      :integer       default(0)
-#  old_value      :string(255)   default()
-#  new_value      :string(255)   default()
+#  old_value      :string(255)   default(NULL)
+#  new_value      :string(255)   default(NULL)
 #  effective_date :date          
 #  created_on     :date          
 #
@@ -16,5 +16,41 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 one:
   id: 1
+  change_type: Change.OWNERSHIP
+  item_id: 1
+  old_value: 1
+  new_value: 2
+  effective_date: 2007-02-26
+  created_on: 2007-02-26
 two:
   id: 2
+  change_type: Change.PERSON_LOCATION
+  person_id: 2
+  old_value: 2
+  new_value: 1
+  effective_date: 2007-04-15
+  created_on: 2007-02-26
+three: 
+  id: 3
+  change_type: Change.OWNERSHIP
+  item_id: 2
+  old_value: 3
+  new_value: 4
+  effective_date: 2007-02-01
+  created_on: 2007-02-26
+four:
+  id: 4
+  change_type: Change.OWNERSHIP
+  item_id: 3
+  old_value: 1
+  new_value: 4
+  effective_date: 2007-02-12
+  created_on: 2007-02-26
+five:
+  id: 5
+  change_type: Change.OWNERSHIP
+  item_id: 3
+  old_value: 4
+  new_value: 3
+  effective_date: 2007-02-20
+  created_on: 2007-02-26

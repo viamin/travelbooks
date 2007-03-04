@@ -1,27 +1,26 @@
 # == Schema Information
-# Schema version: 12
+# Schema version: 11
 #
 # Table name: people
 #
-#  id              :integer       default(0), not null, primary key
-#  title           :string(255)   default('''''')
-#  first_name      :string(255)   default('''''')
-#  middle_name     :string(255)   default('''''')
-#  last_name       :string(255)   default('''''')
-#  suffix          :string(255)   default('''''')
+#  id              :integer       not null, primary key
+#  title           :string(255)   default(NULL)
+#  first_name      :string(255)   default(NULL)
+#  middle_name     :string(255)   default(NULL)
+#  last_name       :string(255)   default(NULL)
+#  suffix          :string(255)   default(NULL)
 #  birthday        :date          
-#  email           :string(255)   default('''''')
-#  login           :string(255)   default('''''')
-#  hashed_password :text          default('''''')
+#  email           :string(255)   default(NULL)
+#  login           :string(255)   default(NULL)
+#  hashed_password :text          default(NULL)
 #  created_on      :date          
-#  notes           :text          default('''''')
-#  location_id     :integer       default(0)
+#  notes           :text          default(NULL)
 #
 
 class Person < ActiveRecord::Base
   require "digest/sha1"
-
-  belongs_to :location
+  has_many :changes
+  has_many :locations, :through => :changes
   has_many :items
   has_many :photos
   validates_uniqueness_of :login, :email

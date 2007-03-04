@@ -79,11 +79,11 @@ div.progressBar div.background {
 }
 
 #titlebar a {
-	background: url("images/tbbanner.jpg") 0 0 no-repeat;
+	background: url("http://127.0.0.1:3000/images/TBBannerL.jpg") 0 0 no-repeat;
 	border:0;
 	display: block;
 	height: 80px;
-	width: 754px;
+	width: 701px;
 }
 
 #titlebar a:hover {

@@ -8,11 +8,33 @@
     <ul id="ilist">
       <li><%= h(@person.first_name) %></li>
       <li><%= h(@person.age) %></li>
+      <li><%= h(@person.location.address_line_1) %></li>
+      <li><%= h(@person.location.city) %></li>
+      <li><%= h(@person.location.state) %></li>
+      <li><%= h(@person.location.country) %></li>
     </ul>
   </div>
+  <div id="tb_stats">
+	<h3>Traveller Book Personal Stats</h3>
+	<ul>
+	  <li>Books Given:</li>
+	  <li>Books Received:</li>
+	  <li>Countries Visited:</li>
+	  <li>Countries Books Visited:</li>
+	</ul>
+  </div>
+</div>
+<div id="mileage">
+  <h3>My Mileage</h3>
+  <ul>
+	<li>Miles Travelled:</li>
+	<li>Miles Books given Travelled:</li>
+	<li>Miles last book received travelled:</li>
+  <ul>
 </div>
 
+<%= @map.div %>
+<%= ymap_address_map(@person.location) %>
 <%= ymap_div_tag %>
-<%= ymap_address_map(@location) %>
 
 

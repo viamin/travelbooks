@@ -1,9 +1,9 @@
 # == Schema Information
-# Schema version: 12
+# Schema version: 11
 #
 # Table name: orders
 #
-#  id                   :integer       default(0), not null, primary key
+#  id                   :integer       not null, primary key
 #  person_id            :integer       default(0)
 #  shipping_location_id :integer       default(0)
 #  created_on           :date          

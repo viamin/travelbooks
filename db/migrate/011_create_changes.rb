@@ -4,6 +4,7 @@ class CreateChanges < ActiveRecord::Migration
       t.column :change_type, :integer
       t.column :item_id, :integer
       t.column :person_id, :integer
+      t.column :location_id, :integer
       t.column :old_value, :string
       t.column :new_value, :string
       t.column :effective_date, :date

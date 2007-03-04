@@ -4,23 +4,58 @@
 # Table name: locations
 #
 #  id             :integer       default(0), not null, primary key
-#  description    :string(255)   default()
-#  type           :string(255)   default()
+#  description    :string(255)   default(NULL)
+#  loc_type       :string(255)   default(NULL)
 #  person_id      :integer       default(0)
 #  item_id        :integer       default(0)
-#  address_line_1 :string(255)   default()
-#  address_line_2 :string(255)   default()
-#  city           :string(255)   default()
-#  state          :string(255)   default()
-#  zip_code       :string(255)   default()
-#  country        :string(255)   default()
-#  latitude       :string(255)   default()
-#  longitude      :string(255)   default()
+#  address_line_1 :string(255)   default(NULL)
+#  address_line_2 :string(255)   default(NULL)
+#  city           :string(255)   default(NULL)
+#  state          :string(255)   default(NULL)
+#  zip_code       :string(255)   default(NULL)
+#  country        :string(255)   default(NULL)
+#  latitude       :string(255)   default(NULL)
+#  longitude      :string(255)   default(NULL)
 #  altitude_feet  :integer       default(0)
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 first:
   id: 1
+  description: Dave's House
+  loc_type: Location.ADDRESS
+  person_id: 1
+  address_line_1: 4492 Lick Mill Blvd.
+  city: Santa Clara
+  state: California
+  zip_code: 95054
+  country: United States
 another:
   id: 2
+  description: Kat's House
+  loc_type: Location.ADDRESS
+  person_id: 2
+  address_line_1: 170 Phoebe St.
+  address_line_2: Apt. 7
+  city: Encinitas
+  state: California
+  zip_code: 92024
+  country: United States
+more:
+  id: 3
+  description: Kline's Work Addess
+  loc_type: Location.ADDRESS
+  person_id: 3
+  address_line_1: L4, 690 Springvale Road
+  city: Mulgrave
+  zip_code: 3170
+  country: Australia
+evenmore: 
+  id: 4
+  description: Nagib's Work Address
+  loc_type: Location.ADDRESS
+  person_id: 4
+  address_line_1: 20 Broadwick St.
+  city: London
+  zip_code: W1F 8HT
+  country: United Kingdom
