@@ -2,7 +2,13 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 11) do
+ActiveRecord::Schema.define(:version => 13) do
+
+  create_table "address_book_items", :force => true do |t|
+    t.column "owner_person_id", :integer, :default => 0
+    t.column "entry_person_id", :integer, :default => 0
+    t.column "permissions",     :integer, :default => 0
+  end
 
   create_table "categories", :force => true do |t|
     t.column "name",        :string, :default => "NULL"
@@ -21,14 +27,13 @@ ActiveRecord::Schema.define(:version => 11) do
   end
 
   create_table "credit_cards", :force => true do |t|
-    t.column "person_id",           :integer, :default => 0
-    t.column "card_type",           :string,  :default => "NULL"
-    t.column "billing_location_id", :integer, :default => 0
-    t.column "name_on_card",        :string,  :default => "NULL"
-    t.column "card_number",         :string,  :default => "NULL"
-    t.column "expiration_date",     :date
-    t.column "ccv",                 :string,  :default => "NULL"
-    t.column "created_on",          :date
+    t.column "person_id",       :integer, :default => 0
+    t.column "card_type",       :string,  :default => "NULL"
+    t.column "name_on_card",    :string,  :default => "NULL"
+    t.column "card_number",     :string,  :default => "NULL"
+    t.column "expiration_date", :date
+    t.column "ccv",             :string,  :default => "NULL"
+    t.column "created_on",      :date
   end
 
   create_table "items", :force => true do |t|
@@ -53,6 +58,7 @@ ActiveRecord::Schema.define(:version => 11) do
     t.column "loc_type",       :string,  :default => "NULL"
     t.column "person_id",      :integer, :default => 0
     t.column "item_id",        :integer, :default => 0
+    t.column "credit_card_id", :integer, :default => 0
     t.column "address_line_1", :string,  :default => "NULL"
     t.column "address_line_2", :string,  :default => "NULL"
     t.column "city",           :string,  :default => "NULL"
@@ -113,6 +119,15 @@ ActiveRecord::Schema.define(:version => 11) do
     t.column "status",            :integer, :default => 0
     t.column "category_id",       :integer, :default => 0
   end
+
+  create_table "sessions", :force => true do |t|
+    t.column "session_id", :string,   :default => "NULL"
+    t.column "data",       :text,     :default => "NULL"
+    t.column "updated_at", :datetime
+  end
+
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
 
   create_table "shopping_carts", :force => true do |t|
     t.column "person_id",   :integer, :default => 0

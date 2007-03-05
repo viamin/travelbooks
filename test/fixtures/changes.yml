@@ -1,12 +1,13 @@
 # == Schema Information
-# Schema version: 12
+# Schema version: 13
 #
 # Table name: changes
 #
-#  id             :integer       default(0), not null, primary key
+#  id             :integer       not null, primary key
 #  change_type    :integer       default(0)
 #  item_id        :integer       default(0)
 #  person_id      :integer       default(0)
+#  location_id    :integer       default(0)
 #  old_value      :string(255)   default(NULL)
 #  new_value      :string(255)   default(NULL)
 #  effective_date :date          
@@ -16,7 +17,7 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 one:
   id: 1
-  change_type: Change.OWNERSHIP
+  change_type: 1
   item_id: 1
   old_value: 1
   new_value: 2
@@ -24,7 +25,7 @@ one:
   created_on: 2007-02-26
 two:
   id: 2
-  change_type: Change.PERSON_LOCATION
+  change_type: 2
   person_id: 2
   old_value: 2
   new_value: 1
@@ -32,7 +33,7 @@ two:
   created_on: 2007-02-26
 three: 
   id: 3
-  change_type: Change.OWNERSHIP
+  change_type: 1
   item_id: 2
   old_value: 3
   new_value: 4
@@ -40,7 +41,7 @@ three:
   created_on: 2007-02-26
 four:
   id: 4
-  change_type: Change.OWNERSHIP
+  change_type: 1
   item_id: 3
   old_value: 1
   new_value: 4
@@ -48,8 +49,40 @@ four:
   created_on: 2007-02-26
 five:
   id: 5
-  change_type: Change.OWNERSHIP
+  change_type: 1
   item_id: 3
+  old_value: 4
+  new_value: 3
+  effective_date: 2007-02-20
+  created_on: 2007-02-26
+six:
+  id: 6
+  change_type: 1
+  item_id: 4
+  old_value: 1
+  new_value: 4
+  effective_date: 2007-02-12
+  created_on: 2007-02-26
+seven:
+  id: 7
+  change_type: 1
+  item_id: 4
+  old_value: 4
+  new_value: 3
+  effective_date: 2007-02-20
+  created_on: 2007-02-26
+eight:
+  id: 8
+  change_type: 1
+  item_id: 5
+  old_value: 1
+  new_value: 4
+  effective_date: 2007-02-12
+  created_on: 2007-02-26
+nine:
+  id: 9
+  change_type: 1
+  item_id: 5
   old_value: 4
   new_value: 3
   effective_date: 2007-02-20

@@ -1,13 +1,14 @@
 # == Schema Information
-# Schema version: 12
+# Schema version: 13
 #
 # Table name: locations
 #
-#  id             :integer       default(0), not null, primary key
+#  id             :integer       not null, primary key
 #  description    :string(255)   default(NULL)
 #  loc_type       :string(255)   default(NULL)
 #  person_id      :integer       default(0)
 #  item_id        :integer       default(0)
+#  credit_card_id :integer       default(0)
 #  address_line_1 :string(255)   default(NULL)
 #  address_line_2 :string(255)   default(NULL)
 #  city           :string(255)   default(NULL)
@@ -23,7 +24,7 @@
 first:
   id: 1
   description: Dave's House
-  loc_type: Location.ADDRESS
+  loc_type: 1
   person_id: 1
   address_line_1: 4492 Lick Mill Blvd.
   city: Santa Clara
@@ -33,7 +34,7 @@ first:
 another:
   id: 2
   description: Kat's House
-  loc_type: Location.ADDRESS
+  loc_type: 1
   person_id: 2
   address_line_1: 170 Phoebe St.
   address_line_2: Apt. 7
@@ -44,7 +45,7 @@ another:
 more:
   id: 3
   description: Kline's Work Addess
-  loc_type: Location.ADDRESS
+  loc_type: 1
   person_id: 3
   address_line_1: L4, 690 Springvale Road
   city: Mulgrave
@@ -53,7 +54,7 @@ more:
 evenmore: 
   id: 4
   description: Nagib's Work Address
-  loc_type: Location.ADDRESS
+  loc_type: 1
   person_id: 4
   address_line_1: 20 Broadwick St.
   city: London

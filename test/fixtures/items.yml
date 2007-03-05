@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 11
+# Schema version: 13
 #
 # Table name: items
 #
@@ -33,6 +33,12 @@ more:
   created_on: 2007-02-26
 evenmore:
   id: 4
+  tbid: TB20G070226LX483B
+  name: Red Leather
+  description: A red leather bound book
+  created_on: 2007-02-26
+five:
+  id: 5
   tbid: TB20G070226LX483B
   name: Red Leather
   description: A red leather bound book

@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 11
+# Schema version: 13
 #
 # Table name: categories
 #
@@ -8,5 +8,6 @@
 #  description :string(255)   default(NULL)
 #
 
+# Category is used to link types of locations, people, etc, without hard coding it into the program
 class Category < ActiveRecord::Base
 end

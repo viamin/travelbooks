@@ -93,12 +93,12 @@ class UserController < ApplicationController
       @person = Person.new
       @person.birthday = "0000-00-00"
       @location = Location.new
-      @person.location = @location
+      @person.changes.create( :location => @location, :effective_date => Time.now)
     else
       @person = Person.new(params[:person])
       @location = Location.new(params[:location])
       @location.loc_type = Location.ADDRESS
-      @person.location = @location
+      @person.changes.create( :location => @location, :effective_date => Time.now, :change_type => 2, :old_value => nil, :new_value => @location)
    # Change this to put the @person and @location saves in a transaction to make sure both of them go through or none. 
       if @person.save
         if @location.save

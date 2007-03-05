@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 11
+# Schema version: 13
 #
 # Table name: people
 #
@@ -71,16 +71,38 @@ class Person < ActiveRecord::Base
     main_photo = self.photos.detect { |photo| photo.photo_type == 1 } || self.photos.first
   end
   
+  #checks all location changes for this person and find the current information
+  def latest_location
+    all_locations = self.changes.delete_if {|change| change.change_type == 1}
+    all_locations.sort {|x,y| x.effective_date <=> y.effective_date}
+    all_locations.last
+  end
+  
   def change_location(new_location, date = Time.now)
     change = Change.new
-    change.change_type = Change.PERSON_LOCATION
-    change.old_value = self.location
+    change.change_type = 2
+    change.old_value = self.latest_location
     change.new_value = new_location
     change.effective_date = date
     change.person_id = self.id
     change.save!
-    self.location = new_location
-    self.save!
+#    self.locations << new_location
+#    self.save!
+  end
+  
+  # This function will calculate how far the user has travelled himself, and store the data in 
+  # the database. First it will check for updated data, and if it's not there, calculate
+  def miles_travelled(locations)
+    #Calculate distance from one location to another (do this in the Location model)
+    legs = Array.new
+    total_distance = 0
+    locations.each_with_index do |location, index|
+      locations.first == location ? beginning = location : beginning = ending
+      ending = location unless locations.first == location
+      legs << beginning.distance_to(ending) unless locations.first == location
+    end
+    legs.each { |distance| total_distance += distance }
+    total_distance
   end
 
   private

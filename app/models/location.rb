@@ -1,13 +1,14 @@
 # == Schema Information
-# Schema version: 12
+# Schema version: 13
 #
 # Table name: locations
 #
-#  id             :integer       default(0), not null, primary key
+#  id             :integer       not null, primary key
 #  description    :string(255)   default(NULL)
 #  loc_type       :string(255)   default(NULL)
 #  person_id      :integer       default(0)
 #  item_id        :integer       default(0)
+#  credit_card_id :integer       default(0)
 #  address_line_1 :string(255)   default(NULL)
 #  address_line_2 :string(255)   default(NULL)
 #  city           :string(255)   default(NULL)
@@ -28,7 +29,12 @@ class Location < ActiveRecord::Base
   ADDRESS = 1
   GPS = 2
   
-  attr_reader ADDRESS
-  attr_reader GPS
+  attr_reader :ADDRESS
+  attr_reader :GPS
+  
+  # Calculates the distance between two locations
+  def distance_to(location)
+    ########### TBD ############
+  end
   
 end

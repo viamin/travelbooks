@@ -1,17 +1,16 @@
 # == Schema Information
-# Schema version: 11
+# Schema version: 13
 #
 # Table name: credit_cards
 #
-#  id                  :integer       not null, primary key
-#  person_id           :integer       default(0)
-#  card_type           :string(255)   default(NULL)
-#  billing_location_id :integer       default(0)
-#  name_on_card        :string(255)   default(NULL)
-#  card_number         :string(255)   default(NULL)
-#  expiration_date     :date          
-#  ccv                 :string(255)   default(NULL)
-#  created_on          :date          
+#  id              :integer       not null, primary key
+#  person_id       :integer       default(0)
+#  card_type       :string(255)   default(NULL)
+#  name_on_card    :string(255)   default(NULL)
+#  card_number     :string(255)   default(NULL)
+#  expiration_date :date          
+#  ccv             :string(255)   default(NULL)
+#  created_on      :date          
 #
 
 class CreditCard < ActiveRecord::Base

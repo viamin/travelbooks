@@ -4820,3 +4820,1393 @@ Completed in 0.01745 (57 reqs/sec) | Rendering: 0.00659 (37%) | DB: 0.00804 (46%
   [4;36;1mSQL (0.000356)[0m   [0;1mBEGIN[0m
   [4;35;1mPerson Load (0.001923)[0m   [0mSELECT * FROM people WHERE (people.id = 1) LIMIT 1[0m
   [4;36;1mSQL (0.000444)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.000250)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000204)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreatePeople (1)
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table people already exists: CREATE TABLE people ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255) DEFAULT NULL, "first_name" varchar(255) DEFAULT NULL, "middle_name" varchar(255) DEFAULT NULL, "last_name" varchar(255) DEFAULT NULL, "suffix" varchar(255) DEFAULT NULL, "birthday" date DEFAULT NULL, "email" varchar(255) DEFAULT NULL, "login" varchar(255) DEFAULT NULL, "hashed_password" text DEFAULT NULL, "created_on" date DEFAULT NULL, "notes" text DEFAULT NULL) [0m
+  [4;36;1mSQL (0.000271)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.260692)[0m   [0mCREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001637)[0m   [0;1mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000338)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreatePeople (1)
+  [4;35;1mSQL (0.001966)[0m   [0mCREATE TABLE people ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255) DEFAULT NULL, "first_name" varchar(255) DEFAULT NULL, "middle_name" varchar(255) DEFAULT NULL, "last_name" varchar(255) DEFAULT NULL, "suffix" varchar(255) DEFAULT NULL, "birthday" date DEFAULT NULL, "email" varchar(255) DEFAULT NULL, "login" varchar(255) DEFAULT NULL, "hashed_password" text DEFAULT NULL, "created_on" date DEFAULT NULL, "notes" text DEFAULT NULL) [0m
+  [4;36;1mSQL (0.001606)[0m   [0;1mUPDATE schema_info SET version = 1[0m
+  [4;35;1mSQL (0.000246)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateItems (2)
+  [4;36;1mSQL (0.002210)[0m   [0;1mCREATE TABLE items ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "tbid" varchar(255) DEFAULT NULL, "name" varchar(255) DEFAULT NULL, "description" text DEFAULT NULL, "person_id" integer DEFAULT NULL, "created_on" date DEFAULT NULL) [0m
+  [4;35;1mSQL (0.001506)[0m   [0mUPDATE schema_info SET version = 2[0m
+  [4;36;1mSQL (0.000239)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateLocations (3)
+  [4;35;1mSQL (0.002067)[0m   [0mCREATE TABLE locations ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar(255) DEFAULT NULL, "loc_type" varchar(255) DEFAULT NULL, "person_id" integer DEFAULT NULL, "item_id" integer DEFAULT NULL, "credit_card_id" integer DEFAULT NULL, "address_line_1" varchar(255) DEFAULT NULL, "address_line_2" varchar(255) DEFAULT NULL, "city" varchar(255) DEFAULT NULL, "state" varchar(255) DEFAULT NULL, "zip_code" varchar(255) DEFAULT NULL, "country" varchar(255) DEFAULT NULL, "latitude" varchar(255) DEFAULT NULL, "longitude" varchar(255) DEFAULT NULL, "altitude_feet" integer DEFAULT NULL) [0m
+  [4;36;1mSQL (0.001505)[0m   [0;1mUPDATE schema_info SET version = 3[0m
+  [4;35;1mSQL (0.000278)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateCategories (4)
+  [4;36;1mSQL (0.002057)[0m   [0;1mCREATE TABLE categories ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) DEFAULT NULL, "description" varchar(255) DEFAULT NULL) [0m
+  [4;35;1mSQL (0.001544)[0m   [0mUPDATE schema_info SET version = 4[0m
+  [4;36;1mSQL (0.000238)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateSaleItems (5)
+  [4;35;1mSQL (0.001988)[0m   [0mCREATE TABLE sale_items ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) DEFAULT NULL, "description" varchar(255) DEFAULT NULL, "quantity_in_stock" integer DEFAULT NULL, "price" float DEFAULT NULL, "for_sale" varchar(255) DEFAULT NULL, "sale_price" float DEFAULT NULL, "status" integer DEFAULT NULL, "category_id" integer DEFAULT NULL) [0m
+  [4;36;1mSQL (0.001513)[0m   [0;1mUPDATE schema_info SET version = 5[0m
+  [4;35;1mSQL (0.000233)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateCreditCards (6)
+  [4;36;1mSQL (0.002133)[0m   [0;1mCREATE TABLE credit_cards ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "person_id" integer DEFAULT NULL, "card_type" varchar(255) DEFAULT NULL, "name_on_card" varchar(255) DEFAULT NULL, "card_number" varchar(255) DEFAULT NULL, "expiration_date" date DEFAULT NULL, "ccv" varchar(255) DEFAULT NULL, "created_on" date DEFAULT NULL) [0m
+  [4;35;1mSQL (0.001735)[0m   [0mUPDATE schema_info SET version = 6[0m
+  [4;36;1mSQL (0.000323)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreatePhotos (7)
+  [4;35;1mSQL (0.002231)[0m   [0mCREATE TABLE photos ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "path" varchar(255) DEFAULT NULL, "file_name" varchar(255) DEFAULT NULL, "url" varchar(255) DEFAULT NULL, "data" blob DEFAULT NULL, "content_type" varchar(255) DEFAULT NULL, "bytes" integer DEFAULT NULL, "width" integer DEFAULT NULL, "height" integer DEFAULT NULL, "caption" varchar(255) DEFAULT NULL, "photo_type" integer DEFAULT NULL, "location_id" integer DEFAULT NULL, "person_id" integer DEFAULT NULL, "item_id" integer DEFAULT NULL, "created_on" date DEFAULT NULL) [0m
+  [4;36;1mSQL (0.001487)[0m   [0;1mUPDATE schema_info SET version = 7[0m
+  [4;35;1mSQL (0.000287)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateShoppingCarts (8)
+  [4;36;1mSQL (0.002135)[0m   [0;1mCREATE TABLE shopping_carts ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "person_id" integer DEFAULT NULL, "created_on" date DEFAULT NULL, "modified_on" date DEFAULT NULL, "last_viewed" date DEFAULT NULL) [0m
+  [4;35;1mSQL (0.001735)[0m   [0mUPDATE schema_info SET version = 8[0m
+  [4;36;1mSQL (0.000254)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateLineItems (9)
+  [4;35;1mSQL (0.002556)[0m   [0mCREATE TABLE line_items ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "shopping_cart_id" integer DEFAULT NULL, "order_id" integer DEFAULT NULL, "sale_item_id" integer DEFAULT NULL, "quantity" integer DEFAULT NULL, "price_per_item" float DEFAULT NULL, "created_on" date DEFAULT NULL) [0m
+  [4;36;1mSQL (0.001560)[0m   [0;1mUPDATE schema_info SET version = 9[0m
+  [4;35;1mSQL (0.000241)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateOrders (10)
+  [4;36;1mSQL (0.002160)[0m   [0;1mCREATE TABLE orders ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "person_id" integer DEFAULT NULL, "shipping_location_id" integer DEFAULT NULL, "created_on" date DEFAULT NULL, "shipped_on" date DEFAULT NULL, "paid_on" date DEFAULT NULL) [0m
+  [4;35;1mSQL (0.001863)[0m   [0mUPDATE schema_info SET version = 10[0m
+  [4;36;1mSQL (0.000278)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateChanges (11)
+  [4;35;1mSQL (0.002405)[0m   [0mCREATE TABLE changes ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "change_type" integer DEFAULT NULL, "item_id" integer DEFAULT NULL, "person_id" integer DEFAULT NULL, "location_id" integer DEFAULT NULL, "old_value" varchar(255) DEFAULT NULL, "new_value" varchar(255) DEFAULT NULL, "effective_date" date DEFAULT NULL, "created_on" date DEFAULT NULL) [0m
+  [4;36;1mSQL (0.001966)[0m   [0;1mUPDATE schema_info SET version = 11[0m
+  [4;35;1mSQL (0.000246)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateAddressBookItems (12)
+  [4;36;1mSQL (0.002608)[0m   [0;1mCREATE TABLE address_book_items ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "owner_person_id" integer DEFAULT NULL, "entry_person_id" integer DEFAULT NULL, "permissions" integer DEFAULT NULL) [0m
+  [4;35;1mSQL (0.001595)[0m   [0mUPDATE schema_info SET version = 12[0m
+  [4;36;1mCategory Load (0.000365)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000348)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000332)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000133)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mItem Load (0.000301)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000350)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000451)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000336)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000415)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000399)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.000365)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000361)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPhoto Load (0.000435)[0m   [0;1mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;35;1mSaleItem Load (0.000346)[0m   [0mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;36;1mShoppingCart Load (0.000333)[0m   [0;1mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000346)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000350)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000324)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000175)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mItem Load (0.000331)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000356)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000474)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000344)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000470)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000405)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.000380)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000372)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPhoto Load (0.000484)[0m   [0;1mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;35;1mSaleItem Load (0.000347)[0m   [0mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;36;1mShoppingCart Load (0.000305)[0m   [0;1mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000349)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000348)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000326)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000136)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mItem Load (0.000293)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000326)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000454)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000367)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000465)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000417)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.000378)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000365)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPhoto Load (0.000468)[0m   [0;1mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;35;1mSaleItem Load (0.000350)[0m   [0mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;36;1mShoppingCart Load (0.000306)[0m   [0;1mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000303)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000351)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000319)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000156)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mItem Load (0.000361)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000363)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000548)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000337)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000440)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000420)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.000392)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000317)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000296)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000404)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000363)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPhoto Load (0.000445)[0m   [0mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;36;1mSaleItem Load (0.000350)[0m   [0;1mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;35;1mShoppingCart Load (0.000311)[0m   [0mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000416)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000348)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000316)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000137)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mItem Load (0.000293)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000347)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000456)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000313)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000440)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000448)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.000399)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000317)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000310)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000310)[0m   [0mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000294)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000361)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000363)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPhoto Load (0.000449)[0m   [0mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;36;1mSaleItem Load (0.000366)[0m   [0;1mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;35;1mShoppingCart Load (0.000298)[0m   [0mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000330)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000389)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000345)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000136)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mItem Load (0.000306)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000326)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000448)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000318)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000445)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000448)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.000430)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000314)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000295)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000308)[0m   [0mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000293)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000364)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000378)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPhoto Load (0.000442)[0m   [0mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;36;1mSaleItem Load (0.000505)[0m   [0;1mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;35;1mShoppingCart Load (0.000314)[0m   [0mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000311)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000355)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000340)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000138)[0m   [0mSELECT * FROM people WHERE (people.id = 3) [0m
+  [4;36;1mItem Load (0.000320)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000359)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000547)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000358)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000446)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000401)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.000400)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000322)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000297)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000312)[0m   [0mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000292)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000371)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000386)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPhoto Load (0.000446)[0m   [0mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;36;1mSaleItem Load (0.000349)[0m   [0;1mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;35;1mShoppingCart Load (0.000303)[0m   [0mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000390)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000403)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000323)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000163)[0m   [0mSELECT * FROM people WHERE (people.id = 4) [0m
+  [4;36;1mItem Load (0.000298)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000344)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000442)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000380)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000441)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000416)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.000397)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000318)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000297)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000310)[0m   [0mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000294)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000370)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000366)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPhoto Load (0.000443)[0m   [0mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;36;1mSaleItem Load (0.000359)[0m   [0;1mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;35;1mShoppingCart Load (0.000306)[0m   [0mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000539)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.003183)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000333)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000362)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mItem Load (0.000339)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000325)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.067084)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000334)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000415)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000408)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.000405)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000318)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000297)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000310)[0m   [0mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000292)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000361)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000364)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPhoto Load (0.000443)[0m   [0mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;36;1mSaleItem Load (0.000447)[0m   [0;1mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;35;1mShoppingCart Load (0.000312)[0m   [0mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000284)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000344)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000328)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000381)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000321)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.064296)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 18:51:26', 1, NULL, NULL, 0, 1, 0, '2007-03-04 18:51:26')[0m
+  [4;36;1mItem Load (0.000190)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000141)[0m   [0mUPDATE items SET "person_id" = 1, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mItem Load (0.000368)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000335)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000453)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000315)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000403)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000383)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.000417)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000395)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000322)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000313)[0m   [0mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000300)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000373)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000355)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPhoto Load (0.000447)[0m   [0mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;36;1mSaleItem Load (0.000338)[0m   [0;1mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;35;1mShoppingCart Load (0.000296)[0m   [0mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000338)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000348)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000415)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000350)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000325)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.065902)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 18:51:37', 1, NULL, NULL, 0, 1, 0, '2007-03-04 18:51:37')[0m
+  [4;36;1mItem Load (0.000165)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000140)[0m   [0mUPDATE items SET "person_id" = 1, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mItem Load (0.000370)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000332)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000457)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000313)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000401)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000384)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.000400)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000387)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000337)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000337)[0m   [0mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000298)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000373)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000367)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPhoto Load (0.000439)[0m   [0mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;36;1mSaleItem Load (0.000392)[0m   [0;1mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;35;1mShoppingCart Load (0.000298)[0m   [0mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000378)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000370)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000336)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000319)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000317)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.064464)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 18:52:26', 1, NULL, NULL, 0, 1, 0, '2007-03-04 18:52:26')[0m
+  [4;36;1mItem Load (0.000168)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000131)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mItem Load (0.000367)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000337)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000475)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000348)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000410)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000379)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.000437)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000372)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000322)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000313)[0m   [0mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000299)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000373)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000425)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPhoto Load (0.000445)[0m   [0mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;36;1mSaleItem Load (0.000349)[0m   [0;1mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;35;1mShoppingCart Load (0.000308)[0m   [0mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000344)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000370)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000332)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000323)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000322)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.065669)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 18:52:44', 1, NULL, NULL, 0, 1, 0, '2007-03-04 18:52:44')[0m
+  [4;36;1mItem Load (0.000172)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000134)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mItem Load (0.000375)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000337)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000458)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000320)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000390)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000386)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.000389)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000364)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000339)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000342)[0m   [0mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000300)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000375)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000365)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPhoto Load (0.000436)[0m   [0mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;36;1mSaleItem Load (0.000380)[0m   [0;1mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;35;1mShoppingCart Load (0.000326)[0m   [0mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000349)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000344)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000337)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000326)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000340)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.067186)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 18:53:04', 1, NULL, NULL, 0, 1, 0, '2007-03-04 18:53:04')[0m
+  [4;36;1mItem Load (0.000177)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000149)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mChange Load (0.000434)[0m   [0;1mSELECT * FROM changes WHERE (changes.item_id = 1) [0m
+  [4;35;1mItem Load (0.000365)[0m   [0mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;36;1mLineItem Load (0.000347)[0m   [0;1mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;35;1mLocation Load (0.000463)[0m   [0mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;36;1mOrder Load (0.000334)[0m   [0;1mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;35;1mPerson Load (0.000407)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000394)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPerson Load (0.000476)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000372)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000298)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000319)[0m   [0;1mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000540)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000403)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000364)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPhoto Load (0.000469)[0m   [0;1mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;35;1mSaleItem Load (0.000578)[0m   [0mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;36;1mShoppingCart Load (0.000373)[0m   [0;1mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000306)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000410)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000362)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000373)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000330)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.064473)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 18:54:05', 1, NULL, NULL, 0, 1, 0, '2007-03-04 18:54:05')[0m
+  [4;36;1mItem Load (0.000174)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000134)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mChange Load (0.000437)[0m   [0;1mSELECT * FROM changes WHERE (changes.item_id = 1) [0m
+  [4;35;1mItem Load (0.000353)[0m   [0mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;36;1mLineItem Load (0.000337)[0m   [0;1mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;35;1mLocation Load (0.000460)[0m   [0mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;36;1mOrder Load (0.000315)[0m   [0;1mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;35;1mPerson Load (0.000398)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000377)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPerson Load (0.000386)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000314)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000321)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000372)[0m   [0;1mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000332)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000375)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000363)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPhoto Load (0.000447)[0m   [0;1mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;35;1mSaleItem Load (0.000352)[0m   [0mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;36;1mShoppingCart Load (0.000305)[0m   [0;1mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000337)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000349)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000328)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000321)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000317)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.064262)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 18:54:25', 1, NULL, NULL, 0, 1, 0, '2007-03-04 18:54:25')[0m
+  [4;36;1mItem Load (0.000176)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000138)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mChange Load (0.000438)[0m   [0;1mSELECT * FROM changes WHERE (changes.item_id = 1) [0m
+  [4;35;1mItem Load (0.000338)[0m   [0mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;36;1mLineItem Load (0.000343)[0m   [0;1mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;35;1mLocation Load (0.000459)[0m   [0mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;36;1mOrder Load (0.000325)[0m   [0;1mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;35;1mPerson Load (0.000394)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000377)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPerson Load (0.000389)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000367)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000338)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000341)[0m   [0;1mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000297)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000373)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000361)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPhoto Load (0.000444)[0m   [0;1mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;35;1mSaleItem Load (0.000372)[0m   [0mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;36;1mShoppingCart Load (0.000301)[0m   [0;1mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000324)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000356)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000409)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000326)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000322)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.066426)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 18:56:12', 1, NULL, NULL, 0, 1, 0, '2007-03-04 18:56:12')[0m
+  [4;36;1mItem Load (0.000169)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000137)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mChange Load (0.000428)[0m   [0;1mSELECT * FROM changes WHERE (changes.item_id = 1) [0m
+  [4;35;1mItem Load (0.000421)[0m   [0mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;36;1mLineItem Load (0.000346)[0m   [0;1mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;35;1mLocation Load (0.000554)[0m   [0mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;36;1mOrder Load (0.000315)[0m   [0;1mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;35;1mPerson Load (0.000392)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000377)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPerson Load (0.000476)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000377)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000310)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000316)[0m   [0;1mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000296)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000369)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000367)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPhoto Load (0.000453)[0m   [0;1mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;35;1mSaleItem Load (0.000392)[0m   [0mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;36;1mShoppingCart Load (0.000310)[0m   [0;1mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000297)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000473)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000376)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000361)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000369)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.077310)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 18:56:25', 1, NULL, NULL, 0, 1, 0, '2007-03-04 18:56:25')[0m
+  [4;36;1mItem Load (0.000174)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000136)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mItem Load (0.000399)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000337)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000458)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000319)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000391)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000456)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.000451)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000368)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000324)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000312)[0m   [0mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000299)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000380)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000356)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPhoto Load (0.000442)[0m   [0mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;36;1mSaleItem Load (0.000375)[0m   [0;1mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;35;1mShoppingCart Load (0.000302)[0m   [0mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000289)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000343)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000352)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000370)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000326)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.064168)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 18:56:31', 1, NULL, NULL, 0, 1, 0, '2007-03-04 18:56:31')[0m
+  [4;36;1mItem Load (0.000170)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000132)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mChange Load (0.000428)[0m   [0;1mSELECT * FROM changes WHERE (changes.item_id = 1) [0m
+  [4;35;1mItem Load (0.000346)[0m   [0mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;36;1mLineItem Load (0.000337)[0m   [0;1mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;35;1mLocation Load (0.000456)[0m   [0mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;36;1mOrder Load (0.000317)[0m   [0;1mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;35;1mPerson Load (0.000393)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000380)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPerson Load (0.000435)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000371)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000326)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000318)[0m   [0;1mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000296)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000374)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000368)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPhoto Load (0.000481)[0m   [0;1mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;35;1mSaleItem Load (0.000351)[0m   [0mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;36;1mShoppingCart Load (0.000304)[0m   [0;1mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000285)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000340)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000332)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000403)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000366)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.064343)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 18:56:40', 1, NULL, NULL, 0, 1, 0, '2007-03-04 18:56:40')[0m
+  [4;36;1mItem Load (0.000166)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000131)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mItem Load (0.000376)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000334)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000468)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000320)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000392)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000377)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.000400)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000313)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000296)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000329)[0m   [0mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000346)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000412)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000373)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPhoto Load (0.000469)[0m   [0mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;36;1mSaleItem Load (0.000353)[0m   [0;1mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;35;1mShoppingCart Load (0.000304)[0m   [0mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000284)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000344)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000338)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000344)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000348)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.000712)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 19:04:20', 1, NULL, NULL, 0, 1, 0, '2007-03-04 19:04:20')[0m
+  [4;36;1mItem Load (0.000157)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000141)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mItem Load (0.000402)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000338)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000457)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000315)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000402)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000382)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.000387)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000345)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000345)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000424)[0m   [0mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000304)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000459)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000375)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPhoto Load (0.000470)[0m   [0mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;36;1mSaleItem Load (0.000354)[0m   [0;1mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;35;1mShoppingCart Load (0.000304)[0m   [0mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000327)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000343)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000330)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000317)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000395)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.000699)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 19:04:48', 1, NULL, NULL, 0, 1, 0, '2007-03-04 19:04:48')[0m
+  [4;36;1mItem Load (0.000163)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000143)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mItem Load (0.000374)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000333)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000457)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000322)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000393)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000384)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.000385)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000323)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000295)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000393)[0m   [0mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000341)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000387)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000359)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPhoto Load (0.000450)[0m   [0mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;36;1mSaleItem Load (0.000351)[0m   [0;1mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;35;1mShoppingCart Load (0.000303)[0m   [0mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000344)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000344)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000329)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000319)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000357)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.000649)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 19:05:42', 1, NULL, NULL, 0, 1, 0, '2007-03-04 19:05:42')[0m
+  [4;36;1mItem Load (0.000156)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000132)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mItem Load (0.000220)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000411)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:05:43', 'NULL', 'NULL', 0, 'NULL')[0m
+  [4;36;1mItem Load (0.000340)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000348)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000465)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000325)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000386)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000452)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.000426)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000318)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000308)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000313)[0m   [0mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000294)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000359)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000350)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPhoto Load (0.000472)[0m   [0mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;36;1mSaleItem Load (0.000347)[0m   [0;1mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;35;1mShoppingCart Load (0.000309)[0m   [0mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000329)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000352)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000332)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000320)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000320)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.000650)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 19:06:01', 1, NULL, NULL, 0, 1, 0, '2007-03-04 19:06:01')[0m
+  [4;36;1mItem Load (0.000154)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000149)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mItem Load (0.000220)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000401)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:06:01', 'NULL', 'Test Item', 0, 'NULL')[0m
+  [4;36;1mItem Load (0.000342)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000344)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000463)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000314)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000392)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000451)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.000420)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000322)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000308)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000309)[0m   [0mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000291)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000356)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000346)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPhoto Load (0.000478)[0m   [0mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;36;1mSaleItem Load (0.000347)[0m   [0;1mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;35;1mShoppingCart Load (0.000304)[0m   [0mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000334)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000341)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000329)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000316)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000400)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.000661)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 19:06:38', 1, NULL, NULL, 0, 1, 0, '2007-03-04 19:06:38')[0m
+  [4;36;1mItem Load (0.000157)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000136)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mItem Load (0.000225)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000402)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:06:38', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:06:38-225] tbid: 5a71067b4e071dec3051ce8776983f0e18f8f16c
+  [4;36;1mItem Load (0.000128)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = '71067b4e0' AND items.id <> 5) LIMIT 1[0m
+  [4;35;1mItem Update (0.000103)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = '71067b4e0', "description" = 'Test Item', "created_on" = '2007-03-04 19:06:38' WHERE id = 5[0m
+  [4;36;1mItem Load (0.000103)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000099)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:06:38', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:06:38-228] tbid: 8c99d78de45a9049b996d1acfbde742ec504ede8
+  [4;36;1mItem Load (0.000114)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = '99d78de45' AND items.id <> 6) LIMIT 1[0m
+  [4;35;1mItem Update (0.000100)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = '99d78de45', "description" = 'Test Item', "created_on" = '2007-03-04 19:06:38' WHERE id = 6[0m
+  [4;36;1mItem Load (0.000345)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000336)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000446)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000320)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000413)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000388)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.000392)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000313)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000314)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000355)[0m   [0mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000302)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000367)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000353)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPhoto Load (0.000442)[0m   [0mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;36;1mSaleItem Load (0.000344)[0m   [0;1mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;35;1mShoppingCart Load (0.000298)[0m   [0mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000279)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000339)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000330)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000386)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000315)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.000615)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 19:07:00', 1, NULL, NULL, 0, 1, 0, '2007-03-04 19:07:00')[0m
+  [4;36;1mItem Load (0.000158)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000164)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mItem Load (0.000227)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000460)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:07:01', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:07:01-072] tbid: 3da1b91c5930ef997b70433ef5a7d44765e350ca
+  [4;36;1mItem Load (0.000140)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'a1b91c593' AND items.id <> 5) LIMIT 1[0m
+  [4;35;1mItem Update (0.000115)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = 'a1b91c593', "description" = 'Test Item', "created_on" = '2007-03-04 19:07:01' WHERE id = 5[0m
+  [4;36;1mItem Load (0.000119)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000104)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:07:01', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:07:01-075] tbid: 9236c5b6c622664b73f3bcd1f79579736b330a17
+  [4;36;1mItem Load (0.000114)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = '36c5b6c62' AND items.id <> 6) LIMIT 1[0m
+  [4;35;1mItem Update (0.000102)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = '36c5b6c62', "description" = 'Test Item', "created_on" = '2007-03-04 19:07:01' WHERE id = 6[0m
+  [4;36;1mItem Load (0.000370)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000332)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000451)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000318)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000408)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000389)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.000385)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000312)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000296)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000316)[0m   [0mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000295)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000356)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000353)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPhoto Load (0.000467)[0m   [0mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;36;1mSaleItem Load (0.000346)[0m   [0;1mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;35;1mShoppingCart Load (0.000310)[0m   [0mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000284)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000366)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000332)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000369)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000321)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.000848)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 19:07:30', 1, NULL, NULL, 0, 1, 0, '2007-03-04 19:07:30')[0m
+  [4;36;1mItem Load (0.000215)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000196)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mItem Load (0.000237)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000440)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:07:30', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:07:30-957] tbid: 639e9246dee663fe6dee8584edd4dbc1a1462264
+  [4;36;1mItem Load (0.000190)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = '9e9246dee' AND items.id <> 5) LIMIT 1[0m
+  [4;35;1mItem Update (0.000542)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = '9e9246dee', "description" = 'Test Item', "created_on" = '2007-03-04 19:07:30' WHERE id = 5[0m
+  [4;36;1mItem Load (0.000142)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000170)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:07:30', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:07:30-962] tbid: 399ca25bd65bc25395589ae38644304c730d0ead
+  [4;36;1mItem Load (0.000169)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = '9ca25bd65' AND items.id <> 6) LIMIT 1[0m
+  [4;35;1mItem Update (0.000259)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = '9ca25bd65', "description" = 'Test Item', "created_on" = '2007-03-04 19:07:30' WHERE id = 6[0m
+  [4;36;1mItem Load (0.000368)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000462)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000462)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000447)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000467)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000423)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.000428)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000362)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000322)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000344)[0m   [0mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000324)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000486)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000380)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPhoto Load (0.000463)[0m   [0mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;36;1mSaleItem Load (0.000357)[0m   [0;1mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;35;1mShoppingCart Load (0.000340)[0m   [0mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000331)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000342)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000338)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000323)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000313)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.000659)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 19:10:12', 1, NULL, NULL, 0, 1, 0, '2007-03-04 19:10:12')[0m
+  [4;36;1mItem Load (0.000159)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000139)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mItem Load (0.000232)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000399)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:10:12', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:10:12-228] tbid: 0ebdaf4de1df59b05832eae8426ff2b5e74a4835
+  [4;36;1mItem Load (0.000130)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'bdaf4de1d' AND items.id <> 5) LIMIT 1[0m
+  [4;35;1mItem Update (0.000104)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = 'bdaf4de1d', "description" = 'Test Item', "created_on" = '2007-03-04 19:10:12' WHERE id = 5[0m
+  [4;36;1mItem Load (0.000103)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000099)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:10:12', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:10:12-231] tbid: 7481a44c74e70bef6676e20844f3ee339c89b3dd
+  [4;36;1mItem Load (0.000116)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = '81a44c74e' AND items.id <> 6) LIMIT 1[0m
+  [4;35;1mItem Update (0.000099)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = '81a44c74e', "description" = 'Test Item', "created_on" = '2007-03-04 19:10:12' WHERE id = 6[0m
+  [4;36;1mItem Load (0.000365)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000333)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000453)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000317)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000413)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000408)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.000381)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000313)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000300)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000315)[0m   [0mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000303)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000402)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000385)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPhoto Load (0.000435)[0m   [0mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;36;1mSaleItem Load (0.000342)[0m   [0;1mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;35;1mShoppingCart Load (0.000315)[0m   [0mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000303)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000356)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000352)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000368)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000314)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.000654)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 19:10:29', 1, NULL, NULL, 0, 1, 0, '2007-03-04 19:10:29')[0m
+  [4;36;1mItem Load (0.000158)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000139)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mItem Load (0.000225)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000399)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:10:29', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:10:29-742] tbid: c981c658a452632ea7e4da4669c842ffd285369b
+  [4;36;1mItem Load (0.000132)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = '81c658a45' AND items.id <> 5) LIMIT 1[0m
+  [4;35;1mItem Update (0.000104)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = '81c658a45', "description" = 'Test Item', "created_on" = '2007-03-04 19:10:29' WHERE id = 5[0m
+  [4;36;1mItem Load (0.000103)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000101)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:10:29', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:10:29-745] tbid: c9faa5708372b3e3402eac562e2b671ee0d3e7ab
+  [4;36;1mItem Load (0.000116)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'faa570837' AND items.id <> 6) LIMIT 1[0m
+  [4;35;1mItem Update (0.000098)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = 'faa570837', "description" = 'Test Item', "created_on" = '2007-03-04 19:10:29' WHERE id = 6[0m
+  [4;36;1mItem Load (0.000360)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mItem Load (0.000290)[0m   [0mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;36;1mLineItem Load (0.000338)[0m   [0;1mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;35;1mLocation Load (0.000457)[0m   [0mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;36;1mOrder Load (0.000319)[0m   [0;1mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;35;1mPerson Load (0.000422)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000399)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPerson Load (0.000383)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000317)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000297)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000311)[0m   [0;1mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000297)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000358)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000361)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPhoto Load (0.000443)[0m   [0;1mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;35;1mSaleItem Load (0.000342)[0m   [0mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;36;1mShoppingCart Load (0.000302)[0m   [0;1mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000324)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000361)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000330)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000322)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000410)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.000606)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 19:15:10', 1, NULL, NULL, 0, 1, 0, '2007-03-04 19:15:10')[0m
+  [4;36;1mItem Load (0.000155)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000141)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mItem Load (0.000223)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000396)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:15:10', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:15:10-673] tbid: b1fe79258fa8d7877c9cf98578f96d3152797dea
+  [4;36;1mItem Load (0.000133)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'fe79258fa' AND items.id <> 5) LIMIT 1[0m
+  [4;35;1mItem Update (0.000110)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = 'fe79258fa', "description" = 'Test Item', "created_on" = '2007-03-04 19:15:10' WHERE id = 5[0m
+  [4;36;1mItem Load (0.000108)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000103)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:15:10', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:15:10-676] tbid: 66bf7bcfbeb3c6fc6f521ac07aefeef9d9395d58
+  [4;36;1mItem Load (0.000114)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'bf7bcfbeb' AND items.id <> 6) LIMIT 1[0m
+  [4;35;1mItem Update (0.000099)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = 'bf7bcfbeb', "description" = 'Test Item', "created_on" = '2007-03-04 19:15:10' WHERE id = 6[0m
+  [4;36;1mItem Load (0.000359)[0m   [0;1mSELECT * FROM items WHERE (items.id = 3) [0m
+  [4;35;1mItem Load (0.000229)[0m   [0mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;36;1mChange Load (0.001224)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '1' and item_id = 3 and effective_date >= '2006-05-23 00:00:00' and effective_date <= '2007-03-04 19:15:10') ORDER BY effective_date[0m
+  [4;35;1mItem Load (0.000272)[0m   [0mSELECT * FROM items WHERE (items.id = 3) [0m
+  [4;36;1mChange Load (0.000132)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-12' and effective_date < '2007-02-20') [0m
+  [4;35;1mItem Load (0.000275)[0m   [0mSELECT * FROM items WHERE (items.id = 3) [0m
+  [4;36;1mChange Load (0.000197)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-20' and effective_date < '2007-03-04 19:15:10') [0m
+  [4;35;1mChange Load (0.001024)[0m   [0mSELECT * FROM changes WHERE (change_type = '1' and item_id = 4 and effective_date >= '2006-05-23 00:00:00' and effective_date <= '2007-03-04 19:15:10') ORDER BY effective_date[0m
+  [4;36;1mItem Load (0.000253)[0m   [0;1mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;35;1mChange Load (0.000131)[0m   [0mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-12' and effective_date < '2007-02-20') [0m
+  [4;36;1mItem Load (0.000230)[0m   [0;1mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;35;1mChange Load (0.000131)[0m   [0mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-20' and effective_date < '2007-03-04 19:15:10') [0m
+  [4;36;1mItem Load (0.000356)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000336)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000451)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000312)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000402)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000380)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.000376)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000319)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000331)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000354)[0m   [0mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000314)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000376)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000356)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPhoto Load (0.000481)[0m   [0mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;36;1mSaleItem Load (0.000350)[0m   [0;1mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;35;1mShoppingCart Load (0.000297)[0m   [0mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000337)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000352)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000465)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000343)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000323)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.000599)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 19:16:16', 1, NULL, NULL, 0, 1, 0, '2007-03-04 19:16:16')[0m
+  [4;36;1mItem Load (0.000156)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000140)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mItem Load (0.000222)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000401)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:16:16', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:16:16-788] tbid: b8f7bb95e90303be297ccc34dbd91e18ae514248
+  [4;36;1mItem Load (0.000135)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'f7bb95e90' AND items.id <> 5) LIMIT 1[0m
+  [4;35;1mItem Update (0.000108)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = 'f7bb95e90', "description" = 'Test Item', "created_on" = '2007-03-04 19:16:16' WHERE id = 5[0m
+  [4;36;1mItem Load (0.000105)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000103)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:16:16', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:16:16-791] tbid: 4caad1ba9d1cc40ca39cec47b2656b0fafda3a6d
+  [4;36;1mItem Load (0.000117)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'aad1ba9d1' AND items.id <> 6) LIMIT 1[0m
+  [4;35;1mItem Update (0.000101)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = 'aad1ba9d1', "description" = 'Test Item', "created_on" = '2007-03-04 19:16:16' WHERE id = 6[0m
+  [4;36;1mItem Load (0.000352)[0m   [0;1mSELECT * FROM items WHERE (items.id = 3) [0m
+  [4;35;1mItem Load (0.000231)[0m   [0mSELECT * FROM items WHERE (items.id = 3) [0m
+  [4;36;1mChange Load (0.001000)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '1' and item_id = 3 and effective_date >= '2006-05-23 00:00:00' and effective_date <= '2007-03-04 19:16:16') ORDER BY effective_date[0m
+  [4;35;1mItem Load (0.000268)[0m   [0mSELECT * FROM items WHERE (items.id = 3) [0m
+  [4;36;1mChange Load (0.000134)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-12' and effective_date < '2007-02-20') [0m
+  [4;35;1mItem Load (0.000234)[0m   [0mSELECT * FROM items WHERE (items.id = 3) [0m
+  [4;36;1mChange Load (0.000124)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-20' and effective_date < '2007-03-04 19:16:16') [0m
+  [4;35;1mChange Load (0.000970)[0m   [0mSELECT * FROM changes WHERE (change_type = '1' and item_id = 3 and effective_date >= '2006-05-23 00:00:00' and effective_date <= '2007-03-04 19:16:16') ORDER BY effective_date[0m
+  [4;36;1mItem Load (0.000249)[0m   [0;1mSELECT * FROM items WHERE (items.id = 3) [0m
+  [4;35;1mChange Load (0.000131)[0m   [0mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-12' and effective_date < '2007-02-20') [0m
+  [4;36;1mItem Load (0.000226)[0m   [0;1mSELECT * FROM items WHERE (items.id = 3) [0m
+  [4;35;1mChange Load (0.000132)[0m   [0mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-20' and effective_date < '2007-03-04 19:16:16') [0m
+  [4;36;1mItem Load (0.000310)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000329)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000530)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000326)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000405)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000383)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.000383)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000312)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000295)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000314)[0m   [0mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000298)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000355)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000352)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPhoto Load (0.000439)[0m   [0mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;36;1mSaleItem Load (0.000345)[0m   [0;1mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;35;1mShoppingCart Load (0.000318)[0m   [0mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000402)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000348)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000329)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000378)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000320)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.000584)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 19:18:31', 1, NULL, NULL, 0, 1, 0, '2007-03-04 19:18:31')[0m
+  [4;36;1mItem Load (0.000150)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000135)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mItem Load (0.000223)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000395)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:18:31', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:18:31-561] tbid: 8a544621fbe0d417b61d65421510c5f7291c722b
+  [4;36;1mItem Load (0.000136)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = '544621fbe' AND items.id <> 6) LIMIT 1[0m
+  [4;35;1mItem Update (0.000107)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = '544621fbe', "description" = 'Test Item', "created_on" = '2007-03-04 19:18:31' WHERE id = 6[0m
+  [4;36;1mItem Load (0.000107)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000102)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:18:31', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:18:31-564] tbid: a860a2662037bb9143dbf9260ac75268b5e9f7a3
+  [4;36;1mItem Load (0.000113)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = '60a266203' AND items.id <> 7) LIMIT 1[0m
+  [4;35;1mItem Update (0.000098)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = '60a266203', "description" = 'Test Item', "created_on" = '2007-03-04 19:18:31' WHERE id = 7[0m
+  [4;36;1mItem Load (0.000355)[0m   [0;1mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;35;1mItem Load (0.000230)[0m   [0mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;36;1mChange Load (0.001039)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '1' and item_id = 4 and effective_date >= '2006-05-23 00:00:00' and effective_date <= '2007-03-04 19:18:31') ORDER BY effective_date[0m
+  [4;35;1mItem Load (0.000270)[0m   [0mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;36;1mChange Load (0.000133)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-12' and effective_date < '2007-02-20') [0m
+  [4;35;1mItem Load (0.000238)[0m   [0mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;36;1mChange Load (0.000128)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-20' and effective_date < '2007-03-04 19:18:31') [0m
+  [4;35;1mChange Load (0.001004)[0m   [0mSELECT * FROM changes WHERE (change_type = '1' and item_id = 5 and effective_date >= '2006-05-23 00:00:00' and effective_date <= '2007-03-04 19:18:31') ORDER BY effective_date[0m
+  [4;36;1mItem Load (0.000254)[0m   [0;1mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;35;1mChange Load (0.000129)[0m   [0mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-12' and effective_date < '2007-02-20') [0m
+  [4;36;1mItem Load (0.000222)[0m   [0;1mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;35;1mChange Load (0.000128)[0m   [0mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-20' and effective_date < '2007-03-04 19:18:31') [0m
+  [4;36;1mItem Load (0.000360)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000349)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000452)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000309)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000392)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000382)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.002210)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000360)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000298)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000313)[0m   [0mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.001195)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000427)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000357)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPhoto Load (0.000447)[0m   [0mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;36;1mSaleItem Load (0.000339)[0m   [0;1mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;35;1mShoppingCart Load (0.000323)[0m   [0mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000299)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000396)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000372)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000357)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000486)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.000576)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 19:20:39', 1, NULL, NULL, 0, 1, 0, '2007-03-04 19:20:39')[0m
+  [4;36;1mItem Load (0.000148)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000132)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mItem Load (0.000224)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000460)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:20:39', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:20:39-972] tbid: 7624e67dc7ac737f25ad7cf8d16fe6c52f027cb4
+  [4;36;1mItem Load (0.000143)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = '24e67dc7a' AND items.id <> 6) LIMIT 1[0m
+  [4;35;1mItem Update (0.000102)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = '24e67dc7a', "description" = 'Test Item', "created_on" = '2007-03-04 19:20:39' WHERE id = 6[0m
+  [4;36;1mItem Load (0.000104)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000107)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:20:39', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:20:39-976] tbid: 94146b6517df3cdcaef8ef23dc826840b5ceb450
+  [4;36;1mItem Load (0.000112)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = '146b6517d' AND items.id <> 7) LIMIT 1[0m
+  [4;35;1mItem Update (0.000096)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = '146b6517d', "description" = 'Test Item', "created_on" = '2007-03-04 19:20:39' WHERE id = 7[0m
+  [4;36;1mItem Load (0.000362)[0m   [0;1mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;35;1mItem Load (0.000231)[0m   [0mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;36;1mChange Load (0.001107)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '1' and item_id = 4 and effective_date >= '2006-05-23 00:00:00' and effective_date <= '2007-03-04 19:20:39') ORDER BY effective_date[0m
+  [4;35;1mItem Load (0.000268)[0m   [0mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;36;1mChange Load (0.000131)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-12' and effective_date < '2007-02-20') [0m
+  [4;35;1mItem Load (0.000234)[0m   [0mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;36;1mChange Load (0.000127)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-20' and effective_date < '2007-03-04 19:20:39') [0m
+  [4;35;1mChange Load (0.001065)[0m   [0mSELECT * FROM changes WHERE (change_type = '1' and item_id = 5 and effective_date >= '2006-05-23 00:00:00' and effective_date <= '2007-03-04 19:20:39') ORDER BY effective_date[0m
+  [4;36;1mItem Load (0.000249)[0m   [0;1mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;35;1mChange Load (0.000130)[0m   [0mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-12' and effective_date < '2007-02-20') [0m
+  [4;36;1mItem Load (0.000223)[0m   [0;1mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;35;1mChange Load (0.000129)[0m   [0mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-20' and effective_date < '2007-03-04 19:20:39') [0m
+  [4;36;1mItem Load (0.000317)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000470)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000504)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000587)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000392)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000396)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.000379)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000315)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000302)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000310)[0m   [0mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000292)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000353)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000355)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPhoto Load (0.000523)[0m   [0mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;36;1mSaleItem Load (0.000419)[0m   [0;1mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;35;1mShoppingCart Load (0.000366)[0m   [0mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000288)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000348)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000340)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000317)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000361)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.000666)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 19:21:18', 1, NULL, NULL, 0, 1, 0, '2007-03-04 19:21:18')[0m
+  [4;36;1mItem Load (0.000161)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000167)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mItem Load (0.000221)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000404)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:21:18', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:21:18-148] tbid: dfc6d22b5b29fc8bd65c7674965fae31115f4721
+  [4;36;1mItem Load (0.000139)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'c6d22b5b2' AND items.id <> 6) LIMIT 1[0m
+  [4;35;1mItem Update (0.000105)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = 'c6d22b5b2', "description" = 'Test Item', "created_on" = '2007-03-04 19:21:18' WHERE id = 6[0m
+  [4;36;1mItem Load (0.000112)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000107)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:21:18', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:21:18-151] tbid: fc1c6680313c951e6cb86cf3b89200c0a90258f5
+  [4;36;1mItem Load (0.000114)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = '1c6680313' AND items.id <> 7) LIMIT 1[0m
+  [4;35;1mItem Update (0.000105)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = '1c6680313', "description" = 'Test Item', "created_on" = '2007-03-04 19:21:18' WHERE id = 7[0m
+  [4;36;1mItem Load (0.000357)[0m   [0;1mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;35;1mItem Load (0.000229)[0m   [0mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;36;1mChange Load (0.001002)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '1' and item_id = 4 and effective_date >= '2006-05-23 00:00:00' and effective_date <= '2007-03-04 19:21:18') ORDER BY effective_date[0m
+  [4;35;1mItem Load (0.000255)[0m   [0mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;36;1mChange Load (0.000140)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-12' and effective_date < '2007-02-20') [0m
+  [4;35;1mItem Load (0.000241)[0m   [0mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;36;1mChange Load (0.000131)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-20' and effective_date < '2007-03-04 19:21:18') [0m
+  [4;35;1mChange Load (0.000953)[0m   [0mSELECT * FROM changes WHERE (change_type = '1' and item_id = 5 and effective_date >= '2006-05-23 00:00:00' and effective_date <= '2007-03-04 19:21:18') ORDER BY effective_date[0m
+  [4;36;1mItem Load (0.000252)[0m   [0;1mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;35;1mChange Load (0.000132)[0m   [0mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-12' and effective_date < '2007-02-20') [0m
+  [4;36;1mItem Load (0.000224)[0m   [0;1mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;35;1mChange Load (0.000125)[0m   [0mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-20' and effective_date < '2007-03-04 19:21:18') [0m
+  [4;36;1mItem Load (0.000326)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000350)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000534)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000381)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000395)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000387)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.000393)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000313)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000292)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000306)[0m   [0mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000293)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000358)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000359)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPhoto Load (0.000459)[0m   [0mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;36;1mSaleItem Load (0.000419)[0m   [0;1mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;35;1mShoppingCart Load (0.000309)[0m   [0mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000278)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000344)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000340)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000378)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000361)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.000640)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 19:23:33', 1, NULL, NULL, 0, 1, 0, '2007-03-04 19:23:33')[0m
+  [4;36;1mItem Load (0.000152)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000136)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mItem Load (0.000223)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000399)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:23:34', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:23:34-029] tbid: 7fbbfec37ca103d43470ffedeb4390cbf89ec874
+  [4;36;1mItem Load (0.000132)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'bbfec37ca' AND items.id <> 6) LIMIT 1[0m
+  [4;35;1mItem Update (0.000101)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = 'bbfec37ca', "description" = 'Test Item', "created_on" = '2007-03-04 19:23:34' WHERE id = 6[0m
+  [4;36;1mItem Load (0.000105)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000104)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:23:34', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:23:34-032] tbid: b80b6c22771aa5efea2aa8e37c6bb5b89fda8ab9
+  [4;36;1mItem Load (0.000112)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = '0b6c22771' AND items.id <> 7) LIMIT 1[0m
+  [4;35;1mItem Update (0.000101)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = '0b6c22771', "description" = 'Test Item', "created_on" = '2007-03-04 19:23:34' WHERE id = 7[0m
+  [4;36;1mItem Load (0.000362)[0m   [0;1mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;35;1mItem Load (0.000224)[0m   [0mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;36;1mChange Load (0.000991)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '1' and item_id = 4 and effective_date >= '2006-05-23 00:00:00' and effective_date <= '2007-03-04 19:23:34') ORDER BY effective_date[0m
+  [4;35;1mItem Load (0.000256)[0m   [0mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;36;1mChange Load (0.000138)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-12' and effective_date < '2007-02-20') [0m
+  [4;35;1mItem Load (0.000226)[0m   [0mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;36;1mChange Load (0.000125)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-20' and effective_date < '2007-03-04 19:23:34') [0m
+  [4;35;1mChange Load (0.001041)[0m   [0mSELECT * FROM changes WHERE (change_type = '1' and item_id = 5 and effective_date >= '2006-05-23 00:00:00' and effective_date <= '2007-03-04 19:23:34') ORDER BY effective_date[0m
+  [4;36;1mItem Load (0.000250)[0m   [0;1mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;35;1mChange Load (0.000130)[0m   [0mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-12' and effective_date < '2007-02-20') [0m
+  [4;36;1mItem Load (0.000223)[0m   [0;1mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;35;1mChange Load (0.000125)[0m   [0mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-20' and effective_date < '2007-03-04 19:23:34') [0m
+  [4;36;1mItem Load (0.000313)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000333)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000513)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000326)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000402)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPerson Load (0.000379)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000360)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPerson Load (0.000378)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000311)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000309)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000311)[0m   [0;1mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000297)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000375)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000366)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPhoto Load (0.000438)[0m   [0;1mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;35;1mSaleItem Load (0.000409)[0m   [0mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;36;1mShoppingCart Load (0.000306)[0m   [0;1mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000327)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000347)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000365)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000358)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000311)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.000623)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 19:25:13', 1, NULL, NULL, 0, 1, 0, '2007-03-04 19:25:13')[0m
+  [4;36;1mItem Load (0.000151)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000130)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mItem Load (0.000222)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000434)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:25:13', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:25:13-513] tbid: 03ff2abce47ab91ad7f4f26a6b321aeda9828246
+  [4;36;1mItem Load (0.000129)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'ff2abce47' AND items.id <> 6) LIMIT 1[0m
+  [4;35;1mItem Update (0.000100)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = 'ff2abce47', "description" = 'Test Item', "created_on" = '2007-03-04 19:25:13' WHERE id = 6[0m
+  [4;36;1mItem Load (0.000105)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000109)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:25:13', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:25:13-517] tbid: 0bd0738932255ef7b415094be3f80a3435a01b27
+  [4;36;1mItem Load (0.000108)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'd07389322' AND items.id <> 7) LIMIT 1[0m
+  [4;35;1mItem Update (0.000099)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = 'd07389322', "description" = 'Test Item', "created_on" = '2007-03-04 19:25:13' WHERE id = 7[0m
+  [4;36;1mItem Load (0.000354)[0m   [0;1mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;35;1mItem Load (0.000225)[0m   [0mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;36;1mChange Load (0.001036)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '1' and item_id = 4 and effective_date >= '2006-05-23 00:00:00' and effective_date <= '2007-03-04 19:25:13') ORDER BY effective_date[0m
+  [4;35;1mItem Load (0.000255)[0m   [0mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;36;1mChange Load (0.000130)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-12' and effective_date < '2007-02-20') [0m
+  [4;35;1mItem Load (0.000224)[0m   [0mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;36;1mChange Load (0.000124)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-20' and effective_date < '2007-03-04 19:25:13') [0m
+  [4;35;1mChange Load (0.001050)[0m   [0mSELECT * FROM changes WHERE (change_type = '1' and item_id = 5 and effective_date >= '2006-05-23 00:00:00' and effective_date <= '2007-03-04 19:25:13') ORDER BY effective_date[0m
+  [4;36;1mItem Load (0.000254)[0m   [0;1mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;35;1mChange Load (0.000137)[0m   [0mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-12' and effective_date < '2007-02-20') [0m
+  [4;36;1mItem Load (0.000222)[0m   [0;1mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;35;1mChange Load (0.000123)[0m   [0mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-20' and effective_date < '2007-03-04 19:25:13') [0m
+  [4;36;1mItem Load (0.000312)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000327)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000571)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000314)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000403)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPerson Load (0.000380)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000373)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPerson Load (0.000384)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000312)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000303)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000311)[0m   [0;1mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000297)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000362)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000367)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPhoto Load (0.000431)[0m   [0;1mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;35;1mSaleItem Load (0.000396)[0m   [0mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;36;1mShoppingCart Load (0.000303)[0m   [0;1mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000297)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000359)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000335)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000376)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000323)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.000651)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 19:28:16', 1, NULL, NULL, 0, 1, 0, '2007-03-04 19:28:16')[0m
+  [4;36;1mItem Load (0.000153)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000133)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mItem Load (0.000225)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000400)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:28:16', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:28:16-895] tbid: cb50cf705edc754e5e2db2c2dbf652997b8ca608
+  [4;36;1mItem Load (0.000133)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = '50cf705ed' AND items.id <> 6) LIMIT 1[0m
+  [4;35;1mItem Update (0.000107)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = '50cf705ed', "description" = 'Test Item', "created_on" = '2007-03-04 19:28:16' WHERE id = 6[0m
+  [4;36;1mItem Load (0.000107)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000103)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:28:16', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:28:16-898] tbid: 8b674d0cce2f3ac5c742fd6d25d514a3e28e85b1
+  [4;36;1mItem Load (0.000113)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = '674d0cce2' AND items.id <> 7) LIMIT 1[0m
+  [4;35;1mItem Update (0.000107)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = '674d0cce2', "description" = 'Test Item', "created_on" = '2007-03-04 19:28:16' WHERE id = 7[0m
+  [4;36;1mItem Load (0.000366)[0m   [0;1mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;35;1mItem Load (0.000233)[0m   [0mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;36;1mChange Load (0.000988)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '1' and item_id = 4 and effective_date >= '2006-05-23 00:00:00' and effective_date <= '2007-03-04 19:28:16') ORDER BY effective_date[0m
+  [4;35;1mItem Load (0.000265)[0m   [0mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;36;1mChange Load (0.000132)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-12' and effective_date < '2007-02-20') [0m
+  [4;35;1mItem Load (0.000227)[0m   [0mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;36;1mChange Load (0.000128)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-20' and effective_date < '2007-03-04 19:28:16') [0m
+  [4;35;1mChange Load (0.000978)[0m   [0mSELECT * FROM changes WHERE (change_type = '1' and item_id = 5 and effective_date >= '2006-05-23 00:00:00' and effective_date <= '2007-03-04 19:28:16') ORDER BY effective_date[0m
+  [4;36;1mItem Load (0.000248)[0m   [0;1mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;35;1mChange Load (0.000134)[0m   [0mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-12' and effective_date < '2007-02-20') [0m
+  [4;36;1mItem Load (0.000222)[0m   [0;1mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;35;1mChange Load (0.000126)[0m   [0mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-20' and effective_date < '2007-03-04 19:28:16') [0m
+  [4;36;1mItem Load (0.000317)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000330)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000495)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000317)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000428)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPerson Load (0.000425)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mLocation Load (0.000394)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 2) [0m
+  [4;35;1mPerson Load (0.000365)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000373)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPerson Load (0.000443)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000322)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000301)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000314)[0m   [0;1mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000298)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000360)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000372)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPhoto Load (0.000454)[0m   [0;1mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;35;1mSaleItem Load (0.000345)[0m   [0mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;36;1mShoppingCart Load (0.000365)[0m   [0;1mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000344)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000351)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000320)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000316)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000312)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.000647)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 19:28:42', 1, NULL, NULL, 0, 1, 0, '2007-03-04 19:28:42')[0m
+  [4;36;1mItem Load (0.000155)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000136)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mItem Load (0.000219)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000454)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:28:43', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:28:43-058] tbid: 28fe4f7e766e056630f6232f1dc42e3b380bc08a
+  [4;36;1mItem Load (0.000132)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'fe4f7e766' AND items.id <> 6) LIMIT 1[0m
+  [4;35;1mItem Update (0.000104)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = 'fe4f7e766', "description" = 'Test Item', "created_on" = '2007-03-04 19:28:43' WHERE id = 6[0m
+  [4;36;1mItem Load (0.000109)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000109)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:28:43', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:28:43-061] tbid: d381f49f75b47b328aedc4825d9f1e026a7feb19
+  [4;36;1mItem Load (0.000114)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = '81f49f75b' AND items.id <> 7) LIMIT 1[0m
+  [4;35;1mItem Update (0.000103)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = '81f49f75b', "description" = 'Test Item', "created_on" = '2007-03-04 19:28:43' WHERE id = 7[0m
+  [4;36;1mItem Load (0.000355)[0m   [0;1mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;35;1mItem Load (0.000227)[0m   [0mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;36;1mChange Load (0.001116)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '1' and item_id = 4 and effective_date >= '2006-05-23 00:00:00' and effective_date <= '2007-03-04 19:28:43') ORDER BY effective_date[0m
+  [4;35;1mItem Load (0.000252)[0m   [0mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;36;1mChange Load (0.000128)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-12' and effective_date < '2007-02-20') [0m
+  [4;35;1mItem Load (0.000228)[0m   [0mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;36;1mChange Load (0.000127)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-20' and effective_date < '2007-03-04 19:28:43') [0m
+  [4;35;1mChange Load (0.001072)[0m   [0mSELECT * FROM changes WHERE (change_type = '1' and item_id = 5 and effective_date >= '2006-05-23 00:00:00' and effective_date <= '2007-03-04 19:28:43') ORDER BY effective_date[0m
+  [4;36;1mItem Load (0.000255)[0m   [0;1mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;35;1mChange Load (0.000129)[0m   [0mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-12' and effective_date < '2007-02-20') [0m
+  [4;36;1mItem Load (0.000222)[0m   [0;1mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;35;1mChange Load (0.000123)[0m   [0mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-20' and effective_date < '2007-03-04 19:28:43') [0m
+  [4;36;1mItem Load (0.000314)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000330)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000503)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000342)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000409)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPerson Load (0.000399)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mLocation Load (0.000365)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 2) [0m
+  [4;35;1mPerson Load (0.000359)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000357)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPerson Load (0.000370)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000317)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000297)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000310)[0m   [0;1mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000297)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000352)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000359)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPhoto Load (0.000532)[0m   [0;1mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;35;1mSaleItem Load (0.000344)[0m   [0mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;36;1mShoppingCart Load (0.000295)[0m   [0;1mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000310)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000352)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000334)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000315)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000330)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.000665)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 19:30:22', 1, NULL, NULL, 0, 1, 0, '2007-03-04 19:30:22')[0m
+  [4;36;1mItem Load (0.000161)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000135)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mItem Load (0.000226)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000457)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:30:22', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:30:22-086] tbid: db48aaf762dd6e1af89a35071c1f8f2dcc9419b9
+  [4;36;1mItem Load (0.000135)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = '48aaf762d' AND items.id <> 6) LIMIT 1[0m
+  [4;35;1mItem Update (0.000104)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = '48aaf762d', "description" = 'Test Item', "created_on" = '2007-03-04 19:30:22' WHERE id = 6[0m
+  [4;36;1mItem Load (0.000106)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000108)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:30:22', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:30:22-089] tbid: 09a22351ee97865255a5ff1bd2fe34d66142259d
+  [4;36;1mItem Load (0.000115)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'a22351ee9' AND items.id <> 7) LIMIT 1[0m
+  [4;35;1mItem Update (0.000101)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = 'a22351ee9', "description" = 'Test Item', "created_on" = '2007-03-04 19:30:22' WHERE id = 7[0m
+  [4;36;1mItem Load (0.000364)[0m   [0;1mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;35;1mItem Load (0.000232)[0m   [0mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;36;1mChange Load (0.001080)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '1' and item_id = 4 and effective_date >= '2006-05-23 00:00:00' and effective_date <= '2007-03-04 19:30:22') ORDER BY effective_date[0m
+  [4;35;1mItem Load (0.000260)[0m   [0mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;36;1mChange Load (0.000142)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-12' and effective_date < '2007-02-20') [0m
+  [4;35;1mItem Load (0.000233)[0m   [0mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;36;1mChange Load (0.000129)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-20' and effective_date < '2007-03-04 19:30:22') [0m
+  [4;35;1mChange Load (0.001068)[0m   [0mSELECT * FROM changes WHERE (change_type = '1' and item_id = 5 and effective_date >= '2006-05-23 00:00:00' and effective_date <= '2007-03-04 19:30:22') ORDER BY effective_date[0m
+  [4;36;1mItem Load (0.000256)[0m   [0;1mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;35;1mChange Load (0.000132)[0m   [0mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-12' and effective_date < '2007-02-20') [0m
+  [4;36;1mItem Load (0.000223)[0m   [0;1mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;35;1mChange Load (0.000131)[0m   [0mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-20' and effective_date < '2007-03-04 19:30:22') [0m
+  [4;36;1mItem Load (0.000327)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000330)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000514)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000362)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000414)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPerson Load (0.000400)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mLocation Load (0.000365)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 2) [0m
+  [4;35;1mPerson Load (0.000358)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000356)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPerson Load (0.000375)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000319)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000296)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000311)[0m   [0;1mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000309)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000353)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000359)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPhoto Load (0.000494)[0m   [0;1mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;35;1mSaleItem Load (0.000384)[0m   [0mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;36;1mShoppingCart Load (0.000299)[0m   [0;1mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000309)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000358)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000331)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000319)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000320)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.000598)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 19:30:53', 1, NULL, NULL, 0, 1, 0, '2007-03-04 19:30:53')[0m
+  [4;36;1mItem Load (0.000150)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000131)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mItem Load (0.000220)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000436)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:30:53', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:30:53-842] tbid: 0610e449fcb243928e33691ea834cef13d717b2f
+  [4;36;1mItem Load (0.000134)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = '10e449fcb' AND items.id <> 6) LIMIT 1[0m
+  [4;35;1mItem Update (0.000101)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = '10e449fcb', "description" = 'Test Item', "created_on" = '2007-03-04 19:30:53' WHERE id = 6[0m
+  [4;36;1mItem Load (0.000104)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000104)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:30:53', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:30:53-845] tbid: 3887620f7ff55c9fa0c6f0f7a6cb67aeb869ed5e
+  [4;36;1mItem Load (0.000113)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = '87620f7ff' AND items.id <> 7) LIMIT 1[0m
+  [4;35;1mItem Update (0.000100)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = '87620f7ff', "description" = 'Test Item', "created_on" = '2007-03-04 19:30:53' WHERE id = 7[0m
+  [4;36;1mItem Load (0.000359)[0m   [0;1mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;35;1mItem Load (0.000376)[0m   [0mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;36;1mChange Load (0.001013)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '1' and item_id = 4 and effective_date >= '2006-05-23 00:00:00' and effective_date <= '2007-03-04 19:30:53') ORDER BY effective_date[0m
+  [4;35;1mItem Load (0.000253)[0m   [0mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;36;1mChange Load (0.000138)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-12' and effective_date < '2007-02-20') [0m
+  [4;35;1mItem Load (0.000229)[0m   [0mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;36;1mChange Load (0.000126)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-20' and effective_date < '2007-03-04 19:30:53') [0m
+  [4;35;1mChange Load (0.001025)[0m   [0mSELECT * FROM changes WHERE (change_type = '1' and item_id = 5 and effective_date >= '2006-05-23 00:00:00' and effective_date <= '2007-03-04 19:30:53') ORDER BY effective_date[0m
+  [4;36;1mItem Load (0.000250)[0m   [0;1mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;35;1mChange Load (0.000137)[0m   [0mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-12' and effective_date < '2007-02-20') [0m
+  [4;36;1mItem Load (0.000256)[0m   [0;1mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;35;1mChange Load (0.000125)[0m   [0mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-20' and effective_date < '2007-03-04 19:30:53') [0m
+  [4;36;1mItem Load (0.000318)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000336)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000542)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000339)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000415)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPerson Load (0.000404)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mLocation Load (0.000365)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 2) [0m
+  [4;35;1mPerson Load (0.000357)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000357)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPerson Load (0.000403)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000331)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000299)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000313)[0m   [0;1mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000316)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000377)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000360)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPhoto Load (0.000512)[0m   [0;1mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;35;1mSaleItem Load (0.000358)[0m   [0mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;36;1mShoppingCart Load (0.000513)[0m   [0;1mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000339)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000412)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000444)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000415)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000381)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.000705)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 19:44:05', 1, NULL, NULL, 0, 1, 0, '2007-03-04 19:44:05')[0m
+  [4;36;1mItem Load (0.000169)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000154)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mItem Load (0.000242)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000441)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:44:05', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:44:05-234] tbid: 94a5cb8f778d9f30b466462e6b3c4be37490acb0
+  [4;36;1mItem Load (0.000153)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'a5cb8f778' AND items.id <> 6) LIMIT 1[0m
+  [4;35;1mItem Update (0.000119)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = 'a5cb8f778', "description" = 'Test Item', "created_on" = '2007-03-04 19:44:05' WHERE id = 6[0m
+  [4;36;1mItem Load (0.000126)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000123)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:44:05', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:44:05-238] tbid: 5d456cf6bcac70255b5bb56c3aeae62bf583bfb1
+  [4;36;1mItem Load (0.000135)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = '456cf6bca' AND items.id <> 7) LIMIT 1[0m
+  [4;35;1mItem Update (0.000118)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = '456cf6bca', "description" = 'Test Item', "created_on" = '2007-03-04 19:44:05' WHERE id = 7[0m
+  [4;36;1mItem Load (0.000402)[0m   [0;1mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;35;1mItem Load (0.000270)[0m   [0mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;36;1mChange Load (0.001162)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '1' and item_id = 4 and effective_date >= '2006-05-23 00:00:00' and effective_date <= '2007-03-04 19:44:05') ORDER BY effective_date[0m
+  [4;35;1mItem Load (0.000296)[0m   [0mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;36;1mChange Load (0.000154)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-12' and effective_date < '2007-02-20') [0m
+  [4;35;1mItem Load (0.000268)[0m   [0mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;36;1mChange Load (0.000149)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-20' and effective_date < '2007-03-04 19:44:05') [0m
+  [4;35;1mChange Load (0.001115)[0m   [0mSELECT * FROM changes WHERE (change_type = '1' and item_id = 5 and effective_date >= '2006-05-23 00:00:00' and effective_date <= '2007-03-04 19:44:05') ORDER BY effective_date[0m
+  [4;36;1mItem Load (0.000341)[0m   [0;1mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;35;1mChange Load (0.000150)[0m   [0mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-12' and effective_date < '2007-02-20') [0m
+  [4;36;1mItem Load (0.000263)[0m   [0;1mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;35;1mChange Load (0.000148)[0m   [0mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-20' and effective_date < '2007-03-04 19:44:05') [0m
+  [4;36;1mItem Load (0.000357)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000383)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000568)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000367)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000499)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPerson Load (0.000479)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mLocation Load (0.000429)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 2) [0m
+  [4;35;1mPerson Load (0.000414)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000408)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPerson Load (0.000455)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mLocation Load (0.000425)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 2) [0m
+  [4;35;1mLocation Load (0.000406)[0m   [0mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;36;1mLocation Load (0.000230)[0m   [0;1mSELECT locations.* FROM locations INNER JOIN changes ON locations.id = changes.location_id WHERE ((changes.person_id = 2)) [0m
+  [4;35;1mPerson Load (0.000488)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000325)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000295)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000312)[0m   [0;1mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000299)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000429)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000420)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPhoto Load (0.000494)[0m   [0;1mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;35;1mSaleItem Load (0.000393)[0m   [0mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;36;1mShoppingCart Load (0.000340)[0m   [0;1mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
+  [4;36;1mCategory Load (0.000351)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) [0m
+  [4;35;1mCreditCard Load (0.000546)[0m   [0mSELECT * FROM credit_cards WHERE (credit_cards.id = 1) [0m
+  [4;36;1mItem Load (0.000385)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mPerson Load (0.000381)[0m   [0mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;36;1mPerson Load (0.000446)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mSQL (0.000628)[0m   [0mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 19:46:27', 1, NULL, NULL, 0, 1, 0, '2007-03-04 19:46:27')[0m
+  [4;36;1mItem Load (0.000175)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'TB20G070225LX482Y' AND items.id <> 1) LIMIT 1[0m
+  [4;35;1mItem Update (0.000153)[0m   [0mUPDATE items SET "person_id" = 2, "name" = 'World Cup Leopard', "tbid" = 'TB20G070225LX482Y', "description" = 'A wood cover book with the special World Cup logo and Leopard print design', "created_on" = '2007-02-25' WHERE id = 1[0m
+  [4;36;1mItem Load (0.000241)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000444)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:46:28', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:46:28-022] tbid: 6c4068b43215b0700e908c3e6eba8f7b7968e9f7
+  [4;36;1mItem Load (0.000149)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = '4068b4321' AND items.id <> 6) LIMIT 1[0m
+  [4;35;1mItem Update (0.000123)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = '4068b4321', "description" = 'Test Item', "created_on" = '2007-03-04 19:46:28' WHERE id = 6[0m
+  [4;36;1mItem Load (0.000124)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = 'NULL') LIMIT 1[0m
+  [4;35;1mSQL (0.000128)[0m   [0mINSERT INTO items ("created_on", "name", "description", "person_id", "tbid") VALUES('2007-03-04 19:46:28', 'NULL', 'NULL', 0, 'NULL')[0m
+[19:46:28-026] tbid: 2052656a40748b5114ee409bcba6c75ecc273145
+  [4;36;1mItem Load (0.000134)[0m   [0;1mSELECT * FROM items WHERE (items.tbid = '52656a407' AND items.id <> 7) LIMIT 1[0m
+  [4;35;1mItem Update (0.000115)[0m   [0mUPDATE items SET "person_id" = 0, "name" = 'NULL', "tbid" = '52656a407', "description" = 'Test Item', "created_on" = '2007-03-04 19:46:28' WHERE id = 7[0m
+  [4;36;1mItem Load (0.000422)[0m   [0;1mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;35;1mItem Load (0.000269)[0m   [0mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;36;1mChange Load (0.001328)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '1' and item_id = 4 and effective_date >= '2006-05-23 00:00:00' and effective_date <= '2007-03-04 19:46:28') ORDER BY effective_date[0m
+  [4;35;1mItem Load (0.000339)[0m   [0mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;36;1mChange Load (0.000161)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-12' and effective_date < '2007-02-20') [0m
+  [4;35;1mItem Load (0.000280)[0m   [0mSELECT * FROM items WHERE (items.id = 4) [0m
+  [4;36;1mChange Load (0.000176)[0m   [0;1mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-20' and effective_date < '2007-03-04 19:46:28') [0m
+  [4;35;1mChange Load (0.001150)[0m   [0mSELECT * FROM changes WHERE (change_type = '1' and item_id = 5 and effective_date >= '2006-05-23 00:00:00' and effective_date <= '2007-03-04 19:46:28') ORDER BY effective_date[0m
+  [4;36;1mItem Load (0.000483)[0m   [0;1mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;35;1mChange Load (0.000161)[0m   [0mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-12' and effective_date < '2007-02-20') [0m
+  [4;36;1mItem Load (0.000266)[0m   [0;1mSELECT * FROM items WHERE (items.id = 5) [0m
+  [4;35;1mChange Load (0.000154)[0m   [0mSELECT * FROM changes WHERE (change_type = '2' and person_id = NULL and effective_date >= '2007-02-20' and effective_date < '2007-03-04 19:46:28') [0m
+  [4;36;1mItem Load (0.000364)[0m   [0;1mSELECT * FROM items WHERE (items.id = 1) [0m
+  [4;35;1mLineItem Load (0.000376)[0m   [0mSELECT * FROM line_items WHERE (line_items.id = 1) [0m
+  [4;36;1mLocation Load (0.000554)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mOrder Load (0.000369)[0m   [0mSELECT * FROM orders WHERE (orders.id = 1) [0m
+  [4;36;1mPerson Load (0.000480)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPerson Load (0.000450)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mLocation Load (0.000429)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 2) [0m
+  [4;35;1mChange Load (0.000147)[0m   [0mSELECT * FROM changes WHERE (changes.person_id = 1) [0m
+  [4;36;1mSQL (0.000530)[0m   [0;1mINSERT INTO changes ("created_on", "item_id", "new_value", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES('2007-03-04 19:46:28', 0, NULL, NULL, 0, 2, 1, '2007-03-04 19:46:28')[0m
+  [4;35;1mLocation Load (0.000220)[0m   [0mSELECT locations.* FROM locations INNER JOIN changes ON locations.id = changes.location_id WHERE ((changes.person_id = 1)) [0m
+  [4;36;1mPerson Load (0.000524)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000431)[0m   [0mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;36;1mPerson Load (0.000554)[0m   [0;1mSELECT * FROM people WHERE (people.id = 2) [0m
+  [4;35;1mLocation Load (0.000427)[0m   [0mSELECT * FROM locations WHERE (locations.id = 2) [0m
+  [4;36;1mLocation Load (0.000411)[0m   [0;1mSELECT * FROM locations WHERE (locations.id = 1) [0m
+  [4;35;1mLocation Load (0.000224)[0m   [0mSELECT locations.* FROM locations INNER JOIN changes ON locations.id = changes.location_id WHERE ((changes.person_id = 2)) [0m
+  [4;36;1mPerson Load (0.000489)[0m   [0;1mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;35;1mPerson Load (0.000372)[0m   [0mSELECT * FROM people WHERE (login = 'Viamin' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000359)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000364)[0m   [0mSELECT * FROM people WHERE (email = 'bart@sonic.net' and hashed_password = '3872e63ee5249f69d82d1af4886974fb5d0a47e8') LIMIT 1[0m
+  [4;36;1mPerson Load (0.000346)[0m   [0;1mSELECT * FROM people LIMIT 1[0m
+  [4;35;1mPerson Load (0.000405)[0m   [0mSELECT * FROM people LIMIT 1[0m
+  [4;36;1mPerson Load (0.000408)[0m   [0;1mSELECT * FROM people WHERE (people.id = 1) [0m
+  [4;35;1mPhoto Load (0.000492)[0m   [0mSELECT * FROM photos WHERE (photos.id = 1) [0m
+  [4;36;1mSaleItem Load (0.000493)[0m   [0;1mSELECT * FROM sale_items WHERE (sale_items.id = 1) [0m
+  [4;35;1mShoppingCart Load (0.000397)[0m   [0mSELECT * FROM shopping_carts WHERE (shopping_carts.id = 1) [0m
