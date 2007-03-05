@@ -1,0 +1,16 @@
+# == Schema Information
+# Schema version: 13
+#
+# Table name: address_book_items
+#
+#  id              :integer       not null, primary key
+#  owner_person_id :integer       default(0)
+#  entry_person_id :integer       default(0)
+#  permissions     :integer       default(0)
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: 1
+two:
+  id: 2
