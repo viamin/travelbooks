@@ -8,6 +8,7 @@ class UserController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
+    #Change this to only show friends of the logged in person
     @person_pages, @people = paginate :people, :per_page => 10
   end
 
@@ -29,8 +30,9 @@ class UserController < ApplicationController
     end
   end
 
+  # Only allow logged in user's profile to be edited by using session - no user input will be taken
   def edit
-    @person = Person.find(params[:id])
+    @person = Person.find(session[:user_id])
   end
 
   def update
@@ -57,7 +59,7 @@ class UserController < ApplicationController
       @location.zip_code = "92024"
     else
       @visitor = @person.first_name
-      @location = @person.location
+      @location = @person.current_location
       @items = @person.items
     end
     @map = GMap.new("map_div")
@@ -73,8 +75,8 @@ class UserController < ApplicationController
         logged_in_user = @person.try_to_login
         logged_in_email = @person.try_email_login
 =end
-      logged_in_user = Person.login(params[:person][:username], params[:person][:password])
-      logged_in_email = Person.email_login(params[:person][:username], params[:person][:password])
+      logged_in_user = Person.login(params[:person][:login], params[:person][:password])
+      logged_in_email = Person.email_login(params[:person][:login], params[:person][:password])
       if logged_in_user.kind_of?(Person)
         session[:user_id] = logged_in_user.id
         redirect_to(:action => "home")
@@ -91,17 +93,18 @@ class UserController < ApplicationController
   def join
     if request.get?
       @person = Person.new
-      @person.birthday = "0000-00-00"
       @location = Location.new
-      @person.changes.create( :location => @location, :effective_date => Time.now)
     else
       @person = Person.new(params[:person])
       @location = Location.new(params[:location])
-      @location.loc_type = Location.ADDRESS
-      @person.changes.create( :location => @location, :effective_date => Time.now, :change_type => 2, :old_value => nil, :new_value => @location)
+      if @location.has_good_info?
+        @location.loc_type = 1
+        @location.person = @person
+        @person.changes.create( :location => @location, :effective_date => Time.now, :change_type => 2, :new_value => @location.id.to_s)
+      end
    # Change this to put the @person and @location saves in a transaction to make sure both of them go through or none. 
       if @person.save
-        if @location.save
+        if @location.has_good_info? && @location.save
           flash[:notice] = "Thank you for joining TravellerBook.com"
           session[:user_id] = @person.id
           redirect_to(:action => :home)
@@ -112,4 +115,5 @@ class UserController < ApplicationController
       end
     end
   end
+  
 end

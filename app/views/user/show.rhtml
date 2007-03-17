@@ -1,8 +1,10 @@
 <% for column in Person.content_columns %>
+<% unless column.human_name == "Hashed password" || column.human_name == "Created on"%>
 <p>
   <b><%= column.human_name %>:</b> <%=h @person.send(column.name) %>
 </p>
 <% end %>
+<% end %>
 
-<%= link_to 'Edit', :action => 'edit', :id => @person %> |
-<%= link_to 'Back', :action => 'list' %>
+<%= link_to 'Edit', :action => 'edit' %> |
+<%= link_to 'Home', :action => 'home' %>

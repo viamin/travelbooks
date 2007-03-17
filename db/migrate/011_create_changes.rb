@@ -6,7 +6,7 @@ class CreateChanges < ActiveRecord::Migration
       t.column :person_id, :integer
       t.column :location_id, :integer
       t.column :old_value, :string
-      t.column :new_value, :string
+      t.column :new_value, :string, :null => false
       t.column :effective_date, :date
       t.column :created_on, :date
     end

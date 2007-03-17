@@ -17,19 +17,13 @@
 <%= text_field 'person', 'suffix'  %></p>
 
 <p><label for="person_birthday">Birthday</label><br/>
-<%= date_select 'person', 'birthday'  %></p>
+<%= date_select 'person', 'birthday', :start_year => 1950, :end_year => Time.now.year %></p>
 
-<p><label for="person_email">Email</label><br/>
+<p><label for="person_email">Email Address</label><br/>
 <%= text_field 'person', 'email'  %></p>
 
 <p><label for="person_login">Login</label><br/>
 <%= text_field 'person', 'login'  %></p>
-
-<p><label for="person_hashed_password">Hashed password</label><br/>
-<%= text_area 'person', 'hashed_password'  %></p>
-
-<p><label for="person_created_on">Created on</label><br/>
-<%= date_select 'person', 'created_on'  %></p>
 
 <p><label for="person_notes">Notes</label><br/>
 <%= text_area 'person', 'notes'  %></p>

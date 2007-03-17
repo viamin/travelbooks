@@ -1,9 +1,10 @@
-<h1>Editing person</h1>
+<h1>Editing Profile</h1>
 
+<p>Your personal info</p>
 <% form_tag :action => 'update', :id => @person do %>
   <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
+  <%= submit_tag 'Update' %>
 <% end %>
 
-<%= link_to 'Show', :action => 'show', :id => @person %> |
-<%= link_to 'Back', :action => 'list' %>
+<%= link_to 'View Profile', :action => 'show', :id => @person %> |
+<%= link_to 'Home', :action => 'home' %>

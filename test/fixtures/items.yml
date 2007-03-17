@@ -1,12 +1,12 @@
 # == Schema Information
-# Schema version: 13
+# Schema version: 14
 #
 # Table name: items
 #
 #  id          :integer       not null, primary key
 #  tbid        :string(255)   default(NULL)
-#  name        :string(255)   default(NULL)
-#  description :text          default(NULL)
+#  name        :string(255)   not null
+#  description :text          not null
 #  person_id   :integer       default(0)
 #  created_on  :date          
 #

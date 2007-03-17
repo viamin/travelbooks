@@ -2,17 +2,11 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 13) do
-
-  create_table "address_book_items", :force => true do |t|
-    t.column "owner_person_id", :integer, :default => 0
-    t.column "entry_person_id", :integer, :default => 0
-    t.column "permissions",     :integer, :default => 0
-  end
+ActiveRecord::Schema.define(:version => 14) do
 
   create_table "categories", :force => true do |t|
-    t.column "name",        :string, :default => "NULL"
-    t.column "description", :string, :default => "NULL"
+    t.column "name",        :string, :null => false
+    t.column "description", :string, :null => false
   end
 
   create_table "changes", :force => true do |t|
@@ -20,26 +14,32 @@ ActiveRecord::Schema.define(:version => 13) do
     t.column "item_id",        :integer, :default => 0
     t.column "person_id",      :integer, :default => 0
     t.column "location_id",    :integer, :default => 0
-    t.column "old_value",      :string,  :default => "NULL"
-    t.column "new_value",      :string,  :default => "NULL"
+    t.column "old_value",      :string,                 :null => false
+    t.column "new_value",      :string,                 :null => false
     t.column "effective_date", :date
     t.column "created_on",     :date
   end
 
   create_table "credit_cards", :force => true do |t|
     t.column "person_id",       :integer, :default => 0
-    t.column "card_type",       :string,  :default => "NULL"
-    t.column "name_on_card",    :string,  :default => "NULL"
-    t.column "card_number",     :string,  :default => "NULL"
+    t.column "card_type",       :string,                 :null => false
+    t.column "name_on_card",    :string,                 :null => false
+    t.column "card_number",     :string,                 :null => false
     t.column "expiration_date", :date
-    t.column "ccv",             :string,  :default => "NULL"
+    t.column "ccv",             :string,                 :null => false
     t.column "created_on",      :date
+  end
+
+  create_table "friends", :force => true do |t|
+    t.column "owner_person_id", :integer, :default => 0
+    t.column "entry_person_id", :integer, :default => 0
+    t.column "permissions",     :integer, :default => 0
   end
 
   create_table "items", :force => true do |t|
     t.column "tbid",        :string,  :default => "NULL"
-    t.column "name",        :string,  :default => "NULL"
-    t.column "description", :text,    :default => "NULL"
+    t.column "name",        :string,                      :null => false
+    t.column "description", :text,                        :null => false
     t.column "person_id",   :integer, :default => 0
     t.column "created_on",  :date
   end
@@ -54,19 +54,19 @@ ActiveRecord::Schema.define(:version => 13) do
   end
 
   create_table "locations", :force => true do |t|
-    t.column "description",    :string,  :default => "NULL"
+    t.column "description",    :string,                      :null => false
     t.column "loc_type",       :string,  :default => "NULL"
     t.column "person_id",      :integer, :default => 0
     t.column "item_id",        :integer, :default => 0
     t.column "credit_card_id", :integer, :default => 0
-    t.column "address_line_1", :string,  :default => "NULL"
+    t.column "address_line_1", :string,                      :null => false
     t.column "address_line_2", :string,  :default => "NULL"
-    t.column "city",           :string,  :default => "NULL"
-    t.column "state",          :string,  :default => "NULL"
-    t.column "zip_code",       :string,  :default => "NULL"
-    t.column "country",        :string,  :default => "NULL"
-    t.column "latitude",       :string,  :default => "NULL"
-    t.column "longitude",      :string,  :default => "NULL"
+    t.column "city",           :string,                      :null => false
+    t.column "state",          :string,                      :null => false
+    t.column "zip_code",       :string,                      :null => false
+    t.column "country",        :string,                      :null => false
+    t.column "latitude",       :string,                      :null => false
+    t.column "longitude",      :string,                      :null => false
     t.column "altitude_feet",  :integer, :default => 0
   end
 
@@ -80,28 +80,28 @@ ActiveRecord::Schema.define(:version => 13) do
 
   create_table "people", :force => true do |t|
     t.column "title",           :string, :default => "NULL"
-    t.column "first_name",      :string, :default => "NULL"
+    t.column "first_name",      :string,                     :null => false
     t.column "middle_name",     :string, :default => "NULL"
-    t.column "last_name",       :string, :default => "NULL"
+    t.column "last_name",       :string,                     :null => false
     t.column "suffix",          :string, :default => "NULL"
-    t.column "birthday",        :date
-    t.column "email",           :string, :default => "NULL"
-    t.column "login",           :string, :default => "NULL"
+    t.column "birthday",        :date,                       :null => false
+    t.column "email",           :string,                     :null => false
+    t.column "login",           :string,                     :null => false
     t.column "hashed_password", :text,   :default => "NULL"
     t.column "created_on",      :date
-    t.column "notes",           :text,   :default => "NULL"
+    t.column "notes",           :text,                       :null => false
   end
 
   create_table "photos", :force => true do |t|
-    t.column "path",         :string,  :default => "NULL"
-    t.column "file_name",    :string,  :default => "NULL"
-    t.column "url",          :string,  :default => "NULL"
+    t.column "path",         :string,                      :null => false
+    t.column "file_name",    :string,                      :null => false
+    t.column "url",          :string,                      :null => false
     t.column "data",         :binary,  :default => "NULL"
-    t.column "content_type", :string,  :default => "NULL"
+    t.column "content_type", :string,                      :null => false
     t.column "bytes",        :integer, :default => 0
     t.column "width",        :integer, :default => 0
     t.column "height",       :integer, :default => 0
-    t.column "caption",      :string,  :default => "NULL"
+    t.column "caption",      :string,                      :null => false
     t.column "photo_type",   :integer, :default => 0
     t.column "location_id",  :integer, :default => 0
     t.column "person_id",    :integer, :default => 0
@@ -110,11 +110,11 @@ ActiveRecord::Schema.define(:version => 13) do
   end
 
   create_table "sale_items", :force => true do |t|
-    t.column "name",              :string,  :default => "NULL"
-    t.column "description",       :string,  :default => "NULL"
+    t.column "name",              :string,                   :null => false
+    t.column "description",       :string,                   :null => false
     t.column "quantity_in_stock", :integer, :default => 0
     t.column "price",             :float,   :default => 0.0
-    t.column "for_sale",          :string,  :default => "NULL"
+    t.column "for_sale",          :string,                   :null => false
     t.column "sale_price",        :float,   :default => 0.0
     t.column "status",            :integer, :default => 0
     t.column "category_id",       :integer, :default => 0

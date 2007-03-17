@@ -1,7 +1,7 @@
 # == Schema Information
-# Schema version: 13
+# Schema version: 14
 #
-# Table name: address_book_items
+# Table name: friends
 #
 #  id              :integer       not null, primary key
 #  owner_person_id :integer       default(0)

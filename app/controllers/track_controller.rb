@@ -25,4 +25,9 @@ class TrackController < ApplicationController
     @location = Location.find(:first, :conditions => ["person_id = ?", @user.id])
   end
   
+  # new will allow a user to find a book and add it to his or her trail
+  def new
+    
+  end
+  
 end

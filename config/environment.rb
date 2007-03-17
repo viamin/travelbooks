@@ -58,3 +58,6 @@ end
 # end
 
 # Include your application configuration below
+
+# How many differences does a location need before creating a new location and change?
+DIFFERENCE_THRESHOLD = 1

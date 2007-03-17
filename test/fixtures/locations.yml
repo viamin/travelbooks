@@ -1,29 +1,29 @@
 # == Schema Information
-# Schema version: 13
+# Schema version: 14
 #
 # Table name: locations
 #
 #  id             :integer       not null, primary key
-#  description    :string(255)   default(NULL)
-#  loc_type       :string(255)   default(NULL)
+#  description    :string(255)   not null
+#  loc_type       :integer       default(1)
 #  person_id      :integer       default(0)
 #  item_id        :integer       default(0)
 #  credit_card_id :integer       default(0)
-#  address_line_1 :string(255)   default(NULL)
+#  address_line_1 :string(255)   not null
 #  address_line_2 :string(255)   default(NULL)
-#  city           :string(255)   default(NULL)
-#  state          :string(255)   default(NULL)
-#  zip_code       :string(255)   default(NULL)
-#  country        :string(255)   default(NULL)
-#  latitude       :string(255)   default(NULL)
-#  longitude      :string(255)   default(NULL)
+#  city           :string(255)   not null
+#  state          :string(255)   not null
+#  zip_code       :string(255)   not null
+#  country        :string(255)   not null
+#  latitude       :string(255)   not null
+#  longitude      :string(255)   not null
 #  altitude_feet  :integer       default(0)
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 first:
   id: 1
-  description: Dave's House
+  description: Dave House
   loc_type: 1
   person_id: 1
   address_line_1: 4492 Lick Mill Blvd.
@@ -31,9 +31,11 @@ first:
   state: California
   zip_code: 95054
   country: United States
+  longitude: 1
+  latitude: 3
 another:
   id: 2
-  description: Kat's House
+  description: Kat House
   loc_type: 1
   person_id: 2
   address_line_1: 170 Phoebe St.
@@ -42,21 +44,29 @@ another:
   state: California
   zip_code: 92024
   country: United States
+  longitude: 5
+  latitude: 3
 more:
   id: 3
-  description: Kline's Work Addess
+  description: Kline Work Addess
   loc_type: 1
   person_id: 3
   address_line_1: L4, 690 Springvale Road
   city: Mulgrave
+  state: none
   zip_code: 3170
   country: Australia
+  longitude: 6
+  latitude: 4
 evenmore: 
   id: 4
-  description: Nagib's Work Address
+  description: Nagib Work Address
   loc_type: 1
   person_id: 4
   address_line_1: 20 Broadwick St.
   city: London
+  state: none
   zip_code: W1F 8HT
   country: United Kingdom
+  longitude: 3
+  latitude: 7

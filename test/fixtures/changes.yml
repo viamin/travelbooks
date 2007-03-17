@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 13
+# Schema version: 14
 #
 # Table name: changes
 #
@@ -8,8 +8,8 @@
 #  item_id        :integer       default(0)
 #  person_id      :integer       default(0)
 #  location_id    :integer       default(0)
-#  old_value      :string(255)   default(NULL)
-#  new_value      :string(255)   default(NULL)
+#  old_value      :string(255)   not null
+#  new_value      :string(255)   not null
 #  effective_date :date          
 #  created_on     :date          
 #
@@ -87,3 +87,11 @@ nine:
   new_value: 3
   effective_date: 2007-02-20
   created_on: 2007-02-26
+ten:
+  id: 10
+  change_type: 2
+  person_id: 1
+  new_value: 1
+  effective_date: 2006-09-14
+  created_on: 2007-03-08
+  

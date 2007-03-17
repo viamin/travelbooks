@@ -1,18 +1,18 @@
 # == Schema Information
-# Schema version: 13
+# Schema version: 14
 #
 # Table name: photos
 #
 #  id           :integer       not null, primary key
-#  path         :string(255)   default(NULL)
-#  file_name    :string(255)   default(NULL)
-#  url          :string(255)   default(NULL)
+#  path         :string(255)   not null
+#  file_name    :string(255)   not null
+#  url          :string(255)   not null
 #  data         :binary        default(NULL)
-#  content_type :string(255)   default(NULL)
+#  content_type :string(255)   not null
 #  bytes        :integer       default(0)
 #  width        :integer       default(0)
 #  height       :integer       default(0)
-#  caption      :string(255)   default(NULL)
+#  caption      :string(255)   not null
 #  photo_type   :integer       default(0)
 #  location_id  :integer       default(0)
 #  person_id    :integer       default(0)
@@ -23,5 +23,9 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 first:
   id: 1
-another:
-  id: 2
+  path: public/images
+  file_name: bart.jpg
+  url: none
+  content_type: image/jpeg
+  caption: What a ham!
+  

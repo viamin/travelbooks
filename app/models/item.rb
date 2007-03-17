@@ -1,12 +1,12 @@
 # == Schema Information
-# Schema version: 13
+# Schema version: 14
 #
 # Table name: items
 #
 #  id          :integer       not null, primary key
 #  tbid        :string(255)   default(NULL)
-#  name        :string(255)   default(NULL)
-#  description :text          default(NULL)
+#  name        :string(255)   not null
+#  description :text          not null
 #  person_id   :integer       default(0)
 #  created_on  :date          
 #
@@ -25,6 +25,14 @@ class Item < ActiveRecord::Base
   belongs_to :person
   validates_uniqueness_of :tbid
   
+  def initialize(*params)
+    super(*params)
+    if self.new_record?
+      self.name = String.new if self.name.nil?
+      self.description = String.new if self.description.nil?
+    end
+  end
+  
   def generate_tbid
     digest = Digest::SHA1.new
     digest << Time.now.to_s
@@ -42,12 +50,14 @@ class Item < ActiveRecord::Base
   def change_owners(new_owner, date = Time.now)
     change = Change.new
     change.change_type = 1
-    change.old_value = self.person
-    change.new_value = new_owner
+    change.old_value = self.person.id
+    change.new_value = new_owner.id
     change.effective_date = date
     change.item_id = self.id
-    change.save!
+    change.save
     self.person = new_owner
+    self.changes << change
+    change.save
     self.save!
   end
   

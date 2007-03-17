@@ -49,7 +49,7 @@ class PersonTest < Test::Unit::TestCase
     new_location = Location.find(2)
     date = Time.now
     person.change_location(new_location, date)
-    assert_equal(person.locations.last, new_location)
+    assert_equal(person.locations.find_all.last, new_location)
 #    assert_equal(person.change.last.effective_date, date)
   end
   

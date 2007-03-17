@@ -1,20 +1,20 @@
 # == Schema Information
-# Schema version: 13
+# Schema version: 14
 #
 # Table name: people
 #
 #  id              :integer       not null, primary key
 #  title           :string(255)   default(NULL)
-#  first_name      :string(255)   default(NULL)
+#  first_name      :string(255)   not null
 #  middle_name     :string(255)   default(NULL)
-#  last_name       :string(255)   default(NULL)
+#  last_name       :string(255)   not null
 #  suffix          :string(255)   default(NULL)
-#  birthday        :date          
-#  email           :string(255)   default(NULL)
-#  login           :string(255)   default(NULL)
+#  birthday        :date          not null
+#  email           :string(255)   not null
+#  login           :string(255)   not null
 #  hashed_password :text          default(NULL)
 #  created_on      :date          
-#  notes           :text          default(NULL)
+#  notes           :text          not null
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
@@ -26,25 +26,31 @@ first:
   login: Viamin
   email: bart@sonic.net
   hashed_password: 3872e63ee5249f69d82d1af4886974fb5d0a47e8
+  notes: none
 another:
   id: 2
   first_name: Kat
   last_name: Notimportant
+  birthday: <%= Time.local(1980, 2, 11) %>
   login: gokarte
   email: gokarte@yahoo.com
   hashed_password: 3872e63ee5249f69d82d1af4886974fb5d0a47e8
+  notes: none
 more: 
   id: 3
   first_name: Kline
   last_name: Williamson
+  birthday: <%= Time.local(1977, 5, 23) %>
   login: klinewilliamson
   email: klinewilliamson@yahoo.com
   hashed_password: 3872e63ee5249f69d82d1af4886974fb5d0a47e8
+  notes: none
 evenmore: 
   id: 4
   first_name: Nagib
   last_name: Tharani
+  birthday: <%= Time.local(1977, 5, 23) %>
   login: nagibtharani
   email: nagibtharani@yahoo.com
   hashed_password: 3872e63ee5249f69d82d1af4886974fb5d0a47e8
-  
+  notes: none

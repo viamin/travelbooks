@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 13
+# Schema version: 14
 #
 # Table name: changes
 #
@@ -8,8 +8,8 @@
 #  item_id        :integer       default(0)
 #  person_id      :integer       default(0)
 #  location_id    :integer       default(0)
-#  old_value      :string(255)   default(NULL)
-#  new_value      :string(255)   default(NULL)
+#  old_value      :string(255)   not null
+#  new_value      :string(255)   not null
 #  effective_date :date          
 #  created_on     :date          
 #
@@ -22,11 +22,19 @@ class Change < ActiveRecord::Base
   belongs_to :location
   
   # possible change_types:
-  OWNERSHIP = 1
-  PERSON_LOCATION = 2
+  @OWNERSHIP = 1
+  @PERSON_LOCATION = 2
   
   # allow change types to be read from outside the class
   attr_reader :OWNERSHIP
   attr_reader :PERSON_LOCATION
+  
+  def initialize(*params)
+    super(*params)
+    if self.new_record?
+      self.old_value = String.new if self.old_value.nil?
+      self.new_value = String.new if self.new_value.nil?
+    end
+  end
   
 end
