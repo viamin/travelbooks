@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>app/models/change.rb</string>
+	<string>test/integration/users_test.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -47,7 +47,7 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>76</integer>
+			<integer>0</integer>
 		</dict>
 		<key>app/models/change.rb</key>
 		<dict>
@@ -217,6 +217,34 @@
 			<key>firstVisibleLine</key>
 			<integer>28</integer>
 		</dict>
+		<key>test/integration/users_test.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>29</integer>
+				<key>line</key>
+				<integer>17</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>test/unit/change_test.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
 		<key>test/unit/item_test.rb</key>
 		<dict>
 			<key>caret</key>
@@ -267,13 +295,15 @@
 		<string>test/unit/person_test.rb</string>
 		<string>app/models/person.rb</string>
 		<string>test/fixtures/locations.yml</string>
-		<string>test/fixtures/changes.yml</string>
 		<string>app/models/location.rb</string>
+		<string>test/unit/change_test.rb</string>
 		<string>app/models/change.rb</string>
+		<string>app/controllers/user_controller.rb</string>
+		<string>test/integration/users_test.rb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{319, 140}, {837, 845}}</string>
+	<string>{{323, 33}, {837, 845}}</string>
 </dict>
 </plist>
