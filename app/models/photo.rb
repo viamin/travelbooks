@@ -7,16 +7,16 @@
 #  path         :string(255)   not null
 #  file_name    :string(255)   not null
 #  url          :string(255)   not null
-#  data         :binary        default(NULL)
+#  data         :binary        
 #  content_type :string(255)   not null
-#  bytes        :integer       default(0)
-#  width        :integer       default(0)
-#  height       :integer       default(0)
+#  bytes        :integer       
+#  width        :integer       
+#  height       :integer       
 #  caption      :string(255)   not null
-#  photo_type   :integer       default(0)
-#  location_id  :integer       default(0)
-#  person_id    :integer       default(0)
-#  item_id      :integer       default(0)
+#  photo_type   :integer       
+#  location_id  :integer       
+#  person_id    :integer       
+#  item_id      :integer       
 #  created_on   :date          
 #
 

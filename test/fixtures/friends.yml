@@ -4,9 +4,9 @@
 # Table name: friends
 #
 #  id              :integer       not null, primary key
-#  owner_person_id :integer       default(0)
-#  entry_person_id :integer       default(0)
-#  permissions     :integer       default(0)
+#  owner_person_id :integer       
+#  entry_person_id :integer       
+#  permissions     :integer       
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

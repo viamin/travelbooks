@@ -27,7 +27,10 @@ class TrackController < ApplicationController
   
   # new will allow a user to find a book and add it to his or her trail
   def new
-    
+    if session[:user_id]
+      @user = Person.find(session[:user_id])
+    end
+    render :action => 'search'
   end
   
 end

@@ -10,8 +10,8 @@
 #  price             :float         default(0.0)
 #  for_sale          :string(255)   not null
 #  sale_price        :float         default(0.0)
-#  status            :integer       default(0)
-#  category_id       :integer       default(0)
+#  status            :integer       
+#  category_id       :integer       
 #
 
 class SaleItem < ActiveRecord::Base

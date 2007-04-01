@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>test/integration/users_test.rb</string>
+	<string>app/views/track/search.rhtml</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -21,14 +21,28 @@
 	<integer>227</integer>
 	<key>metaData</key>
 	<dict>
+		<key>app/controllers/main_controller.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
 		<key>app/controllers/track_controller.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>4</integer>
+				<integer>7</integer>
 				<key>line</key>
-				<integer>29</integer>
+				<integer>31</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -40,14 +54,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>34</integer>
+				<integer>47</integer>
 				<key>line</key>
-				<integer>101</integer>
+				<integer>57</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>29</integer>
 		</dict>
 		<key>app/models/change.rb</key>
 		<dict>
@@ -82,28 +96,28 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>19</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>26</integer>
+				<integer>0</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>4</integer>
+			<integer>2</integer>
 		</dict>
 		<key>app/models/person.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>16</integer>
+				<integer>52</integer>
 				<key>line</key>
-				<integer>110</integer>
+				<integer>81</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>11</integer>
+			<integer>60</integer>
 		</dict>
 		<key>app/views/track/map.rhtml</key>
 		<dict>
@@ -113,6 +127,20 @@
 				<integer>0</integer>
 				<key>line</key>
 				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>app/views/track/search.rhtml</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>14</integer>
+				<key>line</key>
+				<integer>4</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -180,14 +208,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>24</integer>
+				<integer>43</integer>
 				<key>line</key>
-				<integer>62</integer>
+				<integer>65</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>17</integer>
+			<integer>26</integer>
 		</dict>
 		<key>test/fixtures/changes.yml</key>
 		<dict>
@@ -215,7 +243,7 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>28</integer>
+			<integer>8</integer>
 		</dict>
 		<key>test/integration/users_test.rb</key>
 		<dict>
@@ -290,20 +318,20 @@
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>test/unit/item_test.rb</string>
-		<string>app/models/item.rb</string>
-		<string>test/unit/person_test.rb</string>
-		<string>app/models/person.rb</string>
-		<string>test/fixtures/locations.yml</string>
-		<string>app/models/location.rb</string>
 		<string>test/unit/change_test.rb</string>
 		<string>app/models/change.rb</string>
 		<string>app/controllers/user_controller.rb</string>
-		<string>test/integration/users_test.rb</string>
+		<string>config/environment.rb</string>
+		<string>app/views/user/home.rhtml</string>
+		<string>app/models/person.rb</string>
+		<string>app/controllers/track_controller.rb</string>
+		<string>app/views/track/search.rhtml</string>
+		<string>app/models/location.rb</string>
+		<string>app/controllers/main_controller.rb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{323, 33}, {837, 845}}</string>
+	<string>{{71, 33}, {837, 845}}</string>
 </dict>
 </plist>

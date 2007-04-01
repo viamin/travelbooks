@@ -4,7 +4,7 @@
 # Table name: shopping_carts
 #
 #  id          :integer       not null, primary key
-#  person_id   :integer       default(0)
+#  person_id   :integer       
 #  created_on  :date          
 #  modified_on :date          
 #  last_viewed :date          

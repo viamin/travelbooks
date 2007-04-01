@@ -51,12 +51,11 @@ class UserController < ApplicationController
   end
   
   def home
-    @person = Person.find(session[:user_id])
+    @person = Person.find(session[:user_id]) unless session[:user_id].nil?
     if @person.nil?
+      @person = Person.new(SAMPLE_PERSON)
       @visitor = "<a href=\"login\">Guest</a>"
-      @location = Location.new
-# Think about using www.hostip.info database
-      @location.zip_code = "92024"
+      @location = Location.new(SAMPLE_LOCATION)
     else
       @visitor = @person.first_name
       @location = @person.current_location
@@ -84,7 +83,7 @@ class UserController < ApplicationController
         session[:user_id] = logged_in_email.id
         redirect_to(:action => "home")
       else
-        flash[:notice] = "Invalid user/password combination"
+        flash[:notice] = "Sorry, the username/password you entered does not match with any registered users."
         redirect_to(:action => :login)
       end
     end
@@ -100,17 +99,17 @@ class UserController < ApplicationController
       if @location.has_good_info?
         @location.loc_type = 1
         @location.person = @person
-        @person.changes.create( :location => @location, :effective_date => Time.now, :change_type => 2, :new_value => @location.id.to_s)
-      end
    # Change this to put the @person and @location saves in a transaction to make sure both of them go through or none. 
-      if @person.save
-        if @location.has_good_info? && @location.save
+      if @person.save!
+        if @location.has_good_info? && @location.save!
+          @person.changes.create( :location => @location, :effective_date => Time.now, :change_type => 2, :new_value => @location.id.to_s)
+        end
           flash[:notice] = "Thank you for joining TravellerBook.com"
           session[:user_id] = @person.id
           redirect_to(:action => :home)
         else
-          flash[:notice] = "Sorry, the username/password you entered does not match with any registered users."
-          redirect_to(:action => :login)
+          flash[:notice] = "Sorry, there was a problem creating your account."
+          redirect_to(:action => :join)
         end
       end
     end

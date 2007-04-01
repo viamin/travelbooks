@@ -6,11 +6,11 @@
 #  id             :integer       not null, primary key
 #  description    :string(255)   not null
 #  loc_type       :integer       default(1)
-#  person_id      :integer       default(0)
-#  item_id        :integer       default(0)
+#  person_id      :integer       
+#  item_id        :integer       
 #  credit_card_id :integer       default(0)
 #  address_line_1 :string(255)   not null
-#  address_line_2 :string(255)   default(NULL)
+#  address_line_2 :string(255)   
 #  city           :string(255)   not null
 #  state          :string(255)   not null
 #  zip_code       :string(255)   not null

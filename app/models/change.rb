@@ -4,11 +4,11 @@
 # Table name: changes
 #
 #  id             :integer       not null, primary key
-#  change_type    :integer       default(0)
-#  item_id        :integer       default(0)
-#  person_id      :integer       default(0)
-#  location_id    :integer       default(0)
-#  old_value      :string(255)   not null
+#  change_type    :integer       
+#  item_id        :integer       
+#  person_id      :integer       
+#  location_id    :integer       
+#  old_value      :string(255)   
 #  new_value      :string(255)   not null
 #  effective_date :date          
 #  created_on     :date          

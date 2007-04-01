@@ -61,3 +61,12 @@ end
 
 # How many differences does a location need before creating a new location and change?
 DIFFERENCE_THRESHOLD = 1
+
+# Replace this after every presidential election
+SAMPLE_PERSON = { :first_name => "George W.",
+                  :birthday => Time.local(1946, 7, 6) }
+
+SAMPLE_LOCATION = { :address_line_1 => "1600 Pennsylvania Ave.",
+                    :city => "Washington",
+                    :state => "DC",
+                    :country => "USA" }

@@ -4,15 +4,15 @@
 # Table name: people
 #
 #  id              :integer       not null, primary key
-#  title           :string(255)   default(NULL)
+#  title           :string(255)   
 #  first_name      :string(255)   not null
-#  middle_name     :string(255)   default(NULL)
+#  middle_name     :string(255)   
 #  last_name       :string(255)   not null
-#  suffix          :string(255)   default(NULL)
+#  suffix          :string(255)   
 #  birthday        :date          not null
 #  email           :string(255)   not null
 #  login           :string(255)   not null
-#  hashed_password :text          default(NULL)
+#  hashed_password :text          
 #  created_on      :date          
 #  notes           :text          not null
 #
@@ -79,7 +79,7 @@ class Person < ActiveRecord::Base
     age_in_years = age_in_seconds / 1.years
     age = age_in_years.floor.to_i
 =end
-    age_in_days = Date.today - self.birthday
+    age_in_days = Date.today - self.birthday.to_date
     age = (age_in_days / 365).floor.to_i
   end
   

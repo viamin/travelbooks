@@ -4,8 +4,8 @@
 # Table name: orders
 #
 #  id                   :integer       not null, primary key
-#  person_id            :integer       default(0)
-#  shipping_location_id :integer       default(0)
+#  person_id            :integer       
+#  shipping_location_id :integer       
 #  created_on           :date          
 #  shipped_on           :date          
 #  paid_on              :date          

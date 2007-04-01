@@ -4,7 +4,7 @@
 # Table name: credit_cards
 #
 #  id              :integer       not null, primary key
-#  person_id       :integer       default(0)
+#  person_id       :integer       
 #  card_type       :string(255)   not null
 #  name_on_card    :string(255)   not null
 #  card_number     :string(255)   not null

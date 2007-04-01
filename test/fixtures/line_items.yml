@@ -4,11 +4,11 @@
 # Table name: line_items
 #
 #  id               :integer       not null, primary key
-#  shopping_cart_id :integer       default(0)
-#  order_id         :integer       default(0)
-#  sale_item_id     :integer       default(0)
-#  quantity         :integer       default(0)
-#  price_per_item   :float         default(0.0)
+#  shopping_cart_id :integer       
+#  order_id         :integer       
+#  sale_item_id     :integer       
+#  quantity         :integer       
+#  price_per_item   :float         
 #  created_on       :date          
 #
 

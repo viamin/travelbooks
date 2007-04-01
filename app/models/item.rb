@@ -4,10 +4,10 @@
 # Table name: items
 #
 #  id          :integer       not null, primary key
-#  tbid        :string(255)   default(NULL)
+#  tbid        :string(255)   
 #  name        :string(255)   not null
 #  description :text          not null
-#  person_id   :integer       default(0)
+#  person_id   :integer       
 #  created_on  :date          
 #
 
