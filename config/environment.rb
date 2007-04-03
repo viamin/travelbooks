@@ -70,3 +70,5 @@ SAMPLE_LOCATION = { :address_line_1 => "1600 Pennsylvania Ave.",
                     :city => "Washington",
                     :state => "DC",
                     :country => "USA" }
+                    
+require 'pp'

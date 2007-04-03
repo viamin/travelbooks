@@ -69,6 +69,7 @@ class UserController < ApplicationController
   
   def login
     unless request.get?
+      timing pp(params)
 =begin
         @person = Person.new(params[:person])
         logged_in_user = @person.try_to_login

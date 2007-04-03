@@ -9,9 +9,9 @@ class TrackController < ApplicationController
     end
   end
 
-  def track
+  def find
     @user = Person.find(session[:user_id])
-    @books = Item.find(:all, :conditions => ["code = ?", params[:tbook]])
+    @books = Item.find(:all, :conditions => ["tbid = ?", params[:search_box]])
   end
 
   def search

@@ -1,10 +1,10 @@
 <h3>This is the login page</h3>
 <p>To register a new account, click <%= link_to "here", :action => :join %>.</p>
-<%= form_tag %>
+<% form_for :person, @person, :url => {:action => :login} do |f| %>
 <label for="person_login">Login or E-mail</label>
-<%= text_field :person, :login %><br>
+<%= f.text_field :login %><br>
 <label for="person_password">Password</label>
-<%= password_field :person, :password %><br>
+<%= f.password_field :password %><br>
 <%= submit_tag 'Login' %>
-</form>
+<% end %>
 

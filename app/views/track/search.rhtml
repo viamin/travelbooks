@@ -1,6 +1,6 @@
 <h2>Search for your TravellerBooks and fellow travelers here</h2>
 
-<%= form_remote_tag :update => 'results', :url => {:action => 'track'} %>
+<%= form_remote_tag :update => 'results', :url => {:action => 'find'} %>
 <label for="search_box">Enter the ID of the book you would like to find:</label>
 <%= text_field_tag 'search_box' %>
 <%= submit_tag 'Search' %>
