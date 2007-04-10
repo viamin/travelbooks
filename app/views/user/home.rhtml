@@ -1,13 +1,14 @@
 <p>Welcome to TravellerBook.com, <%= @visitor %>!</p>
 
 <p>This is the page where you can track your friends, your TravellerBooks, and anything else you want!</p>
-<div id="user_edit_menu">
-	<ul id="edit_options_list">
-		<li><%= link_to "Edit my Profile", :action => "edit" %></li>
-		<li><%= link_to "Track an Amber Book", :controller => "track", :action => "new" %></li>
-	</ul>
-</div>
+
 <div id="user_info">
+	<div id="user_edit_menu">
+		<ul id="edit_options_list">
+			<li><%= link_to "Edit my Profile", :action => "edit" %></li>
+			<li><%= link_to "Track an Amber Book", :controller => "track", :action => "new" %></li>
+		</ul>
+	</div>
   <%= image_tag( "#{@person.main_photo.path}#{@person.main_photo.file_name}", :class => "main_photo", :size => "#{@person.main_photo.width}x#{@person.main_photo.height}") if @person.main_photo %>
   <div id="personal_info">
     <ul id="ilist">
@@ -19,6 +20,16 @@
       <li><%= h(@location.country) %></li>
     </ul>
   </div>
+  <div id="books_block">
+	<ul id="blist">
+		<%= render :partial => 'item', :collection => @items %>
+	</ul>
+	<div id="bfind">
+	  <%= link_to_remote 'Add Book', :update => 'bfind', :url => {:action => 'search', :controller => 'track'} %>
+    </div>
+  </div>
+</div>
+<div id="item_info">
   <div id="tb_stats">
 	<h3>Traveller Book Personal Stats</h3>
 	<ul>
@@ -28,14 +39,14 @@
 	  <li>Countries Books Visited:</li>
 	</ul>
   </div>
-</div>
-<div id="mileage">
-  <h3>My Mileage</h3>
-  <ul>
-	<li>Miles Travelled:</li>
-	<li>Miles Books given Travelled:</li>
-	<li>Miles last book received travelled:</li>
-  <ul>
+  <div id="mileage">
+    <h3>My Mileage</h3>
+    <ul>
+	  <li>Miles Travelled:</li>
+	  <li>Miles Books given Travelled:</li>
+	  <li>Miles last book received travelled:</li>
+    <ul>
+  </div>
 </div>
 
 <%= @map.div %>

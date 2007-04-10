@@ -21,7 +21,7 @@ class Item < ActiveRecord::Base
       find :first, :conditions => {:change_type => 1, :effective_date_lte => as_of}, :order => "effective_date DESC"
     end
   end
-  
+  has_many :photos
   belongs_to :person
   validates_uniqueness_of :tbid
   

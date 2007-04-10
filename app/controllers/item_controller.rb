@@ -48,4 +48,22 @@ class ItemController < ApplicationController
     Item.find(params[:id]).destroy
     redirect_to :action => 'list'
   end
+  
+  def image
+    item = Item.find(params[:id])
+    # Need to decide if I'll be grabbing images from the hard drive or out of the DB
+    photos = item.photos
+    main_photo = photos.detect(photos.first) { |p| p.is_primary? }
+    if (main_photo.url == "db")
+      send_data(main_photo.data,
+              :disposition => 'inline',
+              :type => main_photo.content_type,
+              :filename => main_photo.file_name)
+    else
+      send_file(main_photo.url,
+                :disposition => 'inline',
+                :type => main_photo.content_type,
+                :file_name => main_photo.file_name)
+    end
+  end
 end

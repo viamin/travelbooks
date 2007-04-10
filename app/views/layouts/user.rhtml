@@ -9,7 +9,7 @@
   <%= ymap_js_tag %>
   <%= stylesheet_link_tag 'main' %>
   <%= stylesheet_link_tag 'traffic' %>
-  <%= ymap_div_style(600, 400) %>
+
   <%= GMap.header(:with_vml => false) %>
   <%= @map.to_html if controller.action_name == :home %>
 </head>

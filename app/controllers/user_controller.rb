@@ -51,11 +51,11 @@ class UserController < ApplicationController
   end
   
   def home
+    timing session.pretty_inspect
+    
     @person = Person.find(session[:user_id]) unless session[:user_id].nil?
     if @person.nil?
-      @person = Person.new(SAMPLE_PERSON)
-      @visitor = "<a href=\"login\">Guest</a>"
-      @location = Location.new(SAMPLE_LOCATION)
+      redirect_to :action => 'login'
     else
       @visitor = @person.first_name
       @location = @person.current_location
@@ -69,12 +69,6 @@ class UserController < ApplicationController
   
   def login
     unless request.get?
-      timing pp(params)
-=begin
-        @person = Person.new(params[:person])
-        logged_in_user = @person.try_to_login
-        logged_in_email = @person.try_email_login
-=end
       logged_in_user = Person.login(params[:person][:login], params[:person][:password])
       logged_in_email = Person.email_login(params[:person][:login], params[:person][:password])
       if logged_in_user.kind_of?(Person)

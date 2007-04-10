@@ -20,6 +20,7 @@
 #  created_on   :date          
 #
 
+# photo_type should be able to indicate if the photo is the primary photo for the given item/person/location
 class Photo < ActiveRecord::Base
   belongs_to :person
   belongs_to :item
@@ -36,4 +37,7 @@ class Photo < ActiveRecord::Base
     end
   end
   
+  def is_primary?
+    return photo_type == 1
+  end
 end

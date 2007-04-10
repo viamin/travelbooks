@@ -89,3 +89,15 @@ div.progressBar div.background {
 #titlebar a:hover {
 	background-position:0 -80px;
 }
+
+#user_info {
+	top: 150px;
+	width: 250px;
+	position: absolute;
+}
+
+#item_info {
+	top: 150px;
+	left: 300px;
+	position: absolute;
+}

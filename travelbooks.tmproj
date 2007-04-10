@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>app/views/track/search.rhtml</string>
+	<string>config/environment.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -54,7 +54,7 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>47</integer>
+				<integer>35</integer>
 				<key>line</key>
 				<integer>57</integer>
 			</dict>
@@ -166,7 +166,7 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>53</integer>
+				<integer>26</integer>
 				<key>line</key>
 				<integer>5</integer>
 			</dict>
@@ -208,14 +208,28 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>43</integer>
+				<integer>2</integer>
 				<key>line</key>
-				<integer>65</integer>
+				<integer>27</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>26</integer>
+			<integer>13</integer>
+		</dict>
+		<key>public/index.html</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>40</integer>
+				<key>line</key>
+				<integer>164</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>154</integer>
 		</dict>
 		<key>test/fixtures/changes.yml</key>
 		<dict>
@@ -323,6 +337,7 @@
 		<string>app/controllers/user_controller.rb</string>
 		<string>config/environment.rb</string>
 		<string>app/views/user/home.rhtml</string>
+		<string>public/index.html</string>
 		<string>app/models/person.rb</string>
 		<string>app/controllers/track_controller.rb</string>
 		<string>app/views/track/search.rhtml</string>
@@ -332,6 +347,6 @@
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{71, 33}, {837, 845}}</string>
+	<string>{{328, 188}, {837, 845}}</string>
 </dict>
 </plist>
