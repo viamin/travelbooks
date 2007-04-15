@@ -60,7 +60,7 @@ class ItemController < ApplicationController
               :type => main_photo.content_type,
               :filename => main_photo.file_name)
     else
-      send_file(main_photo.url,
+      send_file("#{main_photo.path}/#{main_photo.file_name}",
                 :disposition => 'inline',
                 :type => main_photo.content_type,
                 :file_name => main_photo.file_name)

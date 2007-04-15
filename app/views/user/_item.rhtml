@@ -1,10 +1,5 @@
 <li><%= link_to( 
-			image_tag( 
-				url_for(:controller => 'item', 
-				        :action => 'image',
-				        :id => item.id ),
-	            {:size => "36x50", 
-		         :alt => item.name }),
+			"<img src='/item/image/#{item.id}' width='36' height='50' alt='#{item.name}'>",
 	 		{ :action => 'show', 
 		      :controller => 'item', 
 		      :id => item.id } ) %></li>

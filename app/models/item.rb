@@ -40,7 +40,7 @@ class Item < ActiveRecord::Base
     digest << self.description
     tbid = digest.hexdigest
     timing "tbid: #{tbid}"
-    self.tbid = tbid.slice(2..10)
+    self.tbid = tbid.slice(2...10)
     until self.save # if the id is not unique
       self.generate_tbid
     end

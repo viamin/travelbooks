@@ -24,8 +24,10 @@
 first:
   id: 1
   path: public/images
-  file_name: bart.jpg
+  file_name: templogo.jpg
   url: none
   content_type: image/jpeg
   caption: What a ham!
+  item_id: 1
+  photo_type: 1
   

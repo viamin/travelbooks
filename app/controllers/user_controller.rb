@@ -51,7 +51,7 @@ class UserController < ApplicationController
   end
   
   def home
-    timing session.pretty_inspect
+#    timing session.pretty_inspect
     
     @person = Person.find(session[:user_id]) unless session[:user_id].nil?
     if @person.nil?
