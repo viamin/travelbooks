@@ -1,4 +1,6 @@
 class ItemController < ApplicationController
+  before_filter :authorize
+  
   def index
     list
     render :action => 'list'
@@ -13,7 +15,7 @@ class ItemController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+    @item = Item.find_by_tbid(params[:id])
   end
 
   def new
@@ -65,5 +67,16 @@ class ItemController < ApplicationController
                 :type => main_photo.content_type,
                 :file_name => main_photo.file_name)
     end
+  end
+  
+  def associate
+    @item = Item.find_by_tbid(params[:id])
+    unless session[:current_action] == :user_add_item
+      flash[:notice] = "You need to log in to add a book to your library"
+      session[:item_last_viewed] = @item.tbid
+      redirect_to :action => 'login', :controller => 'user'
+      return
+    end
+    
   end
 end

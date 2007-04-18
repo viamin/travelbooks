@@ -1,4 +1,6 @@
 class UserController < ApplicationController
+  before_filter :authorize, :except => [:login, :join]
+  
   def index
     redirect_to :action => 'home'
   end
@@ -52,7 +54,13 @@ class UserController < ApplicationController
   
   def home
 #    timing session.pretty_inspect
-    
+    unless session[:current_action] == :user_home
+      case session[:current_action]
+      when :user_add_item
+        redirect_to :controller => 'item', :action => 'associate', :id => session[:item_last_viewed]
+        return
+      end
+    end
     @person = Person.find(session[:user_id]) unless session[:user_id].nil?
     if @person.nil?
       redirect_to :action => 'login'

@@ -12,3 +12,5 @@
 	<li>Name: <%= @item.name %></li>
 	<li>Description: <%= @item.description %></li>
 </ul>
+
+<p>Do you have this book? To add it to your library, click <%= link_to 'here', {:action => 'associate', :id => @item.tbid} %>

@@ -1,4 +1,6 @@
 class TrackController < ApplicationController
+  before_filter :authorize
+  
   def index
     if params[:tbook]
       if params[:tbook].length > 0
@@ -30,6 +32,7 @@ class TrackController < ApplicationController
     if session[:user_id]
       @user = Person.find(session[:user_id])
     end
+    session[:current_action] = :user_add_item
     render :action => 'search'
   end
   

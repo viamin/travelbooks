@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>config/environment.rb</string>
+	<string>app/controllers/application.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -21,6 +21,34 @@
 	<integer>227</integer>
 	<key>metaData</key>
 	<dict>
+		<key>app/controllers/application.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>12</integer>
+				<key>line</key>
+				<integer>10</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>app/controllers/item_controller.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>26</integer>
+				<key>line</key>
+				<integer>1</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
 		<key>app/controllers/main_controller.rb</key>
 		<dict>
 			<key>caret</key>
@@ -40,9 +68,9 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>7</integer>
+				<integer>26</integer>
 				<key>line</key>
-				<integer>31</integer>
+				<integer>1</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -54,14 +82,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>35</integer>
+				<integer>53</integer>
 				<key>line</key>
-				<integer>57</integer>
+				<integer>1</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>29</integer>
+			<integer>0</integer>
 		</dict>
 		<key>app/models/change.rb</key>
 		<dict>
@@ -119,6 +147,20 @@
 			<key>firstVisibleLine</key>
 			<integer>60</integer>
 		</dict>
+		<key>app/views/item/show.rhtml</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>123</integer>
+				<key>line</key>
+				<integer>15</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
 		<key>app/views/track/map.rhtml</key>
 		<dict>
 			<key>caret</key>
@@ -161,20 +203,6 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>app/views/user/home.rhtml</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>26</integer>
-				<key>line</key>
-				<integer>5</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
 		<key>app/views/user/join.rhtml</key>
 		<dict>
 			<key>caret</key>
@@ -202,20 +230,6 @@
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
-		</dict>
-		<key>config/environment.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>2</integer>
-				<key>line</key>
-				<integer>27</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>13</integer>
 		</dict>
 		<key>public/index.html</key>
 		<dict>
@@ -335,11 +349,10 @@
 		<string>test/unit/change_test.rb</string>
 		<string>app/models/change.rb</string>
 		<string>app/controllers/user_controller.rb</string>
-		<string>config/environment.rb</string>
-		<string>app/views/user/home.rhtml</string>
-		<string>public/index.html</string>
-		<string>app/models/person.rb</string>
 		<string>app/controllers/track_controller.rb</string>
+		<string>app/controllers/item_controller.rb</string>
+		<string>app/controllers/application.rb</string>
+		<string>app/views/item/show.rhtml</string>
 		<string>app/views/track/search.rhtml</string>
 		<string>app/models/location.rb</string>
 		<string>app/controllers/main_controller.rb</string>
@@ -347,6 +360,6 @@
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{328, 188}, {837, 845}}</string>
+	<string>{{328, 33}, {837, 845}}</string>
 </dict>
 </plist>

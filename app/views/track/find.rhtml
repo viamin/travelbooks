@@ -1,5 +1,5 @@
 <ul>
 <% @books.each do |book| %>
-	<li><%= book.name %></li>
+	<li><%= link_to book.name, {:controller => 'item', :action => 'show', :id => book.tbid} %></li>
 <% end %>
 </ul>
