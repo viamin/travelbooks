@@ -6,7 +6,7 @@
 
 <%= link_to 'Back', :action => 'home', :controller => 'user' %>
 <p>
-<img src='/item/image/<%= @item.id -%>' width='36' height='50' alt='<%= @item.name -%>'></p>
+<img src='/item/image/<%= @item.tbid -%>' alt='<%= @item.name -%>'></p>
 <ul>
 	<li>Item Code:  <%= @item.tbid %></li>
 	<li>Name: <%= @item.name %></li>

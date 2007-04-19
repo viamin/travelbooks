@@ -52,7 +52,7 @@ class ItemController < ApplicationController
   end
   
   def image
-    item = Item.find(params[:id])
+    item = Item.find_by_tbid(params[:id])
     # Need to decide if I'll be grabbing images from the hard drive or out of the DB
     photos = item.photos
     main_photo = photos.detect(photos.first) { |p| p.is_primary? }

@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   
   # Makes sure the user is logged in and has a session before displaying certain pages
   def authorize
-    if (session[:user_id].empty? || session[:user_id].nil?)
+    if (session[:user_id].nil? || session[:user_id] == "")
       redirect_to :controller => 'user', :action => 'login'
       return
     end
