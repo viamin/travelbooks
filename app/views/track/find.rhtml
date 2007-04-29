@@ -1,3 +1,4 @@
+<%= h(@message) if @books.empty? %>
 <ul>
 <% @books.each do |book| %>
 	<li><%= link_to book.name, {:controller => 'item', :action => 'show', :id => book.tbid} %></li>

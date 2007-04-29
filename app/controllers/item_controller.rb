@@ -16,6 +16,9 @@ class ItemController < ApplicationController
 
   def show
     @item = Item.find_by_tbid(params[:id])
+    if session[:user_id]
+      @person = Person.find(session[:user_id])
+    end
   end
 
   def new
@@ -70,13 +73,27 @@ class ItemController < ApplicationController
   end
   
   def associate
+    timing session.pretty_inspect
     @item = Item.find_by_tbid(params[:id])
     unless session[:current_action] == :user_add_item
       flash[:notice] = "You need to log in to add a book to your library"
       session[:item_last_viewed] = @item.tbid
+      session[:current_action] = :user_add_item
       redirect_to :action => 'login', :controller => 'user'
       return
     end
+    @person = Person.find(session[:user_id])
+    @change = Change.new
+    @change.change_type = 1
+    @change.item = @item
+    @change.new_value = session[:user_id]
+    @change.location = @person.current_location
+    @change.effective_date = Time.now
+    @change.save!
+    @person.items << @item
+    session[:current_action] = nil
+    flash[:notice] = "This item (#{@item.name}) has been added to your library."
+    redirect_to :action => 'home', :controller => 'user'
     
   end
 end

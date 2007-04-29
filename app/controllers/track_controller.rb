@@ -13,7 +13,14 @@ class TrackController < ApplicationController
 
   def find
     @user = Person.find(session[:user_id])
-    @books = Item.find(:all, :conditions => ["tbid = ?", params[:search_box]])
+    @books = Item.find(:all, :conditions => {:tbid => params[:search_box]})
+    if @books.empty?
+      if params[:search_box].length > 6
+        @message = "Nothing found with that code"
+      else
+        @message = "Invalid code"
+      end
+    end
   end
 
   def search

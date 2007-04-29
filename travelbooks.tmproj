@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>app/views/item/show.rhtml</string>
+	<string>app/controllers/track_controller.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -40,14 +40,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>28</integer>
+				<integer>6</integer>
 				<key>line</key>
-				<integer>54</integer>
+				<integer>18</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>36</integer>
+			<integer>0</integer>
 		</dict>
 		<key>app/controllers/main_controller.rb</key>
 		<dict>
@@ -68,28 +68,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>26</integer>
+				<integer>50</integer>
 				<key>line</key>
-				<integer>1</integer>
+				<integer>15</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>app/controllers/user_controller.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>53</integer>
-				<key>line</key>
-				<integer>1</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<key>app/models/change.rb</key>
 		<dict>
@@ -105,20 +91,6 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>app/models/item.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>15</integer>
-				<key>line</key>
-				<integer>56</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>25</integer>
-		</dict>
 		<key>app/models/location.rb</key>
 		<dict>
 			<key>caret</key>
@@ -133,28 +105,28 @@
 			<key>firstVisibleLine</key>
 			<integer>2</integer>
 		</dict>
-		<key>app/models/person.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>52</integer>
-				<key>line</key>
-				<integer>81</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>60</integer>
-		</dict>
 		<key>app/views/item/show.rhtml</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>41</integer>
+				<integer>40</integer>
 				<key>line</key>
-				<integer>8</integer>
+				<integer>15</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>app/views/track/find.rhtml</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>33</integer>
+				<key>line</key>
+				<integer>0</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -217,20 +189,6 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>app/views/user/home.rhtml</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>26</integer>
-				<key>line</key>
-				<integer>5</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
 		<key>app/views/user/join.rhtml</key>
 		<dict>
 			<key>caret</key>
@@ -272,20 +230,6 @@
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>154</integer>
-		</dict>
-		<key>test/fixtures/changes.yml</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>2</integer>
-				<key>line</key>
-				<integer>96</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>52</integer>
 		</dict>
 		<key>test/fixtures/locations.yml</key>
 		<dict>
@@ -376,20 +320,16 @@
 	<array>
 		<string>test/unit/change_test.rb</string>
 		<string>app/models/change.rb</string>
-		<string>app/controllers/user_controller.rb</string>
-		<string>app/controllers/track_controller.rb</string>
 		<string>app/controllers/item_controller.rb</string>
-		<string>app/views/user/home.rhtml</string>
-		<string>app/views/user/_item.rhtml</string>
-		<string>app/controllers/application.rb</string>
 		<string>app/views/item/show.rhtml</string>
+		<string>app/controllers/track_controller.rb</string>
 		<string>app/views/track/search.rhtml</string>
-		<string>app/models/location.rb</string>
-		<string>app/controllers/main_controller.rb</string>
+		<string>app/views/track/find.rhtml</string>
+		<string>app/views/user/_item.rhtml</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{727, 237}, {837, 845}}</string>
+	<string>{{602, 33}, {837, 845}}</string>
 </dict>
 </plist>

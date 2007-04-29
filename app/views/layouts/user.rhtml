@@ -9,9 +9,6 @@
   <%= ymap_js_tag %>
   <%= stylesheet_link_tag 'main' %>
   <%= stylesheet_link_tag 'traffic' %>
-
-  <%= GMap.header(:with_vml => false) %>
-  <%= @map.to_html if controller.action_name == :home %>
 </head>
 <body>
 	<div id="titlebar">

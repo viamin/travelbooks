@@ -76,18 +76,31 @@ class UserController < ApplicationController
   end  
   
   def login
+    login_status = nil
     unless request.get?
       logged_in_user = Person.login(params[:person][:login], params[:person][:password])
       logged_in_email = Person.email_login(params[:person][:login], params[:person][:password])
       if logged_in_user.kind_of?(Person)
         session[:user_id] = logged_in_user.id
-        redirect_to(:action => "home")
+        login_status = :success
+        next_action = :redirect
       elsif logged_in_email.kind_of?(Person)
         session[:user_id] = logged_in_email.id
-        redirect_to(:action => "home")
+        login_status = :success
+        next_action = :redirect
       else
         flash[:notice] = "Sorry, the username/password you entered does not match with any registered users."
-        redirect_to(:action => :login)
+        login_status = :failed
+        next_action = :redirect
+      end
+      if next_action == :redirect
+        if session[:current_action] == :user_add_item
+          redirect_to :action => 'associate', :controller => 'item', :id => session[:item_last_viewed]
+        elsif login_status == :success
+          redirect_to :action => "home"
+        else
+          redirect_to :action => 'login'
+        end
       end
     end
   end

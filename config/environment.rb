@@ -72,3 +72,11 @@ SAMPLE_LOCATION = { :address_line_1 => "1600 Pennsylvania Ave.",
                     :country => "USA" }
                     
 require 'pp'
+
+############################# 
+# This needs to be added because 'pretty_inspect' only works with Ruby 1.8.5, but Tiger ships with Ruby 1.8.4
+module Kernel
+  def pretty_inspect
+    PP.pp(self, '')
+  end
+end
