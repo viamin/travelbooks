@@ -59,17 +59,25 @@ class ItemController < ApplicationController
     # Need to decide if I'll be grabbing images from the hard drive or out of the DB
     photos = item.photos
     main_photo = photos.detect(photos.first) { |p| p.is_primary? }
-    if (main_photo.url == "db")
-      send_data(main_photo.data,
+    unless main_photo.nil?
+      if (main_photo.url == "db")
+        send_data(main_photo.data,
               :disposition => 'inline',
               :type => main_photo.content_type,
               :filename => main_photo.file_name)
-    else
-      send_file("#{main_photo.path}/#{main_photo.file_name}",
+      else
+        send_file("#{main_photo.path}/#{main_photo.file_name}",
                 :disposition => 'inline',
                 :type => main_photo.content_type,
                 :file_name => main_photo.file_name)
-    end
+      end
+    else
+      # send "no photo" image
+      send_file("public/images/no_image.gif",
+              :disposition => 'inline',
+              :type => 'image/jpeg',
+              :file_name => 'no_image.gif')
+    end      
   end
   
   def associate
