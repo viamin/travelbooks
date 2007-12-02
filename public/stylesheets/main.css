@@ -1,21 +1,31 @@
-body { background-color: #fff; color: #333; }
-
-body, p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
+body {
+  font-family: Optima, verdana, arial, helvetica, sans-serif;
+  margin-top: 0;
+  margin-left: 52px;
+  margin-bottom: 0;
+  background: #633c1f;
+}
+h1, h2, h3 {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+p, ol, ul, td {
+  font-family: Optima, verdana, arial, helvetica, sans-serif;
   font-size:   13px;
   line-height: 18px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
-
+#main_stripe {
+	width: 800px;
+	height: 800px;
+	background: #ffe7a5;
+}
 pre {
   background-color: #eee;
   padding: 10px;
   font-size: 11px;
 }
-
-a { color: #000; }
-a:visited { color: #666; }
-a:hover { color: #fff; background-color:#000; }
-
 .fieldWithErrors {
   padding: 2px;
   background-color: red;
@@ -71,25 +81,54 @@ div.progressBar div.background {
   height: 18px;
   width: 0%;
 }
-
-/* Based on www.iwillteachyoutoberich.com header styles */
-
+#smlogo {
+	position: absolute;
+	left: 10px;
+	top: 3px;
+}
+#titlebar {
+	display: block;
+	position:relative;
+	top: 20px;
+	left: 25px;
+	height: 66px;
+	width: 756px;
+	background: url('/images/topbar2.png');
+}
+#titlebar a {
+	display: block;
+	color: #ffe7af;
+	text-decoration: none;
+	text-align: center;
+	text-shadow: #3f2800 3px 3px 2px;
+	font-size: 36pt;
+	width: 756px;
+	height: 66px;
+}
 #titlebar strong {
 	display: none;
 }
-
-#titlebar a {
-	background: url("http://127.0.0.1:3000/images/TBBannerL.jpg") 0 0 no-repeat;
-	border:0;
-	display: block;
-	height: 80px;
-	width: 701px;
+#loginbox {
+	position: absolute;
+	left: 590px;
+	top: 3px;
+	border: 1px solid #9c6828;
+	height: 49px;
+	padding-bottom: 3px;
+	width: 150px;
+	background: #deb173;
+	font-size: 9pt;
 }
-
-#titlebar a:hover {
-	background-position:0 -80px;
+#loginbox label {
+	float: left;
+	text-align: right;
+	width: 55px;
+	vertical-align: bottom;
 }
-
+#loginbox input {
+	float: left;
+	left: 25px;
+}
 #user_info {
 	top: 150px;
 	width: 250px;
@@ -100,4 +139,42 @@ div.progressBar div.background {
 	top: 150px;
 	left: 300px;
 	position: absolute;
+}
+#rsh {
+	position: absolute;
+	left: 852px;
+	top: 0;
+	width: 6px;
+	height: 800px;
+}
+#linkbar {
+	position: relative;
+	padding: 3px 0;
+	top: 35px;
+	background: #633c1f;
+}
+#linkbar ul {
+	list-style: none;
+	text-indent: 0;
+	display: inline;
+	margin-left: 0;
+	padding-left: 0;
+}
+#linkbar ul li {
+	margin-left: 0;
+	padding: 3px 15px;
+	border-left: 1px solid #633c1f;
+	list-style: none;
+	display: inline;
+}
+#linkbar ul li a {
+	display: inline;
+	text-decoration: none;
+	font-size: 1.3em;
+	width: 100%;
+	color: #ffd;
+}
+#cfl {
+	position: relative;
+	top: 20px;
 }

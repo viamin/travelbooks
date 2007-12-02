@@ -8,12 +8,20 @@
 
 </head>
 <body>
-<div id="titlebar">
-	<a href="http://www.travellerbook.com"><strong>TravellerBook.com - Give a little bit of the world</strong></a>
-</div>
-<p style="color: green"><%= flash[:notice] %></p>
-
-<%= @content_for_layout %>
-
+	<div id="main_stripe">
+		<div id="titlebar">
+			<%= image_tag "logo100.png", {:id => 'smlogo'} %>
+			<%= link_to "TravellerBook.com", :action => 'index' %>
+			<%= render :partial => 'login' %>
+		</div>
+		<div id="linkbar">
+			<%= render :partial => "toplinks" %>
+		</div>
+		<p style="color: green"><%= flash[:notice] %></p>
+		<div id="cfl">
+			<%= @content_for_layout %>
+		</div>
+	</div>
+	<%= image_tag("rsh.png", {:id => 'rsh'}) %>
 </body>
 </html>
