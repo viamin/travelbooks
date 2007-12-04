@@ -110,24 +110,22 @@ div.progressBar div.background {
 }
 #loginbox {
 	position: absolute;
-	left: 590px;
-	top: 3px;
-	border: 1px solid #9c6828;
-	height: 49px;
-	padding-bottom: 3px;
-	width: 150px;
-	background: #deb173;
+	left: 430px;
+	color: #ffd;
+	display: inline;
+/*	border: 1px solid #9c6828;
+	background: #deb173; 
 	font-size: 9pt;
+	line-height: 24px; */
 }
 #loginbox label {
-	float: left;
-	text-align: right;
-	width: 55px;
-	vertical-align: bottom;
+	top: 3px;
+	padding-bottom: 3px;
+	font-size: 1.3em;
+	display: inline;
 }
 #loginbox input {
-	float: left;
-	left: 25px;
+	height: 12px;
 }
 #user_info {
 	top: 150px;
@@ -163,7 +161,6 @@ div.progressBar div.background {
 #linkbar ul li {
 	margin-left: 0;
 	padding: 3px 15px;
-	border-left: 1px solid #633c1f;
 	list-style: none;
 	display: inline;
 }
