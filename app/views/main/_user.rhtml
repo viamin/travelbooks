@@ -1,1 +1,1 @@
-You are logged in as <%= Person.find(session[:user_id]).login %>
+<p id="ulog">You are logged in as <%= Person.find(session[:user_id]).login %> [<%= link_to 'Logout', :controller => 'user', :action ='logout' %>]</p>

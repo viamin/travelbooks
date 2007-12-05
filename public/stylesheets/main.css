@@ -173,5 +173,13 @@ div.progressBar div.background {
 }
 #cfl {
 	position: relative;
-	top: 20px;
+	padding: 20px;
+}
+#ulog {
+	position: relative;
+	display: inline;
+	width: 100%;
+	left: 280px;
+	font-size: 1em;
+	color: #ffd;
 }

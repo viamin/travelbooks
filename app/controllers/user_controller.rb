@@ -104,6 +104,11 @@ class UserController < ApplicationController
       end
     end
   end
+  
+  def logout
+    session[:user_id] = nil
+    
+  end
 
   def join
     if request.get?

@@ -1,15 +1,26 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <title>Main: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag 'scaffold' %>
-  <%= javascript_include_tag :defaults %>
+  <%= stylesheet_link_tag 'main' %>
 
 </head>
 <body>
-
-<p style="color: green"><%= flash[:notice] %></p>
-
-<%= @content_for_layout %>
-
+	<div id="main_stripe">
+		<div id="titlebar">
+			<%= image_tag("logo100.png", {:id => 'smlogo'}) %>
+			<%= link_to "TravellerBook.com", :controller => 'main', :action => 'index' %>
+		</div>
+		<div id="linkbar">
+			<%= render :partial => "main/toplinks" %>
+		</div>
+		<p style="color: green"><%= flash[:notice] %></p>
+		<div id="cfl">
+			<%= @content_for_layout %>
+		</div>
+	</div>
+	<%= image_tag("rsh.png", {:id => 'rsh'}) %>
 </body>
 </html>

@@ -2,9 +2,9 @@
 	<li><%= link_to "Home", :controller => 'user', :action => 'home' %></li>
 	<li><%= link_to "Search", :controller => 'track', :action => 'search' %></li>
 	<li><%= link_to "Shop", :controller => 'shop', :action => 'store' %></li>
-	<% if session[:user_id].nil? -%>
-	  <li><%= render :partial => 'main/login' %></li>
+	<% if session[:user_id].nil? || session[:user_id].empty? -%>
+	  <li><%= render :partial => 'login' %></li>
 	<% else -%>
-	  <li><%= render :partial => 'main/user' %></li>
+	  <li><%= render :partial => 'user' %></li>
 	<% end -%>
 </ul>

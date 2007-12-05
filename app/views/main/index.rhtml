@@ -34,7 +34,7 @@
 		background: #ffd;
 	}
 	#main_box {
-		top:120px;
+		top:140px;
 		left:50px;
 		width:800px;
 		height:450px;
@@ -122,6 +122,59 @@
 		background: #d7a47e;
 		border: 1px solid #633c1f;
 	}
+	#linkbar {
+		position: relative;
+		padding: 3px 0;
+		top: 35px;
+		background: #633c1f;
+	}
+	#linkbar ul {
+		list-style: none;
+		text-indent: 0;
+		display: inline;
+		margin-left: 0;
+		padding-left: 0;
+	}
+	#linkbar ul li {
+		margin-left: 0;
+		padding: 3px 15px;
+		list-style: none;
+		display: inline;
+	}
+	#linkbar ul li a {
+		display: inline;
+		text-decoration: none;
+		font-size: 17px;
+		width: 100%;
+		color: #ffd;
+	}
+	#loginbox {
+		position: absolute;
+		left: 430px;
+		color: #ffd;
+		display: inline;
+	/*	border: 1px solid #9c6828;
+		background: #deb173; 
+		font-size: 9pt;
+		line-height: 24px; */
+	}
+	#loginbox label {
+		top: 3px;
+		padding-bottom: 3px;
+		font-size: 17px;
+		display: inline;
+	}
+	#loginbox input {
+		height: 12px;
+	}
+	#ulog {
+		position: relative;
+		display: inline;
+		width: 100%;
+		left: 280px;
+		font-size: 1em;
+		color: #ffd;
+	}
     </style>
 	<script type="text/javascript">
 		function clear_form(textbox, orig_string) {
@@ -134,6 +187,9 @@
 	  <div id="titlebar">
 		<%= link_to "TravellerBook.com", :action => 'index' %>
 	  </div>
+		<div id="linkbar">
+			<%= render :partial => "toplinks" %>
+		</div>
 	  <div id="main_box">
 		<%= link_to "<br \>About", {:action => "about"}, {:id => "aboutlk"} %>
 		<%= form_tag :controller => "track", :action => "find" %>
