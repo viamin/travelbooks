@@ -107,7 +107,7 @@ class UserController < ApplicationController
   
   def logout
     session[:user_id] = nil
-    
+    redirect_to :controller => 'main', :action => 'index'
   end
 
   def join
