@@ -3,12 +3,12 @@
 #
 # Table name: items
 #
-#  id          :integer       not null, primary key
-#  tbid        :string(255)   
-#  name        :string(255)   not null
-#  description :text          not null
-#  person_id   :integer       
-#  created_on  :date          
+#  id          :integer         not null, primary key
+#  tbid        :string(255)     
+#  name        :string(255)     not null
+#  description :text            not null
+#  person_id   :integer         
+#  created_on  :date            
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

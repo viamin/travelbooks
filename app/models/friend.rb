@@ -3,10 +3,10 @@
 #
 # Table name: friends
 #
-#  id              :integer       not null, primary key
-#  owner_person_id :integer       
-#  entry_person_id :integer       
-#  permissions     :integer       
+#  id              :integer         not null, primary key
+#  owner_person_id :integer         
+#  entry_person_id :integer         
+#  permissions     :integer         
 #
 
 class Friend < ActiveRecord::Base

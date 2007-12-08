@@ -3,15 +3,15 @@
 #
 # Table name: changes
 #
-#  id             :integer       not null, primary key
-#  change_type    :integer       
-#  item_id        :integer       
-#  person_id      :integer       
-#  location_id    :integer       
-#  old_value      :string(255)   
-#  new_value      :string(255)   not null
-#  effective_date :date          
-#  created_on     :date          
+#  id             :integer         not null, primary key
+#  change_type    :integer         
+#  item_id        :integer         
+#  person_id      :integer         
+#  location_id    :integer         
+#  old_value      :string(255)     
+#  new_value      :string(255)     not null
+#  effective_date :date            
+#  created_on     :date            
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

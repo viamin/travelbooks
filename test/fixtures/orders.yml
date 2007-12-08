@@ -3,12 +3,12 @@
 #
 # Table name: orders
 #
-#  id                   :integer       not null, primary key
-#  person_id            :integer       
-#  shipping_location_id :integer       
-#  created_on           :date          
-#  shipped_on           :date          
-#  paid_on              :date          
+#  id                   :integer         not null, primary key
+#  person_id            :integer         
+#  shipping_location_id :integer         
+#  created_on           :date            
+#  shipped_on           :date            
+#  paid_on              :date            
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

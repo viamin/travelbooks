@@ -3,21 +3,21 @@
 #
 # Table name: locations
 #
-#  id             :integer       not null, primary key
-#  description    :string(255)   not null
-#  loc_type       :integer       default(1)
-#  person_id      :integer       
-#  item_id        :integer       
-#  credit_card_id :integer       default(0)
-#  address_line_1 :string(255)   not null
-#  address_line_2 :string(255)   
-#  city           :string(255)   not null
-#  state          :string(255)   not null
-#  zip_code       :string(255)   not null
-#  country        :string(255)   not null
-#  latitude       :string(255)   not null
-#  longitude      :string(255)   not null
-#  altitude_feet  :integer       default(0)
+#  id             :integer         not null, primary key
+#  description    :string(255)     not null
+#  loc_type       :integer         default(1)
+#  person_id      :integer         
+#  item_id        :integer         
+#  credit_card_id :integer         default(0)
+#  address_line_1 :string(255)     not null
+#  address_line_2 :string(255)     
+#  city           :string(255)     not null
+#  state          :string(255)     not null
+#  zip_code       :string(255)     not null
+#  country        :string(255)     not null
+#  latitude       :string(255)     not null
+#  longitude      :string(255)     not null
+#  altitude_feet  :integer         default(0)
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

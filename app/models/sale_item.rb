@@ -3,15 +3,15 @@
 #
 # Table name: sale_items
 #
-#  id                :integer       not null, primary key
-#  name              :string(255)   not null
-#  description       :string(255)   not null
-#  quantity_in_stock :integer       default(0)
-#  price             :float         default(0.0)
-#  for_sale          :string(255)   not null
-#  sale_price        :float         default(0.0)
-#  status            :integer       
-#  category_id       :integer       
+#  id                :integer         not null, primary key
+#  name              :string(255)     not null
+#  description       :string(255)     not null
+#  quantity_in_stock :integer         default(0)
+#  price             :float           default(0.0)
+#  for_sale          :string(255)     not null
+#  sale_price        :float           default(0.0)
+#  status            :integer         
+#  category_id       :integer         
 #
 
 class SaleItem < ActiveRecord::Base

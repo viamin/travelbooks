@@ -3,13 +3,13 @@
 #
 # Table name: line_items
 #
-#  id               :integer       not null, primary key
-#  shopping_cart_id :integer       
-#  order_id         :integer       
-#  sale_item_id     :integer       
-#  quantity         :integer       
-#  price_per_item   :float         
-#  created_on       :date          
+#  id               :integer         not null, primary key
+#  shopping_cart_id :integer         
+#  order_id         :integer         
+#  sale_item_id     :integer         
+#  quantity         :integer         
+#  price_per_item   :float           
+#  created_on       :date            
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

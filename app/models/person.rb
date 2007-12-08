@@ -3,18 +3,18 @@
 #
 # Table name: people
 #
-#  id              :integer       not null, primary key
-#  title           :string(255)   
-#  first_name      :string(255)   not null
-#  middle_name     :string(255)   
-#  last_name       :string(255)   not null
-#  suffix          :string(255)   
-#  birthday        :date          not null
-#  email           :string(255)   not null
-#  login           :string(255)   not null
-#  hashed_password :text          
-#  created_on      :date          
-#  notes           :text          not null
+#  id              :integer         not null, primary key
+#  title           :string(255)     
+#  first_name      :string(255)     not null
+#  middle_name     :string(255)     
+#  last_name       :string(255)     not null
+#  suffix          :string(255)     
+#  birthday        :date            not null
+#  email           :string(255)     not null
+#  login           :string(255)     not null
+#  hashed_password :text            
+#  created_on      :date            
+#  notes           :text            not null
 #
 
 # consider dropping login

@@ -3,9 +3,9 @@
 #
 # Table name: categories
 #
-#  id          :integer       not null, primary key
-#  name        :string(255)   not null
-#  description :string(255)   not null
+#  id          :integer         not null, primary key
+#  name        :string(255)     not null
+#  description :string(255)     not null
 #
 
 # Category is used to link types of locations, people, etc, without hard coding it into the program

@@ -3,21 +3,21 @@
 #
 # Table name: photos
 #
-#  id           :integer       not null, primary key
-#  path         :string(255)   not null
-#  file_name    :string(255)   not null
-#  url          :string(255)   not null
-#  data         :binary        
-#  content_type :string(255)   not null
-#  bytes        :integer       
-#  width        :integer       
-#  height       :integer       
-#  caption      :string(255)   not null
-#  photo_type   :integer       
-#  location_id  :integer       
-#  person_id    :integer       
-#  item_id      :integer       
-#  created_on   :date          
+#  id           :integer         not null, primary key
+#  path         :string(255)     not null
+#  file_name    :string(255)     not null
+#  url          :string(255)     not null
+#  data         :binary          
+#  content_type :string(255)     not null
+#  bytes        :integer         
+#  width        :integer         
+#  height       :integer         
+#  caption      :string(255)     not null
+#  photo_type   :integer         
+#  location_id  :integer         
+#  person_id    :integer         
+#  item_id      :integer         
+#  created_on   :date            
 #
 
 # photo_type should be able to indicate if the photo is the primary photo for the given item/person/location
