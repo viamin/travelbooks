@@ -110,7 +110,7 @@ div.progressBar div.background {
 }
 #loginbox {
 	position: absolute;
-	left: 430px;
+	left: 415px;
 	color: #ffd;
 	display: inline;
 /*	border: 1px solid #9c6828;
@@ -124,15 +124,13 @@ div.progressBar div.background {
 	font-size: 1.3em;
 	display: inline;
 }
-#loginbox input {
+.txinput {
 	height: 12px;
 }
-#user_info {
-	top: 150px;
-	width: 250px;
-	position: absolute;
+#lgnbut {
+	font-family: Optima, verdana, arial, helvetica, sans-serif;
+	height: 18px;
 }
-
 #item_info {
 	top: 150px;
 	left: 300px;
@@ -172,7 +170,6 @@ div.progressBar div.background {
 	color: #ffd;
 }
 #cfl {
-	position: relative;
 	padding: 20px;
 }
 #ulog {
@@ -186,4 +183,84 @@ div.progressBar div.background {
 #ulog a {
 	font-size: 14px;
 	color: #ffd;
+}
+#person_form label {
+	display: block;
+	float: left;
+	padding-right: 10px;
+	text-align: right;
+	width: 150px;
+}
+#top_content {
+	float:left;
+}
+#user_box {
+	position: absolute;
+	top: 136px;
+	width: 280px;
+	border: 1px solid #633c1f;
+}
+#welcome_bar {
+	width: 276px;
+	padding: 2px;
+	top: 0;
+	background: #633c1f;
+	color: #ffd;
+}
+#info_box {
+	float: left;
+	width: 276px;
+	height: 200px;
+	padding: 2px;
+}
+#user_photo {
+	float: left;
+	position: relative;
+	left: 8px;
+	top: 8px;
+	width: 80px;
+	height: 120px;
+}
+#user_info {
+	float: left;
+	top: 0;
+	width: 180px;
+}
+#user_info ul {
+	list-style: none;
+}
+#edit_list ul {
+	list-style: none;
+}
+#user_map {
+	position: absolute;
+	top: 136px;
+	left: 373px;
+	height: 227px;
+	width: 458px;
+	border: 1px solid #633c1f;
+}
+#book_list {
+	position: absolute;
+	top: 383px;
+	width: 280px;
+	height: 200px;
+	border: 1px solid #633c1f;
+	overflow: auto;
+}
+#friend_list {
+	position: absolute;
+	top: 383px;
+	left: 373px;
+	width: 458px;
+	height: 200px;
+	border: 1px solid #633c1f;
+	overflow: auto;
+}
+#stat_box {
+	position: absolute;
+	top: 605px;
+	width: 759px;
+	height: 173px;
+	border: 1px solid #633c1f;
 }

@@ -86,6 +86,9 @@ class Person < ActiveRecord::Base
   def main_photo
     #selects the main photo for profile page
     main_photo = self.photos.detect { |photo| photo.photo_type == 1 } || self.photos.first
+    if main_photo.nil?
+      Photo.default
+    end
   end
   
   #checks all location changes for this person and find the current information

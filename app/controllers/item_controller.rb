@@ -73,10 +73,10 @@ class ItemController < ApplicationController
       end
     else
       # send "no photo" image
-      send_file("public/images/no_image.gif",
+      send_file("public/images/no_image.png",
               :disposition => 'inline',
-              :type => 'image/jpeg',
-              :file_name => 'no_image.gif')
+              :type => 'image/png',
+              :file_name => 'no_image.png')
     end      
   end
   

@@ -38,6 +38,15 @@ class Photo < ActiveRecord::Base
   end
   
   def is_primary?
-    return photo_type == 1
+    return (photo_type == 1)
+  end
+  
+  def self.default
+    temp = Photo.new
+    temp.path = '/images/'
+    temp.file_name = 'no_image.png'
+    temp.width = 200
+    temp.height = 200
+    temp
   end
 end

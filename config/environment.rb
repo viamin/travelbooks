@@ -6,6 +6,7 @@
 
 # Specifies gem version of Rails to use when vendor/rails is not present
 #RAILS_GEM_VERSION = '1.1.6'
+ENV['GEM_HOME'] = '/usr/local/lib/ruby/gems-dev/1.8'
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')

@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-  before_filter :authorize, :except => [:login, :join]
+  before_filter :authorize, :except => [:login, :join, :retrieve]
   
   def index
     redirect_to :action => 'home'
@@ -57,8 +57,12 @@ class UserController < ApplicationController
     unless session[:current_action] == :user_home
       case session[:current_action]
       when :user_add_item
-        redirect_to :controller => 'item', :action => 'associate', :id => session[:item_last_viewed]
-        return
+        unless session[:item_last_viewed].nil?
+          redirect_to :controller => 'item', :action => 'associate', :id => session[:item_last_viewed]
+          return
+        else
+          session[:current_action] = :user_home
+        end
       end
     end
     @person = Person.find(session[:user_id]) unless session[:user_id].nil?
@@ -108,6 +112,15 @@ class UserController < ApplicationController
   def logout
     session[:user_id] = nil
     redirect_to :controller => 'main', :action => 'index'
+  end
+  
+  def retrieve
+    retrieve = params[:retrieve]
+    if retrieve['loop'] == 'True'
+      if validate_email(retrieve['email_address'])
+        
+      end
+    end
   end
 
   def join

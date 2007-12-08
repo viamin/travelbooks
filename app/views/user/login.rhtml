@@ -1,10 +1,3 @@
-<h3>This is the login page</h3>
-<p>To register a new account, click <%= link_to "here", :action => :join %>.</p>
-<% form_for :person, @person, :url => {:action => :login} do |f| %>
-<label for="person_login">Login or E-mail</label>
-<%= f.text_field :login %><br>
-<label for="person_password">Password</label>
-<%= f.password_field :password %><br>
-<%= submit_tag 'Login' %>
-<% end %>
-
+<p>You need to log in by typing your login name and password into the boxes above. Once you log in, you can access your account, which will show you the TravellerBooks you have given to friends and travellers, as well as any books you have received from your friends.</p>
+<p>If you do not have an account, you will need to create one before you can use the full features of TravellerBook.com. <%= link_to "Create an Account", :action => 'join' %></p>
+<p>If you have forgotten your login name or password, you can retrieve it. <%= link_to "I forgot my login or password", :action => 'retrieve' %></p>

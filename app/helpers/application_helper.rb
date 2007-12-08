@@ -3,6 +3,10 @@ module ApplicationHelper
   def ymap_js_tag
     output = '<script type="text/javascript" src="http://api.maps.yahoo.com/ajaxymap?v=3.0&appid=travellerbooks"></script>'
   end
+  
+  def gmap_js_tag
+    output = '<script type="text/javascript" src="http://maps.google.com/maps?file=api&v=2&key=ABQIAAAAzMUFFnT9uH0xq39J0Y4kbhTJQa0g3IQ9GZqIMmInSLzwtGDKaBR6j135zrztfTGVOm2QlWnkaidDIQ"></script>'
+  end
 
   def ymap_div_style(width, height)
     output = '<style type="text/css">'

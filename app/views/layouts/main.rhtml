@@ -5,9 +5,8 @@
 <head>
   <title>Main: <%= controller.action_name %></title>
   <%= stylesheet_link_tag 'main' %>
-
 </head>
-<body>
+<body id="main" onload="loadUserMap();">
 	<div id="main_stripe">
 		<div id="titlebar">
 			<%= image_tag("logo100.png", {:id => 'smlogo'}) %>
