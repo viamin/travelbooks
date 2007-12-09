@@ -16,6 +16,9 @@ class UserController < ApplicationController
 
   def show
     @person = Person.find(params[:id])
+    @location = @person.current_location
+    @items = @person.items
+    @friends = @person.friends
   end
 
   def new
@@ -72,6 +75,7 @@ class UserController < ApplicationController
       @visitor = @person.first_name
       @location = @person.current_location
       @items = @person.items
+      @friends = @person.friends
     end
     @map = GMap.new("map_div")
     @map.control_init(:large_map => true,:map_type => true)

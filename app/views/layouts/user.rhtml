@@ -5,10 +5,10 @@
 <head>
   <title>Main: <%= controller.action_name %></title>
   <%= stylesheet_link_tag 'main' %>
-  <%= javascript_include_tag 'application', 'mapstraction.js' %>
   <%= ymap_js_tag %>
+  <%= javascript_include_tag 'mapstraction', 'application' %>
 </head>
-<body>
+<body id="user" onload="loadUserMap();">
 	<div id="main_stripe">
 		<div id="titlebar">
 			<%= image_tag("logo100.png", {:id => 'smlogo'}) %>

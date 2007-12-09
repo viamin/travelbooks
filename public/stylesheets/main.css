@@ -81,6 +81,8 @@ div.progressBar div.background {
   height: 18px;
   width: 0%;
 }
+
+/* ---------------- Layout styles ----------------*/
 #smlogo {
 	position: absolute;
 	left: 10px;
@@ -113,10 +115,6 @@ div.progressBar div.background {
 	left: 415px;
 	color: #ffd;
 	display: inline;
-/*	border: 1px solid #9c6828;
-	background: #deb173; 
-	font-size: 9pt;
-	line-height: 24px; */
 }
 #loginbox label {
 	top: 3px;
@@ -194,6 +192,8 @@ div.progressBar div.background {
 #top_content {
 	float:left;
 }
+
+/* --------------------- User pages specific style --------------- */
 #user_box {
 	position: absolute;
 	top: 136px;
@@ -214,23 +214,39 @@ div.progressBar div.background {
 	padding: 2px;
 }
 #user_photo {
-	float: left;
-	position: relative;
+	position: absolute;
 	left: 8px;
-	top: 8px;
+	top: 32px;
 	width: 80px;
 	height: 120px;
 }
 #user_info {
-	float: left;
-	top: 0;
+	position: absolute;
+	top: 20px;
+	left: 38px;
 	width: 180px;
 }
 #user_info ul {
 	list-style: none;
 }
+#edit_list {
+	position: absolute;
+	border: 1px solid #633c1f; 
+	top: 164px;
+	left: -1px;
+	height: 62px;
+	width: 280px;
+	overflow: auto;
+}
 #edit_list ul {
 	list-style: none;
+	position: absolute;
+	left: -60px;
+	top: -8px;
+}
+#edit_list ul li {
+	float: left;
+	padding-left: 10px;
 }
 #user_map {
 	position: absolute;
@@ -240,22 +256,52 @@ div.progressBar div.background {
 	width: 458px;
 	border: 1px solid #633c1f;
 }
-#book_list {
+#book_box {
 	position: absolute;
 	top: 383px;
 	width: 280px;
 	height: 200px;
 	border: 1px solid #633c1f;
-	overflow: auto;
 }
-#friend_list {
+#book_bar {
+	width: 276px;
+	padding: 2px;
+	background: #633c1f;
+	color: #ffd;
+}
+#book_list {
+	overflow: auto;
+	top: 0;
+	left: 0;
+	width: 280px;
+	height: 178px;
+}
+#blist {
+	list-style: none;
+}
+#friend_box {
 	position: absolute;
 	top: 383px;
 	left: 373px;
 	width: 458px;
 	height: 200px;
 	border: 1px solid #633c1f;
+}
+#friend_bar {
+	width: 454px;
+	padding: 2px;
+	background: #633c1f;
+	color: #ffd;
+}
+#friend_list {
 	overflow: auto;
+	top: 0;
+	left: 0;
+	width: 458px;
+	height: 178px;
+}
+#flist {
+	list-style: none;
 }
 #stat_box {
 	position: absolute;
@@ -263,4 +309,22 @@ div.progressBar div.background {
 	width: 759px;
 	height: 173px;
 	border: 1px solid #633c1f;
+}
+#stat_bar {
+	width: 755px;
+	padding: 2px;
+	background: #633c1f;
+	color: #ffd;
+}
+#tb_stats {
+	position: absolute;
+	top: 30px;
+	left: 10px;
+	overflow: auto;
+}
+#mileage {
+	position: absolute;
+	top: 30px;
+	left: 300px;
+	overflow: auto;
 }

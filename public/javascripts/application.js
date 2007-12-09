@@ -3,5 +3,12 @@
 
 function loadUserMap() {
 	var mapstract = new Mapstraction('user_map', 'yahoo');
-	mapstract.setCenterAndZoom(new LatLonPoint(42.4365, -83.4884), 2);
+	mapstract.setCenterAndZoom(new LatLonPoint(36.9732, -122.0135), 10);
+	mapstract.addSmallControls();
+	mapstract.addMapTypeControls();
+	// Move the map since for some reason the css is being ignored
+	var map_div = document.getElementById("user_map");
+	map_div.style.position = 'absolute';
+	map_div.style.top = '136px';
+	map_div.style.left = '373px';
 }

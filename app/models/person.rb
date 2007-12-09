@@ -131,6 +131,11 @@ class Person < ActiveRecord::Base
     legs.each { |distance| total_distance += distance }
     total_distance
   end
+  
+  def friends
+    friends = Friend.find(:all, :conditions => {:owner_person_id => self.id})
+    friends.map! {|f| Person.find(f.entry_person_id) unless f.nil?}
+  end
 
   private
   def self.hash_password(password)

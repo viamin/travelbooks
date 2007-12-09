@@ -2,7 +2,7 @@
 	<div id="welcome_bar">Welcome, <%= @visitor %>!</div>
 	<div id="info_box">
 		<div id="user_photo">
-			<%= image_tag( "#{@person.main_photo.path}#{@person.main_photo.file_name}", :class => "main_photo", :size => "80x120") if @person.main_photo %>
+			<%= image_tag( "#{@person.main_photo.path}#{@person.main_photo.file_name}", :class => "main_photo", :size => "80x120") %>
 		</div>
 		<div id="user_info">
 			<ul id="ilist">
@@ -13,83 +13,51 @@
       			<li><%= h(@location.state) %></li>
       			<li><%= h(@location.country) %></li>
     		</ul>
-			<div id="edit_list">
-				<ul id="edit_options_list">
-					<li><%= link_to "Edit my Profile", :action => "edit" %></li>
-				</ul>
-			</div>
+		</div>
+		<div id="edit_list">
+			<ul id="edit_options_list">
+				<li><%= link_to "Edit my Photos", :action => "edit", :controller => :photo %>
+				<li><%= link_to "Edit my Profile", :action => "edit" %></li>
+				<li><%= link_to "Edit my Locations", :action => "edit", :controller => :location %></li>
+			</ul>
 		</div>
 	</div>
 </div>
-<div id="user_map">
+<div id="user_map" style="height: 227px;width: 458px;">
 </div>
-<div id="book_list">
-	
-</div>
-<div id="friend_list">
-	
-</div>
-<div id="stat_box">
-	
-</div>
-
-<!--
-
-
-<div id="top_content"><p>Welcome to TravellerBook.com, <%= @visitor %>!</p>
-
-<p>This is the page where you can track your friends, your TravellerBooks, and anything else you want!</p>
-</div>
-
-<div id="info_box">
-	<div id="user_info">
-		<div id="user_edit_menu">
-			<ul id="edit_options_list">
-				<li><%= link_to "Edit my Profile", :action => "edit" %></li>
-				<li><%= link_to "Track a TravellerBook", :controller => "track", :action => "new" %></li>
-			</ul>
-		</div>
-  		<%= image_tag( "#{@person.main_photo.path}#{@person.main_photo.file_name}", :class => "main_photo", :size => "#{@person.main_photo.width}x#{@person.main_photo.height}") if @person.main_photo %>
-		<div id="personal_info">
-    		<ul id="ilist">
-      			<li><%= h(@person.first_name) %></li>
-      			<li><%= h(@person.age) %></li>
-      			<li><%= h(@location.address_line_1) %></li>
-      			<li><%= h(@location.city) %></li>
-      			<li><%= h(@location.state) %></li>
-      			<li><%= h(@location.country) %></li>
-    		</ul>
-  		</div>
-  		<div id="books_block">
-			<ul id="blist">
+<div id="book_box">
+	<div id="book_bar">My Books</div>
+	<div id="book_list">
+		<ul id="blist">
 			<%= render :partial => 'item', :collection => @items %>
 		</ul>
-		<div id="bfind">
-	  		<%= link_to_remote 'Add Book', :update => 'bfind', :url => {:action => 'search', :controller => 'track'} %>
-    	</div>
-  	</div>
-	</div>
-	<div id="item_info">
-  		<div id="tb_stats">
-			<h3>TravellerBook Personal Stats</h3>
-			<ul>
-	  			<li>Books Given:</li>
-	  			<li>Books Received:</li>
-	  			<li>Countries Visited:</li>
-	  			<li>Countries Books Visited:</li>
-			</ul>
-  		</div>
-  		<div id="mileage">
-    		<h3>My Mileage</h3>
-    		<ul>
-	  			<li>Miles Travelled:</li>
-	  			<li>Miles Books given Travelled:</li>
-	  			<li>Miles last book received travelled:</li>
-    		</ul>
-  		</div>
 	</div>
 </div>
-
-
--->
-
+<div id="friend_box">
+	<div id="friend_bar">My Friends</div>
+	<div id="friend_list">
+		<ul id="flist">
+			<%= render :partial => "friend", :collection => @friends %>
+		</ul>
+	</div>
+</div>
+<div id="stat_box">
+	<div id="stat_bar">My Traveller Stats</div>
+	<div id="tb_stats">
+		<h3>TravellerBook Personal Stats</h3>
+		<ul>
+  			<li>Books Given:</li>
+  			<li>Books Received:</li>
+  			<li>Countries Visited:</li>
+  			<li>Countries Books Visited:</li>
+		</ul>
+	</div>
+	<div id="mileage">
+		<h3>My Mileage</h3>
+		<ul>
+  			<li>Miles Travelled:</li>
+  			<li>Miles Books given Travelled:</li>
+  			<li>Miles last book received travelled:</li>
+		</ul>
+	</div>
+</div>
