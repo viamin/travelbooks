@@ -231,11 +231,10 @@ div.progressBar div.background {
 }
 #edit_list {
 	position: absolute;
-	border: 1px solid #633c1f; 
 	top: 164px;
 	left: -1px;
-	height: 62px;
-	width: 280px;
+	height: 63px;
+	width: 281px;
 	overflow: auto;
 }
 #edit_list ul {
@@ -274,10 +273,13 @@ div.progressBar div.background {
 	top: 0;
 	left: 0;
 	width: 280px;
-	height: 178px;
+	height: 177px;
 }
 #blist {
 	list-style: none;
+}
+#blist img {
+	border: 0;
 }
 #friend_box {
 	position: absolute;
@@ -298,10 +300,13 @@ div.progressBar div.background {
 	top: 0;
 	left: 0;
 	width: 458px;
-	height: 178px;
+	height: 177px;
 }
 #flist {
 	list-style: none;
+}
+#flist img {
+	border: 0;
 }
 #stat_box {
 	position: absolute;
@@ -318,13 +323,20 @@ div.progressBar div.background {
 }
 #tb_stats {
 	position: absolute;
-	top: 30px;
-	left: 10px;
+	top: 23px;
+	height: 150px;
+	width: 280px;
 	overflow: auto;
 }
 #mileage {
 	position: absolute;
-	top: 30px;
+	top: 23px;
 	left: 300px;
+	height: 150px;
+	width: 459px;
 	overflow: auto;
 }
+.udl {
+	list-style: none;
+}
+/******** Profile Form section ***********/

@@ -38,11 +38,13 @@ class UserController < ApplicationController
   # Only allow logged in user's profile to be edited by using session - no user input will be taken
   def edit
     @person = Person.find(session[:user_id])
+    @location = @person.current_location
   end
 
   def update
     @person = Person.find(params[:id])
-    if @person.update_attributes(params[:person])
+    @location = Location.find(params[:location][:id])
+    if @person.update_attributes(params[:person]) && @location.update_attributes(params[:location])
       flash[:notice] = 'Person was successfully updated.'
       redirect_to :action => 'show', :id => @person
     else

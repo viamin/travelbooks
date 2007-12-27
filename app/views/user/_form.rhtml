@@ -1,31 +1,29 @@
 <%= error_messages_for 'person' %>
 
 <!--[form:person]-->
-<p><label for="person_title">Title</label><br/>
-<%= text_field 'person', 'title'  %></p>
+<p><label for="person_title">Title</label>
+<%= select(:person, :title, Person.titles) %></p>
 
-<p><label for="person_first_name">First name</label><br/>
+<p><label for="person_first_name">First name</label>
 <%= text_field 'person', 'first_name'  %></p>
 
-<p><label for="person_middle_name">Middle name</label><br/>
+<p><label for="person_middle_name">Middle name</label>
 <%= text_field 'person', 'middle_name'  %></p>
 
-<p><label for="person_last_name">Last name</label><br/>
+<p><label for="person_last_name">Last name</label>
 <%= text_field 'person', 'last_name'  %></p>
 
-<p><label for="person_suffix">Suffix</label><br/>
-<%= text_field 'person', 'suffix'  %></p>
+<p><label for="person_suffix">Suffix</label>
+<%= select(:person, :suffix, Person.suffixes) %></p>
 
-<p><label for="person_birthday">Birthday</label><br/>
+<p><label for="person_birthday">Birthday</label>
 <%= date_select 'person', 'birthday', :start_year => 1950, :end_year => Time.now.year %></p>
 
-<p><label for="person_email">Email Address</label><br/>
+<p><label for="person_email">Email Address</label>
 <%= text_field 'person', 'email'  %></p>
 
-<p><label for="person_login">Login</label><br/>
+<p><label for="person_login">Login</label>
 <%= text_field 'person', 'login'  %></p>
 
-<p><label for="person_notes">Notes</label><br/>
-<%= text_area 'person', 'notes'  %></p>
 <!--[eoform:person]-->
 

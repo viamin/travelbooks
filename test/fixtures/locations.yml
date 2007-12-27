@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 14
+# Schema version: 15
 #
 # Table name: locations
 #
@@ -18,6 +18,8 @@
 #  latitude       :string(255)     not null
 #  longitude      :string(255)     not null
 #  altitude_feet  :integer         default(0)
+#  date_start     :datetime        
+#  date_end       :datetime        
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

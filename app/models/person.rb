@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 14
+# Schema version: 15
 #
 # Table name: people
 #
@@ -135,6 +135,14 @@ class Person < ActiveRecord::Base
   def friends
     friends = Friend.find(:all, :conditions => {:owner_person_id => self.id})
     friends.map! {|f| Person.find(f.entry_person_id) unless f.nil?}
+  end
+  
+  def self.titles
+    titles = ["", "Mr.", "Mrs.", "Ms."]
+  end
+  
+  def self.suffixes
+    suffixes = ["", "Sr.", "Jr.", "III"]
   end
 
   private

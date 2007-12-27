@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 14
+# Schema version: 15
 #
 # Table name: locations
 #
@@ -18,6 +18,9 @@
 #  latitude       :string(255)     not null
 #  longitude      :string(255)     not null
 #  altitude_feet  :integer         default(0)
+#  date_start     :datetime        
+#  date_end       :datetime    
+#  public         :boolean    
 #
 
 class Location < ActiveRecord::Base
@@ -51,6 +54,15 @@ class Location < ActiveRecord::Base
   # Calculates the distance between two locations
   def distance_to(location)
     ########### TBD ############
+  end
+  
+  def location_type
+    if self.loc_type == @ADDRESS
+      location_type = "Address"
+    else
+      location_type = "GPS Coordinates"
+    end
+    location_type
   end
   
   # This determines if a location created during initial signup should be saved

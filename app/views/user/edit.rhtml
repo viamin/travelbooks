@@ -1,8 +1,8 @@
-<h1>Editing Profile</h1>
+<h1>Edit Your Public Profile</h1>
 
-<p>Your personal info</p>
 <% form_tag :action => 'update', :id => @person do %>
   <%= render :partial => 'form' %>
+  <%= render :partial => 'location/form' %>
   <%= submit_tag 'Update' %>
 <% end %>
 

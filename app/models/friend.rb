@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 14
+# Schema version: 15
 #
 # Table name: friends
 #
@@ -8,10 +8,6 @@
 #  entry_person_id :integer         
 #  permissions     :integer         
 #
-# owner_person_id is the person_id of the person who added the friend who has id entry_person_id
-# This scheme means you can have a friend in your list and you don't have to be on their list
-# It also means for a symmetrical friendship you would need two entries in this table. Maybe later
-# a symmetrical flag will need to be added but that probably will hurt performance.
 
 class Friend < ActiveRecord::Base
   

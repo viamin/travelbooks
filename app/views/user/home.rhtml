@@ -16,9 +16,9 @@
 		</div>
 		<div id="edit_list">
 			<ul id="edit_options_list">
-				<li><%= link_to "Edit my Photos", :action => "edit", :controller => :photo %>
+				<li><%= link_to "Edit my Photos", :action => "edit", :controller => 'photo', :id => @person.id %>
 				<li><%= link_to "Edit my Profile", :action => "edit" %></li>
-				<li><%= link_to "Edit my Locations", :action => "edit", :controller => :location %></li>
+				<li><%= link_to "Edit my Locations", :action => "list", :controller => 'location', :id => @person.id %></li>
 			</ul>
 		</div>
 	</div>
@@ -45,7 +45,7 @@
 	<div id="stat_bar">My Traveller Stats</div>
 	<div id="tb_stats">
 		<h3>TravellerBook Personal Stats</h3>
-		<ul>
+		<ul class="udl">
   			<li>Books Given:</li>
   			<li>Books Received:</li>
   			<li>Countries Visited:</li>
@@ -54,7 +54,7 @@
 	</div>
 	<div id="mileage">
 		<h3>My Mileage</h3>
-		<ul>
+		<ul class="udl">
   			<li>Miles Travelled:</li>
   			<li>Miles Books given Travelled:</li>
   			<li>Miles last book received travelled:</li>
