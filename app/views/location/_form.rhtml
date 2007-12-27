@@ -1,0 +1,24 @@
+<%= error_messages_for 'location' %>
+
+<!--[form:location]-->
+<%= hidden_field 'location', 'id' %>
+
+<p><label for="location_address_line_1">Address</label>
+<%= text_field 'location', 'address_line_1' %></p>
+
+<p><label for="location_address_line_2">Address Line 2</label>
+<%= text_field 'location', 'address_line_2' %></p>
+
+<p><label for="location_city">City</label>
+	<%= text_field 'location', 'city' %></p>
+
+<p><label for="location_state">State/Province</label>
+	<%= text_field 'location', 'state' %></p>
+	
+<p><label for="location_zip_code">Postal Code</label>
+	<%= text_field 'location', 'zip_code' %></p>
+	
+<p><label for="location_country">Country</label>
+	<%= country_select 'location', 'country', ["--Select One--", "-------------", "United States"] %></p>
+
+<!--[eoform:location]-->
