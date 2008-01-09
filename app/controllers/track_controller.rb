@@ -1,5 +1,5 @@
 class TrackController < ApplicationController
-  before_filter :authorize
+  before_filter :authorize, :except => [:find]
   
   def index
     if params[:tbook]
@@ -12,10 +12,10 @@ class TrackController < ApplicationController
   end
 
   def find
-    @user = Person.find(session[:user_id])
+    @user = Person.find(session[:user_id]) if logged_in?
     @books = Item.find(:all, :conditions => {:tbid => params[:search_box]})
     if @books.empty?
-      if params[:search_box].length > 6
+      if (params[:tbid].length > 6)
         @message = "Nothing found with that code"
       else
         @message = "Invalid code"
@@ -41,6 +41,12 @@ class TrackController < ApplicationController
     end
     session[:current_action] = :user_add_item
     render :action => 'search'
+  end
+  
+  private
+  
+  def logged_in?
+    !( session.nil? || (session[:user_id].nil?) || (session[:user_id].empty?) )
   end
   
 end

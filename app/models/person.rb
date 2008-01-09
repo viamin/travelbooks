@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 15
+# Schema version: 16
 #
 # Table name: people
 #
@@ -15,6 +15,8 @@
 #  hashed_password :text            
 #  created_on      :date            
 #  notes           :text            not null
+#  nickname        :string(255)     
+#  headline        :string(255)     
 #
 
 # consider dropping login
@@ -29,7 +31,6 @@ class Person < ActiveRecord::Base
   validates_presence_of :email, :on => :create, :message => "can't be blank"
   validates_presence_of :login, :on => :create, :message => "can't be blank"
   validates_presence_of :password, :on => :create, :message => "can't be blank"
-  validates_presence_of :first_name, :on => :create, :message => "can't be blank"
   validates_confirmation_of :password
   validates_format_of :email, 
 		      :with => /^(.+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
@@ -51,7 +52,7 @@ class Person < ActiveRecord::Base
       self.login = String.new if self.login.nil?
       self.notes = String.new if self.notes.nil?
       self.password = String.new if self.password.nil?
-      self.birthday = Time.local(2007, 5, 23) if self.birthday.nil?
+      self.birthday = Time.local(1997, 1, 1) if self.birthday.nil?
     end
   end
   
@@ -93,14 +94,28 @@ class Person < ActiveRecord::Base
   
   #checks all location changes for this person and find the current information
   def latest_location
-    changes_list = self.changes.clone
-    all_locations = changes_list.delete_if {|change| change.change_type == 1}
-    all_locations.sort {|x,y| x.effective_date <=> y.effective_date}
-    Location.find(all_locations.last.new_value)
+    self.all_locations.last
   end
   
   def current_location
     self.latest_location
+  end
+  
+  def all_locations
+    changes_list = self.changes.clone
+    all_locations = changes_list.delete_if {|change| change.change_type == 1}
+    all_locations.sort {|x,y| x.effective_date <=> y.effective_date}
+    all_locations.collect! {|c| Location.find(c.new_value)}
+  end
+  
+  # remove the association with this location
+  def remove_location(location)
+    
+  end
+  
+  # change the active location if someone else is using old_location
+  def swap_locations(old_location, new_location)
+    
   end
   
   def change_location(new_location, date = Time.now)

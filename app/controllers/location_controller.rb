@@ -12,8 +12,8 @@ class LocationController < ApplicationController
          :redirect_to => { :action => :list }
          
   def list
-    @person = Person.find(params[:id])
-    @locations = @person.locations
+    @person = Person.find(session[:user_id])
+    @locations = @person.all_locations
   end
   
   def show
@@ -21,23 +21,46 @@ class LocationController < ApplicationController
   end
   
   def new
-    
+    @person = Person.find(session[:user_id])
   end
   
   def edit
-    
+    @location = Location.find(params[:id])
+    @person = Person.find(params[:person_id])
   end
   
   def create
-    
+    @person = Person.find(session[:user_id])
+    @location = Location.create(params[:location])
+    if params[:location][:current] == 'on' 
+      old_loc = @person.current_location
+      
+    end
+    redirect_to :action => 'list'
   end
   
   def update
-    
+    @location = Location.find(params[:location][:id])
+    @person = Person.find(session[:user_id])
+    if @location.used_elsewhere?
+      @new_location = Location.new(params[:location])
+      @person.swap_locations(@location, @new_location)
+      redirect_to :action => 'list'
+    else
+      if @location.update_attributes(params[:location])
+        flash[:notice] = 'Location was successfully updated.'
+        redirect_to :action => 'list'
+      else
+        render :action => 'edit'
+      end
+    end
   end
   
   def destroy
-    Location.find(params[:id]).destroy
+    @location = Location.find(params[:id])
+    @person = Person.find(params[:person_id])
+    @person.remove_location(@location)
+    @location.destroy unless @location.used_elsewhere?
     redirect_to :action => 'list'
   end
 end

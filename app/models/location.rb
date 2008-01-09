@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 15
+# Schema version: 16
 #
 # Table name: locations
 #
@@ -19,8 +19,8 @@
 #  longitude      :string(255)     not null
 #  altitude_feet  :integer         default(0)
 #  date_start     :datetime        
-#  date_end       :datetime    
-#  public         :boolean    
+#  date_end       :datetime        
+#  public         :boolean         
 #
 
 class Location < ActiveRecord::Base
@@ -30,8 +30,8 @@ class Location < ActiveRecord::Base
   has_many :changes
   validates_presence_of :country, :message => "must be chosen"
   
-  @ADDRESS = 1
-  @GPS = 2
+  ADDRESS = 1
+  GPS = 2
   
   attr_reader :ADDRESS
   attr_reader :GPS
@@ -51,13 +51,18 @@ class Location < ActiveRecord::Base
     end
   end
   
+  # Determines if the location is used in more than one place. 
+  def used_elsewhere?
+    true #for testing purposes...
+  end
+  
   # Calculates the distance between two locations
   def distance_to(location)
     ########### TBD ############
   end
   
   def location_type
-    if self.loc_type == @ADDRESS
+    if self.loc_type == ADDRESS
       location_type = "Address"
     else
       location_type = "GPS Coordinates"

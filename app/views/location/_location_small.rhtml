@@ -1,33 +1,11 @@
 <!--[form:location_small]-->
 
 <%= f.hidden_field 'id' %>
-<%= h(location_small.description)%>
-<%= h(location_small.address_line_1) %>
-<%= h(location_small.address_line_2) %>
-<%= h(location_small.location_type) %>
-<label for="location_public">Public?</label>
-<%= f.checkbox 'public' %>
+<p><%= h(location_small.description)%></p>
+<p><%= h(location_small.address_line_1) %>
+<%= h(location_small.address_line_2) %></p>
+<p><%= h(location_small.location_type) %></p>
+<p><label for="location_public">Public?</label>
+<%= f.check_box 'public' %></p>
 
 <!--[eoform:location_small]-->
-
-# Table name: locations
-#
-#  id             :integer         not null, primary key
-#  description    :string(255)     not null
-#  loc_type       :integer         default(1)
-#  person_id      :integer         
-#  item_id        :integer         
-#  credit_card_id :integer         default(0)
-#  address_line_1 :string(255)     not null
-#  address_line_2 :string(255)     
-#  city           :string(255)     not null
-#  state          :string(255)     not null
-#  zip_code       :string(255)     not null
-#  country        :string(255)     not null
-#  latitude       :string(255)     not null
-#  longitude      :string(255)     not null
-#  altitude_feet  :integer         default(0)
-#  date_start     :datetime        
-#  date_end       :datetime    
-#  public         :boolean    
-#

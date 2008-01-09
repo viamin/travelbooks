@@ -10,6 +10,7 @@ class PhotoController < ApplicationController
   def list
     @person = Person.find(params[:id])
     @photos = @person.photos
+    @message = "No photos have been uploaded" if @photos.length == 0
   end
   
   def show
@@ -17,12 +18,12 @@ class PhotoController < ApplicationController
   end
   
   def new
-    
   end
   
   def edit
     @person = Person.find(params[:id])
     @photos = @person.photos
+    @message = "No photos have been uploaded" if @photos.length == 0
   end
   
   def create

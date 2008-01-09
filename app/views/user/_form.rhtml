@@ -1,8 +1,8 @@
 <%= error_messages_for 'person' %>
 
 <!--[form:person]-->
-<p><label for="person_title">Title</label>
-<%= select(:person, :title, Person.titles) %></p>
+<p><label for="person_nickname">Public Name</label>
+<%= text_field 'person', 'nickname' %></p>
 
 <p><label for="person_first_name">First name</label>
 <%= text_field 'person', 'first_name'  %></p>
@@ -13,8 +13,8 @@
 <p><label for="person_last_name">Last name</label>
 <%= text_field 'person', 'last_name'  %></p>
 
-<p><label for="person_suffix">Suffix</label>
-<%= select(:person, :suffix, Person.suffixes) %></p>
+<p><label for="person_headline">Headline</label>
+<%= text_field 'person', 'headline' %></p>
 
 <p><label for="person_birthday">Birthday</label>
 <%= date_select 'person', 'birthday', :start_year => 1950, :end_year => Time.now.year %></p>

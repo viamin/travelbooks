@@ -38,14 +38,12 @@ class UserController < ApplicationController
   # Only allow logged in user's profile to be edited by using session - no user input will be taken
   def edit
     @person = Person.find(session[:user_id])
-    @location = @person.current_location
   end
 
   def update
     @person = Person.find(params[:id])
-    @location = Location.find(params[:location][:id])
-    if @person.update_attributes(params[:person]) && @location.update_attributes(params[:location])
-      flash[:notice] = 'Person was successfully updated.'
+    if @person.update_attributes(params[:person])
+      flash[:notice] = 'Profile was successfully updated.'
       redirect_to :action => 'show', :id => @person
     else
       render :action => 'edit'
@@ -142,7 +140,7 @@ class UserController < ApplicationController
    # Change this to put the @person and @location saves in a transaction to make sure both of them go through or none. 
       if @person.save!
         if @location.has_good_info? && @location.save!
-          @person.changes.create( :location => @location, :effective_date => Time.now, :change_type => 2, :new_value => @location.id.to_s)
+          @person.changes.create( :location => @location, :person => @person, :effective_date => Time.now, :change_type => 2, :new_value => @location.id.to_s)
         end
           flash[:notice] = "Thank you for joining TravellerBook.com"
           session[:user_id] = @person.id

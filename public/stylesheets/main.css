@@ -98,6 +98,7 @@ div.progressBar div.background {
 	background: url('/images/topbar2.png');
 }
 #titlebar a {
+	float: left;
 	display: block;
 	color: #ffe7af;
 	text-decoration: none;
@@ -105,7 +106,6 @@ div.progressBar div.background {
 	text-shadow: #3f2800 3px 3px 2px;
 	font-size: 36pt;
 	width: 756px;
-	height: 66px;
 }
 #titlebar strong {
 	display: none;
@@ -340,3 +340,13 @@ div.progressBar div.background {
 	list-style: none;
 }
 /******** Profile Form section ***********/
+
+/******** Location Editing **********/
+.short_loc {
+	border: 1px solid black;
+	float: left;
+	list-style: none;
+}
+.short_loc p {
+	
+}

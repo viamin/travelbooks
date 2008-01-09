@@ -1,2 +1,9 @@
 Use this README file to introduce your application and point to useful places in the API for learning more.
 Run "rake appdoc" to generate API documentation for your models and controllers.
+
+TBD:
+Add code to resize the main stripe element to fit the page content
+Create a page footer
+Figure out how to prove the book is in your hands - TB serial number + random number?
+
+Need to change the way Locations are edited. A location can't be changed once an item is associated with it, so the only way for a user to "delete" a location is to remove their association from it, not to actually delete the record. Likewise, a location can't be edited once it is a book destination since that would modify the path of the book retroactively, which shouldn't be allowed. 

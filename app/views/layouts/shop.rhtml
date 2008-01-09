@@ -9,10 +9,7 @@
 </head>
 <body>
 	<div id="main_stripe">
-		<div id="titlebar">
-			<%= image_tag("logo100.png", {:id => 'smlogo'}) %>
-			<%= link_to "TravellerBook.com", :controller => 'main', :action => 'index' %>
-		</div>
+		<%= render :partial => "main/titlebar" %>
 		<div id="linkbar">
 			<%= render :partial => "main/toplinks" %>
 		</div>

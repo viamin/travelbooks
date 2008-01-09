@@ -1,6 +1,9 @@
 <h1>Edit Location Info</h1>
 
+<% form_for :location, @location, :url => {:action => 'update'} do |f| %>
+	<%= render :partial => 'form' %>
+	<%= f.submit %>
+<% end %>
 
-
-<%= link_to 'View Profile', :action => 'show', :id => @person %> |
+<%= link_to 'Back to List', :action => 'list', :id => @person %> |
 <%= link_to 'Home', :action => 'home' %>

@@ -1,9 +1,7 @@
-<h1>Edit your photos</h1>
+<h1><%= @person.nickname %>'s Photos</h1>
 <p class="message"><%= @message if @message.length > 1 %></p>
-<div id="photo_editing_list">
+<div id="photo_list">
 	<% @photos.each do |photo| %>
 		<%= render :partial => 'photo', :object => photo %>
 	<% end %>
 </div>
-
-<%= link_to "Upload a photo", :action => 'new' %>
