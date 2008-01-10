@@ -302,11 +302,36 @@ div.progressBar div.background {
 	width: 458px;
 	height: 177px;
 }
+.friend_caption {
+	width: 80px;
+	text-align: center;
+	display: block;
+	text-decoration: none;
+	color: #000;
+}
 #flist {
 	list-style: none;
 }
 #flist img {
 	border: 0;
+}
+.right_rlink {
+	position: absolute;
+	left: 380px;
+	top: 5px;
+	text-align: right;
+	color: #ffd;
+	text-decoration: none;
+	font-size: 12px;
+}
+.left_rlink {
+	position: absolute;
+	left: 205px;
+	top: 5px;
+	text-align: right;
+	color: #ffd;
+	text-decoration: none;
+	font-size: 12px;
 }
 #stat_box {
 	position: absolute;

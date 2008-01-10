@@ -1,5 +1,5 @@
 <div id="user_box">
-	<div id="welcome_bar">Welcome, <%= @visitor %>!</div>
+	<div id="welcome_bar">Welcome, <%= @person.display_name %>!</div>
 	<div id="info_box">
 		<div id="user_photo">
 			<%= link_to image_tag( "#{@person.main_photo.path}#{@person.main_photo.file_name}", :class => "main_photo", :size => "80x120"), :controller => :photo, :action => :list, :id => @person %>
@@ -26,7 +26,7 @@
 <div id="user_map" style="height: 227px;width: 458px;">
 </div>
 <div id="book_box">
-	<div id="book_bar">My Books</div>
+	<div id="book_bar">My Books (<%= @items.length %>)<%= link_to "View All", {:controller => 'item', :action => 'list', :id => @person.id}, {:class => 'left_rlink'} %></div>
 	<div id="book_list">
 		<ul id="blist">
 			<%= render :partial => 'item', :collection => @items %>
@@ -34,7 +34,7 @@
 	</div>
 </div>
 <div id="friend_box">
-	<div id="friend_bar">My Friends</div>
+	<div id="friend_bar">My Friends (<%= @friends.length %>)<%= link_to "View All", {:controller => 'user', :action => 'friends', :id => @person.id}, {:class => 'right_rlink'} %></div>
 	<div id="friend_list">
 		<ul id="flist">
 			<%= render :partial => "friend", :collection => @friends %>

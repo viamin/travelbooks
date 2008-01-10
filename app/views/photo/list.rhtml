@@ -1,4 +1,4 @@
-<h1><%= @person.nickname %>'s Photos</h1>
+<h1><%= @person.display_name %>'s Photos</h1>
 <p class="message"><%= @message if @message.length > 1 %></p>
 <div id="photo_list">
 	<% @photos.each do |photo| %>

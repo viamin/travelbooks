@@ -16,6 +16,9 @@ class UserController < ApplicationController
 
   def show
     @person = Person.find(params[:id])
+    if @person == Person.find(session[:user_id])
+      redirect_to :action => 'edit'
+    end
     @location = @person.current_location
     @items = @person.items
     @friends = @person.friends
@@ -72,7 +75,6 @@ class UserController < ApplicationController
     if @person.nil?
       redirect_to :action => 'login'
     else
-      @visitor = @person.first_name
       @location = @person.current_location
       @items = @person.items
       @friends = @person.friends

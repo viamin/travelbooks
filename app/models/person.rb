@@ -64,6 +64,15 @@ class Person < ActiveRecord::Base
     @password = nil
   end
 
+  def display_name
+    if self.nickname.nil? || self.nickname.empty?
+      display_name = self.first_name
+    else
+      display_name = self.nickname
+    end
+    display_name
+  end
+
   def self.login(name, password)
     hashed_password = Person.hash_password(password || "")
     Person.find(:first, :conditions => { :login => name, :hashed_password => hashed_password })
