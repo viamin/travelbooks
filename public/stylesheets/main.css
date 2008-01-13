@@ -375,3 +375,15 @@ div.progressBar div.background {
 .short_loc p {
 	
 }
+/*********** Photos section ***********/
+#photo_list {
+	list-style: none;
+}
+.photo_list_item {
+	float: left;
+}
+.photo_caption {
+	text-align: center;
+}s
+}
+}

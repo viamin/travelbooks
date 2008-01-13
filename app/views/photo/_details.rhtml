@@ -1,0 +1,13 @@
+<%= error_messages_for 'photo' %>
+
+<!--[form:details]-->
+<%= f.hidden_field 'id' %>
+
+<%= image_tag details.url %><br />
+
+<p><label for="photo_caption">Caption</label>
+<%= f.text_field 'caption' %></p>
+
+<p><label for="photo_is_primary">Main Photo?</label>
+	<%= f.check_box 'is_primary?' %></p>
+<!--[eoform:details]-->

@@ -26,6 +26,12 @@ class Photo < ActiveRecord::Base
   belongs_to :item
   belongs_to :location
   
+  # photo_types
+  MAIN = 1
+  PERSON = 2
+  ITEM = 3
+  LOCATION = 4
+  
   def initialize(*params)
     super(*params)
     if self.new_record?
@@ -38,15 +44,63 @@ class Photo < ActiveRecord::Base
   end
   
   def is_primary?
-    return (photo_type == 1)
+    return (photo_type == MAIN)
+  end
+  
+  def make_primary_for_person(person)
+    person.photos.collect{|photo| photo.photo_type = PERSON && photo.save! }
+    self.photo_type = MAIN
+  end
+  
+  def make_primary_for_item(item)
+    item.photos.collect{|photo| photo.photo_type = ITEM && photo.save! }
+    self.photo_type = MAIN
+  end
+  
+  def make_primary_for_location(location)
+    location.photos.collect{|photo| photo.photo_type = LOCATION && photo.save! }
+    self.photo_type = MAIN
   end
   
   def self.default
     temp = Photo.new
     temp.path = '/images/'
     temp.file_name = 'no_image.png'
+    temp.url = 'no_image.png'
     temp.width = 200
     temp.height = 200
     temp
   end
+  
+  def self.save(photo_params, person)
+    data = photo_params['data']
+    filename = "public/images/#{person.login}/#{data.original_filename}"
+    if File.exist?(filename)
+      #flash[:error] = "That filename has already been used"
+      timing "filename already used - not saving"
+    else
+      unless File.exist?("public/images/#{person.login}")
+        Dir.mkdir("public/images/#{person.login}")
+      end
+      f = File.new(filename, "wb")
+      f.write data.read
+      f.close
+      photo = Photo.new
+      photo.path = filename
+      photo.caption = photo_params['caption']
+      photo.file_name = data.original_filename
+      photo.person_id = photo_params['person_id']
+      photo.content_type = data.content_type
+      photo.bytes = data.length
+      photo.photo_type = photo_params['photo_type']
+      photo.url = "#{person.login}/#{data.original_filename}"
+      photo.save!
+      #flash[:notice] = "Uploaded #{photo_params['file_name']}"
+      timing "Uploaded #{photo_params['file_name']}"
+    end
+    # database method
+    # not implemented yet
+    # see http://wiki.rubyonrails.org/rails/pages/HowtoUploadFiles
+  end
+  
 end

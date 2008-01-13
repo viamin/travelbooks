@@ -1,0 +1,7 @@
+<h1>Edit photo details</h1>
+<div id="photo_details">
+	<% form_for :photo, @photo, :url => {:action => 'update'} do |f| %>
+		<%= render :partial => 'details', :object => @photo, :locals => {:f => f} %>
+		<%= f.submit 'Update' %>
+	<% end %>
+</div>

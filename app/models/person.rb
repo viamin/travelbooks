@@ -95,10 +95,11 @@ class Person < ActiveRecord::Base
   
   def main_photo
     #selects the main photo for profile page
-    main_photo = self.photos.detect { |photo| photo.photo_type == 1 } || self.photos.first
+    main_photo = self.photos.detect { |photo| photo.photo_type == Photo::MAIN } || self.photos.first
     if main_photo.nil?
-      Photo.default
+      main_photo = Photo.default
     end
+    main_photo
   end
   
   #checks all location changes for this person and find the current information
@@ -139,6 +140,13 @@ class Person < ActiveRecord::Base
     change.save
 #    self.locations << new_location
 #    self.save!
+  end
+  
+  # shows all travellerbooks the person has had at some point
+  def all_items
+    item_array = Change.find(:all, :conditions => {:change_type => 1, :new_value => self.id})
+    timing "#{item_array.pretty_inspect}"
+    items = item_array.collect!{ |item| Item.find(item.item_id) unless item.item_id.nil?}.compact.uniq unless item_array.empty?
   end
   
   # This function will calculate how far the user has travelled himself, and store the data in 

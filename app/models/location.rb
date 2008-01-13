@@ -30,6 +30,7 @@ class Location < ActiveRecord::Base
   has_many :changes
   validates_presence_of :country, :message => "must be chosen"
   
+  # Locations types
   ADDRESS = 1
   GPS = 2
   

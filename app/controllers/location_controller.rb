@@ -36,6 +36,7 @@ class LocationController < ApplicationController
       old_loc = @person.current_location
       
     end
+    #update person's location list
     redirect_to :action => 'list'
   end
   

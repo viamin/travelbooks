@@ -1,0 +1,7 @@
+<li class="photo_list_item">
+	<%= image_tag photo.url %><br />
+	<div class="photo_caption"><%= photo.caption %></div><br />
+	<div class="photo_ops"><%= link_to 'Delete', {:controller => 'photo', :action => 'destroy', :id => photo.id}, :confirm => "Are you sure you want to permanently delete this photo?", :method => 'delete' %>
+		<%= link_to 'Edit Details', {:controller => 'photo', :action => 'edit_details', :id => photo.id} %>
+	</div>
+</li>

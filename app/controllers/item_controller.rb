@@ -11,7 +11,8 @@ class ItemController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @item_pages, @items = paginate :items, :per_page => 10
+    @person = Person.find(params[:id])
+    @items = @person.all_items
   end
 
   def show

@@ -1,9 +1,9 @@
 <h1>Edit your photos</h1>
-<p class="message"><%= @message if @message.length > 1 %></p>
+<p class="message"><%= @message unless (@message.nil? || @message.length <= 1) %></p>
 <div id="photo_editing_list">
-	<% @photos.each do |photo| %>
-		<%= render :partial => 'photo', :object => photo %>
-	<% end %>
+	<ul id="photo_list">
+		<%= render :partial => 'photo', :collection => @photos %>
+	</ul>
 </div>
 
 <%= link_to "Upload a photo", :action => 'new' %>
