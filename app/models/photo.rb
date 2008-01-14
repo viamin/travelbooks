@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 16
+# Schema version: 17
 #
 # Table name: photos
 #
@@ -48,18 +48,21 @@ class Photo < ActiveRecord::Base
   end
   
   def make_primary_for_person(person)
-    person.photos.collect{|photo| photo.photo_type = PERSON && photo.save! }
-    self.photo_type = MAIN
+    person.photos.collect{|photo| photo.photo_type = Photo::PERSON && photo.save! }
+    self.photo_type = Photo::MAIN
+    self.save!
   end
   
   def make_primary_for_item(item)
-    item.photos.collect{|photo| photo.photo_type = ITEM && photo.save! }
-    self.photo_type = MAIN
+    item.photos.collect{|photo| photo.photo_type = Photo::ITEM && photo.save! }
+    self.photo_type = Photo::MAIN
+    self.save!
   end
   
   def make_primary_for_location(location)
-    location.photos.collect{|photo| photo.photo_type = LOCATION && photo.save! }
-    self.photo_type = MAIN
+    location.photos.collect{|photo| photo.photo_type = Photo::LOCATION && photo.save! }
+    self.photo_type = Photo::MAIN
+    self.save!
   end
   
   def self.default
@@ -86,13 +89,17 @@ class Photo < ActiveRecord::Base
       f.write data.read
       f.close
       photo = Photo.new
+      if ((photo_params['is_primary?'] == 1) || (photo_params['is_primary?'] == "1"))
+        photo.photo_type = MAIN
+      else
+        photo.photo_type = PERSON
+      end
       photo.path = filename
       photo.caption = photo_params['caption']
       photo.file_name = data.original_filename
       photo.person_id = photo_params['person_id']
       photo.content_type = data.content_type
       photo.bytes = data.length
-      photo.photo_type = photo_params['photo_type']
       photo.url = "#{person.login}/#{data.original_filename}"
       photo.save!
       #flash[:notice] = "Uploaded #{photo_params['file_name']}"

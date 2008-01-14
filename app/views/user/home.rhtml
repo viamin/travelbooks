@@ -16,9 +16,7 @@
 		</div>
 		<div id="edit_list">
 			<ul id="edit_options_list">
-				<li><%= link_to "Edit my Photos", :action => "edit", :controller => 'photo', :id => @person.id %>
-				<li><%= link_to "Edit my Profile", :action => "edit" %></li>
-				<li><%= link_to "Edit my Locations", :action => "list", :controller => 'location', :id => @person.id %></li>
+				<li><%= link_to "Edit my Details", :action => "edit" %></li>
 			</ul>
 		</div>
 	</div>
@@ -34,7 +32,7 @@
 	</div>
 </div>
 <div id="friend_box">
-	<div id="friend_bar">My Friends (<%= @friends.length %>)<%= link_to "View All", {:controller => 'user', :action => 'friends', :id => @person.id}, {:class => 'right_rlink'} %></div>
+	<div id="friend_bar">My Friends (<%= @friends.length %>)<%= link_to "View All", {:controller => 'user', :action => 'list', :id => @person.id}, {:class => 'right_rlink'} %></div>
 	<div id="friend_list">
 		<ul id="flist">
 			<%= render :partial => "friend", :collection => @friends %>

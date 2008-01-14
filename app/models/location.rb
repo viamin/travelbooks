@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 16
+# Schema version: 17
 #
 # Table name: locations
 #
@@ -83,6 +83,14 @@ class Location < ActiveRecord::Base
       return true if self.latitude != "" && self.longitude != ""
     end
     return false
+  end
+  
+  def address(sep = "")
+    "#{self.address_line_1}#{sep}#{self.address_line_2}"
+  end
+  
+  def city_state_zip
+    "#{self.city}, #{self.state} #{self.zip_code}"
   end
   
   # This method will return true or false depending on if the new location information added

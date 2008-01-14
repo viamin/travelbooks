@@ -7,10 +7,6 @@ class PhotoController < ApplicationController
   # Put: update
   # Delete: destroy
   
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
-  
   def list
     @person = Person.find(params[:id])
     if @person == Person.find(session[:user_id])
@@ -50,11 +46,16 @@ class PhotoController < ApplicationController
     redirect_to :action => 'list', :id => @person
   end
   
+  def make_primary
+    @photo = Photo.find(params[:id])
+    @person = Person.find(session[:user_id])
+    @photo.make_primary_for_person(@person)
+    redirect_to :action => 'edit', :id => @person
+  end
+  
   def update
     @person = Person.find(session[:user_id])
     @photo = Photo.find(params[:photo][:id])
-    @photo.make_primary_for_person(@person) if (params[:photo]['is_primary'] == 1)
-    params[:photo]['is_primary?'] = nil
     @photo.caption = params[:photo][:caption]
     if @photo.save
       flash[:notice] = 'Photo was successfully updated.'
@@ -66,8 +67,9 @@ class PhotoController < ApplicationController
   
   def destroy
     photo = Photo.find(params[:id])
+    @person = Person.find(session[:user_id])
     File.delete(photo.path) if File.exist?(photo.path)
     photo.destroy
-    redirect_to :action => 'list'
+    redirect_to :action => 'list', :id => @person
   end
 end

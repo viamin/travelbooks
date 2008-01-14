@@ -7,3 +7,7 @@
 </div>
 
 <%= link_to "Upload a photo", :action => 'new' %>
+<hr />
+<%= link_to "Edit my Profile", :action => "edit", :controller => 'user', :id => @person.id %> |
+<%= link_to "Edit my Locations", :action => "list", :controller => 'location', :id => @person.id %> | 
+<%= link_to 'Home', :controller => 'user', :action => 'home' %>

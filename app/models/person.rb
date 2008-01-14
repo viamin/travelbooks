@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 16
+# Schema version: 17
 #
 # Table name: people
 #
@@ -17,11 +17,12 @@
 #  notes           :text            not null
 #  nickname        :string(255)     
 #  headline        :string(255)     
+#  salt            :string(255)     
 #
 
 # consider dropping login
 class Person < ActiveRecord::Base
-  require "digest/sha1"
+  require "digest/sha2"
   has_many :changes
   has_many :locations, :through => :changes
   has_many :items
@@ -53,6 +54,7 @@ class Person < ActiveRecord::Base
       self.notes = String.new if self.notes.nil?
       self.password = String.new if self.password.nil?
       self.birthday = Time.local(1997, 1, 1) if self.birthday.nil?
+      self.salt = Digest::SHA2.hexdigest(rand.to_s)[5..10]
     end
   end
   
@@ -75,12 +77,34 @@ class Person < ActiveRecord::Base
 
   def self.login(name, password)
     hashed_password = Person.hash_password(password || "")
-    Person.find(:first, :conditions => { :login => name, :hashed_password => hashed_password })
+    @person = Person.find(:first, :conditions => {:login => name})
+    if "#{@person.hashed_password}" == "#{hashed_password}#{@person.salt}"
+      return_val = @person
+    else
+      return_val = nil
+    end
+    return_val
   end
 
-  def self.email_login(name, password)
+  def self.email_login(email, password)
     hashed_password = Person.hash_password(password || "")
-    Person.find(:first, :conditions => { :email => name, :hashed_password => hashed_password })
+    @person = Person.find(:first, :conditions => {:email => email})
+    if "#{@person.hashed_password}" == "#{hashed_password}#{@person.salt}"
+      return_val = @person
+    else
+      return_val = nil
+    end unless @person.nil?
+    return_val
+  end
+  
+  def change_password(old_pass, new_pass)
+    verified = ("#{self.hashed_password}" == "#{Person.hash_password(old_pass)}#{self.salt}")
+    if verified
+      new_hash = Person.hash_password(new_pass)
+      self.hashed_password = "#{new_hash}#{self.salt}"
+      self.save!
+    end
+    return verified
   end
 
   def age
@@ -179,7 +203,7 @@ class Person < ActiveRecord::Base
 
   private
   def self.hash_password(password)
-    Digest::SHA1.hexdigest(password)
+    main = Digest::SHA2.hexdigest(password)
   end
 
 end

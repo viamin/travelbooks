@@ -17,5 +17,7 @@
 		<li><%= link_to "Add a new location", {:action => "new", :controller => 'location'} %></li>
 	</ul>
 </div>
-<%= link_to 'View Profile', :action => 'show', :id => @person %> |
-<%= link_to 'Home', :action => 'home' %>
+
+<%= link_to "Edit my Profile", :action => "edit", :controller => 'user', :id => @person.id %> |
+<%= link_to "Edit my Photos", :action => "edit", :controller => 'photo', :id => @person.id %> | 
+<%= link_to 'Home', :controller => 'user', :action => 'home' %>

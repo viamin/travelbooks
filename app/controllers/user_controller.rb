@@ -10,8 +10,13 @@ class UserController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    #Change this to only show friends of the logged in person
-    @person_pages, @people = paginate :people, :per_page => 10
+    @person = Person.find(params[:id])
+    @friends = @person.friends
+    @map = Mapstraction.new("friend_map",:yahoo)
+  	  @map.control_init(:small => true)
+  	  @map.center_zoom_init([75.5,-42.56],4)
+  	  #@map.marker_init(Marker.new([75.6,-42.467],:label => "Hello", :info_bubble => "Info! Info!", :icon => "/images/icon02.png"))
+    render :layout => false
   end
 
   def show
@@ -76,7 +81,7 @@ class UserController < ApplicationController
       redirect_to :action => 'login'
     else
       @location = @person.current_location
-      @items = @person.items
+      @items = @person.all_items.uniq
       @friends = @person.friends
     end
     @map = GMap.new("map_div")

@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 16
+# Schema version: 17
 #
 # Table name: people
 #
@@ -17,6 +17,7 @@
 #  notes           :text            not null
 #  nickname        :string(255)     
 #  headline        :string(255)     
+#  salt            :string(255)     
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

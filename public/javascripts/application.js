@@ -12,3 +12,15 @@ function loadUserMap() {
 	map_div.style.top = '136px';
 	map_div.style.left = '373px';
 }
+
+function loadFriendMap() {
+	var mapstract = new Mapstraction('friend_map', 'yahoo');
+	mapstract.setCenterAndZoom(new LatLonPoint(36.9732, -122.0135), 10);
+	mapstract.addSmallControls();
+	mapstract.addMapTypeControls();
+	// Move the map since for some reason the css is being ignored
+	var map_div = document.getElementById("friend_map");
+	map_div.style.position = 'absolute';
+	map_div.style.top = '146px';
+	map_div.style.left = '373px';
+}
