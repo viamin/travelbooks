@@ -1,7 +1,7 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   def ymap_js_tag
-    output = '<script type="text/javascript" src="http://api.maps.yahoo.com/ajaxymap?v=3.0&appid=travellerbooks"></script>'
+    output = '<script type="text/javascript" src="http://api.maps.yahoo.com/ajaxymap?v=3.4&appid=travellerbooks"></script>'
   end
   
   def gmap_js_tag

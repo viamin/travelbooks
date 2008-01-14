@@ -302,11 +302,11 @@ div.progressBar div.background {
 	width: 458px;
 	height: 177px;
 }
-#user_map {
+#friend_map {
 	position: absolute;
-	top: 136px;
+	top: 146px;
 	left: 373px;
-	height: 458px;
+	height: 227px;
 	width: 458px;
 	border: 1px solid #633c1f;
 }

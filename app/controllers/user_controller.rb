@@ -13,9 +13,9 @@ class UserController < ApplicationController
     @person = Person.find(params[:id])
     @friends = @person.friends
     @map = Mapstraction.new("friend_map",:yahoo)
-  	  @map.control_init(:small => true)
-  	  @map.center_zoom_init([75.5,-42.56],4)
-  	  #@map.marker_init(Marker.new([75.6,-42.467],:label => "Hello", :info_bubble => "Info! Info!", :icon => "/images/icon02.png"))
+  	@map.control_init(:small => true)
+  	@map.center_zoom_init([36.9732, -122.0135],10)
+  	#@map.marker_init(Marker.new([75.6,-42.467],:label => "Hello", :info_bubble => "Info! Info!", :icon => "/images/icon02.png"))
     render :layout => false
   end
 

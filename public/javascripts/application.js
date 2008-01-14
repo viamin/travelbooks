@@ -12,11 +12,3 @@ function loadUserMap() {
 	map_div.style.top = '136px';
 	map_div.style.left = '373px';
 }
-
-function positionFriendMap() {
-	// Move the map since for some reason the css is being ignored
-	var map_div = document.getElementById("friend_map");
-	map_div.style.position = 'absolute';
-	map_div.style.top = '146px';
-	map_div.style.left = '373px';
-}
