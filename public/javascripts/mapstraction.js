@@ -1,0 +1,1 @@
+../../vendor/plugins/ym4r_mapstraction/javascript/mapstraction.js
