@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 17
+# Schema version: 19
 #
 # Table name: items
 #
@@ -18,7 +18,7 @@ class Item < ActiveRecord::Base
   has_many :locations, :through => :changes do
     def current(as_of = nil)
       as_of = Time.now if as_of.nil?
-      find :first, :conditions => {:change_type => 1, :effective_date_lte => as_of}, :order => "effective_date DESC"
+      find :first, :conditions => {:change_type => Change::OWNERSHIP, :effective_date_lte => as_of}, :order => "effective_date DESC"
     end
   end
   has_many :photos
@@ -49,7 +49,7 @@ class Item < ActiveRecord::Base
 
   def change_owners(new_owner, date = Time.now)
     change = Change.new
-    change.change_type = 1
+    change.change_type = Change::OWNERSHIP
     change.old_value = self.person.id
     change.new_value = new_owner.id
     change.effective_date = date
@@ -69,13 +69,13 @@ class Item < ActiveRecord::Base
     person_moves = Array.new
     # Two ways this can change: a person can give an item to someone else in a different location,
     # or a person with the item can move to another location. Both cases need to be accounted for.
-    switches = Change.find(:all, :conditions => ["change_type = '1' and item_id = ? and effective_date >= ? and effective_date <= ?", self.id, start_date, end_date], :order => "effective_date")
+    switches = Change.find(:all, :conditions => ["change_type = ? and item_id = ? and effective_date >= ? and effective_date <= ?", Change::PERSON_LOCATION, self.id, start_date, end_date], :order => "effective_date")
     unless switches.empty?
       switches.each_with_index do |change, index|
         next_index = index + 1
         switches.last == change ? next_change = nil : next_change = switches[next_index]
         next_change.nil? ? range_end = end_date : range_end = next_change.effective_date
-        moves = Change.find(:all, :conditions => ["change_type = '2' and person_id = ? and effective_date >= ? and effective_date < ?", change.item.person, change.effective_date, range_end])
+        moves = Change.find(:all, :conditions => ["change_type = ? and person_id = ? and effective_date >= ? and effective_date < ?", Change::PERSON_LOCATION, change.item.person, change.effective_date, range_end])
         moves.each { |move| person_moves << move } unless moves.empty?
       end
     end

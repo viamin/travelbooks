@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 17
+# Schema version: 19
 #
 # Table name: locations
 #
@@ -15,12 +15,13 @@
 #  state          :string(255)     not null
 #  zip_code       :string(255)     not null
 #  country        :string(255)     not null
-#  latitude       :string(255)     not null
-#  longitude      :string(255)     not null
 #  altitude_feet  :integer         default(0)
 #  date_start     :datetime        
 #  date_end       :datetime        
 #  public         :boolean         
+#  lat            :float           
+#  lng            :float           
+#  icon           :string(255)     
 #
 
 class Location < ActiveRecord::Base
@@ -28,14 +29,14 @@ class Location < ActiveRecord::Base
   belongs_to :person
   belongs_to :credit_card
   has_many :changes
-  validates_presence_of :country, :message => "must be chosen"
+  validates_presence_of :country, :message => "must be selected"
+  acts_as_mappable
+  
+  include GeoKit::Geocoders
   
   # Locations types
   ADDRESS = 1
   GPS = 2
-  
-  attr_reader :ADDRESS
-  attr_reader :GPS
   
   def initialize(*params)
     super(*params)
@@ -46,8 +47,6 @@ class Location < ActiveRecord::Base
       self.city = String.new if self.city.nil?
       self.state = String.new if self.state.nil?
       self.zip_code = String.new if self.zip_code.nil?
-      self.latitude = String.new if self.latitude.nil?
-      self.longitude = String.new if self.longitude.nil?
       self.country = String.new if self.country.nil?
     end
   end
@@ -80,7 +79,7 @@ class Location < ActiveRecord::Base
       #Check that the address is more than just the country
       return true if self.state != ""
     else
-      return true if self.latitude != "" && self.longitude != ""
+      return false if self.lat.nil? || self.lng.nil?
     end
     return false
   end
@@ -102,6 +101,26 @@ class Location < ActiveRecord::Base
     params_hash.each { |param, value| difference_count += 1 unless self.send(param).down_case.strip == value.down_case.strip }
     return true if difference_count > DIFFERENCE_THRESHOLD
     return false
+  end
+  
+  def before_save
+    # Geocode the address and save the lat/lng returned
+    loc = MultiGeocoder.geocode("#{self.address_line_1} #{self.address_line_2} #{self.city} #{self.state} #{self.zip_code} #{self.country}")
+    if loc.success
+      self.lat = loc.lat
+      self.lng = loc.lng
+      self.zip_code = loc.zip unless loc.zip.nil?
+    end
+    timing self.pretty_inspect
+  end
+  
+  def public_message
+    if self.public == true
+      public_message = "This location is public"
+    else
+      public_message = "This location is private"
+    end
+    public_message
   end
   
 end

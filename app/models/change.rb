@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 17
+# Schema version: 19
 #
 # Table name: changes
 #
@@ -22,12 +22,10 @@ class Change < ActiveRecord::Base
   belongs_to :location
   
   # possible change_types:
-  @OWNERSHIP = 1
-  @PERSON_LOCATION = 2
-  
-  # allow change types to be read from outside the class
-  attr_reader :OWNERSHIP
-  attr_reader :PERSON_LOCATION
+  OWNERSHIP = 1
+  PERSON_LOCATION = 2
+  PERSON_MAIN_LOCATION = 3
+  ITEM_LOCATION = 4
   
   def initialize(*params)
     super(*params)

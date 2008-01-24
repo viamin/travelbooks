@@ -21,10 +21,14 @@
 		</div>
 	</div>
 </div>
-<div id="user_map" style="height: 227px;width: 458px;">
+<div id="map_box">
+	<div id="map_bar">
+		My World <%= link_to "Mark TravellerBooks", {:controller => 'user', :action => 'mark_items', :id => @person.id}, {:class => 'right_mlink'} %><%= link_to "Mark Friends", {:controller => 'user', :action => 'mark_friends', :id => @person.id}, {:class => 'right_rlink'} %>
+	</div>
+	<%= @map.div(:width => 458, :height => 204) %>
 </div>
 <div id="book_box">
-	<div id="book_bar">My Books (<%= @items.length %>)<%= link_to "View All", {:controller => 'item', :action => 'list', :id => @person.id}, {:class => 'left_rlink'} %></div>
+	<div id="book_bar">My TravellerBooks (<%= @items.length %>)<%= link_to "View All", {:controller => 'item', :action => 'list', :id => @person.id}, {:class => 'left_rlink'} %></div>
 	<div id="book_list">
 		<ul id="blist">
 			<%= render :partial => 'item', :collection => @items %>

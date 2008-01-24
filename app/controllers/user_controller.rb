@@ -83,11 +83,11 @@ class UserController < ApplicationController
       @location = @person.current_location
       @items = @person.all_items.uniq
       @friends = @person.friends
+      @map = Mapstraction.new('user_map', :yahoo)
+      @map.control_init(:small => true)
+      @map.center_zoom_init([@location.lat, @location.lng], 10)
+      @map.marker_init(Marker.new([@location.lat, @location.lng], :label => @person.display_name, :info_bubble => @location.description))
     end
-    @map = GMap.new("map_div")
-    @map.control_init(:large_map => true,:map_type => true)
-    @map.center_zoom_init([38.134557,-95.537109],4)
-    
   end  
   
   def login
@@ -147,7 +147,7 @@ class UserController < ApplicationController
    # Change this to put the @person and @location saves in a transaction to make sure both of them go through or none. 
       if @person.save!
         if @location.has_good_info? && @location.save!
-          @person.changes.create( :location => @location, :person => @person, :effective_date => Time.now, :change_type => 2, :new_value => @location.id.to_s)
+          @person.changes.create( :location => @location, :person => @person, :effective_date => Time.now, :change_type => Change::PERSON_LOCATION, :new_value => @location.id.to_s)
         end
           flash[:notice] = "Thank you for joining TravellerBook.com"
           session[:user_id] = @person.id

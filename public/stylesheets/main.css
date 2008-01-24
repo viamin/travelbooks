@@ -247,13 +247,25 @@ div.progressBar div.background {
 	float: left;
 	padding-left: 10px;
 }
-#user_map {
+#map_box {
 	position: absolute;
 	top: 136px;
 	left: 373px;
 	height: 227px;
 	width: 458px;
 	border: 1px solid #633c1f;
+}
+#map_bar {
+	width: 454px;
+	padding: 2px;
+	background: #633c1f;
+	color: #ffd;
+}
+#user_map {
+	top: 136px;
+	left: 373px;
+	height: 204px;
+	width: 458px;
 }
 #book_box {
 	position: absolute;
@@ -342,6 +354,15 @@ div.progressBar div.background {
 .right_rlink {
 	position: absolute;
 	left: 380px;
+	top: 5px;
+	text-align: right;
+	color: #ffd;
+	text-decoration: none;
+	font-size: 12px;
+}
+.right_mlink {
+	position: absolute;
+	left: 240px;
 	top: 5px;
 	text-align: right;
 	color: #ffd;

@@ -2,6 +2,7 @@ Use this README file to introduce your application and point to useful places in
 Run "rake appdoc" to generate API documentation for your models and controllers.
 
 TBD:
+Fix location editing to allow changing main location and publicity on the main list page
 Add code to resize the main stripe element to fit the page content
 Create a page footer
 Figure out how to prove the book is in your hands - TB serial number + random number?

@@ -93,7 +93,7 @@ class ItemController < ApplicationController
     end
     @person = Person.find(session[:user_id])
     @change = Change.new
-    @change.change_type = 1
+    @change.change_type = Change::OWNERSHIP
     @change.item = @item
     @change.new_value = session[:user_id]
     @change.location = @person.current_location

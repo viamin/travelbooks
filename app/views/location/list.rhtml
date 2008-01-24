@@ -1,16 +1,15 @@
 <h1>Edit Your Traveller Location Data</h1>
 
-<p>This page lists the places you have lived and visited that will show up on your TravellerBooks.com home page. Other people can see this information if you mark is as public.</p>
+<p>This page lists the places you have lived and visited that will show up on your TravellerBooks.com home page. Other people can see this information if you mark it as public.</p>
 
 <% @locations.each do |location| -%>
-	<% form_for :location, location, :url => {:controller => 'location', :action => 'edit'}, :html => {:class => 'short_loc'} do |f| %>
-		<%= hidden_field 'person', 'id' %>
-		<%= render :partial => 'location_small', :object => location, :locals => {:f => f} %>
+	<div class="short_loc">
+		<%= render :partial => 'location_small', :object => location %>
 		<ul class="short_loc_list">
 			<li><%= link_to "Edit This Location", :action => "edit", :controller => 'location', :id => location.id, :person_id => @person.id %></li>
 			<li><%= link_to "Delete This Location", {:action => "destroy", :controller => 'location', :id => location.id, :person_id => @person.id}, {:confirm => 'Are you sure?', :method => :post} %></li>
 		</ul>
-	<% end %>
+	</div>
 <% end %>
 <div class="short_loc">
 	<ul class="short_loc_list">

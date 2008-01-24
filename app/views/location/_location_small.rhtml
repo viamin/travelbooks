@@ -1,11 +1,7 @@
-<!--[form:location_small]-->
-
-<%= f.hidden_field 'id' %>
+<!--[div:location_small]-->
 <p><%= h(location_small.description)%></p>
 <p><%= h(location_small.address_line_1) %>
 <%= h(location_small.address_line_2) %></p>
-<p><%= h(location_small.location_type) %></p>
-<p><label for="location_public">Public?</label>
-<%= f.check_box 'public' %></p>
-
-<!--[eoform:location_small]-->
+<p><%= h(location_small.city_state_zip) %></p>
+<p><%= h(location_small.public_message) %></p>
+<!--[eodiv:location_small]-->

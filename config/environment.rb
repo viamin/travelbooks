@@ -82,7 +82,9 @@ module Kernel
     PP.pp(self, '')
   end
 end
-=end# These defaults are used in GeoKit::Mappable.distance_to and in acts_as_mappable
+=end
+
+# These defaults are used in GeoKit::Mappable.distance_to and in acts_as_mappable
 GeoKit::default_units = :miles
 GeoKit::default_formula = :sphere
 
@@ -103,7 +105,7 @@ GeoKit::Geocoders::proxy_pass = nil
 # This is your yahoo application key for the Yahoo Geocoder.
 # See http://developer.yahoo.com/faq/index.html#appid
 # and http://developer.yahoo.com/maps/rest/V1/geocode.html
-GeoKit::Geocoders::yahoo = 'REPLACE_WITH_YOUR_YAHOO_KEY'
+GeoKit::Geocoders::yahoo = 'travellerbooks'
     
 # This is your Google Maps geocoder key. 
 # See http://www.google.com/apis/maps/signup.html
@@ -131,4 +133,4 @@ GeoKit::Geocoders::geocoder_ca = false
 # Be aware that there are Terms of Use restrictions on how you can use the 
 # various geocoders.  Make sure you read up on relevant Terms of Use for each
 # geocoder you are going to use.
-GeoKit::Geocoders::provider_order = [:google,:us]
+GeoKit::Geocoders::provider_order = [:yahoo,:google]

@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 17
+# Schema version: 19
 #
 # Table name: people
 #
@@ -132,12 +132,17 @@ class Person < ActiveRecord::Base
   end
   
   def current_location
-    self.latest_location
+    changes_list = self.changes.clone
+    main_location = changes_list.delete_if {|change| change.change_type != Change::PERSON_MAIN_LOCATION }.sort { |x,y| x.effective_date <=> y.effective_date }.collect! {|c| Location.find(c.new_value)}.last
+    if main_location.nil?
+      main_location = self.latest_location
+    end
+    main_location
   end
   
   def all_locations
     changes_list = self.changes.clone
-    all_locations = changes_list.delete_if {|change| change.change_type == 1}
+    all_locations = changes_list.delete_if {|change| ((change.change_type == Change::OWNERSHIP) || (change.change_type == Change::ITEM_LOCATION))}
     all_locations.sort {|x,y| x.effective_date <=> y.effective_date}
     all_locations.collect! {|c| Location.find(c.new_value)}
   end
@@ -154,7 +159,7 @@ class Person < ActiveRecord::Base
   
   def change_location(new_location, date = Time.now)
     change = Change.new
-    change.change_type = 2
+    change.change_type = Change::PERSON_LOCATION
     change.old_value = self.latest_location.id
     change.new_value = new_location.id
     change.effective_date = date
@@ -168,7 +173,7 @@ class Person < ActiveRecord::Base
   
   # shows all travellerbooks the person has had at some point
   def all_items
-    item_array = Change.find(:all, :conditions => {:change_type => 1, :new_value => self.id})
+    item_array = Change.find(:all, :conditions => {:change_type => Change::OWNERSHIP, :new_value => self.id})
     timing "#{item_array.pretty_inspect}"
     items = item_array.collect!{ |item| Item.find(item.item_id) unless item.item_id.nil?}.compact.uniq unless item_array.empty?
   end
