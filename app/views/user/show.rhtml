@@ -21,7 +21,13 @@
 		</div>
 	</div>
 </div>
-<div id="user_map" style="height: 227px;width: 458px;">
+<div id="map_box">
+	<div id="map_bar">
+		<%= h(@person.display_name) %>'s World 
+		<%= link_to_remote "Mark TravellerBooks", :update => "map_box", :url => {:controller => 'user', :action => 'mark_items', :id => @person.id, :width => 456, :height => 207}, :html => {:class => 'right_mlink'} %>
+		<%= link_to_remote "Mark Friends", :update => "map_box", :url => {:controller => 'user', :action => 'mark_friends', :id => @person.id, :width => 456, :height => 207}, :html => {:class => 'right_rlink'} %>
+	</div>
+	<%= @map.div(:width => 456, :height => 207) %>
 </div>
 <div id="book_box">
 	<div id="book_bar"><%= h(@person.first_name) %>'s Books</div>

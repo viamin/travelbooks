@@ -111,7 +111,7 @@ class Location < ActiveRecord::Base
       self.lng = loc.lng
       self.zip_code = loc.zip unless loc.zip.nil?
     end
-    timing self.pretty_inspect
+    #timing self.pretty_inspect
   end
   
   def public_message

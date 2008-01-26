@@ -23,9 +23,11 @@
 </div>
 <div id="map_box">
 	<div id="map_bar">
-		My World <%= link_to "Mark TravellerBooks", {:controller => 'user', :action => 'mark_items', :id => @person.id}, {:class => 'right_mlink'} %><%= link_to "Mark Friends", {:controller => 'user', :action => 'mark_friends', :id => @person.id}, {:class => 'right_rlink'} %>
+		My World 
+		<%= link_to_remote "Mark TravellerBooks", :update => "map_box", :url => {:controller => 'user', :action => 'mark_items', :id => @person.id, :width => 456, :height => 207}, :html => {:class => 'right_mlink'} %>
+		<%= link_to_remote "Mark Friends", :update => "map_box", :url => {:controller => 'user', :action => 'mark_friends', :id => @person.id, :width => 456, :height => 207}, :html => {:class => 'right_rlink'} %>
 	</div>
-	<%= @map.div(:width => 458, :height => 204) %>
+	<%= @map.div(:width => 456, :height => 207) %>
 </div>
 <div id="book_box">
 	<div id="book_bar">My TravellerBooks (<%= @items.length %>)<%= link_to "View All", {:controller => 'item', :action => 'list', :id => @person.id}, {:class => 'left_rlink'} %></div>
@@ -45,21 +47,23 @@
 </div>
 <div id="stat_box">
 	<div id="stat_bar">My Traveller Stats</div>
-	<div id="tb_stats">
-		<h3>TravellerBook Personal Stats</h3>
-		<ul class="udl">
-  			<li>Books Given:</li>
-  			<li>Books Received:</li>
-  			<li>Countries Visited:</li>
-  			<li>Countries Books Visited:</li>
-		</ul>
-	</div>
-	<div id="mileage">
-		<h3>My Mileage</h3>
-		<ul class="udl">
-  			<li>Miles Travelled:</li>
-  			<li>Miles Books given Travelled:</li>
-  			<li>Miles last book received travelled:</li>
-		</ul>
+	<div id="stat_list">
+		<div id="tb_stats">
+			<h3>TravellerBook Personal Stats</h3>
+			<ul class="udl">
+  				<li>Books Given:</li>
+  				<li>Books Received:</li>
+  				<li>Countries Visited:</li>
+  				<li>Countries Books Visited:</li>
+			</ul>
+		</div>
+		<div id="mileage">
+			<h3>My Mileage</h3>
+			<ul class="udl">
+  				<li>Miles Travelled:</li>
+  				<li>Miles Books given Travelled:</li>
+  				<li>Miles last book received travelled:</li>
+			</ul>
+		</div>
 	</div>
 </div>

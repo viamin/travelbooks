@@ -3,7 +3,9 @@ body {
   margin-top: 0;
   margin-left: 52px;
   margin-bottom: 0;
-  background: #633c1f;
+  background: #394876;
+/*	background: #2f4380;*/
+/*  background: #633c1f;*/
 }
 h1, h2, h3 {
 	margin-left: 10px;
@@ -15,6 +17,9 @@ p, ol, ul, td {
   line-height: 18px;
   margin-left: 20px;
   margin-right: 20px;
+}
+img {
+	border: 0;
 }
 #main_stripe {
 	width: 800px;
@@ -145,7 +150,9 @@ div.progressBar div.background {
 	position: relative;
 	padding: 3px 0;
 	top: 35px;
-	background: #633c1f;
+	background: #394876;
+/*	background: #2f4380;*/
+/*  background: #633c1f;*/
 }
 #linkbar ul {
 	list-style: none;
@@ -196,22 +203,22 @@ div.progressBar div.background {
 /* --------------------- User pages specific style --------------- */
 #user_box {
 	position: absolute;
-	top: 136px;
+	top: 145px;
 	width: 280px;
-	border: 1px solid #633c1f;
+	
 }
 #welcome_bar {
 	width: 276px;
-	padding: 2px;
-	top: 0;
-	background: #633c1f;
+	padding-left: 4px;
+	background: url('/images/rndtopsm.png');
 	color: #ffd;
 }
 #info_box {
 	float: left;
-	width: 276px;
-	height: 200px;
+	width: 274px;
+	height: 203px;
 	padding: 2px;
+	border: 1px solid #633c1f;
 }
 #user_photo {
 	position: absolute;
@@ -249,43 +256,46 @@ div.progressBar div.background {
 }
 #map_box {
 	position: absolute;
-	top: 136px;
+	top: 145px;
 	left: 373px;
 	height: 227px;
 	width: 458px;
-	border: 1px solid #633c1f;
+	
 }
 #map_bar {
 	width: 454px;
-	padding: 2px;
-	background: #633c1f;
+	padding-left: 4px;
+	background: url('/images/rndtopmed.png');
 	color: #ffd;
 }
 #user_map {
+/*	position: absolute;
 	top: 136px;
-	left: 373px;
-	height: 204px;
-	width: 458px;
+	left: 373px; */
+	height: 207px;
+	width: 456px;
+	border: 1px solid #633c1f;
 }
 #book_box {
 	position: absolute;
-	top: 383px;
+	top: 392px;
 	width: 280px;
 	height: 200px;
-	border: 1px solid #633c1f;
+/*	border: 1px solid #633c1f; */
 }
 #book_bar {
 	width: 276px;
-	padding: 2px;
-	background: #633c1f;
+	padding-left: 4px;
+	background: url('/images/rndtopsm.png');
 	color: #ffd;
 }
 #book_list {
 	overflow: auto;
 	top: 0;
 	left: 0;
-	width: 280px;
-	height: 177px;
+	width: 278px;
+	height: 180px;
+	border: 1px solid #622c1f;
 }
 #blist {
 	list-style: none;
@@ -293,26 +303,29 @@ div.progressBar div.background {
 #blist img {
 	border: 0;
 }
+#blist li {
+	padding-bottom: 3px;
+}
 #friend_box {
 	position: absolute;
-	top: 383px;
+	top: 392px;
 	left: 373px;
 	width: 458px;
 	height: 200px;
-	border: 1px solid #633c1f;
 }
 #friend_bar {
 	width: 454px;
-	padding: 2px;
-	background: #633c1f;
+	padding-left: 4px;
+	background: url('/images/rndtopmed.png');
 	color: #ffd;
 }
 #friend_list {
 	overflow: auto;
 	top: 0;
 	left: 0;
-	width: 458px;
-	height: 177px;
+	width: 456px;
+	height: 180px;
+	border: 1px solid #633c1f;
 }
 #friend_map {
 	position: absolute;
@@ -334,6 +347,9 @@ div.progressBar div.background {
 }
 #flist img {
 	border: 0;
+}
+#flist li {
+	padding-bottom: 4px;
 }
 .sfriend_image {
 	float: left;
@@ -380,16 +396,23 @@ div.progressBar div.background {
 }
 #stat_box {
 	position: absolute;
-	top: 605px;
+	top: 614px;
 	width: 759px;
 	height: 173px;
-	border: 1px solid #633c1f;
 }
 #stat_bar {
 	width: 755px;
-	padding: 2px;
-	background: #633c1f;
+	padding-left: 4px;
+	background: url('/images/rndtoplg.png');
 	color: #ffd;
+}
+#stat_list {
+	overflow: auto;
+	top: 0;
+	left: 0;
+	width: 757px;
+	height: 153px;
+	border: 1px solid #633c1f;
 }
 #tb_stats {
 	position: absolute;

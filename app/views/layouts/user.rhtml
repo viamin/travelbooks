@@ -9,7 +9,7 @@
 	<%= Mapstraction.header(:yahoo) %>
 	<%= @map.to_html unless @map.nil? %>
 </head>
-<body id="user" onload="loadUserMap();">
+<body id="user">
 	<div id="main_stripe">
 		<%= render :partial => "main/titlebar" %>
 		<div id="linkbar">

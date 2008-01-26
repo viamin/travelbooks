@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-  before_filter :authorize, :except => [:login, :join, :retrieve]
+  before_filter :authorize, :except => [:login, :join, :retrieve, :mark_friends, :mark_items]
   
   def index
     redirect_to :action => 'home'
@@ -27,6 +27,10 @@ class UserController < ApplicationController
     @location = @person.current_location
     @items = @person.items
     @friends = @person.friends
+    @map = Mapstraction.new('user_map', :yahoo)
+    @map.control_init(:small => true)
+    @map.center_zoom_init([@location.lat, @location.lng], 10)
+    @map.marker_init(Marker.new([@location.lat, @location.lng], :info_bubble => @location.description))
   end
 
   def new
@@ -86,7 +90,7 @@ class UserController < ApplicationController
       @map = Mapstraction.new('user_map', :yahoo)
       @map.control_init(:small => true)
       @map.center_zoom_init([@location.lat, @location.lng], 10)
-      @map.marker_init(Marker.new([@location.lat, @location.lng], :label => @person.display_name, :info_bubble => @location.description))
+      @map.marker_init(Marker.new([@location.lat, @location.lng], :info_bubble => @location.description))
     end
   end  
   
@@ -158,6 +162,27 @@ class UserController < ApplicationController
         end
       end
     end
+  end
+  
+  def mark_friends
+    @person = Person.find(params[:id])
+    @friends = @person.friends.collect {|f| f.current_location }
+    @friend_markers = @friends.collect {|f| Marker.new([f.lat, f.lng]) }
+    @center = find_center(@friends)
+    width, height = params[:width], params[:height]
+    @zoom = best_zoom(@friends, @center, width, height)
+    @map = Variable.new("map")
+  end
+  
+  def mark_items
+    @person = Person.find(params[:id])
+    @items = @person.all_items.collect {|i| i.current_location }
+    timing "Items: #{@items.pretty_inspect}"
+    @item_markers = @items.collect {|i| Marker.new([i.lat, i.lng]) }
+    @center = find_center(@items)
+    width, height = params[:width], params[:height]
+    @zoom = best_zoom(@items, @center, width, height)
+    @map = Variable.new("map")
   end
   
 end

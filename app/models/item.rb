@@ -101,4 +101,27 @@ class Item < ActiveRecord::Base
     total_distance
   end
   
+  # This code is taken from the person model and needs to be changed
+  def latest_location
+    self.all_locations.last
+  end
+  
+  def current_location
+    changes_list = self.changes.clone
+#    timing "Changes list: #{changes_list.pretty_inspect}"
+    location = changes_list.delete_if {|change| change.change_type != Change::ITEM_LOCATION }.sort { |x,y| x.effective_date <=> y.effective_date }.collect! {|c| Location.find(c.new_value)}.last
+    if location.nil?
+#      timing "Using latest location"
+      location = self.latest_location
+    end
+    location
+  end
+  
+  def all_locations
+    changes_list = self.changes.clone
+    all_locations = changes_list.delete_if {|change| ((change.change_type == Change::OWNERSHIP) || (change.change_type == Change::PERSON_LOCATION) || (change.change_type == Change::PERSON_MAIN_LOCATION)) }
+    all_locations.sort {|x,y| x.effective_date <=> y.effective_date}
+    all_locations.collect! {|c| Location.find(c.new_value)}
+  end
+  
 end
