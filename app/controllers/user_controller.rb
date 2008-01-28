@@ -11,18 +11,23 @@ class UserController < ApplicationController
 
   def list
     @person = Person.find(params[:id])
+    @location = @person.current_location
     @friends = @person.friends
     @map = Mapstraction.new("friend_map",:yahoo)
   	@map.control_init(:small => true)
-  	@map.center_zoom_init([36.9732, -122.0135],10)
-  	#@map.marker_init(Marker.new([75.6,-42.467],:label => "Hello", :info_bubble => "Info! Info!", :icon => "/images/icon02.png"))
+  	@map.center_zoom_init([@location.lat, @location.lng],10)
+  	@map.marker_init(Marker.new([@location.lat, @location.lng]))
+  	@friends.each do |f|
+  	  fl = f.current_location
+  	  @map.marker_init(Marker.new([fl.lat, fl.lng], :info_bubble => f.display_name))
+	  end
     render :layout => false
   end
 
   def show
     @person = Person.find(params[:id])
     if @person == Person.find(session[:user_id])
-      redirect_to :action => 'edit'
+      redirect_to :action => 'home'
     end
     @location = @person.current_location
     @items = @person.items
@@ -176,7 +181,7 @@ class UserController < ApplicationController
   
   def mark_items
     @person = Person.find(params[:id])
-    @items = @person.all_items.collect {|i| i.current_location }
+    @items = @person.all_items.collect {|i| i.locations.current }
     timing "Items: #{@items.pretty_inspect}"
     @item_markers = @items.collect {|i| Marker.new([i.lat, i.lng]) }
     @center = find_center(@items)

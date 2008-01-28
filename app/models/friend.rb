@@ -16,6 +16,19 @@ class Friend < ActiveRecord::Base
   # in the permissions, that user is not just in the address book, but is also on the
   # friends list. Not sure yet how that will work
   
-  # (TBD)
+  def create_symmetrical
+    unless self.symmetry_exists?
+      @sym_friend = Friend.new
+      @sym_friend.owner_person_id = self.entry_person_id
+      @sym_friend.entry_person_id = self.owner_person_id
+      @sym_friend.permissions = self.permissions
+      @sym_friend.save
+    end
+  end
+  
+  def symmetry_exists?
+    @sym = Friend.find(:all, :conditions => {:owner_person_id => self.entry_person_id, :entry_person_id => self.owner_person_id})
+    !@sym.empty?
+  end
   
 end

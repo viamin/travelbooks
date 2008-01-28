@@ -304,7 +304,9 @@ div.progressBar div.background {
 	border: 0;
 }
 #blist li {
-	padding-bottom: 3px;
+	padding-bottom: 4px;
+	padding-right: 14px;
+	float: left;
 }
 #friend_box {
 	position: absolute;
@@ -329,7 +331,7 @@ div.progressBar div.background {
 }
 #friend_map {
 	position: absolute;
-	top: 146px;
+	top: 186px;
 	left: 373px;
 	height: 227px;
 	width: 458px;
@@ -350,9 +352,15 @@ div.progressBar div.background {
 }
 #flist li {
 	padding-bottom: 4px;
+	padding-right: 14px;
+	float: left;
 }
 .sfriend_image {
 	float: left;
+}
+.sfriend_info {
+	display: block;
+	height: 120px;
 }
 .sfriend_address {
 	position: relative;
@@ -366,6 +374,14 @@ div.progressBar div.background {
 }
 #sflist img {
 	border: 0;
+}
+#item_map {
+	position: absolute;
+	top: 186px;
+	left: 373px;
+	height: 227px;
+	width: 458px;
+	border: 1px solid #633c1f;
 }
 .right_rlink {
 	position: absolute;

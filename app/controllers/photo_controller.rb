@@ -49,7 +49,7 @@ class PhotoController < ApplicationController
   def make_primary
     @photo = Photo.find(params[:id])
     @person = Person.find(session[:user_id])
-    @photo.make_primary_for_person(@person)
+    @photo.make_primary_for_person(@person.id)
     redirect_to :action => 'edit', :id => @person
   end
   
@@ -57,6 +57,9 @@ class PhotoController < ApplicationController
     @person = Person.find(session[:user_id])
     @photo = Photo.find(params[:photo][:id])
     @photo.caption = params[:photo][:caption]
+    if params[:photo][:is_primary?] == 1
+      @photo.make_primary_for_person(@person.id)
+    end
     if @photo.save
       flash[:notice] = 'Photo was successfully updated.'
       redirect_to :action => 'list', :id => @person

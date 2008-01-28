@@ -18,7 +18,7 @@ class Item < ActiveRecord::Base
   has_many :locations, :through => :changes do
     def current(as_of = nil)
       as_of = Time.now if as_of.nil?
-      find :first, :conditions => {:change_type => Change::OWNERSHIP, :effective_date_lte => as_of}, :order => "effective_date DESC"
+      Location.find(Change.find(:first, :conditions => ["change_type=? and effective_date<=?", Change::OWNERSHIP, as_of], :order => "effective_date DESC").new_value)
     end
   end
   has_many :photos

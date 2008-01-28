@@ -44,23 +44,33 @@ class Photo < ActiveRecord::Base
   end
   
   def is_primary?
-    return (photo_type == MAIN)
+    return (self.photo_type == Photo::MAIN)
   end
   
-  def make_primary_for_person(person)
-    person.photos.collect{|photo| photo.photo_type = Photo::PERSON && photo.save! }
+  def make_primary_for_person(person_id)
+    person = Person.find(person_id)
+    person.photos.each do |photo| 
+      photo.photo_type = Photo::PERSON 
+      photo.save 
+    end
     self.photo_type = Photo::MAIN
     self.save!
   end
   
   def make_primary_for_item(item)
-    item.photos.collect{|photo| photo.photo_type = Photo::ITEM && photo.save! }
+    item.photos.each do |photo|
+      photo.photo_type = Photo::ITEM
+      photo.save
+    end
     self.photo_type = Photo::MAIN
     self.save!
   end
   
   def make_primary_for_location(location)
-    location.photos.collect{|photo| photo.photo_type = Photo::LOCATION && photo.save! }
+    location.photos.each do |photo|
+      photo.photo_type = Photo::LOCATION
+      photo.save
+    end
     self.photo_type = Photo::MAIN
     self.save!
   end
@@ -89,11 +99,6 @@ class Photo < ActiveRecord::Base
       f.write data.read
       f.close
       photo = Photo.new
-      if ((photo_params['is_primary?'] == 1) || (photo_params['is_primary?'] == "1"))
-        photo.photo_type = MAIN
-      else
-        photo.photo_type = PERSON
-      end
       photo.path = filename
       photo.caption = photo_params['caption']
       photo.file_name = data.original_filename

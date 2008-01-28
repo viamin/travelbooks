@@ -6,7 +6,4 @@
 	<li>Description: <%= @item.description %></li>
 </ul>
 
-<% if @person && !@person.items.include?(@item) %>
-<p>Do you have this book? To add it to your library, click <%= link_to 'here', {:action => 'associate', :id => @item.tbid} %>
-<% end %>
-<%= link_to 'Back', :action => 'home', :controller => 'user' %>
+<%= @message unless @message.nil? %>

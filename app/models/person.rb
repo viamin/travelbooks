@@ -160,7 +160,7 @@ class Person < ActiveRecord::Base
   def change_location(new_location, date = Time.now)
     change = Change.new
     change.change_type = Change::PERSON_LOCATION
-    change.old_value = self.latest_location.id
+    change.old_value = self.latest_location.id unless self.latest_location.nil?
     change.new_value = new_location.id
     change.effective_date = date
     change.person_id = self.id
@@ -198,6 +198,15 @@ class Person < ActiveRecord::Base
   def friends
     friends = Friend.find(:all, :conditions => {:owner_person_id => self.id})
     friends.map! {|f| Person.find(f.entry_person_id) unless f.nil?}
+  end
+  
+  def add_friend(friend_id)
+    @friend = Friend.new
+    @friend.owner_person_id = self.id
+    @friend.entry_person_id = friend_id
+    @friend.permissions = "rwrwrw"
+    @friend.save
+    @friend.create_symmetrical
   end
   
   def self.titles

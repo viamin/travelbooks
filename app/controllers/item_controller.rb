@@ -12,14 +12,27 @@ class ItemController < ApplicationController
 
   def list
     @person = Person.find(params[:id])
+    @location = @person.current_location
     @items = @person.all_items
+    @map = Mapstraction.new("item_map",:yahoo)
+  	@map.control_init(:small => true)
+  	@map.center_zoom_init([@location.lat, @location.lng],10)
+  	@map.marker_init(Marker.new([@location.lat, @location.lng]))
+  	@items.each do |i|
+  	  il = i.locations.current
+  	  @map.marker_init(Marker.new([il.lat, il.lng], :info_bubble => i.name))
+	  end
+    render :layout => false
   end
 
   def show
     @item = Item.find_by_tbid(params[:id])
     if session[:user_id]
       @person = Person.find(session[:user_id])
+      @message = "<p>Do you have this book? To add it to your library, click <a href=\"item/associate/#{@item.tbid}\">here</a></p>" unless @person.items.include?(@item)
     end
+    @map = Mapstraction.new("item_map",:yahoo)
+  	@map.control_init(:small => true)
   end
 
   def new
