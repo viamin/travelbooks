@@ -1,6 +1,6 @@
 <h1>Edit Location Info</h1>
 
-<% form_for :location, @location, :url => {:action => 'update'} do |f| %>
+<% form_for :location, @location, :url => {:action => 'update'}, :html => {:id => 'loc_form'} do |f| %>
 	<%= render :partial => 'form' %>
 	<%= f.submit %>
 <% end %>

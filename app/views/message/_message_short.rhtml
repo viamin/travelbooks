@@ -1,0 +1,9 @@
+<li class="message_short">
+	<a href="<%= url_for :action => 'show', :id => message_short.id %>">
+	<div class="body_short">
+		<%= image_tag "#{message_short.sender_p.main_photo.url}", :class => "msg_photo", :size => "80x120" %>
+		<p>From: <%= message_short.sender_p.display_name %><br />
+			Sent <%= message_short.created_at %></p>
+		<p>Subject: <%= message_short.subject %></p>
+	</div>
+</li>

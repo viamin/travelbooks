@@ -1,0 +1,10 @@
+<!-- [form:compose] -->
+<p><label for="message_recipient">To:</label>
+	<%= select_tag "message[person_id]", options_for_select(friends, recipient) %></p>
+
+<p><label for="message_subject">Subject</label>
+	<%= text_field_tag 'message[subject]', 'subject', :value => message.subject %></p>
+	
+<p><%= text_area_tag 'message[body]', "\n\n-----------------------\n#{message.body}", :cols => 40, :rows => 15 %></p>
+
+<!-- [eoform:compose] -->

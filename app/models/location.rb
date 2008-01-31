@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 19
+# Schema version: 20
 #
 # Table name: locations
 #
@@ -53,7 +53,20 @@ class Location < ActiveRecord::Base
   
   # Determines if the location is used in more than one place. 
   def used_elsewhere?
-    true #for testing purposes...
+    # check the changes table to see if this location is being used 
+    # for more than one change, so really this should be called
+    # used_in_more_than_one_place?
+    loc_changes = Change.find(:all, :conditions => {:new_value => self.id, :change_type => [Change::PERSON_LOCATION, Change::PERSON_MAIN_LOCATION]})
+    if loc_changes.length >= 2
+      retval = true
+    else
+      retval = false
+    end
+    retval
+  end
+  
+  def used_in
+    Change.find(:all, :conditions => {:new_value => self.id, :change_type => [Change::PERSON_LOCATION, Change::PERSON_MAIN_LOCATION]}).length  
   end
   
   # Calculates the distance between two locations

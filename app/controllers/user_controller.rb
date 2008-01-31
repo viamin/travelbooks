@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-  before_filter :authorize, :except => [:login, :join, :retrieve, :mark_friends, :mark_items]
+  before_filter :authorize, :except => [:login, :join, :retrieve, :mark_friends, :mark_items, :iforgot]
   
   def index
     redirect_to :action => 'home'
@@ -16,10 +16,10 @@ class UserController < ApplicationController
     @map = Mapstraction.new("friend_map",:yahoo)
   	@map.control_init(:small => true)
   	@map.center_zoom_init([@location.lat, @location.lng],10)
-  	@map.marker_init(Marker.new([@location.lat, @location.lng]))
+  	@map.marker_init(Marker.new([@location.lat, @location.lng], :icon => '/images/homeicon.png'))
   	@friends.each do |f|
   	  fl = f.current_location
-  	  @map.marker_init(Marker.new([fl.lat, fl.lng], :info_bubble => f.display_name))
+  	  @map.marker_init(Marker.new([fl.lat, fl.lng], :info_bubble => f.display_name, :icon => '/images/personicon.png'))
 	  end
     render :layout => false
   end
@@ -35,7 +35,7 @@ class UserController < ApplicationController
     @map = Mapstraction.new('user_map', :yahoo)
     @map.control_init(:small => true)
     @map.center_zoom_init([@location.lat, @location.lng], 10)
-    @map.marker_init(Marker.new([@location.lat, @location.lng], :info_bubble => @location.description))
+    @map.marker_init(Marker.new([@location.lat, @location.lng], :info_bubble => @person.display_name, :icon => '/images/personicon.png'))
   end
 
   def new
@@ -90,12 +90,18 @@ class UserController < ApplicationController
       redirect_to :action => 'login'
     else
       @location = @person.current_location
-      @items = @person.all_items.uniq
+      @locations = @person.all_locations
+      @items = @person.all_items
       @friends = @person.friends
       @map = Mapstraction.new('user_map', :yahoo)
       @map.control_init(:small => true)
       @map.center_zoom_init([@location.lat, @location.lng], 10)
-      @map.marker_init(Marker.new([@location.lat, @location.lng], :info_bubble => @location.description))
+      @map.marker_init(Marker.new([@location.lat, @location.lng], :info_bubble => @location.description, :icon => '/images/homeicon.png'))
+      @locations.each do |l|
+        unless l == @location
+          @map.marker_init(Marker.new([l.lat, l.lng], :info_bubble => l.description))
+        end
+      end
     end
   end  
   
@@ -135,12 +141,12 @@ class UserController < ApplicationController
   end
   
   def retrieve
-    retrieve = params[:retrieve]
-    if retrieve['loop'] == 'True'
-      if validate_email(retrieve['email_address'])
-        
-      end
-    end
+    
+  end
+  
+  def iforgot
+    @person = Person.find(:first, :conditions => {:email => params[:retrieve][:email_address]})
+    @person.send_reset_email
   end
 
   def join
@@ -171,22 +177,19 @@ class UserController < ApplicationController
   
   def mark_friends
     @person = Person.find(params[:id])
-    @friends = @person.friends.collect {|f| f.current_location }
-    @friend_markers = @friends.collect {|f| Marker.new([f.lat, f.lng]) }
-    @center = find_center(@friends)
+    @friends_loc = @person.friends.collect {|f| f.current_location }
+    @center = find_center(@friends_loc)
     width, height = params[:width], params[:height]
-    @zoom = best_zoom(@friends, @center, width, height)
+    @zoom = best_zoom(@friends_loc, @center, width, height)
     @map = Variable.new("map")
   end
   
   def mark_items
     @person = Person.find(params[:id])
-    @items = @person.all_items.collect {|i| i.locations.current }
-    timing "Items: #{@items.pretty_inspect}"
-    @item_markers = @items.collect {|i| Marker.new([i.lat, i.lng]) }
-    @center = find_center(@items)
+    @items_loc = @person.all_items.collect {|i| i.locations.current }
+    @center = find_center(@items_loc)
     width, height = params[:width], params[:height]
-    @zoom = best_zoom(@items, @center, width, height)
+    @zoom = best_zoom(@items_loc, @center, width, height)
     @map = Variable.new("map")
   end
   

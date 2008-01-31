@@ -1,8 +1,10 @@
 <h1>Edit Your Public Profile</h1>
 
 <% form_tag :action => 'update', :id => @person do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag 'Update' %>
+  <div id="edit_person">
+    <%= render :partial => 'form' %>
+    <%= submit_tag 'Update' %>
+  </div>
 <% end %>
 
 <%= link_to "Edit my Photos", :action => "edit", :controller => 'photo', :id => @person.id %> |

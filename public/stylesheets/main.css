@@ -448,8 +448,28 @@ div.progressBar div.background {
 .udl {
 	list-style: none;
 }
+#options_list {
+	list-style: none;
+}
 /******** Profile Form section ***********/
-
+.block_list {
+	width: 760px;
+	border: 1px solid black;
+}
+#edit_person label {
+	position: absolute;
+	text-align: right;
+	display: block;
+	width: 150px;
+}
+#edit_person input {
+	position: relative;
+	left: 160px;
+}
+#edit_person select {
+	position: relative;
+	left: 160px;
+}
 /******** Location Editing **********/
 .short_loc {
 	border: 1px solid black;
@@ -459,15 +479,71 @@ div.progressBar div.background {
 .short_loc p {
 	
 }
+#loc_form label {
+	position: absolute;
+	text-align: right;
+ 	display: block;
+	width: 150px;
+}
+#loc_form input {
+	position: relative;
+	left: 160px;
+}
+#loc_form select {
+	position: relative;
+	left: 160px;
+}
 /*********** Photos section ***********/
+#photo_editing {
+	display: block;
+	width: 760px;
+	border: 1px solid black;
+}
 #photo_list {
 	list-style: none;
 }
 .photo_list_item {
 	float: left;
+	border: 1px solid gray;
+	padding: 6px;
+	width: 200px;
+}
+.photo_list_item img {
+	width: 200px;
 }
 .photo_caption {
 	text-align: center;
-}s
 }
+.prof_edit_links {
+	list-style: none;
+	position: relative;
+}
+/************** Item section **************/
+#book_info {
+	display: block;
+	width:280px;
+}
+#book_info ul {
+	list-style: none;
+}
+#book_info img {
+	width: 200px;
+}
+/************* Message Section **************/
+.message_short {
+	border: 1px solid black;
+	padding: 5px;
+}
+.message_short a {
+	text-decoration: none;
+	color: #000;
+}
+#message_list {
+	list-style: none;
+}
+.msg_subject {
+	font-weight: bold;
+}
+#message_body pre {
+	font-family: Lucida, serif;
 }

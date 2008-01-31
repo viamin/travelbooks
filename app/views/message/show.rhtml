@@ -1,0 +1,16 @@
+<div id="show_message">
+	<div id="message_header">
+		<%= link_to image_tag("#{@sender.main_photo.url}", :class => "sender_photo", :size => "80x120"), :controller => :user, :action => :show, :id => @sender.id  %><%= @sender.display_name %>
+		<p class="msg_subject">Subject: <%= h @message.subject %></p>
+		<p class="msg_date">Date Sent: <%= @message.created_at %></p>
+	</div>
+	<div id="message_body">
+		<pre><%= h @message.body %></pre>
+	</div>
+	<div id="message_tools">
+		<% form_for 'message', @message, :url => {:action => 'new'} do |f| %>
+			<%= hidden_field_tag 'message_id', @message.id %>
+			<%= submit_tag 'Reply' %>
+		<% end %>
+	</div>
+</div>

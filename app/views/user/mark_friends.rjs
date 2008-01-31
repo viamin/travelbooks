@@ -1,3 +1,4 @@
 page.visual_effect :shake, 'user_map'
 
-@friend_markers.each {|fm| page << @map.add_marker(fm)}
+page.hide 'mfriend'
+@person.friends.each {|f| page << add_person_marker(f, @map)}

@@ -1,10 +1,10 @@
 class UserMailer < ActionMailer::Base
 
-  def retrieve(sent_at = Time.now)
+  def retrieve(person, password, sent_at = Time.now)
     @subject    = 'Your TravellerBook.com password has been reset'
-    @body       = {}
+    @body       = {:person => person, :temp_pass => password}
     @recipients = ''
-    @from       = ''
+    @from       = 'TravellerBooks <do-not-reply@travellerbook.com>'
     @sent_on    = sent_at
     @headers    = {}
   end
@@ -13,7 +13,7 @@ class UserMailer < ActionMailer::Base
     @subject    = 'Welcome to TravellerBook.com'
     @body       = {}
     @recipients = ''
-    @from       = ''
+    @from       = 'TravellerBooks <do-not-reply@travellerbook.com>'
     @sent_on    = sent_at
     @headers    = {}
   end

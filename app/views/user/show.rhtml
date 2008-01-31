@@ -2,7 +2,7 @@
 	<div id="welcome_bar"><%= h(@person.display_name) %>'s Profile</div>
 	<div id="info_box">
 		<div id="user_photo">
-			<%= image_tag( "#{@person.main_photo.path}#{@person.main_photo.file_name}", :class => "main_photo", :size => "80x120") %>
+			<%= image_tag( "#{@person.main_photo.url}", :class => "main_photo", :size => "80x120") %>
 		</div>
 		<div id="user_info">
 			<ul id="ilist">
@@ -13,9 +13,9 @@
       			<li><%= h(@location.state) %></li>
       			<li><%= h(@location.country) %></li>
     		</ul>
-			<div id="edit_list">
-				<ul id="edit_options_list">
-					<li></li>
+			<div id="show_list">
+				<ul id="options_list">
+					<li><%= link_to "Send a message", :controller => 'message', :action => 'new', :id => @person.id %></li>
 				</ul>
 			</div>
 		</div>
@@ -24,8 +24,8 @@
 <div id="map_box">
 	<div id="map_bar">
 		<%= h(@person.display_name) %>'s World 
-		<%= link_to_remote "Mark TravellerBooks", :update => "map_box", :url => {:controller => 'user', :action => 'mark_items', :id => @person.id, :width => 456, :height => 207}, :html => {:class => 'right_mlink'} %>
-		<%= link_to_remote "Mark Friends", :update => "map_box", :url => {:controller => 'user', :action => 'mark_friends', :id => @person.id, :width => 456, :height => 207}, :html => {:class => 'right_rlink'} %>
+		<%= link_to_remote "Mark TravellerBooks", :url => {:controller => 'user', :action => 'mark_items', :id => @person.id, :width => 456, :height => 207}, :html => {:class => 'right_mlink', :id => 'mtrav'} %>
+		<%= link_to_remote "Mark Friends", :url => {:controller => 'user', :action => 'mark_friends', :id => @person.id, :width => 456, :height => 207}, :html => {:class => 'right_rlink', :id => 'mfriend'} %>
 	</div>
 	<%= @map.div(:width => 456, :height => 207) %>
 </div>

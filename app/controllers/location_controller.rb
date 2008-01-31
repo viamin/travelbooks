@@ -26,7 +26,7 @@ class LocationController < ApplicationController
   
   def edit
     @location = Location.find(params[:id])
-    @person = Person.find(params[:person_id])
+    @person = Person.find(session[:user_id])
   end
   
   def create
@@ -52,6 +52,7 @@ class LocationController < ApplicationController
     @location = Location.find(params[:location][:id])
     @person = Person.find(session[:user_id])
     if @location.used_elsewhere?
+      timing "Location used elsewhere"
       @new_location = Location.new(params[:location])
       @person.swap_locations(@location, @new_location)
       redirect_to :action => 'list'
@@ -67,7 +68,7 @@ class LocationController < ApplicationController
   
   def destroy
     @location = Location.find(params[:id])
-    @person = Person.find(params[:person_id])
+    @person = Person.find(session[:user_id])
     @person.remove_location(@location)
     @location.destroy unless @location.used_elsewhere?
     redirect_to :action => 'list'

@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 19
+# Schema version: 20
 #
 # Table name: people
 #
@@ -27,6 +27,14 @@ class Person < ActiveRecord::Base
   has_many :locations, :through => :changes
   has_many :items
   has_many :photos
+  has_many :messages do
+    def unread
+      find(:all, :conditions => {:state => 0})
+    end
+    def inbox
+      find(:all, :conditions => ['state<?', Message::DELETEDBYRECIPIENT])
+    end
+  end
   validates_uniqueness_of :login, :message => "That user name is already taken"
   validates_uniqueness_of :email, :on => :create, :message => "There is already an account using that email address"
   validates_presence_of :email, :on => :create, :message => "can't be blank"
@@ -68,7 +76,7 @@ class Person < ActiveRecord::Base
 
   def display_name
     if self.nickname.nil? || self.nickname.empty?
-      display_name = self.first_name
+      display_name = self.login
     else
       display_name = self.nickname
     end
@@ -174,9 +182,9 @@ class Person < ActiveRecord::Base
   # shows all travellerbooks the person has had at some point
   def all_items
     item_array = Change.find(:all, :conditions => {:change_type => Change::OWNERSHIP, :new_value => self.id})
-    timing "item_array: #{item_array.pretty_inspect}"
+#    timing "item_array: #{item_array.pretty_inspect}"
     items = item_array.collect!{ |item| Item.find(item.item_id) unless item.item_id.nil?}.compact.uniq unless item_array.empty?
-    timing "items: #{items.pretty_inspect}"
+#    timing "items: #{items.pretty_inspect}"
     items
   end
   
@@ -209,12 +217,31 @@ class Person < ActiveRecord::Base
     @friend.create_symmetrical
   end
   
+  def sent_messages
+    Message.find(:all, :conditions => {:sender => self.id}).delete_if {|m| m.state | Message::DELETEDBYSENDER }
+  end
+  
   def self.titles
     titles = ["", "Mr.", "Mrs.", "Ms."]
   end
   
   def self.suffixes
     suffixes = ["", "Sr.", "Jr.", "III"]
+  end
+  
+  def send_reset_email(password = Person.random_password)
+    self.reset_password(password)
+    UserMailer.deliver_retrieve(self, password)
+  end
+  
+  def reset_password(new_password = Person.random_password)
+    self.hashed_password = "#{Person.hash_password(new_password)}#{self.salt}"
+    self.save!
+  end
+  
+  # Generates a random 8 character hex password
+  def self.random_password
+    Digest::SHA2.hexdigest(Time.now.to_s)[10..18]
   end
 
   private

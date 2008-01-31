@@ -3,5 +3,5 @@
 <p><%= h(location_small.address_line_1) %>
 <%= h(location_small.address_line_2) %></p>
 <p><%= h(location_small.city_state_zip) %></p>
-<p><%= h(location_small.public_message) %></p>
+<p>This location is used in <%= " #{pluralize(location_small.used_in, 'place')}" %></p>
 <!--[eodiv:location_small]-->

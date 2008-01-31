@@ -1,13 +1,14 @@
 <h1>Edit your photos</h1>
 <p class="message"><%= @message unless (@message.nil? || @message.length <= 1) %></p>
-<div id="photo_editing_list">
+<div id="photo_editing">
+	<%= link_to "Upload a new photo", :action => 'new' %>
 	<ul id="photo_list">
 		<%= render :partial => 'photo', :collection => @photos %>
 	</ul>
 </div>
 
-<%= link_to "Upload a photo", :action => 'new' %>
-<hr />
-<%= link_to "Edit my Profile", :action => "edit", :controller => 'user', :id => @person.id %> |
-<%= link_to "Edit my Locations", :action => "list", :controller => 'location', :id => @person.id %> | 
-<%= link_to 'Home', :controller => 'user', :action => 'home' %>
+<ul class="prof_edit_links">
+	<li><%= link_to "Edit my Profile", :action => "edit", :controller => 'user', :id => @person.id %></li>
+	<li><%= link_to "Edit my Locations", :action => "list", :controller => 'location', :id => @person.id %></li>
+	<li><%= link_to 'Home', :controller => 'user', :action => 'home' %></li>
+</ul>

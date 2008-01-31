@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 19
+# Schema version: 20
 #
 # Table name: items
 #
@@ -16,9 +16,12 @@ require 'digest/sha1'
 class Item < ActiveRecord::Base
   has_many :changes
   has_many :locations, :through => :changes do
-    def current(as_of = nil)
-      as_of = Time.now if as_of.nil?
+    def current(as_of = Time.now)
       Location.find(Change.find(:first, :conditions => ["change_type=? and effective_date<=?", Change::OWNERSHIP, as_of], :order => "effective_date DESC").new_value)
+    end
+    def sorted(how="ASC")
+      changes = Change.find(:all, :conditions => {:change_type => Change::OWNERSHIP}, :order => "effective_date #{how}")
+      changes.collect!{ |c| Location.find(c.new_value)}
     end
   end
   has_many :photos
@@ -47,7 +50,7 @@ class Item < ActiveRecord::Base
     self
   end
 
-  def change_owners(new_owner, date = Time.now)
+  def change_owner(new_owner, date = Time.now)
     change = Change.new
     change.change_type = Change::OWNERSHIP
     change.old_value = self.person.id
@@ -55,10 +58,20 @@ class Item < ActiveRecord::Base
     change.effective_date = date
     change.item_id = self.id
     change.save
+    self.change_location(new_owner, date)
     self.person = new_owner
     self.changes << change
     change.save
     self.save!
+  end
+  
+  def change_location(new_owner, date = Time.now)
+    loc_change = Change.new
+    loc_change.change_type = Change::ITEM_LOCATION
+    loc_change.new_value = new_owner.current_location.id
+    loc_change.effective_date = date
+    loc_change.item_id = self.id
+    loc_change.save
   end
   
   # Determines all of the places a given item has traveled and returns a hash of locations with 

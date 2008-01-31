@@ -1,3 +1,2 @@
-page.visual_effect :shake, 'user_map'
-
-@item_markers.each {|im| page << @map.add_marker(im)}
+page.hide 'mtrav'
+@person.all_items.each {|i| page << add_item_marker(i, @map)}
