@@ -1,0 +1,6 @@
+<p><%= h(@message) if @people.empty? %></p>
+<ul>
+<% @people.each do |p| %>
+	<li><%= link_to p.display_name, {:controller => 'user', :action => 'show', :id => p.id} %></li>
+<% end %>
+</ul>

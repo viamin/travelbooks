@@ -7,7 +7,6 @@
 		<div id="user_info">
 			<ul id="ilist">
       			<li><%= h(@person.first_name) %></li>
-      			<li><%= h(@person.age) %></li>
       			<li><%= h(@location.address_line_1) %></li>
       			<li><%= h(@location.city) %></li>
       			<li><%= h(@location.state) %></li>
@@ -16,6 +15,7 @@
 			<div id="show_list">
 				<ul id="options_list">
 					<li><%= link_to "Send a message", :controller => 'message', :action => 'new', :id => @person.id %></li>
+					<li><%= link_to("Add to my friends", :action => 'add', :id => @person.id) unless @is_my_friend %>
 				</ul>
 			</div>
 		</div>
@@ -30,7 +30,7 @@
 	<%= @map.div(:width => 456, :height => 207) %>
 </div>
 <div id="book_box">
-	<div id="book_bar"><%= h(@person.first_name) %>'s Books</div>
+	<div id="book_bar"><%= h(@person.display_name) %>'s Books</div>
 	<div id="book_list">
 		<ul id="blist">
 			<%= render :partial => 'item', :collection => @items %>
@@ -38,7 +38,7 @@
 	</div>
 </div>
 <div id="friend_box">
-	<div id="friend_bar"><%= h(@person.first_name) %>'s Friends</div>
+	<div id="friend_bar"><%= h(@person.display_name) %>'s Friends</div>
 	<div id="friend_list">
 		<ul id="flist">
 			<%= render :partial => "friend", :collection => @friends %>
@@ -46,7 +46,7 @@
 	</div>
 </div>
 <div id="stat_box">
-	<div id="stat_bar"><%= h(@person.first_name) %>'s Traveller Stats</div>
+	<div id="stat_bar"><%= h(@person.display_name) %>'s Traveller Stats</div>
 	<div id="tb_stats">
 		<h3>TravellerBook Personal Stats</h3>
 		<ul>

@@ -1,9 +1,14 @@
 <h2>Search for your TravellerBooks and fellow travelers here</h2>
 
-<%= form_remote_tag :update => 'results', :url => {:action => 'find'} %>
+<%= form_remote_tag :update => 'results_div', :url => {:action => 'find'} %>
 <label for="search_box">Enter the ID of the book you would like to find:</label>
 <%= text_field_tag 'search_box' %>
 <%= submit_tag 'Search' %>
 </form>
+<%= form_remote_tag :update => 'results_div', :url => {:action => 'friend'} %>
+<label for="search_box">Enter the name or email address of a friend you'd like to find:</label>
+<%= text_field_tag 'search_box' %>
+<%= submit_tag 'Search' %>
+</form>
 
-<div id="results"></div>
+<div id="results_div"></div>

@@ -26,12 +26,17 @@ class UserController < ApplicationController
 
   def show
     @person = Person.find(params[:id])
-    if @person == Person.find(session[:user_id])
+    @me = Person.find(session[:user_id])
+    if (@person == @me)
       redirect_to :action => 'home'
     end
     @location = @person.current_location
     @items = @person.items
     @friends = @person.friends
+    @is_my_friend = @friends.include?(@me)
+    unless @is_my_friend
+      @is_my_friend = Message.check_for_request(@me, @person)
+    end
     @map = Mapstraction.new('user_map', :yahoo)
     @map.control_init(:small => true)
     @map.center_zoom_init([@location.lat, @location.lng], 10)
@@ -107,31 +112,30 @@ class UserController < ApplicationController
   
   def login
     login_status = nil
-    unless request.get?
-      logged_in_user = Person.login(params[:person][:login], params[:person][:password])
-      logged_in_email = Person.email_login(params[:person][:login], params[:person][:password])
-      if logged_in_user.kind_of?(Person)
-        session[:user_id] = logged_in_user.id
-        login_status = :success
-        next_action = :redirect
-      elsif logged_in_email.kind_of?(Person)
-        session[:user_id] = logged_in_email.id
-        login_status = :success
-        next_action = :redirect
-      else
-        flash[:notice] = "Sorry, the username/password you entered does not match with any registered users."
-        login_status = :failed
-        next_action = :redirect
-      end
-      if next_action == :redirect
-        if session[:current_action] == :user_add_item
-          redirect_to :action => 'associate', :controller => 'item', :id => session[:item_last_viewed]
-        elsif login_status == :success
-          redirect_to :action => "home"
+    if Person.is_valid_login?(params[:person][:login])
+      unless request.get?
+        logged_in_email = Person.email_login(params[:person][:login], params[:person][:password])
+        if logged_in_email.kind_of?(Person)
+          session[:user_id] = logged_in_email.id
+          login_status = :success
+          next_action = :redirect
         else
-          redirect_to :action => 'login'
+          flash[:notice] = "Sorry, the username/password you entered does not match with any registered users."
+          login_status = :failed
+          next_action = :redirect
+        end
+        if next_action == :redirect
+          if session[:current_action] == :user_add_item
+            redirect_to :action => 'associate', :controller => 'item', :id => session[:item_last_viewed]
+          elsif login_status == :success
+            redirect_to :action => "home"
+          else
+            redirect_to :action => 'login'
+          end
         end
       end
+    else
+      flash[:notice] = "Sorry, the username you entered does not match with any registered users."
     end
   end
   
@@ -191,6 +195,31 @@ class UserController < ApplicationController
     width, height = params[:width], params[:height]
     @zoom = best_zoom(@items_loc, @center, width, height)
     @map = Variable.new("map")
+  end
+  
+  def add
+    @person = Person.find(session[:user_id])
+    @friend = Person.find(params[:id]) unless params[:id].nil?
+    if @friend.nil?
+      flash[:notice] = "There was an error adding that person"
+      redirect_to :action => 'home'
+    end
+  end
+  
+  def send_request
+    @person = Person.find(params[:id])
+    @friend = Person.find(params[:friend_id])
+    if params[:commit] == "Confirm"
+      flash[:notice] = "A message will been sent to #{@friend.display_name}."
+      Message.send_request(@person, @friend)
+    end
+    redirect_to :action => 'show', :id => @friend.id
+  end
+  
+  def accept
+    @message = Message.find(params[:message_id])
+    @message.accept_friendship(params[:commit])
+    redirect_to :action => 'list', :controller => 'message'
   end
   
 end

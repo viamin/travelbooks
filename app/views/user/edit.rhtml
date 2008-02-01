@@ -2,7 +2,7 @@
 
 <% form_tag :action => 'update', :id => @person do %>
   <div id="edit_person">
-    <%= render :partial => 'form' %>
+    <%= render :partial => 'form', :object => @person %>
     <%= submit_tag 'Update' %>
   </div>
 <% end %>

@@ -1,26 +1,20 @@
 # == Schema Information
-# Schema version: 20
+# Schema version: 22
 #
 # Table name: people
 #
 #  id              :integer         not null, primary key
-#  title           :string(255)     
 #  first_name      :string(255)     not null
 #  middle_name     :string(255)     
 #  last_name       :string(255)     not null
-#  suffix          :string(255)     
-#  birthday        :date            not null
 #  email           :string(255)     not null
-#  login           :string(255)     not null
 #  hashed_password :text            
 #  created_on      :date            
-#  notes           :text            not null
 #  nickname        :string(255)     
-#  headline        :string(255)     
 #  salt            :string(255)     
+#  privacy_flags   :integer         default(0)
 #
 
-# consider dropping login
 class Person < ActiveRecord::Base
   require "digest/sha2"
   has_many :changes
@@ -35,21 +29,27 @@ class Person < ActiveRecord::Base
       find(:all, :conditions => ['state<?', Message::DELETEDBYRECIPIENT])
     end
   end
-  validates_uniqueness_of :login, :message => "That user name is already taken"
   validates_uniqueness_of :email, :on => :create, :message => "There is already an account using that email address"
   validates_presence_of :email, :on => :create, :message => "can't be blank"
-  validates_presence_of :login, :on => :create, :message => "can't be blank"
+  validates_presence_of :nickname, :on => :create, :message => "can't be blank"
   validates_presence_of :password, :on => :create, :message => "can't be blank"
   validates_confirmation_of :password
   validates_format_of :email, 
 		      :with => /^(.+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
-	
-  validates_format_of :login, 
-		      :with => /[-_a-zA-Z0-9]+/,
-		      :message => "- Only alphanumeric characters, '-' (dash) and '_' (underscore) are allowed in your login name"
 	validates_length_of :password, :within => 6..40, :on => :create, :too_long => 'must be 40 characters or less', :too_short => 'must be at least 6 characters'
 
   attr_accessor :password
+  
+  # Privacy setting bits (for reference, ^ is Ruby XOR operator)
+  NOMESSAGES = 2**0
+  NOTVISIBLEONITEMS = 2**1
+  CITYONLY = 2**2
+  STATEONLY = 2**3
+  ZIPONLY = 2**4
+  COUNTRYONLY = 2**5
+  SHAREVACATIONS = 2**6
+  
+  LOCRESOLUTIONS = ["Full Address", "City Only", "State Only", "Postal Code Only", "Country Only"]
   
   def initialize(*params)
     super(*params)
@@ -58,10 +58,7 @@ class Person < ActiveRecord::Base
       self.middle_name = String.new if self.middle_name.nil?
       self.last_name = String.new if self.last_name.nil?
       self.email = String.new if self.email.nil?
-      self.login = String.new if self.login.nil?
-      self.notes = String.new if self.notes.nil?
       self.password = String.new if self.password.nil?
-      self.birthday = Time.local(1997, 1, 1) if self.birthday.nil?
       self.salt = Digest::SHA2.hexdigest(rand.to_s)[5..10]
     end
   end
@@ -73,25 +70,77 @@ class Person < ActiveRecord::Base
   def after_create
     @password = nil
   end
+  
+  def invisible
+    return ((self.privacy_flags & NOTVISIBLEONITEMS) == NOTVISIBLEONITEMS)
+  end
+  
+  def invisible=(value)
+    if value == "Yes"
+      self.privacy_flags = (self.privacy_flags | NOTVISIBLEONITEMS) 
+    else
+      self.privacy_flags = (self.privacy_flags - NOTVISIBLEONITEMS) if self.invisible
+    end
+    self.save
+  end
+  
+  def location_resolution
+    case (self.privacy_flags & (CITYONLY | STATEONLY | ZIPONLY | COUNTRYONLY))
+    when CITYONLY
+      "City Only"
+    when STATEONLY
+      "State Only"
+    when ZIPONLY
+      "Postal Code Only"
+    when COUNTRYONLY
+      "Country Only"
+    else
+      "Full Address"
+    end
+  end
+  
+  def location_resolution=(value)
+    case value
+    when "City Only"
+      arith = CITYONLY
+    when "State Only"
+      arith = STATEONLY
+    when "Postal Code Only"
+      arith = ZIPONLY
+    when "Country Only"
+      arith = COUNTRYONLY
+    else
+      arith = 0
+    end
+    self.privacy_flags = self.privacy_flags & (NOMESSAGES | NOTVISIBLEONITEMS | SHAREVACATIONS | arith)
+    self.save
+  end
+  
+  def share_vacations
+    return ((self.privacy_flags & SHAREVACATIONS) == SHAREVACATIONS)
+  end
+  
+  def share_vacations=(value)
+    if value == "Yes"
+      self.privacy_flags = self.privacy_flags | SHAREVACATIONS
+    else
+      self.privacy_flags = self.privacy_flags - SHAREVACATIONS if self.share_vacations
+    end
+    self.save
+  end
 
   def display_name
     if self.nickname.nil? || self.nickname.empty?
-      display_name = self.login
+      display_name = self.email
     else
       display_name = self.nickname
     end
     display_name
   end
-
-  def self.login(name, password)
-    hashed_password = Person.hash_password(password || "")
-    @person = Person.find(:first, :conditions => {:login => name})
-    if "#{@person.hashed_password}" == "#{hashed_password}#{@person.salt}"
-      return_val = @person
-    else
-      return_val = nil
-    end
-    return_val
+  
+  def self.is_valid_login?(login)
+    count = Person.find(:all, :conditions => {:email => login}).length
+    return (count > 0)
   end
 
   def self.email_login(email, password)
@@ -113,16 +162,6 @@ class Person < ActiveRecord::Base
       self.save!
     end
     return verified
-  end
-
-  def age
-=begin old way
-    age_in_seconds = Time.now.to_i - self.birthday.to_i
-    age_in_years = age_in_seconds / 1.years
-    age = age_in_years.floor.to_i
-=end
-    age_in_days = Date.today - self.birthday.to_date
-    age = (age_in_days / 365).floor.to_i
   end
   
   def main_photo
@@ -218,7 +257,7 @@ class Person < ActiveRecord::Base
   end
   
   def sent_messages
-    Message.find(:all, :conditions => {:sender => self.id}).delete_if {|m| m.state | Message::DELETEDBYSENDER }
+    Message.find(:all, :conditions => {:sender => self.id}).delete_if {|m| m.state == (m.state & Message::DELETEDBYSENDER) }
   end
   
   def self.titles

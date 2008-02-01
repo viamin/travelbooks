@@ -1,20 +1,20 @@
 <%= error_messages_for 'person' %>
 
 <!--[form:person]-->
-<p><label for="person_nickname">Public Name</label>
+<p><label for="person_nickname">Display Name</label>
 <%= text_field 'person', 'nickname' %></p>
 
-<p><label for="person_headline">Headline</label>
-<%= text_field 'person', 'headline' %></p>
-
-<p><label for="person_birthday">Birthday</label>
-<%= date_select 'person', 'birthday', :start_year => 1950, :end_year => Time.now.year %></p>
+<p><label for="person_invisible">Don't show me in item owner lists</label>
+	<%= check_box 'person', 'invisible', {}, 'Yes', 'No' %></p>
+	
+<p><label for="person_location_resolution">How detailed a location can others see?</label>
+	<%= select 'person', 'location_resolution', Person::LOCRESOLUTIONS %></p>
+	
+<p><label for="person_share_vacations">Allow friends to see vacation tracks</label>
+	<%= check_box 'person', 'share_vacations', {}, 'Yes', 'No' %></p>
 
 <p><label for="person_email">Email Address</label>
 <%= text_field 'person', 'email'  %></p>
-
-<p><label for="person_login">Login</label>
-<%= text_field 'person', 'login'  %></p>
 
 <!--[eoform:person]-->
 

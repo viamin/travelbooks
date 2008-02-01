@@ -1,5 +1,5 @@
 class TrackController < ApplicationController
-  before_filter :authorize, :except => [:find]
+  before_filter :authorize, :except => [:find, :friend]
   
   def index
     if params[:tbook]
@@ -20,6 +20,15 @@ class TrackController < ApplicationController
       else
         @message = "Invalid code"
       end
+    end
+  end
+  
+  def friend
+    @user = Person.find(session[:user_id]) if logged_in?
+    search_term = params[:search_box]
+    @people = Person.find(:all, :conditions => {:email => search_term}).concat(Person.find(:all, :conditions => {:nickname => search_term})).uniq
+    if @people.empty?
+      @message = "No one was found for the search term: #{search_term}"
     end
   end
 
@@ -46,7 +55,7 @@ class TrackController < ApplicationController
   private
   
   def logged_in?
-    !( session.nil? || (session[:user_id].nil?) || (session[:user_id].empty?) )
+    !( session.nil? || (session[:user_id].nil?))
   end
   
 end

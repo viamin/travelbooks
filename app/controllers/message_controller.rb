@@ -17,7 +17,16 @@ class MessageController < ApplicationController
   
   def show
     @message = Message.find(params[:id])
+    if @message.message_type == Message::FRIENDREQUEST
+      redirect_to :action => 'show_request', :id => @message.id
+    end
     @message.mark_read
+    @sender = @message.sender_p
+    @no_reply = (@sender.id == session[:user_id])
+  end
+  
+  def show_request
+    @message = Message.find(params[:id])
     @sender = @message.sender_p
   end
   

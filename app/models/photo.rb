@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20
+# Schema version: 22
 #
 # Table name: photos
 #
@@ -87,13 +87,13 @@ class Photo < ActiveRecord::Base
   
   def self.save(photo_params, person)
     data = photo_params['data']
-    filename = "public/images/#{person.login}/#{data.original_filename}"
+    filename = "public/images/#{person.email}/#{data.original_filename}"
     if File.exist?(filename)
       #flash[:error] = "That filename has already been used"
       timing "filename already used - not saving"
     else
-      unless File.exist?("public/images/#{person.login}")
-        Dir.mkdir("public/images/#{person.login}")
+      unless File.exist?("public/images/#{person.email}")
+        Dir.mkdir("public/images/#{person.email}")
       end
       f = File.new(filename, "wb")
       f.write data.read
@@ -105,7 +105,7 @@ class Photo < ActiveRecord::Base
       photo.person_id = photo_params['person_id']
       photo.content_type = data.content_type
       photo.bytes = data.length
-      photo.url = "#{person.login}/#{data.original_filename}"
+      photo.url = "#{person.email}/#{data.original_filename}"
       photo.save!
       #flash[:notice] = "Uploaded #{photo_params['file_name']}"
       timing "Uploaded #{photo_params['file_name']}"

@@ -201,7 +201,7 @@
 			<%= text_field_tag "tbid", "Enter TBook #", {:size => "20"} %><br />
 			<%= submit_tag "Submit", {:id => "fmsub"} %>
 		</form>
-		<%= link_to "<br />Books", {:action => "faq"}, {:id => "booklk"} %>
+		<%= link_to "<br />Join", {:controller => 'user', :action => 'join'}, {:id => "booklk"} %>
 	  </div>
 	  <div id="body_text">
 		<p>TravellerBook.com allows to you track the TravellerBook gifts you've given to friends, and see how those gifts have travelled, sometimes around the entire world!</p>

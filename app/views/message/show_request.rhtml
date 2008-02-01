@@ -5,12 +5,13 @@
 		<p class="msg_date">Date Sent: <%= @message.created_at %></p>
 	</div>
 	<div id="message_body">
-		<pre><%= h @message.body %></pre>
+		<p><%= @sender.display_name %> would like to be added as one of your friends. If you accept, you will be able to exchange messages with this person and see their TravellerBook activity.</p>
 	</div>
 	<div id="message_tools">
-		<% form_for 'message', @message, :url => {:action => 'new'} do |f| %>
+		<% form_for 'message', @message, :url => {:action => 'accept', :controller => 'user'} do |f| %>
 			<%= hidden_field_tag 'message_id', @message.id %>
-			<%= submit_tag 'Reply' unless @no_reply %>
+			<%= submit_tag 'Accept' %>
+			<%= submit_tag 'Deny' %>
 		<% end %>
 	</div>
 </div>

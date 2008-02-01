@@ -2,22 +2,21 @@
 <p>If you already have a TravellerBooks account, please <%= link_to "login", :action => :login %>.</p>
 <hr>
 
-In order to track your TravellerBook, and to track your own travels, please enter your information below.
-<br />
-<%= error_messages_for(:person)  %>
+<p>In order to track your TravellerBook, and to track your own travels, please enter your information below.</p>
+
+<%= error_messages_for(:person) %>
+<%= error_messages_for(:location) %>
 
 <div id="person_form">
 <%= form_tag :action => 'join' %>
-<label for="person_login">Login Name</label>
-<%= text_field :person, :login %>*<br />
 <label for="person_email">E-mail Address</label>
 <%= text_field :person, :email %>*<br />
+<label for="person_nickname">Display Name</label>
+<%= text_field 'person', 'nickname' %>*<br />
 <label for="person_password">Password</label>
 <%= password_field :person, :password %>*<br />
 <label for="person_password_confirmation">Confirm Password</label>
 <%= password_field :person, :password_confirmation %>*<br />
-<label for="person_nickname">Public Name</label>
-<%= text_field 'person', 'nickname' %><br />
 <label for="location_address_line_1">Address Line 1</label>
 <%= text_field :location, :address_line_1 %><br />
 <label for="location_address_line_2">Address Line 2</label>
@@ -30,8 +29,6 @@ In order to track your TravellerBook, and to track your own travels, please ente
 <%= text_field :location, :zip_code %><br />
 <label for="location_country">Country</label>
 <%= country_select :location, :country, ["--Select One--", "-------------", "United States"] %>*<br />
-<label for="person_birthday">Birth Date</label>
-<%= date_select(:person, :birthday, :start_year => 1950, :end_year => Time.now.year, :include_blank => true) %><br />
 <%= submit_tag 'Create Account' %>
 
 <p>* denotes a required field</p>
