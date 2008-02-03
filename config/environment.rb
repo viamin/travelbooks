@@ -72,7 +72,14 @@ SAMPLE_LOCATION = { :address_line_1 => "1600 Pennsylvania Ave.",
                     :state => "DC",
                     :country => "USA" }
 
+ENV['TEMP'] = "#{RAILS_ROOT}/public/images/tmp"
+ENV['TMP'] = "#{RAILS_ROOT}/public/images/tmp"
+ENV['TMPDIR'] = "#{RAILS_ROOT}/public/images/tmp"
+
 require 'pp'
+require 'tempfile'
+require 'rmagick'
+include Magick
 
 =begin
 ############################# 

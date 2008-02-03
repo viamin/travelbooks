@@ -518,6 +518,34 @@ div.progressBar div.background {
 	list-style: none;
 	position: relative;
 }
+#photo_outline {
+	position: absolute;
+	top: 400px;
+	left: 300px;
+	display: block;
+	width: 240px;
+	height: 360px;
+	border: 2px solid red;
+	cursor: move;
+	z-index: 10;
+}
+#photo_block {
+	position: absolute;
+	z-index: 1;
+}
+#track {
+	width: 200px;
+	height: 18px;
+	background-image: url('/images/scaler_slider_track.gif');
+	background-repeat: repeat-x;
+	background-position: center left;
+	margin: 4px 0 0 10px;
+}
+#handle {
+	width: 18px;
+	height: 18px;
+	cursor:move;
+}
 /************** Item section **************/
 #book_info {
 	display: block;

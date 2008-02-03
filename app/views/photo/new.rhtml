@@ -1,6 +1,6 @@
 <h1>Upload a photo</h1>
 
-<% form_tag({:action => 'create'}, {:multipart => true}) do %>
+<% form_tag({:action => 'prepare'}, {:multipart => true}) do %>
 	<%= render :partial => 'form' %>
 	<%= hidden_field_tag 'photo[person_id]', @person.id, {:id => 'photo_person_id'} %>
 	<%= hidden_field_tag 'photo[photo_type]', Photo::MAIN, {:id => 'photo_photo_type'} %>

@@ -35,10 +35,25 @@ class PhotoController < ApplicationController
     @person = Person.find(session[:user_id])
   end
   
+  # This experimental action is for editing a photo before saving to filesystem or database
+  def prepare
+    @person = Person.find(session[:user_id])
+    #@photo = Photo.new(params[:photo])
+    @photo = Photo.save_temp(params[:photo])
+    if @photo.width > 240
+      @submit_message = "Crop and save photo"
+    else
+      @submit_message = "Sumbit photo"
+    end
+  end
+  
   def create
     @person = Person.find(session[:user_id])
+    @photo = Photo.save(params[:photo], @person)
+    
+    
     # Filesystem method
-    photo = Photo.save(params[:photo], @person)
+    #photo = Photo.save(params[:photo], @person)
     # database method
     #@params['photo']['data'] = @params['photo']['data'].read
     #@params['photo'].delete('tmp_file') # let's remove the field from the hash, because there's no such field in the DB anyway.
@@ -49,7 +64,7 @@ class PhotoController < ApplicationController
   def make_primary
     @photo = Photo.find(params[:id])
     @person = Person.find(session[:user_id])
-    @photo.make_primary_for_person(@person.id)
+    @photo.make_primary_for_person(@person)
     redirect_to :action => 'edit', :id => @person
   end
   
@@ -57,8 +72,8 @@ class PhotoController < ApplicationController
     @person = Person.find(session[:user_id])
     @photo = Photo.find(params[:photo][:id])
     @photo.caption = params[:photo][:caption]
-    if params[:photo][:is_primary?] == 1
-      @photo.make_primary_for_person(@person.id)
+    if params[:photo][:is_primary] == 1
+      @photo.make_primary_for_person(@person)
     end
     if @photo.save
       flash[:notice] = 'Photo was successfully updated.'

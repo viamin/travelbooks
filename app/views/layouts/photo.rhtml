@@ -5,8 +5,7 @@
 <head>
   <title>Main: <%= controller.action_name %></title>
   <%= stylesheet_link_tag 'main' %>
-  <%= ymap_js_tag %>
-  <%= javascript_include_tag 'mapstraction', 'application' %>
+  <%= javascript_include_tag 'application', 'prototype', 'scriptaculous' %>
 </head>
 <body id="user" onload="loadUserMap();">
 	<div id="main_stripe">

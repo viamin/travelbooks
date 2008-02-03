@@ -79,7 +79,7 @@ class ItemController < ApplicationController
     item = Item.find_by_tbid(params[:id])
     # Need to decide if I'll be grabbing images from the hard drive or out of the DB
     photos = item.photos
-    main_photo = photos.detect(photos.first) { |p| p.is_primary? }
+    main_photo = photos.detect(photos.first) { |p| p.is_primary }
     unless main_photo.nil?
       if (main_photo.url == "db")
         send_data(main_photo.data,

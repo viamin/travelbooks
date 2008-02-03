@@ -1,0 +1,26 @@
+<h1>Prepare your photo</h1>
+
+<p>TravellerBook.com only allows a certain size photo to be uploaded to the site. This page will allow you to change the way your photo looks to make sure it looks right for everyone who sees it. </p>
+
+<% form_for 'photo', @photo, :url => {:action => 'create'} do |f| %>
+	<%= hidden_field_tag 'photo[offset_x]' %>
+	<%= hidden_field_tag 'photo[offset_y]' %>
+	<%= hidden_field_tag 'photo[scale]' %>
+	<%= hidden_field_tag 'photo[caption]' %>
+	<%= hidden_field_tag 'photo[is_primary]' %>
+	<%= hidden_field_tag 'photo[photo_type]' %>
+	<%= hidden_field_tag 'photo[file_name]', @photo.file_name %>
+	<div id="track">
+		<div id="handle">
+			<%= image_tag 'scaler_slider.gif' %>
+		</div>
+	</div>
+	<%= f.submit @submit_message %>
+<% end %>
+
+<div id="photo_outline">
+	<div class="scale-image">
+		<%= image_tag @photo.url, {:id => 'photo_block'} %>
+	</div>
+</div>
+<%= javascript_tag "prepSlider('handle', 'track', #{@photo.width}); new Draggable('photo_block', {onDrag:function(){update_position_divs('photo_block');}});"%>

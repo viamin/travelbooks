@@ -43,12 +43,11 @@ class Photo < ActiveRecord::Base
     end
   end
   
-  def is_primary?
+  def is_primary
     return (self.photo_type == Photo::MAIN)
   end
   
-  def make_primary_for_person(person_id)
-    person = Person.find(person_id)
+  def make_primary_for_person(person)
     person.photos.each do |photo| 
       photo.photo_type = Photo::PERSON 
       photo.save 
@@ -85,8 +84,39 @@ class Photo < ActiveRecord::Base
     temp
   end
   
-  def self.save(photo_params, person)
+  def self.save_temp(photo_params)
     data = photo_params['data']
+    timing data.pretty_inspect
+    photo_params.delete :is_primary
+    tf = Tempfile.new('temp_photo')
+    filename =  tf.path.sub(Dir.tmpdir.concat("/"), "")
+    tf.write data.read
+    tf.close
+    timing `file #{tf.path}`
+    photo = Photo.new(photo_params)
+    photo.url = "/images/tmp/#{filename}"
+    photo.path = tf.path
+    photo.file_name = filename
+    maxheight = 600
+    maxwidth = 600
+    aspectratio = 80.0 / 120.0
+    img = Image.read(tf.path).first
+    imgwidth = img.columns
+    imgheight = img.rows
+    imgratio = imgwidth.to_f / imgheight.to_f
+    imgratio > aspectratio ? scaleratio = maxwidth.to_f / imgwidth : scaleratio = maxheight.to_f / imgheight
+    tf.open
+    tf.truncate(0)
+    tf.write img.resize(scaleratio).to_blob
+    tf.close
+    photo.width = Image.read(tf.path).first.columns
+    return photo
+  end
+  
+  def self.save(photo_params, person)
+    data = Image.read("#{Dir.tmpdir}/#{photo_params[:file_name]}").first
+    data.resize!(photo_params[:scale].to_f)
+    data.crop!(photo_params[:offset_x], params[:offest_y], 240, 360, true)
     filename = "public/images/#{person.email}/#{data.original_filename}"
     if File.exist?(filename)
       #flash[:error] = "That filename has already been used"
@@ -96,13 +126,13 @@ class Photo < ActiveRecord::Base
         Dir.mkdir("public/images/#{person.email}")
       end
       f = File.new(filename, "wb")
-      f.write data.read
+      f.write data.to_blob
       f.close
       photo = Photo.new
       photo.path = filename
       photo.caption = photo_params['caption']
       photo.file_name = data.original_filename
-      photo.person_id = photo_params['person_id']
+      photo.person_id = person.id
       photo.content_type = data.content_type
       photo.bytes = data.length
       photo.url = "#{person.email}/#{data.original_filename}"
