@@ -1,5 +1,6 @@
 class PhotoController < ApplicationController
   before_filter :authorize
+  layout 'item'
   
   # RESTful actions:
   # Get: list, show, new, edit

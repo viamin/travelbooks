@@ -1,0 +1,8 @@
+<h1><%= @person.display_name %>'s Vacation Logs</h1>
+
+<%= link_to 'Add a vacation log', :action => 'new' %>
+<div id="vacation_list">
+	<ul>
+		<%= render :partial => 'vacation', :collection => @vacations %>
+	</ul>
+</div>

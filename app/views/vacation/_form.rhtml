@@ -1,0 +1,13 @@
+<%= error_messages_for 'vacation' %>
+
+<!--[form:vacation]-->
+<p><label for="vacation_name">Name/Description</label>
+<%= text_field 'vacation', 'name' %></p>
+
+<p><label for="vacation_start_date">Start Date</label>
+	<%= date_select 'vacation', 'start_date' %></p>
+	
+<p><label for="vacation_end_date">End Date</label>
+	<%= date_select 'vacation', 'end_date' %></p>
+	
+<!--[eoform:vacation]-->

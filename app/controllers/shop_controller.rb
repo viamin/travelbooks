@@ -1,4 +1,5 @@
 class ShopController < ApplicationController
+  layout 'user'
 
   def index
     redirect_to(:action => 'store')

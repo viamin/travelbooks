@@ -1,5 +1,6 @@
 class MessageController < ApplicationController
   before_filter :authorize
+  layout 'user'
   
   def index
     redirect_to :action => 'home'
