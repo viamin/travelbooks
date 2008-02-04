@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 22
+# Schema version: 24
 #
 # Table name: items
 #
@@ -135,6 +135,11 @@ class Item < ActiveRecord::Base
     all_locations = changes_list.delete_if {|change| ((change.change_type == Change::OWNERSHIP) || (change.change_type == Change::PERSON_LOCATION) || (change.change_type == Change::PERSON_MAIN_LOCATION)) }
     all_locations.sort {|x,y| x.effective_date <=> y.effective_date}
     all_locations.collect! {|c| Location.find(c.new_value)}
+  end
+  
+  def before_save
+    # Calculate mileage here
+    
   end
   
 end

@@ -1,5 +1,6 @@
 class TrackController < ApplicationController
   before_filter :authorize, :except => [:find, :friend]
+  layout 'user'
   
   def index
     if params[:tbook]

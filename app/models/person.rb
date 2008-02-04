@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 22
+# Schema version: 24
 #
 # Table name: people
 #
@@ -29,6 +29,7 @@ class Person < ActiveRecord::Base
       find(:all, :conditions => ['state<?', Message::DELETEDBYRECIPIENT])
     end
   end
+  has_many :vacations
   validates_uniqueness_of :email, :on => :create, :message => "There is already an account using that email address"
   validates_presence_of :email, :on => :create, :message => "can't be blank"
   validates_presence_of :nickname, :on => :create, :message => "can't be blank"

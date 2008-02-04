@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 22
+# Schema version: 24
 #
 # Table name: locations
 #
@@ -118,7 +118,24 @@ class Location < ActiveRecord::Base
   
   def before_save
     # Geocode the address and save the lat/lng returned
-    loc = MultiGeocoder.geocode("#{self.address_line_1} #{self.address_line_2} #{self.city} #{self.state} #{self.zip_code} #{self.country}")
+    @person = Person.find(self.person_id) unless self.person_id.nil?
+    unless @person.nil?
+      case @person.location_resolution
+      when "City Only"
+        address_to_geocode = "#{self.city}, #{self.state}, #{self.country}"
+      when "State Only"
+        address_to_geocode = "#{self.state}, #{self.country}"
+      when "Postal Code Only"
+        address_to_geocode = "#{self.state} #{self.zip_code} #{self.country}"
+      when "Country Only"
+        address_to_geocode = "#{self.country}"
+      else
+        address_to_geocode = "#{self.address_line_1} #{self.address_line_2} #{self.city} #{self.state} #{self.zip_code} #{self.country}"
+      end
+    else
+      address_to_geocode = "#{self.address_line_1} #{self.address_line_2} #{self.city}, #{self.state} #{self.zip_code}, #{self.country}"
+    end
+    loc = MultiGeocoder.geocode(address_to_geocode)
     if loc.success
       self.lat = loc.lat
       self.lng = loc.lng

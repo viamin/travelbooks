@@ -465,32 +465,46 @@ div.progressBar div.background {
 	list-style: none;
 }
 /******** Profile Form section ***********/
+#edit_person p {
+	padding-bottom: 10px;
+}
 .block_list {
 	width: 760px;
-	border: 1px solid black;
 }
 #edit_person label {
 	position: absolute;
 	text-align: right;
 	display: block;
-	width: 150px;
+	width: 250px;
 }
 #edit_person input {
 	position: relative;
-	left: 160px;
+	left: 260px;
 }
 #edit_person select {
 	position: relative;
-	left: 160px;
+	left: 260px;
 }
 /******** Location Editing **********/
 .short_loc {
-	border: 1px solid black;
 	float: left;
-	list-style: none;
+	width: 240px;
+	height: 300px;
+	background: #98a1be;
+	border: 3px solid #ffe7a5;
+}
+.short_loc_short {
+	float: left;
+	width: 240px;
+	height: 80px;
+	background: #98a1be;
+	border: 3px solid #ffe7a5;
 }
 .short_loc p {
-	
+	font-size: 12pt;
+}
+.short_loc_list {
+	list-style: none;
 }
 #loc_form label {
 	position: absolute;
@@ -606,4 +620,8 @@ div.progressBar div.background {
 /************* Tracking section ***************/
 #results {
 	
+}
+/************** Vacation section **************/
+#vacation_list {
+	list-style: none;
 }

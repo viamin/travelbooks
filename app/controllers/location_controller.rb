@@ -1,5 +1,6 @@
 class LocationController < ApplicationController
   before_filter :authorize
+  layout 'user'
   
   # RESTful actions:
   # Get: list, show, new, edit
@@ -31,20 +32,22 @@ class LocationController < ApplicationController
   
   def create
     @person = Person.find(session[:user_id])
-    @location = Location.create(params[:location])
-    new_loc = Change.new
-    if params[:location][:current] == 'on' 
-      @location.public = true
-      @location.save!
-      new_loc.change_type = Change::PERSON_MAIN_LOCATION
-    else
-      new_loc.change_type = Change::PERSON_LOCATION
+    unless params[:commit] == "Cancel"
+      @location = Location.create(params[:location])
+      new_loc = Change.new
+      if params[:location][:current] == 'on' 
+        @location.public = true
+        @location.save!
+        new_loc.change_type = Change::PERSON_MAIN_LOCATION
+      else
+        new_loc.change_type = Change::PERSON_LOCATION
+      end
+      new_loc.person_id = @person.id
+      new_loc.old_value = @person.current_location.id
+      new_loc.new_value = @location.id
+      new_loc.effective_date = Time.now
+      new_loc.save!
     end
-    new_loc.person_id = @person.id
-    new_loc.old_value = @person.current_location.id
-    new_loc.new_value = @location.id
-    new_loc.effective_date = Time.now
-    new_loc.save!
     redirect_to :action => 'list'
   end
   
@@ -72,5 +75,9 @@ class LocationController < ApplicationController
     @person.remove_location(@location)
     @location.destroy unless @location.used_elsewhere?
     redirect_to :action => 'list'
+  end
+  
+  def home
+    redirect_to :controller => 'user', :action => 'home'
   end
 end
