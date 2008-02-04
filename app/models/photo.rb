@@ -32,16 +32,16 @@ class Photo < ActiveRecord::Base
   ITEM = 3
   LOCATION = 4
   
-  def initialize(*params)
-    super(*params)
-    if self.new_record?
-      self.path = String.new
-      self.file_name = String.new
-      self.url = String.new
-      self.content_type = String.new
-      self.caption = String.new
-    end
-  end
+#  def initialize(*params)
+#    super(*params)
+#    if self.new_record?
+#      self.path = String.new
+#      self.file_name = String.new
+#      self.url = String.new
+#      self.content_type = String.new
+#      self.caption = String.new
+#    end
+#  end
   
   def is_primary
     return (self.photo_type == Photo::MAIN)
@@ -86,38 +86,26 @@ class Photo < ActiveRecord::Base
   
   def self.save_temp(photo_params)
     data = photo_params['data']
-    timing data.pretty_inspect
-    photo_params.delete :is_primary
-    tf = Tempfile.new('temp_photo')
+    filename = "#{Dir.tmpdir}/temp_photo#{rand(1000)}"
+    tf = File.new(filename, "w")
     filename =  tf.path.sub(Dir.tmpdir.concat("/"), "")
     tf.write data.read
     tf.close
-    timing `file #{tf.path}`
-    photo = Photo.new(photo_params)
+    photo = Photo.new
+    photo.caption = photo_params['caption']
     photo.url = "/images/tmp/#{filename}"
     photo.path = tf.path
     photo.file_name = filename
-    maxheight = 600
-    maxwidth = 600
-    aspectratio = 80.0 / 120.0
-    img = Image.read(tf.path).first
-    imgwidth = img.columns
-    imgheight = img.rows
-    imgratio = imgwidth.to_f / imgheight.to_f
-    imgratio > aspectratio ? scaleratio = maxwidth.to_f / imgwidth : scaleratio = maxheight.to_f / imgheight
-    tf.open
-    tf.truncate(0)
-    tf.write img.resize(scaleratio).to_blob
-    tf.close
     photo.width = Image.read(tf.path).first.columns
+    photo.height = Image.read(tf.path).first.rows
     return photo
   end
   
   def self.save(photo_params, person)
     data = Image.read("#{Dir.tmpdir}/#{photo_params[:file_name]}").first
-    data.resize!(photo_params[:scale].to_f)
-    data.crop!(photo_params[:offset_x], params[:offest_y], 240, 360, true)
-    filename = "public/images/#{person.email}/#{data.original_filename}"
+    data = data.resize(photo_params[:scale].to_f) unless photo_params[:scale].to_f == 0
+    data = data.crop(photo_params[:offset_x].to_f.abs, photo_params[:offset_y].to_f.abs, 240, 360, true) unless (photo_params[:offset_x].to_f == 0 && photo_params[:offset_y].to_f == 0)
+    filename = "public/images/#{person.email}/#{photo_params[:file_name]}"
     if File.exist?(filename)
       #flash[:error] = "That filename has already been used"
       timing "filename already used - not saving"
@@ -126,17 +114,21 @@ class Photo < ActiveRecord::Base
         Dir.mkdir("public/images/#{person.email}")
       end
       f = File.new(filename, "wb")
-      f.write data.to_blob
+      data.write(f)
       f.close
       photo = Photo.new
       photo.path = filename
-      photo.caption = photo_params['caption']
-      photo.file_name = data.original_filename
+      photo.caption = photo_params[:caption]
+      photo.file_name = photo_params[:file_name]
+      photo.photo_type = Photo::PERSON
+      photo.width = data.columns
+      photo.height = data.rows
       photo.person_id = person.id
-      photo.content_type = data.content_type
-      photo.bytes = data.length
-      photo.url = "#{person.email}/#{data.original_filename}"
+      photo.content_type = data.mime_type
+      photo.bytes = data.filesize
+      photo.url = "/images/#{person.email}/#{photo_params[:file_name]}"
       photo.save!
+      File.delete("#{Dir.tmpdir}/#{photo_params[:file_name]}") if File.exist?("#{Dir.tmpdir}/#{photo_params[:file_name]}")
       #flash[:notice] = "Uploaded #{photo_params['file_name']}"
       timing "Uploaded #{photo_params['file_name']}"
     end

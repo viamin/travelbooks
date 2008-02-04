@@ -2,25 +2,30 @@
 
 <p>TravellerBook.com only allows a certain size photo to be uploaded to the site. This page will allow you to change the way your photo looks to make sure it looks right for everyone who sees it. </p>
 
+<p>Scale and crop the photo using the tools below. To scale, drag the slider control right and left to zoom in and out. To adjust the cropping, drag the edges of the photo until the area you want to be displayed is outlined in red. Click the button to submit the photo.</p>
+
 <% form_for 'photo', @photo, :url => {:action => 'create'} do |f| %>
-	<%= hidden_field_tag 'photo[offset_x]' %>
-	<%= hidden_field_tag 'photo[offset_y]' %>
-	<%= hidden_field_tag 'photo[scale]' %>
-	<%= hidden_field_tag 'photo[caption]' %>
-	<%= hidden_field_tag 'photo[is_primary]' %>
-	<%= hidden_field_tag 'photo[photo_type]' %>
-	<%= hidden_field_tag 'photo[file_name]', @photo.file_name %>
-	<div id="track">
+	<%= hidden_field_tag 'offset_x' %>
+	<%= hidden_field_tag 'offset_y' %>
+	<%= hidden_field_tag 'scale' %>
+	<%= hidden_field_tag 'caption', @photo.caption %>
+	<%= hidden_field_tag 'is_primary', @photo.is_primary %>
+	<%= hidden_field_tag 'photo_type', @photo.photo_type %>
+	<%= hidden_field_tag 'file_name', @photo.file_name %>
+	Scale Photo:<div id="track">
 		<div id="handle">
 			<%= image_tag 'scaler_slider.gif' %>
 		</div>
 	</div>
+	<p><%= check_box_tag 'stretch', 'yes', false, {:onclick => "stretchImage('stretch', 'photo_block', '#{@photo.width}', '#{@photo.height}');"} %><label for="stretch">Squeeze Image (Don't Crop)</label></p>
 	<%= f.submit @submit_message %>
 <% end %>
 
-<div id="photo_outline">
+<div id="photo_box">
+	<div id="photo_outline"></div>
 	<div class="scale-image">
 		<%= image_tag @photo.url, {:id => 'photo_block'} %>
 	</div>
 </div>
-<%= javascript_tag "prepSlider('handle', 'track', #{@photo.width}); new Draggable('photo_block', {onDrag:function(){update_position_divs('photo_block');}});"%>
+<%= javascript_tag "prepSlider('handle', 'track', #{@photo.width}, #{@photo.height}); new Draggable('photo_block', {onDrag:function(){checkPos('photo_block');},
+						   onEnd:function(){checkPos('photo_block');} });"%>

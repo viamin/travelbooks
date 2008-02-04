@@ -4,11 +4,13 @@
 	<%= link_to "Upload a new photo", :action => 'new' %>
 	<ul id="photo_list">
 		<%= render :partial => 'photo', :collection => @photos %>
+		<li class="photo_list_item_short">
+			<ul class="prof_edit_links">
+				<li><%= link_to "Edit my Profile", :action => "edit", :controller => 'user', :id => @person.id %></li>
+				<li><%= link_to "Edit my Locations", :action => "list", :controller => 'location', :id => @person.id %></li>
+				<li><%= link_to 'Home', :controller => 'user', :action => 'home' %></li>
+			</ul>
+		</li>
 	</ul>
 </div>
 
-<ul class="prof_edit_links">
-	<li><%= link_to "Edit my Profile", :action => "edit", :controller => 'user', :id => @person.id %></li>
-	<li><%= link_to "Edit my Locations", :action => "list", :controller => 'location', :id => @person.id %></li>
-	<li><%= link_to 'Home', :controller => 'user', :action => 'home' %></li>
-</ul>

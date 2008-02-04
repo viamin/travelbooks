@@ -2,4 +2,6 @@
 			"<img src='/item/image/#{item.tbid}' width='36' height='50' alt='#{item.name}'>",
 	 		{ :action => 'show', 
 		      :controller => 'item', 
-		      :id => item.tbid } ) %></li>
+		      :id => item.tbid }, {:class => 'book_img'} ) %>
+	<%= link_to item.name, {:action => 'show', :controller => 'item', :id => item.tbid}, {:class => 'book_caption'}%>
+</li>

@@ -1,5 +1,5 @@
 <li><div class="sfriend_image"><%= link_to( 
-			image_tag( "#{friend_short.main_photo.path}#{friend_short.main_photo.file_name}", :class => "main_photo", :size => "80x120"),
+			image_tag( "#{friend_short.main_photo.url}", :class => "main_photo", :size => "80x120"),
 	 		{ :action => 'show', 
 		      :controller => 'user', 
 		      :id => friend_short.id } ) %></div>

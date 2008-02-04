@@ -297,7 +297,20 @@ div.progressBar div.background {
 	height: 180px;
 	border: 1px solid #622c1f;
 }
+.book_img {
+	display: block;
+	padding-left: 22px;
+}
+.book_caption {
+	display: block;
+	width: 80px;
+	text-align: center;
+	text-decoration: none;
+	color: #000;
+}
 #blist {
+	position: absolute;
+	left: -40px;
 	list-style: none;
 }
 #blist img {
@@ -495,42 +508,57 @@ div.progressBar div.background {
 }
 /*********** Photos section ***********/
 #photo_editing {
-	display: block;
 	width: 760px;
-	border: 1px solid black;
 }
 #photo_list {
 	list-style: none;
+	position: absolute;
+	left: 12px;
+	width: 766px;
 }
 .photo_list_item {
 	float: left;
-	border: 1px solid gray;
+	display: block;
 	padding: 6px;
-	width: 200px;
+	width: 240px;
+	height: 420px;
+}
+.photo_list_item_short {
+	float: left;
+	display: block;
+	padding: 6px;
+	width: 240px;
+	height: 80px;
 }
 .photo_list_item img {
-	width: 200px;
+	width: 240px;
 }
 .photo_caption {
 	text-align: center;
 }
 .prof_edit_links {
 	list-style: none;
-	position: relative;
+}
+#photo_box {
+	position: absolute;
+	padding: 0;
+	top: 400px;
+	left: 300px;
 }
 #photo_outline {
 	position: absolute;
-	top: 400px;
-	left: 300px;
+	top: -2px;
+	left: -2px;
 	display: block;
 	width: 240px;
 	height: 360px;
 	border: 2px solid red;
-	cursor: move;
 	z-index: 10;
 }
 #photo_block {
 	position: absolute;
+	left: 0;
+	cursor: move;
 	z-index: 1;
 }
 #track {

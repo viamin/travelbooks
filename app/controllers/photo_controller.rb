@@ -40,7 +40,7 @@ class PhotoController < ApplicationController
     @person = Person.find(session[:user_id])
     #@photo = Photo.new(params[:photo])
     @photo = Photo.save_temp(params[:photo])
-    if @photo.width > 240
+    if (@photo.width > 240 || @photo.height > 360)
       @submit_message = "Crop and save photo"
     else
       @submit_message = "Sumbit photo"
@@ -49,8 +49,8 @@ class PhotoController < ApplicationController
   
   def create
     @person = Person.find(session[:user_id])
-    @photo = Photo.save(params[:photo], @person)
-    
+    photo_params = {:offset_x => params[:offset_x], :offset_y => params[:offset_y], :scale => params[:scale], :caption => params[:caption], :photo_type => params[:photo_type], :file_name => params[:file_name]}
+    Photo.save(photo_params, @person)
     
     # Filesystem method
     #photo = Photo.save(params[:photo], @person)
