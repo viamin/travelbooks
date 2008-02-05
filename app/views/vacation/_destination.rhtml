@@ -1,0 +1,3 @@
+<li id="destination_<%= destination.id %>">
+	<div id="dest_loc_<%= destination.id %>"><%= destination.name %> &mdash; <%= destination.has_location? ? destination.location.to_s : link_to_remote('Add Location Info', :update => "dest_loc_#{destination.id}", :url => {:action => 'add_loc', :id => destination.id}) %></div>
+</li>

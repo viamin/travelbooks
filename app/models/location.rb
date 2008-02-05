@@ -97,6 +97,10 @@ class Location < ActiveRecord::Base
     return false
   end
   
+  def to_s(sep = "")
+    self.address(sep).concat(self.city_state_zip)
+  end
+  
   def address(sep = "")
     "#{self.address_line_1}#{sep}#{self.address_line_2}"
   end

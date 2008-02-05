@@ -624,4 +624,16 @@ div.progressBar div.background {
 /************** Vacation section **************/
 #vacation_list {
 	list-style: none;
+	width: 250px;
+}
+#destination_list li {
+	cursor: move;
+}
+#vacation_map {
+	position: absolute;
+	top: 206px;
+	left: 373px;
+	height: 227px;
+	width: 458px;
+	border: 1px solid #633c1f;
 }

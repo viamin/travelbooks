@@ -1,2 +1,10 @@
 <h1>Listing <%= @vacation.name %></h1>
 
+<%= link_to "Add a destination", :action => 'add', :id => @vacation.id %>
+<ol id="destination_list">
+	<%= render :partial => 'destination', :collection => @vacation.destinations %>
+</ol>
+<%= sortable_element 'destination_list',
+	:url => {:action => 'sort', :id => @vacation },
+	:complete => visual_effect(:highlight, 'destination_list' )
+%>

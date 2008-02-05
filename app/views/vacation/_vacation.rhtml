@@ -1,7 +1,4 @@
 <li>
-	<p><%= vacation.name %> (<%= vacation.start_date.to_s(:long) %> - <%= vacation.end_date.to_s(:long) %>)</p>
-	<ol>
-		<%= render :partial => 'destinations', :collection => vacation.destinations %>
-		<%= link_to 'Show me this vacation', :action => 'edit', :id => vacation.id %>
-	</ol>
+	<%= vacation.name %><br />(<%= vacation.start_date.to_s(:long) %> - <%= vacation.end_date.to_s(:long) %>)<br />
+	<%= link_to 'Show', :action => 'edit', :id => vacation.id %>
 </li>

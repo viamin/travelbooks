@@ -80,4 +80,5 @@ class LocationController < ApplicationController
   def home
     redirect_to :controller => 'user', :action => 'home'
   end
+
 end

@@ -2,6 +2,7 @@ class CreateDestinations < ActiveRecord::Migration
   def self.up
     create_table :destinations do |t|
       t.column :vacation_id, :integer
+      t.column :name, :string
       t.column :position, :integer
       t.column :location_id, :integer
       t.column :notes, :text

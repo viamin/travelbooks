@@ -1,0 +1,17 @@
+<%= error_messages_for 'destination' %>
+
+<!--[form:dst_form]-->
+
+<p><label for="destination_name">Name/Description</label>
+	<%= f.text_field 'name' %></p>
+	
+<p><label for="destination_arrival">Arrival</label>
+	<%= f.datetime_select 'arrival' %></p>
+	
+<p><label for="destination_departure">Departure</label>
+	<%= f.datetime_select 'departure' %></p>
+	
+<p><label for="destination_notes">Notes</label><br />
+	<%= f.text_area 'notes' %></p>
+
+<!--[eoform:dst_form]-->

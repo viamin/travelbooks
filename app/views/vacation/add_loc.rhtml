@@ -1,0 +1,7 @@
+<p>Enter this destination's location below:</p>
+<% form_for 'location', @location, :url => {:action => 'assoc_loc'}, :html => {:id => 'loc_form'} do |f| %>
+	<%= hidden_field_tag 'destination[id]', @destination.id %>
+	<%= render :partial => 'location/form', :object => @location %>
+	<%= f.submit 'Update Destination' %>
+<% end %>
+<%= javascript_tag "$('dest_loc_#{@destination.id}').style.background = '#98a1be';"%>

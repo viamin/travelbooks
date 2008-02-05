@@ -5,6 +5,7 @@
 #
 #  id          :integer         not null, primary key
 #  vacation_id :integer         
+#  name        :string(255)     
 #  position    :integer         
 #  location_id :integer         
 #  notes       :text            
