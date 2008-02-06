@@ -55,11 +55,11 @@ class ApplicationController < ActionController::Base
     pixels_diag = Math.sqrt(width ** 2 + height ** 2)
     meters_per_pixel_needed = distance_diag / pixels_diag
     # compare here, meters per pixel to this number for different zoom levels
-    zoom_levels_yahoo = []
+    zoom_levels_yahoo = [0, 2**0, 2**1, 2**2, 2**3, 2**4, 2**5, 2**6, 2**7, 2**8, 2**9, 2**10, 2**11, 2**12, 2**13, 2**14, 2**15, 2**16, 2**17] #start close in and zoom out
     zoom_levels_yahoo.each_with_index do |zl, i|
-      zoom = i if meters_per_pixel_needed > zl
+      zoom = (18 - i) if meters_per_pixel_needed > zl
     end
-    zoom = 10 if zoom.nil?
+    zoom = 10 if (zoom.nil? || zoom == 0)
     zoom
   end
   

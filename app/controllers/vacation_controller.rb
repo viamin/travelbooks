@@ -48,7 +48,7 @@ class VacationController < ApplicationController
     @vacations = @person.vacations
     @map = Mapstraction.new("vacation_map",:yahoo)
   	@map.control_init(:small => true)
-  	@map.center_zoom_init([@location.lat, @location.lng],10)
+  	@map.center_zoom_init([@location.lat, @location.lng],9)
   	@map.marker_init(Marker.new([@location.lat, @location.lng], :info_bubble => @location.description, :icon => '/images/homeicon.png'))
 #  	@vacations.each do |v|
 #  	  points = get_markers_for(v)
@@ -103,7 +103,7 @@ class VacationController < ApplicationController
 	  @points = get_points_for(@vacation)
 	  @markers = get_markers_for(@vacation)
 	  timing @markers.pretty_inspect
-	  @center = find_center(@points)
+	  @center = LatLonPoint.new(find_center(@points))
 	  @zoom = best_zoom(@points, @center, 227, 458) #227x458 is size of map on page
 	  timing @center.pretty_inspect
 	  timing @zoom.pretty_inspect
