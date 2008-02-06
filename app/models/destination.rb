@@ -18,7 +18,7 @@ class Destination < ActiveRecord::Base
   acts_as_list :scope => :vacation
   
   def location
-    Destination.find(self.location_id)
+    Location.find(self.location_id)
   end
   
   def location=(value)

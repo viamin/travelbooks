@@ -1,0 +1,6 @@
+<li id="book<%= book.tbid %>">
+	<%= book.tbid %> : <%= book.name %> &mdash; Last owner: <%= get_person(book.person_id).display_name %>
+	<%= link_to 'Edit', :action => 'edit_book', :id => book.id %>
+	<%= link_to 'Show', :action => 'show_book', :id => book.id %>
+	<%= link_to 'Delete', {:action => 'destroy_book', :id => book.id}, :confirm => 'Are you sure?' %>
+</li>

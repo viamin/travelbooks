@@ -12,18 +12,26 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def admin_auth
+    unless (session[:user_id] == 1 && Person.find(session[:user_id]).email == "bart@sonic.net")
+      redirect_to :controller => 'user', :action => 'login'
+      return
+    end
+  end
+  
   # find_center takes an array of objects with a current_location method and
   # calculates the center point of the collection
   def find_center(collection)
     sum_lat = 0.0
     sum_lng = 0.0
     count = 0
-    collection.each do |loc|
+    collection.each do |llp| # should be a collection of LatLonPoints
       count += 1
-      sum_lat += loc.lat
-      sum_lng += loc.lng
+      sum_lat += llp.lat unless llp.lat.nil?
+      sum_lng += llp.lon unless llp.lon.nil?
     end
-    {:lng => sum_lng / count, :lat => sum_lat / count}
+    {:lng => sum_lng / count, :lat => sum_lat / count} #return a hash
+    [sum_lat/count, sum_lng/count] # return an array
   end
   
   # find_center takes an array of objects with a current_location method and
@@ -43,11 +51,20 @@ class ApplicationController < ActionController::Base
         max_lng = loc.last if loc.last > max_lng
       end
     end
-    # need to compare zoom levels to pixel sizes for lat/lng intervals
+    distance_diag = calculate_distance2(min_lat, min_lng, max_lat, max_lng)
+    pixels_diag = Math.sqrt(width ** 2 + height ** 2)
+    meters_per_pixel_needed = distance_diag / pixels_diag
+    # compare here, meters per pixel to this number for different zoom levels
+    zoom_levels_yahoo = []
+    zoom_levels_yahoo.each_with_index do |zl, i|
+      zoom = i if meters_per_pixel_needed > zl
+    end
+    zoom = 10 if zoom.nil?
+    zoom
   end
   
   # returns an array of points for the given vacation
-  def get_markers_for(vacation)
+  def get_points_for(vacation)
     points = Array.new
     vacation.destinations.each do |d|
       if d.has_location?
@@ -57,10 +74,19 @@ class ApplicationController < ActionController::Base
     points
   end
   
+  def get_markers_for(vacation)
+    markers = Array.new
+    vacation.destinations.each do |d|
+      if d.has_location?
+        markers << Marker.new([d.location.lat, d.location.lng], :info_bubble => d.name, :icon => '/images/desticon.png')
+      end
+    end
+    markers
+  end
+  
   ######################### Experimental ##########################
   def calculate_distance(lat1, lon1, lat2, lon2)
-    PI = 3.14159265358979
-    RadiusEarth = 6371000
+    radius_earth = 6371000
     # 1 Degree is 69.096 miles, 1 mile is 1609.34 m
     a = Math.cos(lat1 * Math::PI / 180) * Math.cos(lat2 * Math::PI / 180) * Math.cos(lon1 * Math::PI / 180) * Math.cos(lon2 * Math::PI / 180)
     b = Math.cos(lat1 * Math::PI / 180) * Math.sin(lon1 * Math::PI / 180) * Math.cos(lat2 * Math::PI / 180) * Math.sin(lon2 * Math::PI / 180)
@@ -68,26 +94,25 @@ class ApplicationController < ActionController::Base
     if (a + b + c) >= 1 || (a + b + c) <= -1 
       distance = 0
     else
-      distance = Math.acos(a + b + c) * RadiusEarth #Distance will be in meters
+      distance = Math.acos(a + b + c) * radius_earth #Distance will be in meters
     end
   end
 
   def calculate_distance2(lat1, lon1, lat2, lon2)
-    METRES_PER_LAT_DEGREES = 111113.519
-
-    deltaX = Abs(dX2 - dX1)
-    deltaY = Abs(dY2 - dY1)
-    centerY = (dY1 + dY2) / 2
-    metersPerDegreeLong = MetresPerDegreeLong(dCenterY)
-    deltaXMeters = dDeltaX * dMetersPerDegreeLong
-    deltaYMeters = dDeltaY * gMETRES_PER_LAT_DEGREES
-    getDistance = Sqr(dDeltaXMeters ^ 2 + dDeltaYMeters ^ 2)
+    meters_per_lat_degrees = 111113.519
+    delta_lat = (lat2 - lat1).abs
+    delta_lon = (lon2 - lon1).abs
+    center_lon = (lon1 + lon2) / 2
+    metres_per_degree_lng = metres_per_degree_lng(center_lon)
+    delta_lat_meters = delta_lat * metres_per_degree_lng
+    delta_lon_meters = delta_lon * meters_per_lat_degrees
+    distance = Math.sqrt(delta_lat_meters ** 2 + delta_lon_meters ** 2)
   end
 
   def metres_per_degree_lng(lat)
-    EARTH_RADIUS_METRES = 6378007
-    EARTH_CIRCUM_METRES = EARTH_RADIUS_METRES * 2 * Math::PI
-    (Math.cos(lat * (Math::PI / 180)) * EARTH_CIRCUM_METRES) / 360
+    earth_radius_meters = 6378007
+    earth_circum_meters = earth_radius_meters * 2 * Math::PI
+    (Math.cos(lat * (Math::PI / 180)) * earth_circum_meters) / 360
   end
   
 end

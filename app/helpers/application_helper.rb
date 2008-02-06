@@ -1,5 +1,15 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+  
+  def get_person(person_id)
+    person = Person.find(:all, :conditions => {:id => person_id})
+    if person.empty?
+      return Person.new
+    else
+      return person.first
+    end
+  end
+  
   def ymap_js_tag
     output = '<script type="text/javascript" src="http://api.maps.yahoo.com/ajaxymap?v=3.4&appid=travellerbooks"></script>'
   end

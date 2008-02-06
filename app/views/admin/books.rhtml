@@ -1,0 +1,8 @@
+<h1>Book Admin</h1>
+
+<div id="admbklst">
+	<%= link_to 'Add a book', :action => 'add_book' %>
+	<ul id="long_list">
+		<%= render :partial => 'book', :collection => @books %>
+	</ul>
+</div>

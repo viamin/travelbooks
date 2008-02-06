@@ -1,0 +1,4 @@
+page << @map.remove_all_markers
+@markers.each {|m| page << @map.add_marker(m)}
+page << @map.add_polyline(@line)
+page << @map.set_center(@center, @zoom)

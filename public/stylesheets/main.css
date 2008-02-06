@@ -624,7 +624,7 @@ div.progressBar div.background {
 /************** Vacation section **************/
 #vacation_list {
 	list-style: none;
-	width: 250px;
+	width: 290px;
 }
 #destination_list li {
 	cursor: move;

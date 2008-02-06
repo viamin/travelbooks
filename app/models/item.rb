@@ -11,10 +11,11 @@
 #  created_on  :date            
 #
 
-require 'digest/sha1'
+require 'digest/sha2'
 
 class Item < ActiveRecord::Base
   has_many :changes
+  belongs_to :person
   has_many :locations, :through => :changes do
     def current(as_of = Time.now)
       Location.find(Change.find(:first, :conditions => ["change_type=? and effective_date<=?", Change::OWNERSHIP, as_of], :order => "effective_date DESC").new_value)
@@ -31,19 +32,19 @@ class Item < ActiveRecord::Base
   def initialize(*params)
     super(*params)
     if self.new_record?
-      self.name = String.new if self.name.nil?
+      self.name = "New Book" if self.name.nil?
       self.description = String.new if self.description.nil?
     end
   end
   
   def generate_tbid
-    digest = Digest::SHA1.new
+    digest = Digest::SHA2.new
     digest << Time.now.to_s
     digest << self.id.to_s
     digest << self.description
     tbid = digest.hexdigest
     timing "tbid: #{tbid}"
-    self.tbid = tbid.slice(2...10)
+    self.tbid = "TB" + tbid.slice(2...10).upcase
     until self.save # if the id is not unique
       self.generate_tbid
     end
@@ -138,8 +139,16 @@ class Item < ActiveRecord::Base
   end
   
   def before_save
+    set_current_owner
     # Calculate mileage here
     
+  end
+  
+  private
+  def set_current_owner
+    changes = Change.find(:all, :conditions => {:change_type => [1,4], :item_id => self.id}, :order => "effective_date")
+    latest_owner = changes.last.new_value unless changes.empty?
+    self.person_id = latest_owner
   end
   
 end

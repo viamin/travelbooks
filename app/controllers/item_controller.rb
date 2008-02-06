@@ -44,6 +44,7 @@ class ItemController < ApplicationController
 
   def new
     @item = Item.new
+    redirect_to :controller => 'user', :action => 'home'
   end
 
   def create

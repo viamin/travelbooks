@@ -1,4 +1,4 @@
-<h1>Listing <%= @vacation.name %></h1>
+<h1><%= @vacation.name %></h1>
 
 <%= link_to "Add a destination", :action => 'add', :id => @vacation.id %>
 <ol id="destination_list">
@@ -8,3 +8,4 @@
 	:url => {:action => 'sort', :id => @vacation },
 	:complete => visual_effect(:highlight, 'destination_list' )
 %>
+<%= link_to 'Back to Vacations', :action => 'list' %>

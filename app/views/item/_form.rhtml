@@ -2,15 +2,15 @@
 
 <!--[form:item]-->
 <p><label for="item_tbid">Tbid</label><br/>
-<%= text_field 'item', 'tbid'  %></p>
+<%= f.text_field 'tbid'  %></p>
 
 <p><label for="item_name">Name</label><br/>
-<%= text_field 'item', 'name'  %></p>
+<%= f.text_field 'name'  %></p>
 
 <p><label for="item_description">Description</label><br/>
-<%= text_area 'item', 'description'  %></p>
+<%= f.text_area 'description'  %></p>
 
 <p><label for="item_created_on">Created on</label><br/>
-<%= date_select 'item', 'created_on'  %></p>
+<%= f.date_select 'created_on'  %></p>
 <!--[eoform:item]-->
 

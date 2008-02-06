@@ -1,0 +1,8 @@
+<h1>Adding a new TravellerBook</h1>
+
+<div id="book_form">
+	<% form_for 'item', @book, :url => {:action => 'create_book'} do |f| %>
+		<%= render :partial => 'item/form', :locals => {:f => f} %>
+		<%= f.submit 'Create' %>
+	<% end %>
+</div>
