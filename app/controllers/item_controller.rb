@@ -29,7 +29,11 @@ class ItemController < ApplicationController
     @item = Item.find_by_tbid(params[:id])
     if session[:user_id]
       @person = Person.find(session[:user_id])
-      @message = "<p>Do you have this book? To add it to your library, click <a href=\"item/associate/#{@item.tbid}\">here</a></p>" unless @person.items.include?(@item)
+      if @person.items.include?(@item)
+        @message = "<p><a href=\"/item/giveaway/#{@item.tbid}\"  onclick=\"return confirm('This will remove this book from your item list. You can find this item again in your &quot;All Items&quot; list.');\">I've given this book away</a></p>"
+      else
+        @message = "<p>Do you have this book? To add it to your library, click <a href=\"/item/associate/#{@item.tbid}\">here</a></p>"
+      end
     end
     @loc = @item.locations.current
     @map = Mapstraction.new("item_map",:yahoo)
@@ -40,6 +44,12 @@ class ItemController < ApplicationController
   	@line = Polyline.new(@points, :width => 5, :color => "#FF00AB", :opacity => 0.8)
   	@map.polyline_init(@line)
   	render :layout => false
+  end
+  
+  def giveaway
+    @item = Item.find_by_tbid(params[:id])
+    @item.change_owner(Person.find(NOBODY_USER))
+    redirect_to :action => 'show', :id => @item.tbid
   end
 
   def new

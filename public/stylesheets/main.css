@@ -637,3 +637,14 @@ div.progressBar div.background {
 	width: 458px;
 	border: 1px solid #633c1f;
 }
+/************ Admin section **************/
+.blink {
+	float: left;
+	border: 1px solid black;
+}
+#along_list {
+	list-style: none;
+}
+.abook {
+	padding-bottom: 5px;
+}

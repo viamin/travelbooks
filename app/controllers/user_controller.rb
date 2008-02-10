@@ -96,7 +96,7 @@ class UserController < ApplicationController
     else
       @location = @person.current_location
       @locations = @person.all_locations
-      @items = @person.all_items
+      @items = @person.items
       @friends = @person.friends
       @map = Mapstraction.new('user_map', :yahoo)
       @map.control_init(:small => true)
@@ -111,10 +111,13 @@ class UserController < ApplicationController
   end  
   
   def login
+    unless session[:user_id].nil?
+      redirect_to :action => 'home'
+    end
     login_status = nil
-    if Person.is_valid_login?(params[:person][:login])
+    if params[:person] && Person.is_valid_login?(params[:person][:email])
       unless request.get?
-        logged_in_email = Person.email_login(params[:person][:login], params[:person][:password])
+        logged_in_email = Person.email_login(params[:person][:email], params[:person][:password])
         if logged_in_email.kind_of?(Person)
           session[:user_id] = logged_in_email.id
           login_status = :success
@@ -134,6 +137,8 @@ class UserController < ApplicationController
           end
         end
       end
+    elsif params[:person].nil?
+      # use flash from redirect
     else
       flash[:notice] = "Sorry, the username you entered does not match with any registered users."
     end
@@ -220,6 +225,11 @@ class UserController < ApplicationController
     @message = Message.find(params[:message_id])
     @message.accept_friendship(params[:commit])
     redirect_to :action => 'list', :controller => 'message'
+  end
+  
+  def flash_test
+    flash[:notice] = "Test of the flash"
+    redirect_to :action => 'home'
   end
   
 end

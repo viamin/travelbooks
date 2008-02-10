@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
   
   def admin_auth
     unless (session[:user_id] == 1 && Person.find(session[:user_id]).email == "bart@sonic.net")
+      flash[:notice] = "You don't have access to that page."
       redirect_to :controller => 'user', :action => 'login'
       return
     end

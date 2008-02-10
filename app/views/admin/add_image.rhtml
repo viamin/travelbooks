@@ -1,0 +1,5 @@
+<% form_for 'photo', @photo, :url => {:action => 'update_image'}, :html => {:multipart => true} do |f| %>
+	<%= f.file_field 'data' %>
+	<%= hidden_field_tag 'item_id', @item.id %>
+	<%= f.submit %>
+<% end %>

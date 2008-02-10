@@ -16,18 +16,21 @@ require 'digest/sha2'
 class Item < ActiveRecord::Base
   has_many :changes
   belongs_to :person
+  has_many :photos do
+    def current
+      Photo.find(:all, :conditions => {:photo_type => Photo::ITEM, :item_id => id}, :order => "id desc").first
+    end
+  end
+  validates_uniqueness_of :tbid
   has_many :locations, :through => :changes do
     def current(as_of = Time.now)
-      Location.find(Change.find(:first, :conditions => ["change_type=? and effective_date<=?", Change::OWNERSHIP, as_of], :order => "effective_date DESC").new_value)
+      Location.find(Change.find(:first, :conditions => ["change_type=? and effective_date<=?", Change::ITEM_LOCATION, as_of], :order => "effective_date DESC").new_value)
     end
     def sorted(how="ASC")
-      changes = Change.find(:all, :conditions => {:change_type => Change::OWNERSHIP}, :order => "effective_date #{how}")
+      changes = Change.find(:all, :conditions => {:change_type => Change::ITEM_LOCATION}, :order => "effective_date #{how}")
       changes.collect!{ |c| Location.find(c.new_value)}
     end
   end
-  has_many :photos
-  belongs_to :person
-  validates_uniqueness_of :tbid
   
   def initialize(*params)
     super(*params)
@@ -58,9 +61,8 @@ class Item < ActiveRecord::Base
     change.new_value = new_owner.id
     change.effective_date = date
     change.item_id = self.id
-    change.save
     self.change_location(new_owner, date)
-    self.person = new_owner
+    self.person_id = new_owner.id
     self.changes << change
     change.save
     self.save!

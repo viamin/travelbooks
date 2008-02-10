@@ -22,6 +22,7 @@ class TrackController < ApplicationController
         @message = "Invalid code"
       end
     end
+    render :layout => false
   end
   
   def friend
