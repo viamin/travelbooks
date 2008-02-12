@@ -26,12 +26,13 @@ class ItemController < ApplicationController
   end
 
   def show
+    timing session.pretty_inspect
     @item = Item.find_by_tbid(params[:id])
     if session[:user_id]
       @person = Person.find(session[:user_id])
       if @person.items.include?(@item)
         @message = "<p><a href=\"/item/giveaway/#{@item.tbid}\"  onclick=\"return confirm('This will remove this book from your item list. You can find this item again in your &quot;All Items&quot; list.');\">I've given this book away</a></p>"
-      else
+      elsif (session[:last_action] =~ /^track_(find|item)$/)
         @message = "<p>Do you have this book? To add it to your library, click <a href=\"/item/associate/#{@item.tbid}\">here</a></p>"
       end
     end
@@ -89,8 +90,7 @@ class ItemController < ApplicationController
   def image
     item = Item.find_by_tbid(params[:id])
     # Need to decide if I'll be grabbing images from the hard drive or out of the DB
-    photos = item.photos
-    main_photo = photos.detect(photos.first) { |p| p.is_primary }
+    main_photo = item.photos.find(:first, :conditions => {:photo_type => Photo::ITEM, :item_id => item.id})
     unless main_photo.nil?
       if (main_photo.url == "db")
         send_data(main_photo.data,
@@ -98,7 +98,7 @@ class ItemController < ApplicationController
               :type => main_photo.content_type,
               :filename => main_photo.file_name)
       else
-        send_file("#{main_photo.path}/#{main_photo.file_name}",
+        send_file("#{main_photo.path}",
                 :disposition => 'inline',
                 :type => main_photo.content_type,
                 :file_name => main_photo.file_name)
@@ -113,25 +113,16 @@ class ItemController < ApplicationController
   end
   
   def associate
-    timing session.pretty_inspect
     @item = Item.find_by_tbid(params[:id])
-    unless session[:current_action] == :user_add_item
-      flash[:notice] = "You need to log in to add a book to your library"
-      session[:item_last_viewed] = @item.tbid
-      session[:current_action] = :user_add_item
-      redirect_to :action => 'login', :controller => 'user'
-      return
-    end
     @person = Person.find(session[:user_id])
     @change = Change.new
     @change.change_type = Change::OWNERSHIP
     @change.item = @item
+    @change.old_value = @item.person_id
     @change.new_value = session[:user_id]
-    @change.location = @person.current_location
     @change.effective_date = Time.now
     @change.save!
     @person.items << @item
-    session[:current_action] = nil
     flash[:notice] = "This item (#{@item.name}) has been added to your library."
     redirect_to :action => 'home', :controller => 'user'
     

@@ -181,8 +181,17 @@
 	}
     </style>
 	<script type="text/javascript">
-		function clear_form(textbox, orig_string) {
-			
+		function clear_form() {
+			var box = document.getElementById('tbid');
+			if (box.value == "Enter TBook #") {
+				box.value = "";
+			}
+		}
+		function repop_form() {
+			var box = document.getElementById('tbid');
+			if (box.value == "") {
+				box.value = "Enter TBook #";
+			}
 		}
 	</script>
   </head>
@@ -196,9 +205,9 @@
 		</div>
 	  <div id="main_box">
 		<%= link_to "<br \>About", {:action => "about"}, {:id => "aboutlk"} %>
-		<%= form_tag :controller => "track", :action => "find" %>
+		<%= form_tag :controller => "track", :action => "item" %>
 			<label for="tbid" id="fm_lbl">Search by TravellerBook Code:</label><br />
-			<%= text_field_tag "tbid", "Enter TBook #", {:size => "20"} %><br />
+			<%= text_field_tag "tbid", "Enter TBook #", {:size => "20", :onfocus => "clear_form();", :onblur => "repop_form();"} %><br />
 			<%= submit_tag "Submit", {:id => "fmsub"} %>
 		</form>
 		<%= link_to "<br />Join", {:controller => 'user', :action => 'join'}, {:id => "booklk"} %>

@@ -43,6 +43,7 @@ class MessageController < ApplicationController
     # since @reply_to expects the message to be a reply, reverse sender and person_id meanings
     # I know, it's lame...
     @reply_to = Message.new({:sender => params[:id]}) if params[:id]
+    @reply_to.body = "\n\n-----------------------\n#{@reply_to.body}" if @reply_to.body && @reply_to.body.length > 0
   end
   
   def create

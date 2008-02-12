@@ -64,6 +64,12 @@ class Person < ActiveRecord::Base
     end
   end
   
+  def all_items
+    item_array = Change.find(:all, :conditions => {:change_type => Change::OWNERSHIP, :new_value => self.id})
+    items = item_array.collect!{ |item| Item.find(item.item_id) unless item.item_id.nil?}.compact.uniq
+    items
+  end
+  
   def before_create
     self.hashed_password = Person.hash_password(self.password)
   end
@@ -217,15 +223,6 @@ class Person < ActiveRecord::Base
     change.save
 #    self.locations << new_location
 #    self.save!
-  end
-  
-  # shows all travellerbooks the person has had at some point
-  def all_items
-    item_array = Change.find(:all, :conditions => {:change_type => Change::OWNERSHIP, :new_value => self.id})
-#    timing "item_array: #{item_array.pretty_inspect}"
-    items = item_array.collect!{ |item| Item.find(item.item_id) unless item.item_id.nil?}.compact.uniq unless item_array.empty?
-#    timing "items: #{items.pretty_inspect}"
-    items
   end
   
   # This function will calculate how far the user has travelled himself, and store the data in 

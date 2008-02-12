@@ -16,11 +16,7 @@ require 'digest/sha2'
 class Item < ActiveRecord::Base
   has_many :changes
   belongs_to :person
-  has_many :photos do
-    def current
-      Photo.find(:all, :conditions => {:photo_type => Photo::ITEM, :item_id => id}, :order => "id desc").first
-    end
-  end
+  has_many :photos
   validates_uniqueness_of :tbid
   has_many :locations, :through => :changes do
     def current(as_of = Time.now)

@@ -2,6 +2,10 @@ class AdminController < ApplicationController
   before_filter :admin_auth
   layout 'user'
   
+  def index
+    redirect_to :action => 'books'
+  end
+  
   def books
     @books = Item.find(:all)
   end

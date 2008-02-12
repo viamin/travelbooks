@@ -2,7 +2,18 @@
 # Likewise, all the methods added will be available for all controllers.
 class ApplicationController < ActionController::Base
   
+  before_filter :before_action
+  after_filter :after_action
+  
   private
+  
+  def before_action
+    session[:current_action] = "#{params[:controller]}_#{params[:action]}"
+  end
+  
+  def after_action
+    session[:last_action] = session[:current_action]
+  end
   
   # Makes sure the user is logged in and has a session before displaying certain pages
   def authorize

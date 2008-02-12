@@ -79,14 +79,12 @@ class UserController < ApplicationController
   
   def home
 #    timing session.pretty_inspect
-    unless session[:current_action] == :user_home
-      case session[:current_action]
-      when :user_add_item
+    unless session[:last_action] == "user_home"
+      case session[:last_action]
+      when "item_associate"
         unless session[:item_last_viewed].nil?
           redirect_to :controller => 'item', :action => 'associate', :id => session[:item_last_viewed]
           return
-        else
-          session[:current_action] = :user_home
         end
       end
     end
@@ -128,9 +126,7 @@ class UserController < ApplicationController
           next_action = :redirect
         end
         if next_action == :redirect
-          if session[:current_action] == :user_add_item
-            redirect_to :action => 'associate', :controller => 'item', :id => session[:item_last_viewed]
-          elsif login_status == :success
+          if login_status == :success
             redirect_to :action => "home"
           else
             redirect_to :action => 'login'
