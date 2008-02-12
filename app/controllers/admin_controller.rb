@@ -40,7 +40,7 @@ class AdminController < ApplicationController
   
   def add_book
     @book = Item.new
-    @book.generate_tbid
+    @book.generate_tbid_no_save
   end
   
   def create_book
@@ -53,7 +53,17 @@ class AdminController < ApplicationController
   end
   
   def edit_book
-    
+    @book = Item.find(params[:id])
+  end
+  
+  def update_book
+    @item = Item.find(params[:item][:id])
+    if @item.update_attributes(params[:item])
+      flash[:notice] = 'Book was successfully updated.'
+      redirect_to :action => 'books'
+    else
+      render :action => 'edit_book', :id => params[:id]
+    end
   end
   
   def destroy_book

@@ -66,7 +66,7 @@ class Person < ActiveRecord::Base
   
   def all_items
     item_array = Change.find(:all, :conditions => {:change_type => Change::OWNERSHIP, :new_value => self.id})
-    items = item_array.collect!{ |item| Item.find(item.item_id) unless item.item_id.nil?}.compact.uniq
+    items = item_array.collect { |change| Item.find(change.new_value) unless change.new_value.nil?}.concat(self.items).compact.uniq
     items
   end
   

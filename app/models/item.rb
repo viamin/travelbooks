@@ -49,6 +49,17 @@ class Item < ActiveRecord::Base
     end
     self
   end
+  
+  def generate_tbid_no_save
+    digest = Digest::SHA2.new
+    digest << Time.now.to_s
+    digest << self.id.to_s
+    digest << self.description
+    tbid = digest.hexdigest
+    timing "tbid: #{tbid}"
+    self.tbid = "TB" + tbid.slice(2...10).upcase
+    self
+  end
 
   def change_owner(new_owner, date = Time.now)
     change = Change.new
