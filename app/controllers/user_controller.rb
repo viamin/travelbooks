@@ -165,17 +165,20 @@ class UserController < ApplicationController
         @location.loc_type = 1
         @location.person = @person
    # Change this to put the @person and @location saves in a transaction to make sure both of them go through or none. 
-      if @person.save!
+      if @person.save
         if @location.has_good_info? && @location.save!
           @person.changes.create( :location => @location, :person => @person, :effective_date => Time.now, :change_type => Change::PERSON_LOCATION, :new_value => @location.id.to_s)
         end
           flash[:notice] = "Thank you for joining TravellerBook.com"
           session[:user_id] = @person.id
-          redirect_to(:action => :home)
+          redirect_to :action => :home
         else
           flash[:notice] = "Sorry, there was a problem creating your account."
-          redirect_to(:action => :join)
+          render :action => :join
         end
+      else
+        flash[:notice] = "There was a problem creating your account"
+        render :action => :join
       end
     end
   end

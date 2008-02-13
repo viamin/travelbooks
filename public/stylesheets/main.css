@@ -226,6 +226,7 @@ div.progressBar div.background {
 	top: 32px;
 	width: 80px;
 	height: 120px;
+	z-index: 100;
 }
 #user_info {
 	position: absolute;
@@ -309,8 +310,6 @@ div.progressBar div.background {
 	color: #000;
 }
 #blist {
-	position: absolute;
-	left: -40px;
 	list-style: none;
 }
 #blist img {
@@ -318,7 +317,6 @@ div.progressBar div.background {
 }
 #blist li {
 	padding-bottom: 4px;
-	padding-right: 14px;
 	float: left;
 }
 #friend_box {
@@ -524,6 +522,9 @@ div.progressBar div.background {
 #photo_editing {
 	width: 760px;
 }
+#photo_listing {
+	width: 760px;
+}
 #photo_list {
 	list-style: none;
 	position: absolute;
@@ -607,6 +608,10 @@ div.progressBar div.background {
 .message_short a {
 	text-decoration: none;
 	color: #000;
+}
+#message_area {
+	overflow: auto;
+	height: 520px;
 }
 #message_list {
 	list-style: none;

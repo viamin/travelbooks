@@ -7,7 +7,7 @@ class AdminController < ApplicationController
   end
   
   def books
-    @books = Item.find(:all)
+    @books = Item.find(:all, :order => "id desc")
   end
   
   def add_image
@@ -18,6 +18,7 @@ class AdminController < ApplicationController
   
   def update_image
     @item = Item.find(params[:item_id])
+    @item.photos.each {|p| p.destroy }
     data = params[:photo][:data]
     @photo = Photo.new
     @photo.item_id = @item.id

@@ -1,7 +1,9 @@
 <h1><%= @person.display_name %>'s Photos</h1>
-<p class="message"><%= @message if @message.length > 1 %></p>
-<div id="photo_list">
-	<% @photos.each do |photo| %>
-		<%= render :partial => 'photo', :object => photo %>
-	<% end %>
+<p class="message"><%= @message unless (@message.nil? || @message.length <= 1) %></p>
+<div id="photo_listing">
+	<ul id="photo_list">
+		<% @photos.each do |photo| %>
+			<%= render :partial => 'photo_show', :object => photo %>
+		<% end %>
+	</ul>
 </div>

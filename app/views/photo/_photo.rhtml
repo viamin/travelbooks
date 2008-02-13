@@ -4,9 +4,9 @@
 				<%= photo.caption %>
 			</div>
 			<div class="photo_ops"><%= link_to 'Delete', {:controller => 'photo', :action => 'destroy', :id => photo.id}, :confirm => "Are you sure you want to permanently delete this photo?", :method => 'delete' %>
-				<%= link_to 'Edit Details', {:controller => 'photo', :action => 'edit_details', :id => photo.id} %>
+				<%= link_to 'Change Caption', {:controller => 'photo', :action => 'edit_details', :id => photo.id} %>
 				<% unless photo.is_primary %>
-				<%= link_to 'Make this my main photo', :action => 'make_primary', :id => photo.id %>
+				<%= link_to 'Make this main', :action => 'make_primary', :id => photo.id %>
 				<% else %>
 				(Main Photo)
 				<% end %>

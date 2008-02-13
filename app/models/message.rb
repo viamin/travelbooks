@@ -87,7 +87,7 @@ class Message < ActiveRecord::Base
   def accept_friendship(acceptance)
     if self.message_type == Message::FRIENDREQUEST && acceptance == "Accept"
       self.sender_p.add_friend(self.person_id)
-      self.delete
+      self.destroy
     else # friendship was not accepted
       self.state = self.state | Message::FRIENDSHIPREJECTED
       self.save!
