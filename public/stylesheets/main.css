@@ -314,9 +314,11 @@ div.progressBar div.background {
 }
 #blist img {
 	border: 0;
+	width: 36px;
+	height: 50px;
 }
 #blist li {
-	padding-bottom: 4px;
+	height: 115px;
 	float: left;
 }
 #friend_box {
@@ -342,7 +344,7 @@ div.progressBar div.background {
 }
 #friend_map {
 	position: absolute;
-	top: 186px;
+	top: 207px;
 	left: 373px;
 	height: 227px;
 	width: 458px;
@@ -360,10 +362,12 @@ div.progressBar div.background {
 }
 #flist img {
 	border: 0;
+	width: 80px;
+	height: 120px;
 }
 #flist li {
-	padding-bottom: 4px;
-	padding-right: 14px;
+	height: 175px;
+	width: 100px;
 	float: left;
 }
 .sfriend_image {
@@ -380,7 +384,10 @@ div.progressBar div.background {
 }
 #sflist {
 	position: absolute;
-	left: 20px;
+	overflow: auto;
+	left: 10px;
+	height: 580px;
+	width: 300px;
 	list-style: none;
 }
 #sflist img {
@@ -388,7 +395,7 @@ div.progressBar div.background {
 }
 #item_map {
 	position: absolute;
-	top: 186px;
+	top: 209px;
 	left: 373px;
 	height: 227px;
 	width: 458px;
@@ -482,6 +489,16 @@ div.progressBar div.background {
 #edit_person select {
 	position: relative;
 	left: 260px;
+}
+#reset_form label {
+	position: absolute;
+	text-align: right;
+	display: block;
+	width: 150px;
+}
+#reset_form input {
+	position: relative;
+	left: 160px;
 }
 /******** Location Editing **********/
 .short_loc {

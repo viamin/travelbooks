@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 24
+# Schema version: 25
 #
 # Table name: people
 #
@@ -13,6 +13,7 @@
 #  nickname        :string(255)     
 #  salt            :string(255)     
 #  privacy_flags   :integer         default(0)
+#  needs_reset     :boolean         
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

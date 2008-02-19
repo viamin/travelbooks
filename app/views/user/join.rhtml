@@ -27,7 +27,7 @@
 	<label for="location_zip_code">Zip</label>
 	<%= text_field :location, :zip_code %><br />
 	<label for="location_country">Country</label>
-	<%= country_select :location, :country, ["--Select One--", "-------------", "United States"] %>*<br />
+	<%= country_select :location, :country, ["United States"] %>*<br />
 	<%= f.submit 'Create Account' %>
 
 	<p>* denotes a required field</p>

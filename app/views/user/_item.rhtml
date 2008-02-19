@@ -1,7 +1,7 @@
 <li><%= link_to( 
-			"<img src='/item/image/#{item.tbid}' width='36' height='50' alt='#{item.name}'>",
+			"<img src='/item/image/#{item.id}' alt='#{item.name}'>",
 	 		{ :action => 'show', 
 		      :controller => 'item', 
-		      :id => item.tbid }, {:class => 'book_img'} ) %>
-	<%= link_to item.name, {:action => 'show', :controller => 'item', :id => item.tbid}, {:class => 'book_caption'}%>
+		      :id => item.id }, {:class => 'book_img'} ) %>
+	<%= link_to item.name, {:action => 'show', :controller => 'item', :id => item.id}, {:class => 'book_caption'}%>
 </li>

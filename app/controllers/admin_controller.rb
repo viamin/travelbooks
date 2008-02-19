@@ -23,7 +23,7 @@ class AdminController < ApplicationController
     @photo = Photo.new
     @photo.item_id = @item.id
     @photo.photo_type = Photo::ITEM
-    @photo.file_name = "book#{@item.tbid}.jpg"
+    @photo.file_name = "book#{@item.id}.jpg"
     @photo.url = "/images/books/#{@photo.file_name}"
     @photo.path = "public#{@photo.url}"
     tf = File.new("#{@photo.path}", "w")

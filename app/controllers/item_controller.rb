@@ -22,18 +22,18 @@ class ItemController < ApplicationController
   	  il = i.locations.current
   	  @map.marker_init(Marker.new([il.lat, il.lng], :info_bubble => i.name, :icon => "/images/ambericonsh.png"))
 	  end
-    render :layout => false
+    render :layout => 'user'
   end
 
   def show
     timing session.pretty_inspect
-    @item = Item.find_by_tbid(params[:id])
+    @item = Item.find(params[:id])
     if session[:user_id]
       @person = Person.find(session[:user_id])
       if @person.items.include?(@item)
-        @message = "<p><a href=\"/item/giveaway/#{@item.tbid}\"  onclick=\"return confirm('This will remove this book from your item list. You can find this item again in your &quot;All Items&quot; list.');\">I've given this book away</a></p>"
+        @message = "<p><a href=\"/item/giveaway/#{@item.id}\"  onclick=\"return confirm('This will remove this book from your item list. You can find this item again in your &quot;All Items&quot; list.');\">I've given this book away</a></p>"
       elsif (session[:last_action] =~ /^track_(find|item)$/)
-        @message = "<p>Do you have this book? To add it to your library, click <a href=\"/item/associate/#{@item.tbid}\">here</a></p>"
+        @message = "<p>Do you have this book? To add it to your library, click <a href=\"/item/associate/#{@item.id}\">here</a></p>"
       end
     end
     @loc = @item.locations.current
@@ -48,9 +48,9 @@ class ItemController < ApplicationController
   end
   
   def giveaway
-    @item = Item.find_by_tbid(params[:id])
+    @item = Item.find(params[:id])
     @item.change_owner(Person.find(NOBODY_USER))
-    redirect_to :action => 'show', :id => @item.tbid
+    redirect_to :action => 'show', :id => @item.id
   end
 
   def new
@@ -88,7 +88,7 @@ class ItemController < ApplicationController
   end
   
   def image
-    item = Item.find_by_tbid(params[:id])
+    item = Item.find(params[:id])
     # Need to decide if I'll be grabbing images from the hard drive or out of the DB
     main_photo = item.photos.find(:first, :conditions => {:photo_type => Photo::ITEM, :item_id => item.id})
     unless main_photo.nil?
@@ -113,7 +113,7 @@ class ItemController < ApplicationController
   end
   
   def associate
-    @item = Item.find_by_tbid(params[:id])
+    @item = Item.find(params[:id])
     @person = Person.find(session[:user_id])
     @change = Change.new
     @change.change_type = Change::OWNERSHIP

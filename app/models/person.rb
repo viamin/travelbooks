@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 24
+# Schema version: 25
 #
 # Table name: people
 #
@@ -13,6 +13,7 @@
 #  nickname        :string(255)     
 #  salt            :string(255)     
 #  privacy_flags   :integer         default(0)
+#  needs_reset     :boolean         
 #
 
 class Person < ActiveRecord::Base
@@ -74,7 +75,7 @@ class Person < ActiveRecord::Base
     self.hashed_password = Person.hash_password(self.password)
   end
   
-  def after_create
+  def after_save
     @password = nil
   end
   
@@ -166,7 +167,8 @@ class Person < ActiveRecord::Base
     if verified
       new_hash = Person.hash_password(new_pass)
       self.hashed_password = "#{new_hash}#{self.salt}"
-      self.save!
+      self.needs_reset = false
+      self.save
     end
     return verified
   end
@@ -273,6 +275,7 @@ class Person < ActiveRecord::Base
   
   def reset_password(new_password = Person.random_password)
     self.hashed_password = "#{Person.hash_password(new_password)}#{self.salt}"
+    self.needs_reset = true
     self.save!
   end
   

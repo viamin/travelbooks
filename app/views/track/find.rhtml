@@ -2,6 +2,6 @@
 <p><%= h(@message) if @books.empty? %></p>
 <ul class="results_list">
 <% @books.each do |book| %>
-	<li><%= link_to book.name, {:controller => 'item', :action => 'show', :id => book.tbid} %></li>
+	<li><%= link_to book.name, {:controller => 'item', :action => 'show', :id => book.id} %></li>
 <% end %>
 </ul>

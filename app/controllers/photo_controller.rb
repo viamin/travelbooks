@@ -50,10 +50,10 @@ class PhotoController < ApplicationController
   def create
     @person = Person.find(session[:user_id])
     photo_params = {:offset_x => params[:offset_x], :offset_y => params[:offset_y], :scale => params[:scale], :caption => params[:caption], :photo_type => params[:photo_type], :file_name => params[:file_name]}
-    Photo.save(photo_params, @person)
     
     # Filesystem method
-    #photo = Photo.save(params[:photo], @person)
+    Photo.save(photo_params, @person)
+    
     # database method
     #@params['photo']['data'] = @params['photo']['data'].read
     #@params['photo'].delete('tmp_file') # let's remove the field from the hash, because there's no such field in the DB anyway.

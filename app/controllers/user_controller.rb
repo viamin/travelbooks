@@ -115,9 +115,9 @@ class UserController < ApplicationController
     login_status = nil
     if params[:person] && Person.is_valid_login?(params[:person][:email])
       unless request.get?
-        logged_in_email = Person.email_login(params[:person][:email], params[:person][:password])
-        if logged_in_email.kind_of?(Person)
-          session[:user_id] = logged_in_email.id
+        person = Person.email_login(params[:person][:email], params[:person][:password])
+        if person.kind_of?(Person)
+          session[:user_id] = person.id
           login_status = :success
           next_action = :redirect
         else
@@ -127,7 +127,12 @@ class UserController < ApplicationController
         end
         if next_action == :redirect
           if login_status == :success
-            redirect_to :action => "home"
+            if person.needs_reset == true
+              flash[:notice] = "Your password was recently reset. You will need to enter a new password in order to log in next time."
+              redirect_to :action => 'reset_password', :temp_pass => params[:person][:password]
+            else
+              redirect_to :action => "home"
+            end
           else
             redirect_to :action => 'login'
           end
@@ -150,8 +155,17 @@ class UserController < ApplicationController
   end
   
   def iforgot
-    @person = Person.find(:first, :conditions => {:email => params[:retrieve][:email_address]})
-    @person.send_reset_email
+    if (params.nil? || params.empty? || params[:retrieve].nil? || params[:retrieve].empty?)
+      redirect_to :action => 'retrieve'
+    else
+      @person = Person.find(:first, :conditions => {:email => params[:retrieve][:email_address]})
+      if @person.nil?
+        flash[:notice] = "There was no user found with that email address."
+        render :action => 'retrieve'
+      else
+        @person.send_reset_email
+      end
+    end
   end
 
   def join
@@ -214,7 +228,7 @@ class UserController < ApplicationController
     @person = Person.find(params[:id])
     @friend = Person.find(params[:friend_id])
     if params[:commit] == "Confirm"
-      flash[:notice] = "A message will been sent to #{@friend.display_name}."
+      flash[:notice] = "A message has been sent to #{@friend.display_name}."
       Message.send_request(@person, @friend)
     end
     redirect_to :action => 'show', :id => @friend.id
@@ -229,6 +243,26 @@ class UserController < ApplicationController
   def flash_test
     flash[:notice] = "Test of the flash"
     redirect_to :action => 'home'
+  end
+  
+  def reset_password
+    @person = Person.find(session[:user_id])
+    @temp_pass = params[:temp_pass]
+  end
+  
+  def update_password
+    @person = Person.find(params[:person][:id])
+    if params[:person][:password] == params[:person][:password_confirmation]
+      if @person.change_password(params[:temp_password], params[:person][:password])
+        flash[:notice] = "Your password has been successfully changed"
+        redirect_to :action => 'home'
+      else
+        render :action => 'reset_password'
+      end
+    else
+      flash[:notice] = "The passwords you typed do not match"
+      redirect_to :action => 'reset_password', :temp_pass => params[:temp_password]
+    end
   end
   
 end
