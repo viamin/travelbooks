@@ -88,6 +88,33 @@ div.progressBar div.background {
 }
 
 /* ---------------- Layout styles ----------------*/
+#float_flash {
+	position: absolute;
+	z-index: 10000;
+	top: 175px;
+	left: 300px;
+	clear: none;
+}
+#float_bar {
+	width: 276px;
+	padding-left: 4px;
+	background: url('/images/rndtopyel.png');
+}
+#float_box {
+	float: left;
+	width: 274px;
+	padding: 2px;
+	background: #fff;
+	border: 1px solid #633c1f;
+	color: green;
+}
+#flcl {
+	position: relative;
+	color: #ffd;
+	text-decoration: none;
+	top: 2px;
+	left: 200px;
+}
 #smlogo {
 	position: absolute;
 	left: 10px;
@@ -403,9 +430,9 @@ div.progressBar div.background {
 }
 .right_rlink {
 	position: absolute;
-	left: 380px;
+	left: 330px;
 	top: 5px;
-	text-align: right;
+	text-align: left;
 	color: #ffd;
 	text-decoration: none;
 	font-size: 12px;
@@ -449,18 +476,15 @@ div.progressBar div.background {
 	border: 1px solid #633c1f;
 }
 #tb_stats {
-	position: absolute;
-	top: 23px;
+	float: left;
 	height: 150px;
 	width: 280px;
 	overflow: auto;
 }
 #mileage {
-	position: absolute;
-	top: 23px;
-	left: 300px;
+	float: left;
 	height: 150px;
-	width: 459px;
+	width: 445px;
 	overflow: auto;
 }
 .udl {

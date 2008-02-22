@@ -76,6 +76,8 @@ ENV['TEMP'] = "#{RAILS_ROOT}/public/images/tmp"
 ENV['TMP'] = "#{RAILS_ROOT}/public/images/tmp"
 ENV['TMPDIR'] = "#{RAILS_ROOT}/public/images/tmp"
 
+COLORS = ['#fff', '#633c1f', '#394876', '#2f4380', '#ffe7a5', '#000']
+
 require 'pp'
 require 'rmagick'
 include Magick

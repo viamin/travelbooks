@@ -14,4 +14,16 @@ module UserHelper
     map.add_marker(Marker.new([loc.lat, loc.lng], :info_bubble => item.name, :icon => '/images/ambericonsh.png'))
   end
   
+  def add_vacation_line(vacation, map)
+    dests = vacation.destinations
+    line = Array.new
+    dests.each do |d|
+      if d.has_location?
+        line << LatLonPoint.new([d.location.lat, d.location.lng])
+      end
+    end
+    polyline = Polyline.new(line, :width => 5, :color => COLORS[rand(6)], :opacity => 0.8)
+    map.add_polyline(polyline)
+  end
+  
 end

@@ -24,9 +24,8 @@
 </div>
 <div id="map_box">
 	<div id="map_bar">
-		My World 
-		<%= link_to_remote "Mark TravellerBooks", :url => {:controller => 'user', :action => 'mark_items', :id => @person.id, :width => 456, :height => 207}, :html => {:class => 'right_mlink', :id => 'mtrav'} %>
-		<%= link_to_remote "Mark Friends", :url => {:controller => 'user', :action => 'mark_friends', :id => @person.id, :width => 456, :height => 207}, :html => {:class => 'right_rlink', :id => 'mfriend'} %>
+		My World
+		<%= link_to_remote "Show Vacations", :url => {:controller => 'user', :action => 'show_vacations', :id => @person.id, :width => 456, :height => 207}, :html => {:class => 'right_rlink', :id => 'mvacation'} %>
 	</div>
 	<%= @map.div(:width => 456, :height => 207) %>
 </div>
@@ -49,22 +48,6 @@
 <div id="stat_box">
 	<div id="stat_bar">My Traveller Stats</div>
 	<div id="stat_list">
-		<div id="tb_stats">
-			<h3>TravellerBook Personal Stats</h3>
-			<ul class="udl">
-  				<li>Books Given:</li>
-  				<li>Books Received:</li>
-  				<li>Countries Visited:</li>
-  				<li>Countries Books Visited:</li>
-			</ul>
-		</div>
-		<div id="mileage">
-			<h3>My Mileage</h3>
-			<ul class="udl">
-  				<li>Miles Travelled:</li>
-  				<li>Miles Books given Travelled:</li>
-  				<li>Miles last book received travelled:</li>
-			</ul>
-		</div>
+		<%= render :partial => 'stats', :locals => {:person => @person} %>
 	</div>
 </div>

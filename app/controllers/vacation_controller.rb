@@ -2,8 +2,6 @@ class VacationController < ApplicationController
   before_filter :authorize
   layout 'user'
   
-  COLORS = ['#fff', '#633c1f', '#394876', '#2f4380', '#ffe7a5', '#000']
-  
   # RESTful actions:
   # Get: list, show, new, edit
   # Post: create

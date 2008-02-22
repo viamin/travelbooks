@@ -15,9 +15,8 @@
 		<div id="linkbar">
 			<%= render :partial => "main/toplinks" %>
 		</div>
-		
+		<%= render(:partial => 'main/flash', :locals => {:flash => flash}) if flash[:notice] %>
 		<div id="cfl">
-			<p style="padding-top: 3px;color: green"><%= flash[:notice] %></p>
 			<%= @content_for_layout %>
 		</div>
 	</div>

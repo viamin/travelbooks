@@ -215,6 +215,16 @@ class UserController < ApplicationController
     @map = Variable.new("map")
   end
   
+  def show_vacations
+    @person = Person.find(params[:id])
+    if @person.share_vacations
+      @vacations = @person.vacations
+    else
+      @vacations = [Vacation.new]
+    end
+    @map = Variable.new("map")
+  end
+  
   def add
     @person = Person.find(session[:user_id])
     @friend = Person.find(params[:id]) unless params[:id].nil?
@@ -241,7 +251,7 @@ class UserController < ApplicationController
   end
   
   def flash_test
-    flash[:notice] = "Test of the flash"
+    flash[:notice] = "Test of the flash. This is a test of a long flash message to see how it looks in the floating flash box."
     redirect_to :action => 'home'
   end
   

@@ -6,7 +6,12 @@ class ShopController < ApplicationController
   end
 
   def store
-    @items = SaleItem.find(:all, :conditions => ["for_sale = 'yes' and quantity_in_stock > 0"])
+#    @items = SaleItem.find(:all, :conditions => ["for_sale = 'yes' and quantity_in_stock > 0"])
+    redirect_to :action => 'coming_soon'
+  end
+  
+  def coming_soon
+    
   end
 
 end
