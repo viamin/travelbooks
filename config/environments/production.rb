@@ -4,6 +4,8 @@
 # Code is not reloaded between requests
 config.cache_classes = true
 
+ENV['GEM_HOME'] = '/usr/local/lib/ruby/gems-dev/1.8'
+
 # Use a different logger for distributed setups
 # config.logger = SyslogLogger.new
 
