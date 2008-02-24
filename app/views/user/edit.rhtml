@@ -1,6 +1,6 @@
 <h1>Edit Your Public Profile</h1>
 
-<% form_tag :url => {:action => 'update', :id => @person} do %>
+<% form_for 'person', @person, :url => {:action => 'update', :id => @person} do %>
   <div id="edit_person">
     <%= render :partial => 'form', :object => @person %>
     <%= submit_tag 'Update' %>
