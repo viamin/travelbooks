@@ -1,24 +1,65 @@
-# == Schema Information
-# Schema version: 25
-#
-# Table name: messages
-#
-#  id           :integer         not null, primary key
-#  sender       :integer         
-#  person_id    :integer         
-#  subject      :string(255)     
-#  body         :text            
-#  state        :integer         default(0)
-#  date_read    :datetime        
-#  created_at   :datetime        
-#  updated_at   :datetime        
-#  message_type :integer         default(0)
-#
-
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-# one:
-#   column: value
-#
-# two:
-#   column: value
+--- 
+messages_003: 
+  message_type: "0"
+  updated_at: 2008-01-31 08:29:04
+  body: |-
+    Seems to be working
+    
+    -----------------------
+    Well then hopefully this will work. 
+    -----------------------
+    This is a test message for testing purposes. Jest testing, you know? Testing? Yeah. That. test.
+  sender: "2"
+  id: "3"
+  subject: "Re: Re: Test"
+  date_read: 2008-01-31 08:29:04
+  person_id: "1"
+  state: "1"
+  created_at: 2008-01-30 19:08:17
+messages_004: 
+  message_type: "0"
+  updated_at: 2008-01-31 18:25:23
+  body: 
+  sender: "4"
+  id: "4"
+  subject: Nagib would like to add you as a friend
+  date_read: 2008-01-31 18:25:23
+  person_id: "3"
+  state: "1"
+  created_at: 2008-01-31 18:17:21
+messages_005: 
+  message_type: "1"
+  updated_at: 2008-02-13 08:31:05
+  body: 
+  sender: "2"
+  id: "7"
+  subject: Kat would like to add you as a friend
+  date_read: 
+  person_id: "6"
+  state: "0"
+  created_at: 2008-02-13 08:31:05
+messages_001: 
+  message_type: "0"
+  updated_at: 2008-01-31 08:28:47
+  body: This is a test message for testing purposes. Jest testing, you know? Testing? Yeah. That. test.
+  sender: "2"
+  id: "1"
+  subject: Test
+  date_read: 2008-01-31 08:28:47
+  person_id: "1"
+  state: "1"
+  created_at: 2008-01-30 09:09:29
+messages_002: 
+  message_type: "0"
+  updated_at: 2008-01-31 08:28:42
+  body: |-
+    Well then hopefully this will work. 
+    -----------------------
+    This is a test message for testing purposes. Jest testing, you know? Testing? Yeah. That. test.
+  sender: "1"
+  id: "2"
+  subject: "Re: Test"
+  date_read: 2008-01-31 08:28:42
+  person_id: "2"
+  state: "1"
+  created_at: 2008-01-30 19:02:10

@@ -1,76 +1,221 @@
-# == Schema Information
-# Schema version: 25
-#
-# Table name: locations
-#
-#  id             :integer         not null, primary key
-#  description    :string(255)     not null
-#  loc_type       :integer         default(1)
-#  person_id      :integer         
-#  item_id        :integer         
-#  credit_card_id :integer         default(0)
-#  address_line_1 :string(255)     not null
-#  address_line_2 :string(255)     
-#  city           :string(255)     not null
-#  state          :string(255)     not null
-#  zip_code       :string(255)     not null
-#  country        :string(255)     not null
-#  altitude_feet  :integer         default(0)
-#  date_start     :datetime        
-#  date_end       :datetime        
-#  public         :boolean         
-#  lat            :float           
-#  lng            :float           
-#  icon           :string(255)     
-#
-
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
-  id: 1
-  description: Dave House
-  loc_type: 1
-  person_id: 1
-  address_line_1: 4492 Lick Mill Blvd.
-  city: Santa Clara
-  state: California
-  zip_code: 95054
-  country: United States
-  longitude: 1
-  latitude: 3
-another:
-  id: 2
-  description: Kat House
-  loc_type: 1
-  person_id: 2
-  address_line_1: 170 Phoebe St.
-  address_line_2: Apt. 7
-  city: Encinitas
-  state: California
-  zip_code: 92024
-  country: United States
-  longitude: 5
-  latitude: 3
-more:
-  id: 3
-  description: Kline Work Addess
-  loc_type: 1
-  person_id: 3
-  address_line_1: L4, 690 Springvale Road
+--- 
+locations_003: 
+  item_id: 
   city: Mulgrave
-  state: none
-  zip_code: 3170
+  public: 
+  icon: 
+  credit_card_id: "0"
+  zip_code: "3170"
   country: Australia
-  longitude: 6
-  latitude: 4
-evenmore: 
-  id: 4
-  description: Nagib Work Address
-  loc_type: 1
-  person_id: 4
-  address_line_1: 20 Broadwick St.
+  altitude_feet: "0"
+  id: "3"
+  lng: "145.165253"
+  description: Work Addess
+  address_line_1: L4, 690 Springvale Road
+  loc_type: "1"
+  address_line_2: ""
+  person_id: "3"
+  lat: "-37.921429"
+  state: ""
+  date_start: 
+  date_end: 
+locations_004: 
+  item_id: 
   city: London
-  state: none
+  public: 
+  icon: 
+  credit_card_id: "0"
   zip_code: W1F 8HT
   country: United Kingdom
-  longitude: 3
-  latitude: 7
+  altitude_feet: "0"
+  id: "4"
+  lng: "-0.135286"
+  description: Work Address
+  address_line_1: 20 Broadwick St.
+  loc_type: "1"
+  address_line_2: ""
+  person_id: "4"
+  lat: "51.513803"
+  state: ""
+  date_start: 
+  date_end: 
+locations_005: 
+  item_id: 
+  city: Cupertino
+  public: 
+  icon: 
+  credit_card_id: "0"
+  zip_code: 95014-2083
+  country: United States
+  altitude_feet: "0"
+  id: "9"
+  lng: "-122.030749"
+  description: Work
+  address_line_1: 1 Infinite Loop
+  loc_type: "1"
+  address_line_2: ""
+  person_id: 
+  lat: "37.332315"
+  state: CA
+  date_start: 
+  date_end: 
+locations_006: 
+  item_id: 
+  city: Melbourne
+  public: 
+  icon: 
+  credit_card_id: "0"
+  zip_code: "3001"
+  country: Australia
+  altitude_feet: "0"
+  id: "10"
+  lng: "144.963165"
+  description: Home
+  address_line_1: GPO Box 1581P
+  loc_type: "1"
+  address_line_2: ""
+  person_id: 
+  lat: "-37.814251"
+  state: Victoria
+  date_start: 
+  date_end: 
+locations_007: 
+  item_id: 
+  city: Kailua Kona
+  public: 
+  icon: 
+  credit_card_id: "0"
+  zip_code: "96740"
+  country: United States
+  altitude_feet: "0"
+  id: "12"
+  lng: "-155.97022"
+  description: Hale O Pua Lani Condo
+  address_line_1: 77-6548 Princess Keelikolani
+  loc_type: "1"
+  address_line_2: ""
+  person_id: 
+  lat: "19.588972"
+  state: HI
+  date_start: 
+  date_end: 
+locations_008: 
+  item_id: 
+  city: Kaanapali
+  public: 
+  icon: 
+  credit_card_id: "0"
+  zip_code: 96761-9311
+  country: United States
+  altitude_feet: "0"
+  id: "13"
+  lng: "-156.68536"
+  description: Nohonani Condo
+  address_line_1: 3723 Lower Honoapiilani Rd
+  loc_type: "1"
+  address_line_2: ""
+  person_id: 
+  lat: "20.956671"
+  state: HI
+  date_start: 
+  date_end: 
+locations_009: 
+  item_id: 
+  city: Santa Cruz
+  public: 
+  icon: 
+  credit_card_id: "0"
+  zip_code: 95060-3408
+  country: United States
+  altitude_feet: "0"
+  id: "14"
+  lng: "-122.033856"
+  description: ""
+  address_line_1: "214 King St. #3"
+  loc_type: "1"
+  address_line_2: ""
+  person_id: "5"
+  lat: "36.975706"
+  state: CA
+  date_start: 
+  date_end: 
+locations_010: 
+  item_id: 
+  city: Santa Clara
+  public: 
+  icon: 
+  credit_card_id: "0"
+  zip_code: 95054-3586
+  country: United States
+  altitude_feet: "0"
+  id: "15"
+  lng: "-121.946018"
+  description: ""
+  address_line_1: 4492 Lick Mill Blvd.
+  loc_type: "1"
+  address_line_2: ""
+  person_id: "6"
+  lat: "37.398604"
+  state: CA
+  date_start: 
+  date_end: 
+locations_011: 
+  item_id: 
+  city: Sunnyvale
+  public: 
+  icon: 
+  credit_card_id: "0"
+  zip_code: "94086"
+  country: United States
+  altitude_feet: "0"
+  id: "16"
+  lng: "-122.018726"
+  description: ""
+  address_line_1: 821 East California Ave.
+  loc_type: "1"
+  address_line_2: ""
+  person_id: "7"
+  lat: "37.379698"
+  state: CA
+  date_start: 
+  date_end: 
+locations_001: 
+  item_id: 
+  city: Santa Cruz
+  public: 
+  icon: 
+  credit_card_id: "0"
+  zip_code: 95060-3408
+  country: United States
+  altitude_feet: "0"
+  id: "1"
+  lng: "-122.033856"
+  description: SC Apt.
+  address_line_1: "214 King St. #3"
+  loc_type: "1"
+  address_line_2: ""
+  person_id: "1"
+  lat: "36.975706"
+  state: California
+  date_start: 
+  date_end: 
+locations_002: 
+  item_id: 
+  city: Encinitas
+  public: 
+  icon: 
+  credit_card_id: "0"
+  zip_code: 92024-1459
+  country: United States
+  altitude_feet: "0"
+  id: "2"
+  lng: "-117.305574"
+  description: Kat House
+  address_line_1: 170 Phoebe St.
+  loc_type: "1"
+  address_line_2: Apt. 7
+  person_id: "2"
+  lat: "33.069163"
+  state: California
+  date_start: 
+  date_end: 

@@ -1,33 +1,273 @@
-# == Schema Information
-# Schema version: 25
-#
-# Table name: photos
-#
-#  id           :integer         not null, primary key
-#  path         :string(255)     not null
-#  file_name    :string(255)     not null
-#  url          :string(255)     not null
-#  data         :binary          
-#  content_type :string(255)     not null
-#  bytes        :integer         
-#  width        :integer         
-#  height       :integer         
-#  caption      :string(255)     not null
-#  photo_type   :integer         
-#  location_id  :integer         
-#  person_id    :integer         
-#  item_id      :integer         
-#  created_on   :date            
-#
-
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
-  id: 1
-  path: public/images
+--- 
+photos_011: 
+  content_type: image/jpeg
+  bytes: "136206"
+  item_id: "13"
+  created_on: 2008-02-12 08:27:11
+  file_name: bookTBBE2A4EEE.jpg
+  url: /images/books/bookTBBE2A4EEE.jpg
+  id: "28"
+  location_id: 
+  caption: Butterfly
+  height: "439"
+  photo_type: "3"
+  path: public/images/books/bookTBBE2A4EEE.jpg
+  person_id: 
+  data_id: 
+  width: "400"
+photos_012: 
+  content_type: image/jpeg
+  bytes: "186890"
+  item_id: "15"
+  created_on: 2008-02-12 08:47:19
+  file_name: bookTB36D4580E.jpg
+  url: /images/books/bookTB36D4580E.jpg
+  id: "29"
+  location_id: 
+  caption: Brown Alligator
+  height: "540"
+  photo_type: "3"
+  path: public/images/books/bookTB36D4580E.jpg
+  person_id: 
+  data_id: 
+  width: "400"
+photos_001: 
+  content_type: image/jpeg
+  bytes: 
+  item_id: 
+  created_on: 
   file_name: templogo.jpg
   url: none
-  content_type: image/jpeg
+  id: "1"
+  location_id: 
   caption: What a ham!
-  item_id: 1
-  photo_type: 1
-  
+  height: 
+  photo_type: 
+  path: public/images
+  person_id: 
+  data_id: 
+  width: 
+photos_013: 
+  content_type: image/jpeg
+  bytes: "156839"
+  item_id: "16"
+  created_on: 2008-02-12 08:47:55
+  file_name: bookTBD7D071C6.jpg
+  url: /images/books/bookTBD7D071C6.jpg
+  id: "30"
+  location_id: 
+  caption: Brown Weave
+  height: "538"
+  photo_type: "3"
+  path: public/images/books/bookTBD7D071C6.jpg
+  person_id: 
+  data_id: 
+  width: "400"
+photos_002: 
+  content_type: image/jpeg
+  bytes: "0"
+  item_id: 
+  created_on: "2008-02-03"
+  file_name: temp_photo801
+  url: /images/bart@sonic.net/temp_photo801
+  id: "15"
+  location_id: 
+  caption: Fire Dancer
+  height: "360"
+  photo_type: "1"
+  path: public/images/bart@sonic.net/temp_photo801
+  person_id: "1"
+  data_id: 
+  width: "240"
+photos_014: 
+  content_type: image/jpeg
+  bytes: "217077"
+  item_id: "17"
+  created_on: 2008-02-12 08:48:30
+  file_name: bookTB3E765A26.jpg
+  url: /images/books/bookTB3E765A26.jpg
+  id: "31"
+  location_id: 
+  caption: Contemporary Floral
+  height: "563"
+  photo_type: "3"
+  path: public/images/books/bookTB3E765A26.jpg
+  person_id: 
+  data_id: 
+  width: "400"
+photos_003: 
+  content_type: image/jpeg
+  bytes: "0"
+  item_id: 
+  created_on: "2008-02-03"
+  file_name: temp_photo404
+  url: /images/bart@sonic.net/temp_photo404
+  id: "18"
+  location_id: 
+  caption: Dawg
+  height: "270"
+  photo_type: "2"
+  path: public/images/bart@sonic.net/temp_photo404
+  person_id: "1"
+  data_id: 
+  width: "240"
+photos_015: 
+  content_type: image/jpeg
+  bytes: "231376"
+  item_id: "18"
+  created_on: 2008-02-12 08:49:21
+  file_name: bookTB7BD0B765.jpg
+  url: /images/books/bookTB7BD0B765.jpg
+  id: "32"
+  location_id: 
+  caption: Domeco
+  height: "565"
+  photo_type: "3"
+  path: public/images/books/bookTB7BD0B765.jpg
+  person_id: 
+  data_id: 
+  width: "400"
+photos_004: 
+  content_type: image/jpeg
+  bytes: "0"
+  item_id: 
+  created_on: "2008-02-03"
+  file_name: temp_photo472
+  url: /images/gokarte@yahoo.com/temp_photo472
+  id: "19"
+  location_id: 
+  caption: Contacts
+  height: "164"
+  photo_type: "2"
+  path: public/images/gokarte@yahoo.com/temp_photo472
+  person_id: "2"
+  data_id: 
+  width: "384"
+photos_016: 
+  content_type: image/jpeg
+  bytes: "168104"
+  item_id: "19"
+  created_on: 2008-02-12 08:51:15
+  file_name: bookTB504F0D64.jpg
+  url: /images/books/bookTB504F0D64.jpg
+  id: "33"
+  location_id: 
+  caption: Green Alligator
+  height: "534"
+  photo_type: "3"
+  path: public/images/books/bookTB504F0D64.jpg
+  person_id: 
+  data_id: 
+  width: "400"
+photos_005: 
+  content_type: image/jpeg
+  bytes: "168104"
+  item_id: "3"
+  created_on: 2008-02-10 00:33:38
+  file_name: bookTB20G070226LX483A.jpg
+  url: /images/books/bookTB20G070226LX483A.jpg
+  id: "20"
+  location_id: 
+  caption: Green Leather
+  height: "534"
+  photo_type: "3"
+  path: public/images/books/bookTB20G070226LX483A.jpg
+  person_id: 
+  data_id: 
+  width: "400"
+photos_017: 
+  content_type: image/jpeg
+  bytes: "180955"
+  item_id: "20"
+  created_on: 2008-02-12 08:52:05
+  file_name: bookTBB3047EFE.jpg
+  url: /images/books/bookTBB3047EFE.jpg
+  id: "34"
+  location_id: 
+  caption: Intricate Brown
+  height: "535"
+  photo_type: "3"
+  path: public/images/books/bookTBB3047EFE.jpg
+  person_id: 
+  data_id: 
+  width: "400"
+photos_006: 
+  content_type: image/jpeg
+  bytes: "144823"
+  item_id: "4"
+  created_on: 2008-02-10 16:05:32
+  file_name: bookTB20G070226LX483B.jpg
+  url: /images/books/bookTB20G070226LX483B.jpg
+  id: "21"
+  location_id: 
+  caption: Red Leather
+  height: "525"
+  photo_type: "3"
+  path: public/images/books/bookTB20G070226LX483B.jpg
+  person_id: 
+  data_id: 
+  width: "400"
+photos_007: 
+  content_type: image/jpeg
+  bytes: "168833"
+  item_id: "1"
+  created_on: 2008-02-10 16:05:45
+  file_name: bookTB20G070225LX482Y.jpg
+  url: /images/books/bookTB20G070225LX482Y.jpg
+  id: "22"
+  location_id: 
+  caption: World Cup Leopard
+  height: "446"
+  photo_type: "3"
+  path: public/images/books/bookTB20G070225LX482Y.jpg
+  person_id: 
+  data_id: 
+  width: "400"
+photos_008: 
+  content_type: image/jpeg
+  bytes: "0"
+  item_id: 
+  created_on: 2008-02-11 21:30:19
+  file_name: temp_photo115
+  url: /images/bart@sonic.net/temp_photo115
+  id: "23"
+  location_id: 
+  caption: Hula Girl
+  height: "360"
+  photo_type: "2"
+  path: public/images/bart@sonic.net/temp_photo115
+  person_id: "1"
+  data_id: 
+  width: "240"
+photos_009: 
+  content_type: image/jpeg
+  bytes: "0"
+  item_id: 
+  created_on: "2008-02-11"
+  file_name: temp_photo572
+  url: /images/gokarte@yahoo.com/temp_photo572
+  id: "24"
+  location_id: 
+  caption: Kat!
+  height: "360"
+  photo_type: "1"
+  path: public/images/gokarte@yahoo.com/temp_photo572
+  person_id: "2"
+  data_id: 
+  width: "240"
+photos_010: 
+  content_type: image/jpeg
+  bytes: "146375"
+  item_id: "14"
+  created_on: 2008-02-11 22:18:29
+  file_name: bookTB438A825F.jpg
+  url: /images/books/bookTB438A825F.jpg
+  id: "26"
+  location_id: 
+  caption: Butterfly Leaf
+  height: "449"
+  photo_type: "3"
+  path: public/images/books/bookTB438A825F.jpg
+  person_id: 
+  data_id: 
+  width: "400"

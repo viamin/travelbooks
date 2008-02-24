@@ -1,23 +1,11 @@
-# == Schema Information
-# Schema version: 25
-#
-# Table name: sale_items
-#
-#  id                :integer         not null, primary key
-#  name              :string(255)     not null
-#  description       :string(255)     not null
-#  quantity_in_stock :integer         default(0)
-#  price             :float           default(0.0)
-#  for_sale          :string(255)     not null
-#  sale_price        :float           default(0.0)
-#  status            :integer         
-#  category_id       :integer         
-#
-
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
-  id: 1
+--- 
+sale_items_001: 
   name: a book
+  status: 
+  price: "0.0"
+  id: "1"
+  quantity_in_stock: "0"
   description: A really nice one
+  category_id: 
   for_sale: I don't know what this means
-  
+  sale_price: "0.0"

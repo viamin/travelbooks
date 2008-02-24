@@ -1,97 +1,381 @@
-# == Schema Information
-# Schema version: 25
-#
-# Table name: changes
-#
-#  id             :integer         not null, primary key
-#  change_type    :integer         
-#  item_id        :integer         
-#  person_id      :integer         
-#  location_id    :integer         
-#  old_value      :string(255)     
-#  new_value      :string(255)     not null
-#  effective_date :date            
-#  created_on     :date            
-#
-
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
-  id: 1
-  change_type: 1
-  item_id: 1
-  old_value: 1
-  new_value: 2
-  effective_date: 2007-02-26
-  created_on: 2007-02-26
-two:
-  id: 2
-  change_type: 2
-  person_id: 2
-  old_value: 2
-  new_value: 1
-  effective_date: 2007-04-15
-  created_on: 2007-02-26
-three: 
-  id: 3
-  change_type: 1
-  item_id: 2
-  old_value: 3
-  new_value: 4
-  effective_date: 2007-02-01
-  created_on: 2007-02-26
-four:
-  id: 4
-  change_type: 1
-  item_id: 3
-  old_value: 1
-  new_value: 4
-  effective_date: 2007-02-12
-  created_on: 2007-02-26
-five:
-  id: 5
-  change_type: 1
-  item_id: 3
-  old_value: 4
-  new_value: 3
-  effective_date: 2007-02-20
-  created_on: 2007-02-26
-six:
-  id: 6
-  change_type: 1
-  item_id: 4
-  old_value: 1
-  new_value: 4
-  effective_date: 2007-02-12
-  created_on: 2007-02-26
-seven:
-  id: 7
-  change_type: 1
-  item_id: 4
-  old_value: 4
-  new_value: 3
-  effective_date: 2007-02-20
-  created_on: 2007-02-26
-eight:
-  id: 8
-  change_type: 1
-  item_id: 5
-  old_value: 1
-  new_value: 4
-  effective_date: 2007-02-12
-  created_on: 2007-02-26
-nine:
-  id: 9
-  change_type: 1
-  item_id: 5
-  old_value: 4
-  new_value: 3
-  effective_date: 2007-02-20
-  created_on: 2007-02-26
-ten:
-  id: 10
-  change_type: 2
-  person_id: 1
-  new_value: 1
-  effective_date: 2006-09-14
-  created_on: 2007-03-08
-  
+--- 
+changes_031: 
+  item_id: "1"
+  new_value: "3"
+  created_on: 2008-02-10 16:15:13
+  old_value: ""
+  id: "32"
+  location_id: "10"
+  change_type: "1"
+  person_id: 
+  effective_date: 2008-02-10 16:15:13
+changes_020: 
+  item_id: 
+  new_value: "1"
+  created_on: 2007-12-06 18:04:27
+  old_value: ""
+  id: "20"
+  location_id: "1"
+  change_type: "1"
+  person_id: 
+  effective_date: 2007-12-06 18:04:27
+changes_009: 
+  item_id: "5"
+  new_value: "3"
+  created_on: "2007-02-26"
+  old_value: "4"
+  id: "9"
+  location_id: 
+  change_type: "1"
+  person_id: 
+  effective_date: "2007-02-20"
+changes_032: 
+  item_id: "13"
+  new_value: "14"
+  created_on: 2008-02-11 21:32:28
+  old_value: ""
+  id: "33"
+  location_id: 
+  change_type: "4"
+  person_id: 
+  effective_date: 2008-02-11 21:32:27
+changes_021: 
+  item_id: 
+  new_value: "1"
+  created_on: 2007-12-06 18:05:12
+  old_value: ""
+  id: "21"
+  location_id: "1"
+  change_type: "1"
+  person_id: 
+  effective_date: 2007-12-06 18:05:12
+changes_010: 
+  item_id: 
+  new_value: "1"
+  created_on: "2007-03-08"
+  old_value: 
+  id: "10"
+  location_id: 
+  change_type: "2"
+  person_id: "1"
+  effective_date: "2006-09-14"
+changes_033: 
+  item_id: "13"
+  new_value: "5"
+  created_on: 2008-02-11 21:32:28
+  old_value: "1"
+  id: "34"
+  location_id: 
+  change_type: "1"
+  person_id: 
+  effective_date: 2008-02-11 21:32:27
+changes_022: 
+  item_id: 
+  new_value: "1"
+  created_on: 2007-12-06 18:05:25
+  old_value: ""
+  id: "22"
+  location_id: "1"
+  change_type: "1"
+  person_id: 
+  effective_date: 2007-12-06 18:05:25
+changes_011: 
+  item_id: "3"
+  new_value: "1"
+  created_on: 2007-04-28 14:25:51
+  old_value: ""
+  id: "11"
+  location_id: "1"
+  change_type: "1"
+  person_id: 
+  effective_date: 2007-04-28 14:25:51
+changes_034: 
+  item_id: "3"
+  new_value: "2"
+  created_on: 2008-02-11 21:56:31
+  old_value: "14"
+  id: "35"
+  location_id: 
+  change_type: "1"
+  person_id: 
+  effective_date: 2008-02-11 21:56:31
+changes_023: 
+  item_id: 
+  new_value: "1"
+  created_on: 2007-12-06 18:06:03
+  old_value: ""
+  id: "23"
+  location_id: "1"
+  change_type: "1"
+  person_id: 
+  effective_date: 2007-12-06 18:06:03
+changes_012: 
+  item_id: "3"
+  new_value: "1"
+  created_on: 2007-04-28 14:26:23
+  old_value: ""
+  id: "12"
+  location_id: "1"
+  change_type: "1"
+  person_id: 
+  effective_date: 2007-04-28 14:26:23
+changes_001: 
+  item_id: "1"
+  new_value: "2"
+  created_on: "2007-02-26"
+  old_value: "1"
+  id: "1"
+  location_id: 
+  change_type: "1"
+  person_id: 
+  effective_date: "2007-02-26"
+changes_035: 
+  item_id: "13"
+  new_value: "4"
+  created_on: 2008-02-11 22:20:27
+  old_value: "5"
+  id: "36"
+  location_id: 
+  change_type: "1"
+  person_id: 
+  effective_date: 2008-02-11 22:20:27
+changes_024: 
+  item_id: 
+  new_value: "9"
+  created_on: 2008-01-19 18:46:56
+  old_value: "1"
+  id: "24"
+  location_id: 
+  change_type: "2"
+  person_id: "1"
+  effective_date: 2008-01-19 18:46:56
+changes_013: 
+  item_id: "4"
+  new_value: "1"
+  created_on: 2007-04-28 14:28:54
+  old_value: ""
+  id: "13"
+  location_id: "1"
+  change_type: "1"
+  person_id: 
+  effective_date: 2007-04-28 14:28:54
+changes_002: 
+  item_id: 
+  new_value: "1"
+  created_on: "2007-02-26"
+  old_value: "2"
+  id: "2"
+  location_id: 
+  change_type: "2"
+  person_id: "2"
+  effective_date: "2007-04-15"
+changes_036: 
+  item_id: 
+  new_value: "15"
+  created_on: 2008-02-12 17:57:26
+  old_value: ""
+  id: "37"
+  location_id: "15"
+  change_type: "2"
+  person_id: "6"
+  effective_date: 2008-02-12 17:57:26
+changes_025: 
+  item_id: 
+  new_value: "3"
+  created_on: 2008-01-27 21:10:26
+  old_value: ""
+  id: "25"
+  location_id: 
+  change_type: "2"
+  person_id: "3"
+  effective_date: 2008-01-27 21:10:26
+changes_014: 
+  item_id: "3"
+  new_value: "1"
+  created_on: 2007-04-28 14:53:19
+  old_value: ""
+  id: "14"
+  location_id: "1"
+  change_type: "1"
+  person_id: 
+  effective_date: 2007-04-28 14:53:19
+changes_003: 
+  item_id: "2"
+  new_value: "4"
+  created_on: "2007-02-26"
+  old_value: "3"
+  id: "3"
+  location_id: 
+  change_type: "1"
+  person_id: 
+  effective_date: "2007-02-01"
+changes_037: 
+  item_id: 
+  new_value: "16"
+  created_on: 2008-02-12 17:59:59
+  old_value: ""
+  id: "38"
+  location_id: "16"
+  change_type: "2"
+  person_id: "7"
+  effective_date: 2008-02-12 17:59:59
+changes_026: 
+  item_id: 
+  new_value: "4"
+  created_on: 2008-01-27 21:10:35
+  old_value: ""
+  id: "26"
+  location_id: 
+  change_type: "2"
+  person_id: "4"
+  effective_date: 2008-01-27 21:10:35
+changes_015: 
+  item_id: 
+  new_value: "1"
+  created_on: 2007-05-01 09:18:09
+  old_value: ""
+  id: "15"
+  location_id: "1"
+  change_type: "1"
+  person_id: 
+  effective_date: 2007-05-01 09:18:09
+changes_004: 
+  item_id: "3"
+  new_value: "4"
+  created_on: "2007-02-26"
+  old_value: "1"
+  id: "4"
+  location_id: 
+  change_type: "1"
+  person_id: 
+  effective_date: "2007-02-12"
+changes_038: 
+  item_id: "17"
+  new_value: "2"
+  created_on: 2008-02-13 08:23:45
+  old_value: "1"
+  id: "39"
+  location_id: 
+  change_type: "1"
+  person_id: 
+  effective_date: 2008-02-13 08:23:45
+changes_027: 
+  item_id: 
+  new_value: "10"
+  created_on: 2008-01-30 20:53:36
+  old_value: "3"
+  id: "27"
+  location_id: 
+  change_type: "2"
+  person_id: "3"
+  effective_date: 2008-01-30 20:53:36
+changes_016: 
+  item_id: 
+  new_value: "1"
+  created_on: 2007-05-01 09:18:24
+  old_value: ""
+  id: "16"
+  location_id: "1"
+  change_type: "1"
+  person_id: 
+  effective_date: 2007-05-01 09:18:24
+changes_005: 
+  item_id: "3"
+  new_value: "3"
+  created_on: "2007-02-26"
+  old_value: "4"
+  id: "5"
+  location_id: 
+  change_type: "1"
+  person_id: 
+  effective_date: "2007-02-20"
+changes_028: 
+  item_id: 
+  new_value: "14"
+  created_on: 2008-02-07 08:30:46
+  old_value: ""
+  id: "29"
+  location_id: "14"
+  change_type: "2"
+  person_id: "5"
+  effective_date: 2008-02-07 08:30:46
+changes_017: 
+  item_id: 
+  new_value: "1"
+  created_on: 2007-05-01 09:29:35
+  old_value: ""
+  id: "17"
+  location_id: "1"
+  change_type: "1"
+  person_id: 
+  effective_date: 2007-05-01 09:29:35
+changes_006: 
+  item_id: "4"
+  new_value: "4"
+  created_on: "2007-02-26"
+  old_value: "1"
+  id: "6"
+  location_id: 
+  change_type: "1"
+  person_id: 
+  effective_date: "2007-02-12"
+changes_029: 
+  item_id: "3"
+  new_value: "5"
+  created_on: 2008-02-07 08:39:14
+  old_value: "1"
+  id: "30"
+  location_id: 
+  change_type: "1"
+  person_id: 
+  effective_date: 2008-02-07 08:39:14
+changes_018: 
+  item_id: 
+  new_value: "1"
+  created_on: 2007-12-06 18:03:15
+  old_value: ""
+  id: "18"
+  location_id: "1"
+  change_type: "1"
+  person_id: 
+  effective_date: 2007-12-06 18:03:15
+changes_007: 
+  item_id: "4"
+  new_value: "3"
+  created_on: "2007-02-26"
+  old_value: "4"
+  id: "7"
+  location_id: 
+  change_type: "1"
+  person_id: 
+  effective_date: "2007-02-20"
+changes_030: 
+  item_id: "3"
+  new_value: "14"
+  created_on: 2008-02-07 08:39:15
+  old_value: ""
+  id: "31"
+  location_id: 
+  change_type: "4"
+  person_id: 
+  effective_date: 2008-02-07 08:39:14
+changes_019: 
+  item_id: 
+  new_value: "1"
+  created_on: 2007-12-06 18:03:35
+  old_value: ""
+  id: "19"
+  location_id: "1"
+  change_type: "1"
+  person_id: 
+  effective_date: 2007-12-06 18:03:35
+changes_008: 
+  item_id: "5"
+  new_value: "4"
+  created_on: "2007-02-26"
+  old_value: "1"
+  id: "8"
+  location_id: 
+  change_type: "1"
+  person_id: 
+  effective_date: "2007-02-12"

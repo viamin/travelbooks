@@ -1,17 +1,13 @@
-# == Schema Information
-# Schema version: 25
-#
-# Table name: shopping_carts
-#
-#  id          :integer         not null, primary key
-#  person_id   :integer         
-#  created_on  :date            
-#  modified_on :date            
-#  last_viewed :date            
-#
-
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
-  id: 1
-another:
-  id: 2
+--- 
+shopping_carts_001: 
+  created_on: 
+  last_viewed: 
+  modified_on: 
+  id: "1"
+  person_id: 
+shopping_carts_002: 
+  created_on: 
+  last_viewed: 
+  modified_on: 
+  id: "2"
+  person_id: 

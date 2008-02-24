@@ -1,20 +1,8 @@
-# == Schema Information
-# Schema version: 25
-#
-# Table name: vacations
-#
-#  id         :integer         not null, primary key
-#  name       :string(255)     
-#  person_id  :integer         
-#  start_date :date            
-#  end_date   :date            
-#  companions :string(255)     
-#
-
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-# one:
-#   column: value
-#
-# two:
-#   column: value
+--- 
+vacations_001: 
+  name: Hawaii Vacation
+  start_date: "2007-12-14"
+  end_date: "2007-12-27"
+  id: "1"
+  companions: 
+  person_id: "1"

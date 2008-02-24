@@ -1,25 +1,10 @@
-# == Schema Information
-# Schema version: 25
-#
-# Table name: credit_cards
-#
-#  id              :integer         not null, primary key
-#  person_id       :integer         
-#  card_type       :string(255)     not null
-#  name_on_card    :string(255)     not null
-#  card_number     :string(255)     not null
-#  expiration_date :date            
-#  ccv             :string(255)     not null
-#  created_on      :date            
-#
-
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
-  id: 1
-  person_id: 1
+--- 
+credit_cards_001: 
+  ccv: "935"
+  created_on: 
+  expiration_date: Sun Nov 30 00:00:00 -0800 2008
   card_type: Mastercard
+  id: "1"
+  card_number: "4444"
+  person_id: "1"
   name_on_card: Bart Agapinan
-  card_number: 4444
-  expiration_date: <%= Time.local(2008, 11, 30) %>
-  ccv: 935
-  

@@ -1,15 +1,5 @@
-# == Schema Information
-# Schema version: 25
-#
-# Table name: categories
-#
-#  id          :integer         not null, primary key
-#  name        :string(255)     not null
-#  description :string(255)     not null
-#
-
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
-  id: 1
+--- 
+categories_001: 
   name: test
+  id: "1"
   description: this is a test

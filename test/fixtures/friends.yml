@@ -1,18 +1,56 @@
-# == Schema Information
-# Schema version: 25
-#
-# Table name: friends
-#
-#  id              :integer         not null, primary key
-#  owner_person_id :integer         
-#  entry_person_id :integer         
-#  permissions     :integer         
-#
-
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
-  id: 1
-  owner_person_id: 1
-  entry_person_id: 2
-  permissions: 777
-  
+--- 
+friends_005: 
+  owner_person_id: "4"
+  id: "5"
+  entry_person_id: "1"
+  permissions: "0"
+friends_006: 
+  owner_person_id: "1"
+  id: "6"
+  entry_person_id: "4"
+  permissions: "0"
+friends_007: 
+  owner_person_id: "6"
+  id: "7"
+  entry_person_id: "1"
+  permissions: "0"
+friends_008: 
+  owner_person_id: "1"
+  id: "8"
+  entry_person_id: "6"
+  permissions: "0"
+friends_009: 
+  owner_person_id: "6"
+  id: "9"
+  entry_person_id: "1"
+  permissions: "0"
+friends_010: 
+  owner_person_id: "7"
+  id: "10"
+  entry_person_id: "1"
+  permissions: "0"
+friends_011: 
+  owner_person_id: "1"
+  id: "11"
+  entry_person_id: "7"
+  permissions: "0"
+friends_001: 
+  owner_person_id: "1"
+  id: "1"
+  entry_person_id: "2"
+  permissions: "777"
+friends_002: 
+  owner_person_id: "2"
+  id: "2"
+  entry_person_id: "1"
+  permissions: "777"
+friends_003: 
+  owner_person_id: "3"
+  id: "3"
+  entry_person_id: "1"
+  permissions: "0"
+friends_004: 
+  owner_person_id: "1"
+  id: "4"
+  entry_person_id: "3"
+  permissions: "0"

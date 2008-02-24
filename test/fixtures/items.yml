@@ -1,45 +1,78 @@
-# == Schema Information
-# Schema version: 25
-#
-# Table name: items
-#
-#  id          :integer         not null, primary key
-#  tbid        :string(255)     
-#  name        :string(255)     not null
-#  description :text            not null
-#  person_id   :integer         
-#  created_on  :date            
-#
-
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
-  id: 1
-  tbid: TB20G070225LX482Y
+--- 
+items_005: 
+  name: Butterfly Leaf
+  created_on: "2008-02-11"
+  id: "14"
+  description: A classic styled butterfly book with a leaf
+  tbid: TB438A825F
+  person_id: 
+items_006: 
+  name: Brown Alligator
+  created_on: "2008-02-12"
+  id: "15"
+  description: A brown alligator style cover
+  tbid: TB36D4580E
+  person_id: "1"
+items_007: 
+  name: Brown Weave
+  created_on: "2008-02-12"
+  id: "16"
+  description: A hard cover book with a brown woven style
+  tbid: TBD7D071C6
+  person_id: "1"
+items_008: 
+  name: Contemporary Floral
+  created_on: "2008-02-12"
+  id: "17"
+  description: A hard cover book with a floral style cover
+  tbid: TB3E765A26
+  person_id: "2"
+items_009: 
+  name: Domeco
+  created_on: "2008-02-12"
+  id: "18"
+  description: An artistic book with Domeco written on the cover
+  tbid: TB7BD0B765
+  person_id: "1"
+items_010: 
+  name: Green Alligator
+  created_on: "2008-02-12"
+  id: "19"
+  description: A hard coverbook with a green alligator skin cover
+  tbid: TB504F0D64
+  person_id: "1"
+items_011: 
+  name: Intricate Brown
+  created_on: "2008-02-12"
+  id: "20"
+  description: A hard cover book with an intricate brown design
+  tbid: TBB3047EFE
+  person_id: "1"
+items_001: 
   name: World Cup Leopard
+  created_on: "2007-02-25"
+  id: "1"
   description: A wood cover book with the special World Cup logo and Leopard print design
-  person_id: 1
-  created_on: 2007-02-25
-another:
-  id: 2
-  tbid: TB20G070226LX482Z
-  name: World Cup Flowers
-  description: A wood cover book with the special World Cup logo and flowery cover
-  created_on: 2007-02-26
-more:
-  id: 3
-  tbid: TB20G070226LX483A
+  tbid: TB20G070225LX482Y
+  person_id: "3"
+items_002: 
   name: Green Leather
+  created_on: "2007-02-26"
+  id: "3"
   description: A Green leather bound book
-  created_on: 2007-02-26
-evenmore:
-  id: 4
-  tbid: TB20G070226LX483B
+  tbid: TB20G070226LX483A
+  person_id: "2"
+items_003: 
   name: Red Leather
+  created_on: "2007-02-26"
+  id: "4"
   description: A red leather bound book
-  created_on: 2007-02-26
-five:
-  id: 5
-  tbid: TB20G070226LX483C
-  name: Blue Leather
-  description: A red leather bound book
-  created_on: 2007-02-26
+  tbid: TB20G070226LX483B
+  person_id: "1"
+items_004: 
+  name: Butterfly
+  created_on: "2008-02-09"
+  id: "13"
+  description: A nice butterfly themed book
+  tbid: TBBE2A4EEE
+  person_id: "4"
