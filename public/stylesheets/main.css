@@ -4,8 +4,6 @@ body {
   margin-left: 52px;
   margin-bottom: 0;
   background: #394876;
-/*	background: #2f4380;*/
-/*  background: #633c1f;*/
 }
 h1, h2, h3 {
 	margin-left: 10px;
@@ -23,7 +21,7 @@ img {
 }
 #main_stripe {
 	width: 800px;
-	height: 800px;
+	min-height: 800px;
 	background: #ffe7a5;
 }
 pre {
@@ -36,7 +34,6 @@ pre {
   background-color: red;
   display: table;
 }
-
 #ErrorExplanation {
   width: 400px;
   border: 2px solid red;
@@ -45,7 +42,6 @@ pre {
   margin-bottom: 20px;
   background-color: #f0f0f0;
 }
-
 #ErrorExplanation h2 {
   text-align: left;
   font-weight: bold;
@@ -55,38 +51,31 @@ pre {
   background-color: #c00;
   color: #fff;
 }
-
 #ErrorExplanation p {
   color: #333;
   margin-bottom: 0;
   padding: 5px;
 }
-
 #ErrorExplanation ul li {
   font-size: 12px;
   list-style: square;
 }
-
 div.uploadStatus {
   margin: 5px;
 }
-
 div.progressBar {
   margin: 5px;
 }
-
 div.progressBar div.border {
   background-color: #fff;
   border: 1px solid grey;
   width: 100%;
 }
-
 div.progressBar div.background {
   background-color: #333;
   height: 18px;
   width: 0%;
 }
-
 /* ---------------- Layout styles ----------------*/
 #float_flash {
 	position: absolute;
