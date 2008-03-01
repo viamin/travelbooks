@@ -79,7 +79,7 @@ ENV['TMPDIR'] = "#{RAILS_ROOT}/public/images/tmp"
 COLORS = ['#fff', '#633c1f', '#394876', '#2f4380', '#ffe7a5', '#000']
 
 require 'pp'
-require 'rmagick'
+require "#{RAILS_ROOT}/vendor/rmagick-2.2.2/lib/RMagick.rb"
 include Magick
 
 =begin
