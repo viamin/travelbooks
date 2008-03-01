@@ -47,3 +47,20 @@ deploy.task :bart, :roles => :web do
   run "echo $PATH"
   run "svn"
 end
+
+deploy.task :after_deploy, :roles => :web do
+  run "/bin/mkdir -p #{deploy_to}/shared/tmp_images"
+  run "/bin/mkdir -p #{deploy_to}/shared/user_images"
+  run "/bin/mkdir -p #{deploy_to}/shared/book_images"
+  run "/bin/ln -s #{deploy_to}/shared/tmp_images #{deploy_to}/current/public/images/tmp"
+  run "/bin/ln -s #{deploy_to}/shared/user_images #{deploy_to}/current/public/images/user"
+  run "/bin/ln -s #{deploy_to}/shared/book_images #{deploy_to}/current/public/images/books"
+  fix_perms
+end
+
+deploy.task :fix_perms, :roles => :web do
+  run "/usr/bin/find #{deploy_to}/ -type f | /usr/bin/xargs /bin/chmod 644"
+  run "/usr/bin/find #{deploy_to}/ -type d | /usr/bin/xargs /bin/chmod 755"
+  run "/bin/chmod 755 #{deploy_to}/current/public/dispatch.*"
+  run "/bin/chmod 777 #{deploy_to}/shared/tmp_images"
+end
