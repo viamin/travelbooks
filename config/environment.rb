@@ -1,4 +1,4 @@
-# ENV['RAILS_ENV'] ||= 'production'
+ENV['RAILS_ENV'] ||= 'production'
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -65,9 +65,13 @@ SAMPLE_LOCATION = { :address_line_1 => "1600 Pennsylvania Ave.",
                     :country => "USA" }
 
 COLORS = ['#fff', '#633c1f', '#394876', '#2f4380', '#ffe7a5', '#000']
+ENV['TMPDIR'] = "#{RAILS_ROOT}/public/images/tmp"
+ENV['TEMP'] = "#{RAILS_ROOT}/public/images/tmp"
+ENV['TMP'] = "#{RAILS_ROOT}/public/images/tmp"
 
 require 'pp'
 require "#{RAILS_ROOT}/vendor/rmagick-2.2.2/lib/RMagick.rb"
+#require 'rmagick'
 include Magick
 
 # These defaults are used in GeoKit::Mappable.distance_to and in acts_as_mappable

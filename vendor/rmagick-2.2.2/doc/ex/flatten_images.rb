@@ -1,4 +1,4 @@
-#! /usr/local/bin/ruby -w
+#!/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin/ruby -w
 
 # Demonstrate flatten_images method. Create an image with a drop-shadow effect.
 
