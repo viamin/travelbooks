@@ -88,11 +88,12 @@ class Photo < ActiveRecord::Base
   def self.save_temp(photo_params)
     data = photo_params['data']
     filename = "#{Dir.tmpdir}/temp_photo#{rand(1000)}"
+    filepath = filename
     tf = File.new(filename, "w")
     filename =  tf.path.sub(Dir.tmpdir.concat("/"), "")
     tf.write data.read
     tf.close
-    File.chmod(0664, filename)
+    File.chmod(0664, filepath)
     photo = Photo.new
     photo.caption = photo_params['caption']
     photo.url = "/images/tmp/#{filename}"
