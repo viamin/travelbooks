@@ -360,8 +360,8 @@ div.progressBar div.background {
 }
 #friend_map {
 	position: absolute;
-	top: 207px;
-	left: 373px;
+	top: 0;
+	left: 310px;
 	height: 227px;
 	width: 458px;
 	border: 1px solid #633c1f;
@@ -411,8 +411,8 @@ div.progressBar div.background {
 }
 #item_map {
 	position: absolute;
-	top: 209px;
-	left: 373px;
+	top: 0;
+	left: 310px;
 	height: 227px;
 	width: 458px;
 	border: 1px solid #633c1f;

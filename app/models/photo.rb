@@ -92,6 +92,7 @@ class Photo < ActiveRecord::Base
     filename =  tf.path.sub(Dir.tmpdir.concat("/"), "")
     tf.write data.read
     tf.close
+    File.chmod(0664, filename)
     photo = Photo.new
     photo.caption = photo_params['caption']
     photo.url = "/images/tmp/#{filename}"
@@ -117,6 +118,7 @@ class Photo < ActiveRecord::Base
       f = File.new(filename, "wb")
       data.write(f)
       f.close
+      File.chmod(0664, filename)
       photo = Photo.new
       photo.path = filename
       photo.caption = photo_params[:caption]
@@ -131,7 +133,7 @@ class Photo < ActiveRecord::Base
       photo.save!
       File.delete("#{Dir.tmpdir}/#{photo_params[:file_name]}") if File.exist?("#{Dir.tmpdir}/#{photo_params[:file_name]}")
       #flash[:notice] = "Uploaded #{photo_params['file_name']}"
-      timing "Uploaded #{photo_params['file_name']}"
+      #timing "Uploaded #{photo_params['file_name']}"
     end
     # database method
     # not implemented yet

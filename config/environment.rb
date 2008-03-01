@@ -1,4 +1,6 @@
-ENV['RAILS_ENV'] ||= 'production'
+#ENV['RAILS_ENV'] ||= 'production'
+#require "#{RAILS_ROOT}/vendor/rmagick-2.2.2/lib/RMagick.rb"
+require 'rmagick'
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -70,8 +72,6 @@ ENV['TEMP'] = "#{RAILS_ROOT}/public/images/tmp"
 ENV['TMP'] = "#{RAILS_ROOT}/public/images/tmp"
 
 require 'pp'
-require "#{RAILS_ROOT}/vendor/rmagick-2.2.2/lib/RMagick.rb"
-#require 'rmagick'
 include Magick
 
 # These defaults are used in GeoKit::Mappable.distance_to and in acts_as_mappable

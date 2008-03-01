@@ -1,0 +1,44 @@
+ENV['RAILS_ENV'] ||= 'production'
+require "#{RAILS_ROOT}/vendor/rmagick-2.2.2/lib/RMagick.rb"
+
+# Bootstrap the Rails environment, frameworks, and default configuration
+require File.join(File.dirname(__FILE__), 'boot')
+
+Rails::Initializer.run do |config|
+  config.action_controller.session_store = :active_record_store
+  config.active_record.schema_format = :sql
+end
+
+def timing(str)
+  time = Time.now
+  string = "[#{time.strftime "%H:%M:%S"}-#{ (time.usec / 1000).to_s.rjust(3,"0") }] #{str}"
+  RAILS_DEFAULT_LOGGER.info string
+end
+DIFFERENCE_THRESHOLD = 1
+SAMPLE_PERSON = { :first_name => "George W.",
+                  :birthday => Time.local(1946, 7, 6) }
+
+SAMPLE_LOCATION = { :address_line_1 => "1600 Pennsylvania Ave.",
+                    :city => "Washington",
+                    :state => "DC",
+                    :country => "USA" }
+
+COLORS = ['#fff', '#633c1f', '#394876', '#2f4380', '#ffe7a5', '#000']
+ENV['TMPDIR'] = "#{RAILS_ROOT}/public/images/tmp"
+ENV['TEMP'] = "#{RAILS_ROOT}/public/images/tmp"
+ENV['TMP'] = "#{RAILS_ROOT}/public/images/tmp"
+
+require 'pp'
+include Magick
+GeoKit::default_units = :miles
+GeoKit::default_formula = :sphere
+GeoKit::Geocoders::timeout = 3
+GeoKit::Geocoders::proxy_addr = nil
+GeoKit::Geocoders::proxy_port = nil
+GeoKit::Geocoders::proxy_user = nil
+GeoKit::Geocoders::proxy_pass = nil
+GeoKit::Geocoders::yahoo = 'travellerbooks'
+GeoKit::Geocoders::google = 'REPLACE_WITH_YOUR_GOOGLE_KEY'
+GeoKit::Geocoders::geocoder_us = false 
+GeoKit::Geocoders::geocoder_ca = false
+GeoKit::Geocoders::provider_order = [:yahoo,:google]
