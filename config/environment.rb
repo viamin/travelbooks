@@ -1,12 +1,4 @@
-# Be sure to restart your web server when you modify this file.
-
-# Uncomment below to force Rails into production mode when 
-# you don't control web/app server and can't set it the proper way
 # ENV['RAILS_ENV'] ||= 'production'
-
-# Specifies gem version of Rails to use when vendor/rails is not present
-#RAILS_GEM_VERSION = '1.2.6'
-#ENV['GEM_HOME'] = '/usr/local/lib/ruby/gems-dev/1.8'
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -72,25 +64,11 @@ SAMPLE_LOCATION = { :address_line_1 => "1600 Pennsylvania Ave.",
                     :state => "DC",
                     :country => "USA" }
 
-ENV['TEMP'] = "#{RAILS_ROOT}/public/images/tmp"
-ENV['TMP'] = "#{RAILS_ROOT}/public/images/tmp"
-ENV['TMPDIR'] = "#{RAILS_ROOT}/public/images/tmp"
-
 COLORS = ['#fff', '#633c1f', '#394876', '#2f4380', '#ffe7a5', '#000']
 
 require 'pp'
 require "#{RAILS_ROOT}/vendor/rmagick-2.2.2/lib/RMagick.rb"
 include Magick
-
-=begin
-############################# 
-# This needs to be added because 'pretty_inspect' only works with Ruby 1.8.5, but Tiger ships with Ruby 1.8.4
-module Kernel
-  def pretty_inspect
-    PP.pp(self, '')
-  end
-end
-=end
 
 # These defaults are used in GeoKit::Mappable.distance_to and in acts_as_mappable
 GeoKit::default_units = :miles
