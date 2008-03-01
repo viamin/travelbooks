@@ -4,7 +4,7 @@
 # Code is not reloaded between requests
 config.cache_classes = true
 
-ENV['GEM_HOME'] = '/usr/local/lib/ruby/gems-dev/1.8'
+#ENV['GEM_HOME'] = '/usr/local/lib/ruby/gems-dev/1.8'
 
 # Use a different logger for distributed setups
 # config.logger = SyslogLogger.new
@@ -20,12 +20,12 @@ config.action_controller.perform_caching             = true
 # config.action_mailer.raise_delivery_errors = false
 
 ActionMailer::Base.server_settings = { 
-:address => "travellerbook.com", 
-:port => 25, 
+:address => "mail.travellerbook.com", 
+:port => 465, 
 :domain => "travellerbook.com", 
 :authentication => :login, 
-:user_name => "dave", 
-:password => "secret", 
+:user_name => "do-not-reply+travellerbook.com", 
+:password => "/1<$xFMp!-k-", 
 } 
 
 # Person id of the "Nobody" user, where given away books stay

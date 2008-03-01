@@ -13526,3 +13526,365 @@ ActionController::RoutingError (no route found to match "/login" with {:method=>
 
 
 Rendering /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/config/../vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (not_found)
+
+
+Processing MainController#about (for 0.0.0.0 at 2008-02-25 07:47:30) [GET]
+  Session ID: 
+  Parameters: {"action"=>"about", "controller"=>"main"}
+Rendering template within layouts/main
+Rendering main/about
+Rendered main/_titlebar (0.01488)
+Rendered main/_login (0.01471)
+Rendered main/_toplinks (0.03403)
+Completed in 0.07943 (12 reqs/sec) | Rendering: 0.07575 (95%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/about]
+
+
+Processing MainController#faq (for 0.0.0.0 at 2008-02-25 07:47:30) [GET]
+  Session ID: 
+  Parameters: {"action"=>"faq", "controller"=>"main"}
+Rendering template within layouts/main
+Rendering main/faq
+Rendered main/_titlebar (0.00053)
+Rendered main/_login (0.00092)
+Rendered main/_toplinks (0.00157)
+Completed in 0.02292 (43 reqs/sec) | Rendering: 0.02273 (99%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/faq]
+  [4;36;1mPerson Load (0.000590)[0m   [0;1mSELECT * FROM "people" LIMIT 1[0m
+  [4;35;1mPerson Load (0.000521)[0m   [0mSELECT * FROM "people" WHERE ("people"."id" = 1) [0m
+
+
+Processing UserController#destroy (for 0.0.0.0 at 2008-02-25 07:47:30) [POST]
+  Session ID: 
+  Parameters: {"action"=>"destroy", "id"=>#<Person id: 1, first_name: "Bart", middle_name: "D.", last_name: "Agapinan", email: "bart@sonic.net", hashed_password: "f871efc5da1f8e2184865a42f59dc5e2efe6d41062282b9d95f...", created_on: nil, nickname: "Bart", salt: "cefc9a", privacy_flags: 64, needs_reset: false>, "controller"=>"user"}
+Redirected to http://test.host/user/login
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x245fa2c @filter=:authorize>] rendered_or_redirected.
+Completed in 0.00044 (2283 reqs/sec) | DB: 0.00111 (253%) | 302 Found [http://test.host/user/destroy/1]
+  [4;36;1mPerson Load (0.000461)[0m   [0;1mSELECT * FROM "people" LIMIT 1[0m
+
+
+Processing UserController#login (for 0.0.0.0 at 2008-02-25 07:47:30) [POST]
+  Session ID: 
+  Parameters: {"action"=>"login", "controller"=>"user", "person"=>{"password"=>"rsh56w", "login"=>"Viamin"}}
+  [4;35;1mPerson Load (0.000199)[0m   [0mSELECT * FROM "people" WHERE ("people"."email" IS NULL) [0m
+Rendering template within layouts/user
+Rendering user/login
+Rendered main/_titlebar (0.00061)
+Rendered main/_login (0.00119)
+Rendered main/_toplinks (0.00192)
+Rendered main/_flash (0.01619)
+Completed in 0.05035 (19 reqs/sec) | Rendering: 0.04718 (93%) | DB: 0.00066 (1%) | 200 OK [http://test.host/user/login?person%5Blogin%5D=Viamin&person%5Bpassword%5D=rsh56w]
+
+
+Processing UserController#edit (for 0.0.0.0 at 2008-02-25 07:47:30) [GET]
+  Session ID: 
+  Parameters: {"action"=>"edit", "controller"=>"user"}
+Redirected to http://test.host/user/login
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x245fa2c @filter=:authorize>] rendered_or_redirected.
+Completed in 0.00041 (2457 reqs/sec) | Rendering: 0.04718 (11593%) | DB: 0.00066 (162%) | 302 Found [http://test.host/user/login?person%5Blogin%5D=Viamin&person%5Bpassword%5D=rsh56w]
+  [4;36;1mPerson Load (0.000565)[0m   [0;1mSELECT * FROM "people" LIMIT 1[0m
+
+
+Processing UserController#index (for 0.0.0.0 at 2008-02-25 07:47:30) [GET]
+  Session ID: 
+  Parameters: {"action"=>"index", "controller"=>"user"}
+Redirected to http://test.host/user/login
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x245fa2c @filter=:authorize>] rendered_or_redirected.
+Completed in 0.00039 (2557 reqs/sec) | DB: 0.00057 (144%) | 302 Found [http://test.host/user]
+  [4;35;1mPerson Load (0.000546)[0m   [0mSELECT * FROM "people" LIMIT 1[0m
+  [4;36;1mPerson Load (0.000430)[0m   [0;1mSELECT * FROM "people" WHERE ("people"."id" = 1) [0m
+  [4;35;1mLocation Load (0.000604)[0m   [0mSELECT * FROM "locations" WHERE ("locations"."id" = 1) [0m
+  [4;36;1mPerson Load (0.000418)[0m   [0;1mSELECT * FROM "people" WHERE ("people"."id" = 1) [0m
+  [4;35;1mPerson Destroy (0.000391)[0m   [0m DELETE FROM "people"
+ WHERE "id" = 1
+[0m
+  [4;36;1mLocation Load (0.000617)[0m   [0;1mSELECT * FROM "locations" WHERE ("locations"."id" = 1) [0m
+  [4;35;1mLocation Destroy (0.000130)[0m   [0m DELETE FROM "locations"
+ WHERE "id" = 1
+[0m
+
+
+Processing UserController#join (for 0.0.0.0 at 2008-02-25 07:47:31) [POST]
+  Session ID: 
+  Parameters: {"action"=>"join", "controller"=>"user", "location"=>{"city"=>"Santa Clara", "country"=>"United States", "state"=>"CA"}, "person"=>{"first_name"=>"Bart"}}
+  [4;36;1mPerson Load (0.000223)[0m   [0;1mSELECT * FROM "people" WHERE ("people".email = '') LIMIT 1[0m
+Rendering template within layouts/user
+Rendering user/join
+Rendered main/_titlebar (0.00052)
+Rendered main/_login (0.00096)
+Rendered main/_toplinks (0.00157)
+Rendered main/_flash (0.00028)
+Completed in 0.15712 (6 reqs/sec) | Rendering: 0.02513 (15%) | DB: 0.00336 (2%) | 200 OK [http://test.host/user/join?location%5Bcity%5D=Santa+Clara&location%5Bcountry%5D=United+States&location%5Bstate%5D=CA&person%5Bfirst_name%5D=Bart]
+  [4;35;1mPerson Load (0.000621)[0m   [0mSELECT * FROM "people" LIMIT 1[0m
+
+
+Processing UserController#list (for 0.0.0.0 at 2008-02-25 07:47:31) [GET]
+  Session ID: 
+  Parameters: {"action"=>"list", "controller"=>"user"}
+Redirected to http://test.host/user/login
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x245fa2c @filter=:authorize>] rendered_or_redirected.
+Completed in 0.00040 (2531 reqs/sec) | DB: 0.00062 (157%) | 302 Found [http://test.host/user/list]
+  [4;36;1mPerson Load (0.000524)[0m   [0;1mSELECT * FROM "people" LIMIT 1[0m
+
+
+Processing UserController#new (for 0.0.0.0 at 2008-02-25 07:47:31) [GET]
+  Session ID: 
+  Parameters: {"action"=>"new", "controller"=>"user"}
+Redirected to http://test.host/user/login
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x245fa2c @filter=:authorize>] rendered_or_redirected.
+Completed in 0.00040 (2495 reqs/sec) | DB: 0.00052 (130%) | 302 Found [http://test.host/user/new]
+  [4;35;1mPerson Load (0.000577)[0m   [0mSELECT * FROM "people" LIMIT 1[0m
+
+
+Processing UserController#show (for 0.0.0.0 at 2008-02-25 07:47:31) [GET]
+  Session ID: 
+  Parameters: {"action"=>"show", "id"=>#<Person id: 1, first_name: "Bart", middle_name: "D.", last_name: "Agapinan", email: "bart@sonic.net", hashed_password: "f871efc5da1f8e2184865a42f59dc5e2efe6d41062282b9d95f...", created_on: nil, nickname: "Bart", salt: "cefc9a", privacy_flags: 64, needs_reset: false>, "controller"=>"user"}
+Redirected to http://test.host/user/login
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x245fa2c @filter=:authorize>] rendered_or_redirected.
+Completed in 0.00040 (2493 reqs/sec) | DB: 0.00058 (143%) | 302 Found [http://test.host/user/show/1]
+  [4;36;1mPerson Load (0.000470)[0m   [0;1mSELECT * FROM "people" LIMIT 1[0m
+
+
+Processing UserController#update (for 0.0.0.0 at 2008-02-25 07:47:31) [POST]
+  Session ID: 
+  Parameters: {"action"=>"update", "id"=>#<Person id: 1, first_name: "Bart", middle_name: "D.", last_name: "Agapinan", email: "bart@sonic.net", hashed_password: "f871efc5da1f8e2184865a42f59dc5e2efe6d41062282b9d95f...", created_on: nil, nickname: "Bart", salt: "cefc9a", privacy_flags: 64, needs_reset: false>, "controller"=>"user"}
+Redirected to http://test.host/user/login
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x245fa2c @filter=:authorize>] rendered_or_redirected.
+Completed in 0.00033 (3048 reqs/sec) | DB: 0.00047 (143%) | 302 Found [http://test.host/user/update/1]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2008-02-25 07:47:34) [GET]
+  Session ID: beec8763eb5aae9f142cd6d5f6f19af4
+  Parameters: {}
+
+
+ActionController::RoutingError (No route matches "/login" with {:method=>:get}):
+    /vendor/rails/actionpack/lib/action_controller/routing/recognition_optimisation.rb:67:in `recognize_path'
+    /vendor/rails/actionpack/lib/action_controller/routing/route_set.rb:384:in `recognize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:163:in `handle_request'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:105:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:102:in `synchronize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:102:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:118:in `dispatch_cgi'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:11:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/integration.rb:280:in `process'
+    /vendor/rails/actionpack/lib/action_controller/integration.rb:173:in `get'
+    /vendor/rails/actionpack/lib/action_controller/integration.rb:398:in `send!'
+    /vendor/rails/actionpack/lib/action_controller/integration.rb:398:in `get'
+    ./test/integration/users_test.rb:8:in `test_signup_new_person'
+    /vendor/rails/activerecord/lib/../../activesupport/lib/active_support/testing/setup_and_teardown.rb:25:in `__send__'
+    /vendor/rails/activerecord/lib/../../activesupport/lib/active_support/testing/setup_and_teardown.rb:25:in `run'
+    /vendor/rails/actionpack/lib/action_controller/integration.rb:548:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/test/unit/testsuite.rb:34:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/test/unit/testsuite.rb:33:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/test/unit/testsuite.rb:33:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/test/unit/testsuite.rb:34:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/test/unit/testsuite.rb:33:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/test/unit/testsuite.rb:33:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/test/unit/ui/testrunnermediator.rb:46:in `run_suite'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/test/unit/ui/console/testrunner.rb:67:in `start_mediator'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/test/unit/ui/console/testrunner.rb:41:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/test/unit/ui/testrunnerutilities.rb:29:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/test/unit/autorunner.rb:216:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/test/unit/autorunner.rb:12:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/test/unit.rb:278
+    /Library/Ruby/Gems/1.8/gems/rake-0.8.1/lib/rake/rake_test_loader.rb:5
+
+Rendering /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (not_found)
+  [4;36;1mItem Load (0.000504)[0m   [0;1mSELECT * FROM "items" WHERE ("items"."id" = 1) [0m
+  [4;35;1mPerson Load (0.000430)[0m   [0mSELECT * FROM "people" WHERE ("people"."id" = 2) [0m
+  [4;36;1mItem Load (0.000227)[0m   [0;1mSELECT * FROM "items" WHERE ("items".tbid IS NULL) LIMIT 1[0m
+  [4;35;1mChange Load (0.002662)[0m   [0mSELECT * FROM "changes" WHERE ("changes"."item_id" IS NULL AND "changes"."change_type" IN (1,4)) ORDER BY effective_date[0m
+  [4;36;1mItem Create (0.000425)[0m   [0;1mINSERT INTO "items" ("name", "created_on", "description", "tbid", "person_id") VALUES('New Book', '2008-02-25 07:47:58', '', NULL, 1)[0m
+[07:47:58-816] tbid: 1c9b94e78cb83f877103c646118b94cecb65f67579d5fa85053933ddc6a2ee57
+  [4;35;1mItem Load (0.000185)[0m   [0mSELECT * FROM "items" WHERE ("items".tbid = 'TB9B94E78C' AND "items".id <> 21) LIMIT 1[0m
+  [4;36;1mChange Load (0.000538)[0m   [0;1mSELECT * FROM "changes" WHERE ("changes"."item_id" = 21 AND "changes"."change_type" IN (1,4)) ORDER BY effective_date[0m
+  [4;35;1mItem Update (0.000351)[0m   [0mUPDATE "items" SET "person_id" = NULL, "name" = 'New Book', "tbid" = 'TB9B94E78C', "description" = 'Test Item', "created_on" = '2008-02-25 07:47:58' WHERE "id" = 21[0m
+  [4;36;1mItem Load (0.000104)[0m   [0;1mSELECT * FROM "items" WHERE ("items".tbid IS NULL) LIMIT 1[0m
+  [4;35;1mChange Load (0.001981)[0m   [0mSELECT * FROM "changes" WHERE ("changes"."item_id" IS NULL AND "changes"."change_type" IN (1,4)) ORDER BY effective_date[0m
+  [4;36;1mItem Create (0.000122)[0m   [0;1mINSERT INTO "items" ("name", "created_on", "description", "tbid", "person_id") VALUES('New Book', '2008-02-25 07:47:58', '', NULL, 1)[0m
+[07:47:58-822] tbid: 4d6747726e465edec06f20f81ddc7c4fa58020ca5615f0ab7a703e983cbfedd2
+  [4;35;1mItem Load (0.000119)[0m   [0mSELECT * FROM "items" WHERE ("items".tbid = 'TB6747726E' AND "items".id <> 22) LIMIT 1[0m
+  [4;36;1mChange Load (0.000469)[0m   [0;1mSELECT * FROM "changes" WHERE ("changes"."item_id" = 22 AND "changes"."change_type" IN (1,4)) ORDER BY effective_date[0m
+  [4;35;1mItem Update (0.000136)[0m   [0mUPDATE "items" SET "person_id" = NULL, "name" = 'New Book', "tbid" = 'TB6747726E', "description" = 'Test Item', "created_on" = '2008-02-25 07:47:58' WHERE "id" = 22[0m
+  [4;36;1mItem Load (0.000635)[0m   [0;1mSELECT * FROM "items" WHERE ("items"."id" = 4) [0m
+  [4;35;1mItem Load (0.000140)[0m   [0mSELECT * FROM "items" WHERE ("items"."id" = 5) [0m
+  [4;36;1mPerson Load (0.000588)[0m   [0;1mSELECT * FROM "people" WHERE ("people"."id" = 1) [0m
+  [4;35;1mPerson Load (0.000660)[0m   [0mSELECT * FROM "people" WHERE ("people"."id" = 1) [0m
+  [4;36;1mLocation Load (0.000573)[0m   [0;1mSELECT * FROM "locations" WHERE ("locations"."id" = 2) [0m
+  [4;35;1mChange Load (0.000538)[0m   [0mSELECT * FROM "changes" WHERE ("changes".person_id = 1) [0m
+  [4;36;1mLocation Load (0.000512)[0m   [0;1mSELECT * FROM "locations" WHERE ("locations"."id" = 1) [0m
+  [4;35;1mLocation Load (0.000480)[0m   [0mSELECT * FROM "locations" WHERE ("locations"."id" = 9) [0m
+  [4;36;1mLocation Load (0.000518)[0m   [0;1mSELECT * FROM "locations" WHERE ("locations"."id" = 1) [0m
+  [4;35;1mLocation Load (0.000441)[0m   [0mSELECT * FROM "locations" WHERE ("locations"."id" = 9) [0m
+  [4;36;1mChange Create (0.000409)[0m   [0;1mINSERT INTO "changes" ("item_id", "new_value", "created_on", "old_value", "location_id", "change_type", "person_id", "effective_date") VALUES(NULL, 2, '2008-02-25 07:47:58', 9, NULL, 2, 1, '2008-02-25 07:47:58')[0m
+  [4;35;1mChange Update (0.000424)[0m   [0mUPDATE "changes" SET "person_id" = 1, "location_id" = NULL, "old_value" = 9, "change_type" = 2, "new_value" = 2, "item_id" = NULL, "effective_date" = '2008-02-25 07:47:58', "created_on" = '2008-02-25 07:47:58' WHERE "id" = 40[0m
+  [4;36;1mChange Update (0.000121)[0m   [0;1mUPDATE "changes" SET "person_id" = 1, "location_id" = NULL, "old_value" = 9, "change_type" = 2, "new_value" = 2, "item_id" = NULL, "effective_date" = '2008-02-25 07:47:58', "created_on" = '2008-02-25 07:47:58' WHERE "id" = 40[0m
+  [4;35;1mLocation Load (0.000211)[0m   [0mSELECT "locations".* FROM "locations" INNER JOIN changes ON locations.id = changes.location_id WHERE (("changes".person_id = 1)) [0m
+  [4;36;1mPerson Load (0.000414)[0m   [0;1mSELECT * FROM "people" LIMIT 1[0m
+  [4;35;1mPerson Load (0.000344)[0m   [0mSELECT * FROM "people" WHERE ("people"."id" = 2) [0m
+  [4;36;1mLocation Load (0.000407)[0m   [0;1mSELECT * FROM "locations" WHERE ("locations"."id" = 2) [0m
+  [4;35;1mLocation Load (0.000422)[0m   [0mSELECT * FROM "locations" WHERE ("locations"."id" = 1) [0m
+  [4;36;1mLocation Load (0.000184)[0m   [0;1mSELECT "locations".* FROM "locations" INNER JOIN changes ON locations.id = changes.location_id WHERE (("changes".person_id = 2)) [0m
+  [4;35;1mPerson Load (0.000395)[0m   [0mSELECT * FROM "people" LIMIT 1[0m
+
+
+Processing MainController#about (for 0.0.0.0 at 2008-02-25 07:48:02) [GET]
+  Session ID: 
+  Parameters: {"action"=>"about", "controller"=>"main"}
+Rendering template within layouts/main
+Rendering main/about
+Rendered main/_titlebar (0.00126)
+Rendered main/_login (0.00164)
+Rendered main/_toplinks (0.00336)
+Completed in 0.01420 (70 reqs/sec) | Rendering: 0.01097 (77%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/about]
+
+
+Processing MainController#faq (for 0.0.0.0 at 2008-02-25 07:48:02) [GET]
+  Session ID: 
+  Parameters: {"action"=>"faq", "controller"=>"main"}
+Rendering template within layouts/main
+Rendering main/faq
+Rendered main/_titlebar (0.00033)
+Rendered main/_login (0.00068)
+Rendered main/_toplinks (0.00115)
+Completed in 0.00340 (293 reqs/sec) | Rendering: 0.00325 (95%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/faq]
+  [4;36;1mPerson Load (0.000720)[0m   [0;1mSELECT * FROM "people" LIMIT 1[0m
+  [4;35;1mPerson Load (0.000547)[0m   [0mSELECT * FROM "people" WHERE ("people"."id" = 1) [0m
+
+
+Processing UserController#destroy (for 0.0.0.0 at 2008-02-25 07:48:02) [POST]
+  Session ID: 
+  Parameters: {"action"=>"destroy", "id"=>#<Person id: 1, first_name: "Bart", middle_name: "D.", last_name: "Agapinan", email: "bart@sonic.net", hashed_password: "f871efc5da1f8e2184865a42f59dc5e2efe6d41062282b9d95f...", created_on: nil, nickname: "Bart", salt: "cefc9a", privacy_flags: 64, needs_reset: false>, "controller"=>"user"}
+Redirected to http://test.host/user/login
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x245fa2c @filter=:authorize>] rendered_or_redirected.
+Completed in 0.00043 (2336 reqs/sec) | DB: 0.00127 (295%) | 302 Found [http://test.host/user/destroy/1]
+  [4;36;1mPerson Load (0.000453)[0m   [0;1mSELECT * FROM "people" LIMIT 1[0m
+
+
+Processing UserController#login (for 0.0.0.0 at 2008-02-25 07:48:02) [POST]
+  Session ID: 
+  Parameters: {"action"=>"login", "controller"=>"user", "person"=>{"password"=>"rsh56w", "login"=>"Viamin"}}
+  [4;35;1mPerson Load (0.000195)[0m   [0mSELECT * FROM "people" WHERE ("people"."email" IS NULL) [0m
+Rendering template within layouts/user
+Rendering user/login
+Rendered main/_titlebar (0.00040)
+Rendered main/_login (0.00075)
+Rendered main/_toplinks (0.00121)
+Rendered main/_flash (0.00097)
+Completed in 0.00985 (101 reqs/sec) | Rendering: 0.00677 (68%) | DB: 0.00065 (6%) | 200 OK [http://test.host/user/login?person%5Blogin%5D=Viamin&person%5Bpassword%5D=rsh56w]
+
+
+Processing UserController#edit (for 0.0.0.0 at 2008-02-25 07:48:02) [GET]
+  Session ID: 
+  Parameters: {"action"=>"edit", "controller"=>"user"}
+Redirected to http://test.host/user/login
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x245fa2c @filter=:authorize>] rendered_or_redirected.
+Completed in 0.00030 (3334 reqs/sec) | Rendering: 0.00677 (2255%) | DB: 0.00065 (216%) | 302 Found [http://test.host/user/login?person%5Blogin%5D=Viamin&person%5Bpassword%5D=rsh56w]
+  [4;36;1mPerson Load (0.000421)[0m   [0;1mSELECT * FROM "people" LIMIT 1[0m
+
+
+Processing UserController#index (for 0.0.0.0 at 2008-02-25 07:48:02) [GET]
+  Session ID: 
+  Parameters: {"action"=>"index", "controller"=>"user"}
+Redirected to http://test.host/user/login
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x245fa2c @filter=:authorize>] rendered_or_redirected.
+Completed in 0.00029 (3460 reqs/sec) | DB: 0.00042 (145%) | 302 Found [http://test.host/user]
+  [4;35;1mPerson Load (0.000402)[0m   [0mSELECT * FROM "people" LIMIT 1[0m
+  [4;36;1mPerson Load (0.000303)[0m   [0;1mSELECT * FROM "people" WHERE ("people"."id" = 1) [0m
+  [4;35;1mLocation Load (0.000482)[0m   [0mSELECT * FROM "locations" WHERE ("locations"."id" = 1) [0m
+  [4;36;1mPerson Load (0.000303)[0m   [0;1mSELECT * FROM "people" WHERE ("people"."id" = 1) [0m
+  [4;35;1mPerson Destroy (0.000314)[0m   [0m DELETE FROM "people"
+ WHERE "id" = 1
+[0m
+  [4;36;1mLocation Load (0.000426)[0m   [0;1mSELECT * FROM "locations" WHERE ("locations"."id" = 1) [0m
+  [4;35;1mLocation Destroy (0.000091)[0m   [0m DELETE FROM "locations"
+ WHERE "id" = 1
+[0m
+
+
+Processing UserController#join (for 0.0.0.0 at 2008-02-25 07:48:02) [POST]
+  Session ID: 
+  Parameters: {"action"=>"join", "controller"=>"user", "location"=>{"city"=>"Santa Clara", "country"=>"United States", "state"=>"CA"}, "person"=>{"first_name"=>"Bart"}}
+  [4;36;1mPerson Load (0.000212)[0m   [0;1mSELECT * FROM "people" WHERE ("people".email = '') LIMIT 1[0m
+Rendering template within layouts/user
+Rendering user/join
+Rendered main/_titlebar (0.00041)
+Rendered main/_login (0.00078)
+Rendered main/_toplinks (0.00130)
+Rendered main/_flash (0.00025)
+Completed in 0.10389 (9 reqs/sec) | Rendering: 0.00963 (9%) | DB: 0.00253 (2%) | 200 OK [http://test.host/user/join?location%5Bcity%5D=Santa+Clara&location%5Bcountry%5D=United+States&location%5Bstate%5D=CA&person%5Bfirst_name%5D=Bart]
+  [4;35;1mPerson Load (0.000773)[0m   [0mSELECT * FROM "people" LIMIT 1[0m
+
+
+Processing UserController#list (for 0.0.0.0 at 2008-02-25 07:48:02) [GET]
+  Session ID: 
+  Parameters: {"action"=>"list", "controller"=>"user"}
+Redirected to http://test.host/user/login
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x245fa2c @filter=:authorize>] rendered_or_redirected.
+Completed in 0.00040 (2505 reqs/sec) | DB: 0.00077 (193%) | 302 Found [http://test.host/user/list]
+  [4;36;1mPerson Load (0.000534)[0m   [0;1mSELECT * FROM "people" LIMIT 1[0m
+
+
+Processing UserController#new (for 0.0.0.0 at 2008-02-25 07:48:02) [GET]
+  Session ID: 
+  Parameters: {"action"=>"new", "controller"=>"user"}
+Redirected to http://test.host/user/login
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x245fa2c @filter=:authorize>] rendered_or_redirected.
+Completed in 0.00039 (2577 reqs/sec) | DB: 0.00053 (137%) | 302 Found [http://test.host/user/new]
+  [4;35;1mPerson Load (0.000538)[0m   [0mSELECT * FROM "people" LIMIT 1[0m
+
+
+Processing UserController#show (for 0.0.0.0 at 2008-02-25 07:48:02) [GET]
+  Session ID: 
+  Parameters: {"action"=>"show", "id"=>#<Person id: 1, first_name: "Bart", middle_name: "D.", last_name: "Agapinan", email: "bart@sonic.net", hashed_password: "f871efc5da1f8e2184865a42f59dc5e2efe6d41062282b9d95f...", created_on: nil, nickname: "Bart", salt: "cefc9a", privacy_flags: 64, needs_reset: false>, "controller"=>"user"}
+Redirected to http://test.host/user/login
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x245fa2c @filter=:authorize>] rendered_or_redirected.
+Completed in 0.00040 (2525 reqs/sec) | DB: 0.00054 (135%) | 302 Found [http://test.host/user/show/1]
+  [4;36;1mPerson Load (0.000440)[0m   [0;1mSELECT * FROM "people" LIMIT 1[0m
+
+
+Processing UserController#update (for 0.0.0.0 at 2008-02-25 07:48:02) [POST]
+  Session ID: 
+  Parameters: {"action"=>"update", "id"=>#<Person id: 1, first_name: "Bart", middle_name: "D.", last_name: "Agapinan", email: "bart@sonic.net", hashed_password: "f871efc5da1f8e2184865a42f59dc5e2efe6d41062282b9d95f...", created_on: nil, nickname: "Bart", salt: "cefc9a", privacy_flags: 64, needs_reset: false>, "controller"=>"user"}
+Redirected to http://test.host/user/login
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x245fa2c @filter=:authorize>] rendered_or_redirected.
+Completed in 0.00033 (3066 reqs/sec) | DB: 0.00044 (134%) | 302 Found [http://test.host/user/update/1]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2008-02-25 07:48:06) [GET]
+  Session ID: 1d9400210cd91eec99e8111363ea660b
+  Parameters: {}
+
+
+ActionController::RoutingError (No route matches "/login" with {:method=>:get}):
+    /vendor/rails/actionpack/lib/action_controller/routing/recognition_optimisation.rb:67:in `recognize_path'
+    /vendor/rails/actionpack/lib/action_controller/routing/route_set.rb:384:in `recognize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:163:in `handle_request'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:105:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:102:in `synchronize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:102:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:118:in `dispatch_cgi'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:11:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/integration.rb:280:in `process'
+    /vendor/rails/actionpack/lib/action_controller/integration.rb:173:in `get'
+    /vendor/rails/actionpack/lib/action_controller/integration.rb:398:in `send!'
+    /vendor/rails/actionpack/lib/action_controller/integration.rb:398:in `get'
+    ./test/integration/users_test.rb:8:in `test_signup_new_person'
+    /vendor/rails/activerecord/lib/../../activesupport/lib/active_support/testing/setup_and_teardown.rb:25:in `__send__'
+    /vendor/rails/activerecord/lib/../../activesupport/lib/active_support/testing/setup_and_teardown.rb:25:in `run'
+    /vendor/rails/actionpack/lib/action_controller/integration.rb:548:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/test/unit/testsuite.rb:34:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/test/unit/testsuite.rb:33:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/test/unit/testsuite.rb:33:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/test/unit/testsuite.rb:34:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/test/unit/testsuite.rb:33:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/test/unit/testsuite.rb:33:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/test/unit/ui/testrunnermediator.rb:46:in `run_suite'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/test/unit/ui/console/testrunner.rb:67:in `start_mediator'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/test/unit/ui/console/testrunner.rb:41:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/test/unit/ui/testrunnerutilities.rb:29:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/test/unit/autorunner.rb:216:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/test/unit/autorunner.rb:12:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/test/unit.rb:278
+    /Library/Ruby/Gems/1.8/gems/rake-0.8.1/lib/rake/rake_test_loader.rb:5
+
+Rendering /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (not_found)
