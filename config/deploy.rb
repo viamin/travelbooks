@@ -57,6 +57,7 @@ deploy.task :after_deploy, :roles => :web do
   run "/bin/ln -s #{deploy_to}/shared/book_images #{deploy_to}/current/public/images/books"
   fix_perms
   run "/bin/mv #{deploy_to}/current/config/environment.rb.server #{deploy_to}/current/config/environment.rb"
+  restart
 end
 
 deploy.task :fix_perms, :roles => :web do

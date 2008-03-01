@@ -1,5 +1,4 @@
 ENV['RAILS_ENV'] ||= 'production'
-require "#{RAILS_ROOT}/vendor/rmagick-2.2.2/lib/RMagick.rb"
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -29,6 +28,7 @@ ENV['TEMP'] = "#{RAILS_ROOT}/public/images/tmp"
 ENV['TMP'] = "#{RAILS_ROOT}/public/images/tmp"
 
 require 'pp'
+require "#{RAILS_ROOT}/vendor/rmagick-2.2.2/lib/RMagick.rb"
 include Magick
 GeoKit::default_units = :miles
 GeoKit::default_formula = :sphere
