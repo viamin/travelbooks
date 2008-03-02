@@ -9,6 +9,10 @@ Options +FollowSymLinks +ExecCGI
 # Example:
    RewriteCond %{REQUEST_URI} ^/images/tmp/.*
    RewriteRule .* - [L]
+RewriteCond %{REQUEST_URI} ^/images/books/.*
+   RewriteRule .* - [L]
+RewriteCond %{REQUEST_URI} ^/images/users/.*
+   RewriteRule .* - [L]
 RewriteEngine On
 
 RewriteRule ^$ index.html [QSA]

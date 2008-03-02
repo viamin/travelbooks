@@ -25,7 +25,7 @@ class AdminController < ApplicationController
     @photo.photo_type = Photo::ITEM
     @photo.file_name = "book#{@item.id}.jpg"
     @photo.url = "/images/books/#{@photo.file_name}"
-    @photo.path = "public#{@photo.url}"
+    @photo.path = "#{RAILS_ROOT}/public#{@photo.url}"
     tf = File.new("#{@photo.path}", "w")
     tf.write params[:photo][:data].read
     tf.close
