@@ -108,7 +108,7 @@ class Photo < ActiveRecord::Base
     data = Image.read("#{Dir.tmpdir}/#{photo_params[:file_name]}").first
     data = data.resize(photo_params[:scale].to_f) unless photo_params[:scale].to_f == 0
     data = data.crop(photo_params[:offset_x].to_f.abs, photo_params[:offset_y].to_f.abs, 240, 360, true) unless (photo_params[:offset_x].to_f == 0 && photo_params[:offset_y].to_f == 0)
-    filename = "public/images/users/#{person.email}/#{photo_params[:file_name]}"
+    filename = "#{RAILS_ROOT}/public/images/users/#{person.email}/#{photo_params[:file_name]}"
     if File.exist?(filename)
       #flash[:error] = "That filename has already been used"
       timing "filename already used - not saving"

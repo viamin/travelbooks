@@ -49,6 +49,8 @@ class PhotoController < ApplicationController
   
   def create
     @person = Person.find(session[:user_id])
+    params[:offset_x] = 0 if params[:offset_x] == "NaN"
+    params[:offset_y] = 0 if params[:offset_y] == "NaN"
     photo_params = {:offset_x => params[:offset_x], :offset_y => params[:offset_y], :scale => params[:scale], :caption => params[:caption], :photo_type => params[:photo_type], :file_name => params[:file_name]}
     
     # Filesystem method

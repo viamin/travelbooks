@@ -53,7 +53,7 @@ deploy.task :after_deploy, :roles => :web do
   run "/bin/mkdir -p #{deploy_to}/shared/user_images"
   run "/bin/mkdir -p #{deploy_to}/shared/book_images"
   run "/bin/ln -s #{deploy_to}/shared/tmp_images #{deploy_to}/current/public/images/tmp"
-  run "/bin/ln -s #{deploy_to}/shared/user_images #{deploy_to}/current/public/images/user"
+  run "/bin/ln -s #{deploy_to}/shared/user_images #{deploy_to}/current/public/images/users"
   run "/bin/ln -s #{deploy_to}/shared/book_images #{deploy_to}/current/public/images/books"
   fix_perms
   run "/bin/mv #{deploy_to}/current/config/environment.rb.server #{deploy_to}/current/config/environment.rb"

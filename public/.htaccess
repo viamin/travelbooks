@@ -7,8 +7,8 @@ Options +FollowSymLinks +ExecCGI
 # use the following rewrite rules so that Apache won't rewrite certain requests
 # 
 # Example:
-#   RewriteCond %{REQUEST_URI} ^/notrails.*
-#   RewriteRule .* - [L]
+   RewriteCond %{REQUEST_URI} ^/images/tmp/.*
+   RewriteRule .* - [L]
 RewriteEngine On
 
 RewriteRule ^$ index.html [QSA]
