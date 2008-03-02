@@ -3,7 +3,8 @@
 <div id="book_form">
 	<% form_for 'item', @book, :url => {:action => 'update_book'} do |f| %>
 		<%= f.hidden_field 'id' %>
-		<%= render :partial => 'item/form', :locals => {:f => f} %>
+		<%= render :partial => 'form', :locals => {:f => f} %>
+		
 		<%= f.submit 'Update' %>
 	<% end %>
 </div>

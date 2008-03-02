@@ -1,8 +1,7 @@
 <%= error_messages_for 'item' %>
 
 <!--[form:item]-->
-<p><label for="item_tbid">Tbid</label><br/>
-<%= f.text_field 'tbid'  %></p>
+
 
 <p><label for="item_name">Name</label><br/>
 <%= f.text_field 'name'  %></p>
@@ -10,7 +9,7 @@
 <p><label for="item_description">Description</label><br/>
 <%= f.text_area 'description', :size => '40x5' %></p>
 
-<p><label for="item_created_on">Created on</label><br/>
-<%= f.date_select 'created_on'  %></p>
+<p><label for="item_person_id">Current Owner</label><br/>
+<%= f.select 'person_id', Person.find(:all).collect {|p| [ p.display_name, p.id ] } %></p>
 <!--[eoform:item]-->
 

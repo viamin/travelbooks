@@ -39,6 +39,7 @@ deploy.task :restart, :roles => :web do
     run "killall -u `whoami` dispatch.fcgi"
 end
 
+desc "Displays simple diagnostic information about the server"
 deploy.task :bart, :roles => :web do
   run "echo $PATH"
   run "which svn"
@@ -48,6 +49,7 @@ deploy.task :bart, :roles => :web do
   run "svn"
 end
 
+desc "Fixes symlinks and environment for production mode"
 deploy.task :after_deploy, :roles => :web do
   run "/bin/mkdir -p #{deploy_to}/shared/tmp_images"
   run "/bin/mkdir -p #{deploy_to}/shared/user_images"
@@ -60,6 +62,7 @@ deploy.task :after_deploy, :roles => :web do
   restart
 end
 
+desc "Sets all file perms (except dispatch.*) to 644 and all directory perms to 755"
 deploy.task :fix_perms, :roles => :web do
   run "/usr/bin/find #{deploy_to}/ -type f | /usr/bin/xargs /bin/chmod 644"
   run "/usr/bin/find #{deploy_to}/ -type d | /usr/bin/xargs /bin/chmod 755"

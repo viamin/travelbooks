@@ -39,7 +39,7 @@
 		width:800px;
 		height:450px;
 		position:absolute;
-		background: url('images/logo800.png');
+		background: url('images/logo8002.png');
 	}
 	#topbar {
 		position:relative;
@@ -195,9 +195,13 @@
 				box.value = "Enter TBook #";
 			}
 		}
+		function pop_logo() {
+			var bgdiv = document.getElementById('main_box');
+			bgdiv.style.background = "url('images/logo800.png')";
+		}
 	</script>
   </head>
-  <body id="main_index">
+  <body id="main_index" onload="pop_logo();">
     <div id="main_stripe">
 	  <div id="titlebar">
 		<%= link_to "TravellerBook.com", :action => 'index' %>
