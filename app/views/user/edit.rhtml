@@ -6,7 +6,7 @@
     <%= submit_tag 'Update' %>
   </div>
 <% end %>
-<%= link_to "Change my password", :action => 'reset_password' %>
+<%= link_to "Change my password", :action => 'reset_password' %> |
 
 <%= link_to "Edit my Photos", :action => "edit", :controller => 'photo', :id => @person.id %> |
 <%= link_to "Edit my Locations", :action => "list", :controller => 'location', :id => @person.id %> | 
