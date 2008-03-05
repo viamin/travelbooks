@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 26
+# Schema version: 27
 #
 # Table name: orders
 #
@@ -9,9 +9,12 @@
 #  created_on           :date            
 #  shipped_on           :date            
 #  paid_on              :date            
+#  status               :integer         
 #
 
 class Order < ActiveRecord::Base
   belongs_to :person
   belongs_to :location
+  
+  STATUS = [["Open", 1], ["Closed", 2]]
 end

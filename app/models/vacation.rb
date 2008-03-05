@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 26
+# Schema version: 27
 #
 # Table name: vacations
 #
@@ -11,7 +11,8 @@
 #  companions :string(255)     
 #
 
-class Vacation < ActiveRecord::Base
+class Trip < ActiveRecord::Base
+  table 'vacations'
   belongs_to :person
   has_many :destinations, :order => :position
 end

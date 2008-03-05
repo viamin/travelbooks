@@ -18,7 +18,6 @@ config.action_controller.perform_caching             = true
 
 # Disable delivery errors if you bad email addresses should just be ignored
 # config.action_mailer.raise_delivery_errors = false
-
 ActionMailer::Base.smtp_settings = { 
   :address => "mail.travellerbook.com", 
   :port => 465, 

@@ -1,3 +1,18 @@
+# == Schema Information
+# Schema version: 27
+#
+# Table name: destinations
+#
+#  id          :integer         not null, primary key
+#  vacation_id :integer         
+#  name        :string(255)     
+#  position    :integer         
+#  location_id :integer         
+#  notes       :text            
+#  arrival     :datetime        
+#  departure   :datetime        
+#
+
 --- 
 destinations_001: 
   vacation_id: "1"

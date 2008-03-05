@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 26
+# Schema version: 27
 #
 # Table name: categories
 #
@@ -10,6 +10,7 @@
 
 # Category is used to link types of locations, people, etc, without hard coding it into the program
 class Category < ActiveRecord::Base
+  has_many :sale_items
   
   def initialize(*params)
     super(*params)

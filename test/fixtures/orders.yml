@@ -1,3 +1,17 @@
+# == Schema Information
+# Schema version: 27
+#
+# Table name: orders
+#
+#  id                   :integer         not null, primary key
+#  person_id            :integer         
+#  shipping_location_id :integer         
+#  created_on           :date            
+#  shipped_on           :date            
+#  paid_on              :date            
+#  status               :integer         
+#
+
 --- 
 orders_001: 
   created_on: 

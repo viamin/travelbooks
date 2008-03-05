@@ -1,4 +1,4 @@
-class VacationController < ApplicationController
+class TripController < ApplicationController
   before_filter :authorize
   layout 'user'
   

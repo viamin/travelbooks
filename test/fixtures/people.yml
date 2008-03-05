@@ -1,3 +1,21 @@
+# == Schema Information
+# Schema version: 27
+#
+# Table name: people
+#
+#  id              :integer         not null, primary key
+#  first_name      :string(255)     not null
+#  middle_name     :string(255)     
+#  last_name       :string(255)     not null
+#  email           :string(255)     not null
+#  hashed_password :text            
+#  created_on      :date            
+#  nickname        :string(255)     
+#  salt            :string(255)     
+#  privacy_flags   :integer         default(0)
+#  needs_reset     :boolean         
+#
+
 --- 
 people_007: 
   created_on: 2008-02-12 17:59:59

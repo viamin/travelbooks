@@ -1,3 +1,29 @@
+# == Schema Information
+# Schema version: 27
+#
+# Table name: locations
+#
+#  id             :integer         not null, primary key
+#  description    :string(255)     not null
+#  loc_type       :integer         default(1)
+#  person_id      :integer         
+#  item_id        :integer         
+#  credit_card_id :integer         default(0)
+#  address_line_1 :string(255)     not null
+#  address_line_2 :string(255)     
+#  city           :string(255)     not null
+#  state          :string(255)     not null
+#  zip_code       :string(255)     not null
+#  country        :string(255)     not null
+#  altitude_feet  :integer         default(0)
+#  date_start     :datetime        
+#  date_end       :datetime        
+#  public         :boolean         
+#  lat            :float           
+#  lng            :float           
+#  icon           :string(255)     
+#
+
 --- 
 locations_003: 
   item_id: 

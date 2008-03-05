@@ -1,3 +1,16 @@
+# == Schema Information
+# Schema version: 27
+#
+# Table name: items
+#
+#  id          :integer         not null, primary key
+#  tbid        :string(255)     
+#  name        :string(255)     not null
+#  description :text            not null
+#  person_id   :integer         
+#  created_on  :date            
+#
+
 --- 
 items_005: 
   name: Butterfly Leaf

@@ -1,3 +1,16 @@
+# == Schema Information
+# Schema version: 27
+#
+# Table name: vacations
+#
+#  id         :integer         not null, primary key
+#  name       :string(255)     
+#  person_id  :integer         
+#  start_date :date            
+#  end_date   :date            
+#  companions :string(255)     
+#
+
 --- 
 vacations_001: 
   name: Hawaii Vacation

@@ -63,7 +63,7 @@ class AdminController < ApplicationController
       flash[:notice] = 'Book was successfully updated.'
       redirect_to :action => 'books'
     else
-      render :action => 'edit_book', :id => params[:id]
+      render :action => 'edit_book', :id => params[:item][:id]
     end
   end
   
