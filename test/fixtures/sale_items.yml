@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 27
+# Schema version: 28
 #
 # Table name: sale_items
 #

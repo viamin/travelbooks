@@ -215,12 +215,12 @@ class UserController < ApplicationController
     @map = Variable.new("map")
   end
   
-  def show_vacations
+  def show_trips
     @person = Person.find(params[:id])
-    if @person.share_vacations
-      @vacations = @person.vacations
+    if @person.share_trips
+      @trips = @person.trips
     else
-      @vacations = [Vacation.new]
+      @trips = [Trip.new]
     end
     @map = Variable.new("map")
   end

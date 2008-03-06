@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 27
+# Schema version: 28
 #
 # Table name: people
 #
@@ -30,7 +30,7 @@ class Person < ActiveRecord::Base
       find(:all, :conditions => ['state<?', Message::DELETEDBYRECIPIENT])
     end
   end
-  has_many :vacations
+  has_many :trips
   validates_uniqueness_of :email, :on => :create, :message => "There is already an account using that email address"
   validates_presence_of :email, :on => :create, :message => "can't be blank"
   validates_presence_of :nickname, :on => :create, :message => "can't be blank"
@@ -124,15 +124,15 @@ class Person < ActiveRecord::Base
     self.save
   end
   
-  def share_vacations
+  def share_trips
     return ((self.privacy_flags & SHAREVACATIONS) == SHAREVACATIONS)
   end
   
-  def share_vacations=(value)
+  def share_trips=(value)
     if value == "Yes"
       self.privacy_flags = self.privacy_flags | SHAREVACATIONS
     else
-      self.privacy_flags = self.privacy_flags - SHAREVACATIONS if self.share_vacations
+      self.privacy_flags = self.privacy_flags - SHAREVACATIONS if self.share_trips
     end
     self.save
   end

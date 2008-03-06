@@ -1,0 +1,2 @@
+page.hide 'mvacation'
+@trips.each {|v| page << add_trip_line(v, @map)}

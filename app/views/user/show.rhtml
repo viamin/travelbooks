@@ -24,7 +24,7 @@
 <div id="map_box">
 	<div id="map_bar">
 		<%= h(@person.display_name) %>'s World 
-		<%= link_to_remote "Show Vacations", :url => {:controller => 'user', :action => 'show_vacations', :id => @person.id, :width => 456, :height => 207}, :html => {:class => 'right_rlink', :id => 'mvacation'} if @person.share_vacations %>
+		<%= link_to_remote "Show Trips", :url => {:controller => 'user', :action => 'show_trips', :id => @person.id, :width => 456, :height => 207}, :html => {:class => 'right_rlink', :id => 'mvacation'} if @person.share_trips %>
 	</div>
 	<%= @map.div(:width => 456, :height => 207) %>
 </div>

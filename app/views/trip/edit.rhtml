@@ -1,11 +1,11 @@
-<h1><%= @vacation.name %></h1>
+<h1><%= @trip.name %></h1>
 
-<%= link_to "Add a destination", :action => 'add', :id => @vacation.id %>
+<%= link_to "Add a destination", :action => 'add', :id => @trip.id %>
 <ol id="destination_list">
-	<%= render :partial => 'destination', :collection => @vacation.destinations %>
+	<%= render :partial => 'destination', :collection => @trip.destinations %>
 </ol>
 <%= sortable_element 'destination_list',
-	:url => {:action => 'sort', :id => @vacation },
+	:url => {:action => 'sort', :id => @trip },
 	:complete => visual_effect(:highlight, 'destination_list' )
 %>
-<%= link_to 'Back to Vacations', :action => 'list' %>
+<%= link_to 'Back to Trips', :action => 'list' %>

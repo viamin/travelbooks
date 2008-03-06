@@ -10,8 +10,8 @@
 <p><label for="person_location_resolution">How detailed a location can others see on their maps?</label>
 	<%= select 'person', 'location_resolution', Person::LOCRESOLUTIONS %></p>
 	
-<p><label for="person_share_vacations">Allow friends to see vacation tracks</label>
-	<%= check_box 'person', 'share_vacations', {}, 'Yes', 'No' %></p>
+<p><label for="person_share_trips">Allow others to see my trips</label>
+	<%= check_box 'person', 'share_trips', {}, 'Yes', 'No' %></p>
 
 <p><label for="person_email">Email Address</label>
 	<%= text_field 'person', 'email'  %></p>

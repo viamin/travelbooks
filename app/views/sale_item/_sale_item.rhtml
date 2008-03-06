@@ -1,0 +1,12 @@
+<tr>
+	<td><%= h sale_item.name %></td>
+	<td><%= h sale_item.description %></td>
+	<td><%= h sale_item.price %></td>
+	<td><%= h sale_item.quantity_in_stock %></td>
+	<td><%= h sale_item.for_sale %></td>
+	<td><%= h sale_item.sale_price %></td>
+	<td><%= h sale_item.category.name unless sale_item.category.nil? %></td>
+	<td><%= link_to "Show", :controller => 'sale_item', :action => 'show', :id => sale_item.id %></td>
+	<td><%= link_to "Edit", :action => 'edit', :id => sale_item.id %></td>
+	<td><%= link_to "Delete", :action => 'delete', :id => sale_item.id, :confirm => 'Are you sure you want to delete this item?', :method => 'post' %></td>
+</tr>

@@ -1,0 +1,35 @@
+<%= error_messages_for 'sale_item' %>
+
+<!--[form:sale_item]-->
+
+<p><label for="sale_item_name">Name</label><br/>
+<%= f.text_field 'name' %></p>
+
+<p><label for="sale_item_description">Description</label><br/>
+<%= f.text_area 'description', :size => '40x5' %></p>
+
+<p><label for="sale_item_quantity_in_stock">Quantity</label><br/>
+<%= f.text_field 'quantity_in_stock' %></p>
+
+<p><label for="sale_item_price">Price</label><br/>
+<%= f.text_field 'price'  %></p>
+
+<p><label for="sale_item_for_sale">For Sale</label><br/>
+<%= f.text_field 'for_sale' %></p>
+
+<p><label for="sale_item_price">Status</label><br/>
+<%= f.select 'status', SaleItem::STATUS %></p>
+
+<p><label for="sale_item_sale_price">Sale Price</label><br/>
+<%= f.text_field 'sale_price' %></p>
+
+<p><label for="sale_item_sale_begins">Sale Begins</label><br/>
+<%= f.date_select 'sale_begins', :default => Time.now.months_since(1) %></p>
+
+<p><label for="sale_item_sale_ends">Sale Ends</label><br/>
+<%= f.date_select 'sale_ends', :default => Time.now.months_since(2) %></p>
+
+<p><label for="sale_item_category_id">Category</label><br/>
+<%= f.select 'category_id', Category.find(:all).collect {|c| [ c.name, c.id ] } %></p>
+<!--[eoform:sale_item]-->
+

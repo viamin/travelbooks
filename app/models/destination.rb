@@ -1,21 +1,23 @@
 # == Schema Information
-# Schema version: 27
+# Schema version: 28
 #
 # Table name: destinations
 #
 #  id          :integer         not null, primary key
-#  vacation_id :integer         
+#  trip_id     :integer         
 #  name        :string(255)     
 #  position    :integer         
 #  location_id :integer         
 #  notes       :text            
 #  arrival     :datetime        
 #  departure   :datetime        
+#  change_id   :integer         
 #
 
 class Destination < ActiveRecord::Base
-  belongs_to :vacation
-  acts_as_list :scope => :vacation
+  belongs_to :trip
+  has_one :change
+  acts_as_list :scope => :trip
   
   def location
     Location.find(self.location_id)

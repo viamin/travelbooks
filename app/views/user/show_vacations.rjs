@@ -1,2 +1,0 @@
-page.hide 'mvacation'
-@vacations.each {|v| page << add_vacation_line(v, @map)}

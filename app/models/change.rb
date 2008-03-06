@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 27
+# Schema version: 28
 #
 # Table name: changes
 #
@@ -20,6 +20,7 @@ class Change < ActiveRecord::Base
   belongs_to :person
   belongs_to :item
   belongs_to :location
+  belongs_to :destination
   
   # possible change_types:
   OWNERSHIP = 1

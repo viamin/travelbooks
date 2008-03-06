@@ -1,8 +1,8 @@
-<h1>Adding a destination to <%= @vacation.name %></h1>
+<h1>Adding a destination to <%= @trip.name %></h1>
 
 <div id="dest_form">
 	<% form_for 'destination', @destination, :url => {:action => 'insert'} do |f| %>
-	<%= hidden_field_tag 'vacation_id', @vacation.id %>
+	<%= hidden_field_tag 'trip_id', @trip.id %>
 	<%= render :partial => 'dst_form', :object => @destination, :locals => {:f => f} %>
 	<%= f.submit 'Add Destination' %>
 	<% end %>

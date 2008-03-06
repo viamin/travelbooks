@@ -19,13 +19,13 @@ class TripController < ApplicationController
   
   def edit
     @person = Person.find(session[:user_id])
-    @vacation = Vacation.find(params[:id])
+    @trip = Trip.find(params[:id])
   end
   
   def create
     @person = Person.find(session[:user_id])
-    @vacation = Vacation.create(params[:vacation])
-    @person.vacations << @vacation
+    @trip = Trip.create(params[:trip])
+    @person.trips << @trip
     @person.save!
     redirect_to :action => 'list'
   end
@@ -43,12 +43,12 @@ class TripController < ApplicationController
   def list
     @person = Person.find(session[:user_id])
     @location = @person.current_location
-    @vacations = @person.vacations
+    @trips = @person.trips
     @map = Mapstraction.new("vacation_map",:yahoo)
   	@map.control_init(:small => true)
   	@map.center_zoom_init([@location.lat, @location.lng],9)
   	@map.marker_init(Marker.new([@location.lat, @location.lng], :info_bubble => @location.description, :icon => '/images/homeicon.png'))
-#  	@vacations.each do |v|
+#  	@trips.each do |v|
 #  	  points = get_markers_for(v)
 #  	  line = Polyline.new(points, :width => 5, :color => COLORS[rand(6)], :opacity => 0.8)
 #  	  @map.polyline_init(line)
@@ -56,22 +56,22 @@ class TripController < ApplicationController
   end
   
   def add
-    @vacation = Vacation.find(params[:id])
+    @trip = Trip.find(params[:id])
     @destination = Destination.new
   end
   
   def insert
-    @vacation = Vacation.find(params[:vacation_id])
+    @trip = Trip.find(params[:trip_id])
     @destination = Destination.create(params[:destination])
-    @vacation.destinations << @destination
-    @vacation.save!
-    redirect_to :action => 'edit', :id => @vacation.id
+    @trip.destinations << @destination
+    @trip.save!
+    redirect_to :action => 'edit', :id => @trip.id
   end
   
   def sort
-    @vacation = Vacation.find(params[:id])
-    @vacation.destinations.each do |dest|
-      dest.position = params['vacation'].index(dest.id.to_s) + 1
+    @trip = Trip.find(params[:id])
+    @trip.destinations.each do |dest|
+      dest.position = params['trip'].index(dest.id.to_s) + 1
       dest.save
     end
     render :nothing => true
@@ -81,7 +81,7 @@ class TripController < ApplicationController
     @destination = Destination.find(params[:id])
     @location = Location.new
     @location.description = @destination.name
-    @all_locations = Person.find(Vacation.find(@destination.vacation_id).person_id).all_locations
+    @all_locations = Person.find(Trip.find(@destination.trip_id).person_id).all_locations
     render :layout => false
   end
   
@@ -90,16 +90,16 @@ class TripController < ApplicationController
     @location = Location.create(params[:location])
     @destination.location = @location
     @destination.save!
-    redirect_to :action => 'edit', :id => @destination.vacation_id
+    redirect_to :action => 'edit', :id => @destination.trip_id
   end
   
   def zoom
-    @vacation = Vacation.find(params[:id])
+    @trip = Trip.find(params[:id])
     @map = Variable.new("map")
 #    @map = Mapstraction.new("vacation_map",:yahoo)
 #  	@map.control_init(:small => true)
-	  @points = get_points_for(@vacation)
-	  @markers = get_markers_for(@vacation)
+	  @points = get_points_for(@trip)
+	  @markers = get_markers_for(@trip)
 	  timing @markers.pretty_inspect
 	  @center = LatLonPoint.new(find_center(@points))
 	  @zoom = best_zoom(@points, @center, 227, 458) #227x458 is size of map on page

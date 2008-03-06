@@ -14,8 +14,8 @@ module UserHelper
     map.add_marker(Marker.new([loc.lat, loc.lng], :info_bubble => item.name, :icon => '/images/ambericonsh.png'))
   end
   
-  def add_vacation_line(vacation, map)
-    dests = vacation.destinations
+  def add_trip_line(trip, map)
+    dests = trip.destinations
     line = Array.new
     dests.each do |d|
       if d.has_location?

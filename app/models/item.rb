@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 27
+# Schema version: 28
 #
 # Table name: items
 #
@@ -25,6 +25,12 @@ class Item < ActiveRecord::Base
     def sorted(how="ASC")
       changes = Change.find(:all, :conditions => {:change_type => Change::ITEM_LOCATION}, :order => "effective_date #{how}")
       changes.collect!{ |c| Location.find(c.new_value)}
+    end
+  end
+  has_many :people, :through => :changes do
+    def owners(how = "ASC")
+      changes = Change.find(:all, :conditions => {:change_type => Change::OWNERSHIP}, :order => "effective_date #{how}")
+      changes.collect!{ |c| Person.find(c.new_value)}
     end
   end
   

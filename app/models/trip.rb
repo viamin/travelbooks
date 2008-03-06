@@ -1,7 +1,7 @@
 # == Schema Information
-# Schema version: 27
+# Schema version: 28
 #
-# Table name: vacations
+# Table name: trips
 #
 #  id         :integer         not null, primary key
 #  name       :string(255)     
@@ -9,13 +9,10 @@
 #  start_date :date            
 #  end_date   :date            
 #  companions :string(255)     
+#  item_id    :integer         
 #
 
---- 
-vacations_001: 
-  name: Hawaii Vacation
-  start_date: "2007-12-14"
-  end_date: "2007-12-27"
-  id: "1"
-  companions: 
-  person_id: "1"
+class Trip < ActiveRecord::Base
+  belongs_to :person
+  has_many :destinations, :order => :position
+end

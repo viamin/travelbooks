@@ -75,10 +75,10 @@ class ApplicationController < ActionController::Base
     zoom
   end
   
-  # returns an array of points for the given vacation
-  def get_points_for(vacation)
+  # returns an array of points for the given trip
+  def get_points_for(trip)
     points = Array.new
-    vacation.destinations.each do |d|
+    trip.destinations.each do |d|
       if d.has_location?
         points << LatLonPoint.new([d.location.lat, d.location.lng])
       end
@@ -86,9 +86,9 @@ class ApplicationController < ActionController::Base
     points
   end
   
-  def get_markers_for(vacation)
+  def get_markers_for(trip)
     markers = Array.new
-    vacation.destinations.each do |d|
+    trip.destinations.each do |d|
       if d.has_location?
         markers << Marker.new([d.location.lat, d.location.lng], :info_bubble => d.name, :icon => '/images/desticon.png')
       end
