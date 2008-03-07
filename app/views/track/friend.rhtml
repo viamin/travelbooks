@@ -1,6 +1,6 @@
 <p><%= h(@message) if @people.empty? %></p>
-<ul>
+<ul class="results_list">
 <% @people.each do |p| %>
-	<li><%= link_to p.display_name, {:controller => 'user', :action => 'show', :id => p.id} %></li>
+	<li><%= link_to( image_tag(p.main_photo.url).concat("&nbsp;&nbsp;#{p.display_name}"), {:controller => 'user', :action => 'show', :id => p.id}) %></li>
 <% end %>
 </ul>

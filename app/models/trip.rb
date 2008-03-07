@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 28
+# Schema version: 29
 #
 # Table name: trips
 #
@@ -15,4 +15,5 @@
 class Trip < ActiveRecord::Base
   belongs_to :person
   has_many :destinations, :order => :position
+  has_and_belongs_to_many :items
 end

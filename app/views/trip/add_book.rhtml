@@ -1,0 +1,8 @@
+<h1>Adding a TravellerBook to <%= @trip.name %></h1>
+
+<div id="dest_form">
+	<% form_for 'trip', @trip, :url => {:action => 'insert_book', :id => @trip} do |f| %>
+	<%= select_tag  'book', options_for_select(Item.find(@items).collect!{|i| ["<img src=\"/images/books/book#{i.id}.jpg\" width=\"36\" height=\"50\">#{i.name}", i.id])}%>
+	<%= f.submit 'Add TravellerBook' %>
+	<% end %>
+</div>

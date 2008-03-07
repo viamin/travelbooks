@@ -1,6 +1,9 @@
-<h1><%= @trip.name %></h1>
+<h1>Edit a Trip</h1>
 
-<%= link_to "Add a destination", :action => 'add', :id => @trip.id %>
+<% form_for 'trip', @trip, :url => {:action => 'update', :id => @trip} do |f| %>
+	<%= render :partial => 'form', :object => @trip %>
+<% end %>
+<%= link_to "Add a destination", :action => 'add', :id => @trip %>
 <ol id="destination_list">
 	<%= render :partial => 'destination', :collection => @trip.destinations %>
 </ol>
@@ -8,4 +11,8 @@
 	:url => {:action => 'sort', :id => @trip },
 	:complete => visual_effect(:highlight, 'destination_list' )
 %>
+<%= link_to "Add a TravellerBook to this trip", :action => 'add_book', :id => @trip %>
+<ul id="triptblist">
+	<%= render :partial => 'book', :collection => @trip.items %>
+</ul>
 <%= link_to 'Back to Trips', :action => 'list' %>

@@ -409,14 +409,6 @@ div.progressBar div.background {
 #sflist img {
 	border: 0;
 }
-#item_map {
-	position: absolute;
-	top: 0;
-	left: 310px;
-	height: 227px;
-	width: 458px;
-	border: 1px solid #633c1f;
-}
 .right_rlink {
 	position: absolute;
 	left: 330px;
@@ -623,12 +615,23 @@ div.progressBar div.background {
 #book_info {
 	display: block;
 	width:280px;
+	height: 580px;
+	overflow: auto;
 }
 #book_info ul {
 	list-style: none;
 }
 #book_info img {
 	width: 200px;
+}
+#owner_list img {
+	width: 50px;
+}
+#item_map {
+	position: absolute;
+	top: 0;
+	left: 310px;
+	border: 1px solid #633c1f;
 }
 /************* Message Section **************/
 .message_short {
@@ -654,7 +657,19 @@ div.progressBar div.background {
 }
 /************* Tracking section ***************/
 .results_list {
-	list_style: none;
+	list-style: none;
+	text-decoration: none;
+	height: 520px;
+	overflow: auto;
+}
+.results_list img {
+	width: 80px;
+	vertical-align: middle;
+}
+.results_list a {
+	text-decoration: none;
+	font-style: none;
+	color: #000;
 }
 /************** Vacation section **************/
 #vacation_list {

@@ -44,7 +44,7 @@ class TripController < ApplicationController
     @person = Person.find(session[:user_id])
     @location = @person.current_location
     @trips = @person.trips
-    @map = Mapstraction.new("vacation_map",:yahoo)
+    @map = Mapstraction.new("vacation_map", MAP_TYPE)
   	@map.control_init(:small => true)
   	@map.center_zoom_init([@location.lat, @location.lng],9)
   	@map.marker_init(Marker.new([@location.lat, @location.lng], :info_bubble => @location.description, :icon => '/images/homeicon.png'))
@@ -66,6 +66,19 @@ class TripController < ApplicationController
     @trip.destinations << @destination
     @trip.save!
     redirect_to :action => 'edit', :id => @trip.id
+  end
+  
+  def add_book
+    @trip = Trip.find(params[:id])
+    @person = Person.find(session[:user_id])
+    @items = @person.items
+  end
+  
+  def insert_book
+    @trip = Trip.find(params[:id])
+    @item = Item.find(params[:item_id])
+    @trip.items << @item
+    redirect_to :action => 'edit', :id => @trip
   end
   
   def sort
@@ -96,7 +109,7 @@ class TripController < ApplicationController
   def zoom
     @trip = Trip.find(params[:id])
     @map = Variable.new("map")
-#    @map = Mapstraction.new("vacation_map",:yahoo)
+#    @map = Mapstraction.new("vacation_map", MAP_TYPE)
 #  	@map.control_init(:small => true)
 	  @points = get_points_for(@trip)
 	  @markers = get_markers_for(@trip)

@@ -33,16 +33,19 @@ class MessageController < ApplicationController
   
   def new
     @sender = Person.find(session[:user_id])
+    @recipient = Person.find(params[:id]) if params[:id]
     @friends = @sender.friends.collect!{|f| [f.display_name, f.id] }
+    @friends.concat([[@recipient.display_name, @recipient.id]]) unless @recipient.nil?
     if params[:message_id]
       @reply_to = Message.find(params[:message_id])
       @reply_to.subject = "Re: #{@reply_to.subject}" unless @reply_to.subject =~ /^Re:/
     else
       @reply_to = Message.new
+      @reply_to.sender = params[:id] if params[:id]
     end
     # since @reply_to expects the message to be a reply, reverse sender and person_id meanings
     # I know, it's lame...
-    @reply_to = Message.new({:sender => params[:id]}) if params[:id]
+#    @reply_to = Message.new({:sender => params[:id]}) if params[:id]
     @reply_to.body = "\n\n-----------------------\n#{@reply_to.body}" if @reply_to.body && @reply_to.body.length > 0
   end
   

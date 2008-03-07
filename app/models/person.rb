@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 28
+# Schema version: 29
 #
 # Table name: people
 #
@@ -67,8 +67,20 @@ class Person < ActiveRecord::Base
   
   def all_items
     item_array = Change.find(:all, :conditions => {:change_type => Change::OWNERSHIP, :new_value => self.id})
-    items = item_array.collect { |change| Item.find(change.new_value) unless change.new_value.nil?}.concat(self.items).compact.uniq
+    items = item_array.collect { |change| Item.find(change.item_id) unless change.item_id.nil?}.concat(self.items).compact.uniq
     items
+  end
+  
+  def items_given
+    item_array = Change.find(:all, :conditions => {:change_type => Change::OWNERSHIP, :old_value => self.id})
+    items = item_array.collect {|change| Item.find(change.item_id) unless change.item_id.nil?}
+  end
+  
+  def items_received(from = nil)
+    not_from = "and old_value=#{from}" unless from.nil?
+    old_value_string = "(old_value != #{NOBODY_USER} #{not_from unless not_from.nil?})"
+    item_array = Change.find(:all, :conditions => ["change_type = ? and new_value=? and #{old_value_string}", Change::OWNERSHIP, self.id])
+    items = item_array.collect {|change| Item.find(change.item_id) unless change.item_id.nil?}
   end
   
   def before_create

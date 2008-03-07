@@ -1,31 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-  <title>Main: <%= controller.action_name %></title>
-	<%= stylesheet_link_tag 'main' %>
-	<%= Mapstraction.header(:yahoo) %>
-	<%= @map.to_html %>
-</head>
-<body id="main">
-	<div id="main_stripe">
-		<%= render :partial => "main/titlebar" %>
-		<div id="linkbar">
-			<%= render :partial => "main/toplinks" %>
-		</div>
-		<p style="color: green"><%= flash[:notice] %></p>
-		<div id="cfl">
-			<h1><%= @person.display_name %>'s friends</h1>
-			<ul id="sflist">
-				<%= render :partial => 'friend_short', :collection => @friends %>
-			</ul>
-				<%= @map.div(:width => 458, :height => 458) %>
-			</div>
-		</div>
-	</div>
-	<%= image_tag("rsh.png", {:id => 'rsh'}) %>
-</body>
-</html>
-
-
+<h1><%= @person.display_name %>'s friends</h1>
+<ul id="sflist">
+	<%= render :partial => 'friend_short', :collection => @friends %>
+</ul>
+	<%= @map.div(:width => 458, :height => 458) %>

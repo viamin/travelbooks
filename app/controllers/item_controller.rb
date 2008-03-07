@@ -14,7 +14,7 @@ class ItemController < ApplicationController
     @person = Person.find(params[:id])
     @location = @person.current_location
     @items = @person.all_items
-    @map = Mapstraction.new("item_map",:yahoo)
+    @map = Mapstraction.new("item_map", MAP_TYPE)
   	@map.control_init(:small => true)
   	@map.center_zoom_init([@location.lat, @location.lng],10)
   	@map.marker_init(Marker.new([@location.lat, @location.lng], :icon => '/images/homeicon.png'))
@@ -32,19 +32,19 @@ class ItemController < ApplicationController
       @person = Person.find(session[:user_id])
       if @person.items.include?(@item)
         @message = "<p><a href=\"/item/giveaway/#{@item.id}\"  onclick=\"return confirm('This will remove this book from your item list. You can find this item again in your &quot;All Items&quot; list.');\">I've given this book away</a></p>"
+        @owners = @item.people.owners.uniq.delete_if {|p| p.id == session[:user_id]}
       elsif (session[:last_action] =~ /^track_(find|item)$/)
         @message = "<p>Do you have this book? To add it to your library, click <a href=\"/item/associate/#{@item.id}\">here</a></p>"
       end
     end
     @loc = @item.locations.current
-    @map = Mapstraction.new("item_map",:yahoo)
+    @map = Mapstraction.new("item_map", MAP_TYPE)
   	@map.control_init(:small => true)
   	@map.center_zoom_init([@loc.lat, @loc.lng],10)
   	@map.marker_init(Marker.new([@loc.lat, @loc.lng], :icon => "/images/ambericonsh.png"))
   	@points = @item.locations.sorted.collect{ |p| LatLonPoint.new([p.lat, p.lng])}
   	@line = Polyline.new(@points, :width => 5, :color => "#FF00AB", :opacity => 0.8)
   	@map.polyline_init(@line)
-  	@owners = @item.people.owners
   	render :layout => 'user'
   end
   
@@ -124,8 +124,11 @@ class ItemController < ApplicationController
     @change.effective_date = Time.now
     @change.save!
     @person.items << @item
+    @item.person_id = @person.id
+    @item.save!
     flash[:notice] = "This item (#{@item.name}) has been added to your library."
+    session[:entered_tbid] = nil
     redirect_to :action => 'home', :controller => 'user'
-    
   end
+
 end

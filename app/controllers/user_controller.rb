@@ -1,5 +1,6 @@
 class UserController < ApplicationController
   before_filter :authorize, :except => [:login, :join, :retrieve, :mark_friends, :mark_items, :iforgot]
+  layout 'user', :except => 'user_stats'
   
   def index
     redirect_to :action => 'home'
@@ -13,7 +14,7 @@ class UserController < ApplicationController
     @person = Person.find(params[:id])
     @location = @person.current_location
     @friends = @person.friends
-    @map = Mapstraction.new("friend_map",:yahoo)
+    @map = Mapstraction.new("friend_map", MAP_TYPE)
   	@map.control_init(:small => true)
   	@map.center_zoom_init([@location.lat, @location.lng],10)
   	@map.marker_init(Marker.new([@location.lat, @location.lng], :icon => '/images/homeicon.png'))
@@ -21,15 +22,14 @@ class UserController < ApplicationController
   	  fl = f.current_location
   	  @map.marker_init(Marker.new([fl.lat, fl.lng], :info_bubble => f.display_name, :icon => '/images/personicon.png'))
 	  end
-    render :layout => false
   end
 
   def show
-    @person = Person.find(params[:id])
-    @me = Person.find(session[:user_id])
-    if (@person == @me)
+    if (params[:id] == session[:user_id])
       redirect_to :action => 'home'
     end
+    @person = Person.find(params[:id])
+    @me = Person.find(session[:user_id])
     @location = @person.current_location
     @items = @person.items
     @friends = @person.friends
@@ -37,7 +37,7 @@ class UserController < ApplicationController
     unless @is_my_friend
       @is_my_friend = Message.check_for_request(@me, @person)
     end
-    @map = Mapstraction.new('user_map', :yahoo)
+    @map = Mapstraction.new('user_map', MAP_TYPE)
     @map.control_init(:small => true)
     @map.center_zoom_init([@location.lat, @location.lng], 10)
     @map.marker_init(Marker.new([@location.lat, @location.lng], :info_bubble => @person.display_name, :icon => '/images/personicon.png'))
@@ -96,7 +96,7 @@ class UserController < ApplicationController
       @locations = @person.all_locations
       @items = @person.items
       @friends = @person.friends
-      @map = Mapstraction.new('user_map', :yahoo)
+      @map = Mapstraction.new('user_map', MAP_TYPE)
       @map.control_init(:small => true)
       @map.center_zoom_init([@location.lat, @location.lng], 10)
       @map.marker_init(Marker.new([@location.lat, @location.lng], :info_bubble => @location.description, :icon => '/images/homeicon.png'))
@@ -273,6 +273,14 @@ class UserController < ApplicationController
       flash[:notice] = "The passwords you typed do not match"
       redirect_to :action => 'reset_password', :temp_pass => params[:temp_password]
     end
+  end
+  
+  def user_stats
+    @person = Person.find(params[:id])
+    @all_items = @person.all_items
+    @trips = @person.trips
+    @items_given = @person.items_given.count
+    @items_received = @person.items_received.count
   end
   
 end

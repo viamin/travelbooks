@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 28
+# Schema version: 29
 #
 # Table name: items
 #
@@ -17,6 +17,7 @@ class Item < ActiveRecord::Base
   has_many :changes
   belongs_to :person
   has_many :photos
+  has_and_belongs_to_many :trips
   validates_uniqueness_of :tbid
   has_many :locations, :through => :changes do
     def current(as_of = Time.now)
@@ -29,8 +30,9 @@ class Item < ActiveRecord::Base
   end
   has_many :people, :through => :changes do
     def owners(how = "ASC")
-      changes = Change.find(:all, :conditions => {:change_type => Change::OWNERSHIP}, :order => "effective_date #{how}")
+      changes = Change.find(:all, :conditions => {:item_id => self.id, :change_type => Change::OWNERSHIP}, :order => "effective_date #{how}")
       changes.collect!{ |c| Person.find(c.new_value)}
+      changes.delete_if {|p| p.id == NOBODY_USER }
     end
   end
   

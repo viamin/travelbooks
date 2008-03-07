@@ -8,5 +8,6 @@
 		<li><%= @item.description %></li>
 	</ul>
 	<%= @message unless @message.nil? %>
+	<%= render :partial => 'prev_owners', :object => @owners unless @owners.empty? %>
 </div>
 <%= @map.div(:width => 458, :height => 458) %>
