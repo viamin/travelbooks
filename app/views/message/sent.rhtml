@@ -1,10 +1,7 @@
 <h1><%= @person.display_name %>'s Messages</h1>
-<ul id="mailbox_list">
-	<li><%= link_to "Inbox", :action => 'list' %></li>
-	<li>Sent Messages</li>
-</ul>
+<%= render :partial => 'mail_actions' %>
 <div id="message_area">
 	<ul id="message_list">
-		<%= render :partial => 'message_short', :collection => @messages %>
+		<%= @messages.empty? ? "<li>No Messages</li>" : render( :partial => 'message_short', :collection => @messages) %>
 	</ul>
 </div>

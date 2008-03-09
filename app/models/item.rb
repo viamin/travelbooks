@@ -21,7 +21,8 @@ class Item < ActiveRecord::Base
   validates_uniqueness_of :tbid
   has_many :locations, :through => :changes do
     def current(as_of = Time.now)
-      Location.find(Change.find(:first, :conditions => ["change_type=? and effective_date<=?", Change::ITEM_LOCATION, as_of], :order => "effective_date DESC").new_value)
+      change = Change.find(:first, :conditions => ["change_type=? and effective_date<=?", Change::ITEM_LOCATION, as_of], :order => "effective_date DESC")
+      Location.find(change.new_value) unless change.nil?
     end
     def sorted(how="ASC")
       changes = Change.find(:all, :conditions => {:change_type => Change::ITEM_LOCATION}, :order => "effective_date #{how}")

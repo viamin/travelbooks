@@ -23,7 +23,7 @@
 </div>
 <div id="map_box">
 	<div id="map_bar">
-		My World
+		<span class="header_title">My World</span>
 		<%= link_to_remote "Show Trips", :url => {:controller => 'user', :action => 'show_trips', :id => @person.id, :width => 456, :height => 207}, :html => {:class => 'right_rlink', :id => 'mvacation'} %>
 	</div>
 	<%= @map.div(:width => 456, :height => 207) %>
@@ -49,4 +49,7 @@
 	<div id="stat_list">
 		<%= render_component :action => 'user_stats', :id => @person %>
 	</div>
+</div>
+<div id="footer">
+	<%= render :partial => 'main/footer' %>
 </div>

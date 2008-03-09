@@ -1,46 +1,58 @@
-body {
-  font-family: Optima, verdana, arial, helvetica, sans-serif;
-  margin-top: 0;
-  margin-left: 52px;
-  margin-bottom: 0;
-  background: #394876;
+html,body {
+	font-family: Optima, Trebuchet, Book Antiqua, verdana, arial, helvetica, sans-serif;
+	margin-top: 0;
+	margin-left: 52px;
+	margin-bottom: 0;
+	background: #394876;
 }
 h1, h2, h3 {
 	margin-left: 10px;
 	margin-right: 10px;
 }
 p, ol, ul, td {
-  font-family: Optima, verdana, arial, helvetica, sans-serif;
-  font-size:   13px;
-  line-height: 18px;
-  margin-left: 20px;
-  margin-right: 20px;
+	font-family: Optima, Trebuchet, Book Antiqua, verdana, arial, helvetica, sans-serif;
+	font-size: 13px;
+	line-height: 18px;
+	margin-left: 20px;
+	margin-right: 20px;
 }
 img {
 	border: 0;
 }
 #main_stripe {
+	position: relative;
+	left: -52px;
 	width: 800px;
-	min-height: 800px;
 	background: #ffe7a5;
 }
+#cfl {
+	position: relative;
+	top: 35px;
+	padding-top: 20px;
+	padding-left: 20px;
+	background: #ffe7a5;
+}
+#rsh {
+	width: 6px;
+	z-index: 100;
+}
 pre {
-  background-color: #eee;
-  padding: 10px;
-  font-size: 11px;
+	background-color: #eee;
+	padding: 10px;
+	font-size: 11px;
 }
 .fieldWithErrors {
-  padding: 2px;
-  background-color: red;
-  display: table;
+	padding: 2px;
+	background-color: red;
+	display: table;
 }
 #ErrorExplanation {
-  width: 400px;
-  border: 2px solid red;
-  padding: 7px;
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
+	width: 400px;
+	border: 2px solid red;
+	padding: 7px;
+	padding-bottom: 12px;
+	margin-bottom: 20px;
+	background-color: #f0f0f0;
 }
 #ErrorExplanation h2 {
   text-align: left;
@@ -68,7 +80,7 @@ div.progressBar {
 }
 div.progressBar div.border {
   background-color: #fff;
-  border: 1px solid grey;
+  border: 1px solid gray;
   width: 100%;
 }
 div.progressBar div.background {
@@ -77,6 +89,7 @@ div.progressBar div.background {
   width: 0%;
 }
 /* ---------------- Layout styles ----------------*/
+/***** Flash Box *****/
 #float_flash {
 	position: absolute;
 	z-index: 10000;
@@ -104,6 +117,7 @@ div.progressBar div.background {
 	top: 2px;
 	left: 200px;
 }
+/***** Title Bar *****/
 #smlogo {
 	position: absolute;
 	left: 10px;
@@ -131,9 +145,10 @@ div.progressBar div.background {
 #titlebar strong {
 	display: none;
 }
+/***** Link and Login Bar *****/
 #loginbox {
 	position: absolute;
-	left: 415px;
+	left: 410px;
 	color: #ffd;
 	display: inline;
 }
@@ -147,28 +162,14 @@ div.progressBar div.background {
 	height: 12px;
 }
 #lgnbut {
-	font-family: Optima, verdana, arial, helvetica, sans-serif;
+	font-family: Optima, Trebuchet, Book Antiqua, verdana, arial, helvetica, sans-serif;
 	height: 18px;
-}
-#item_info {
-	top: 150px;
-	left: 300px;
-	position: absolute;
-}
-#rsh {
-	position: absolute;
-	left: 852px;
-	top: 0;
-	width: 6px;
-	height: 800px;
 }
 #linkbar {
 	position: relative;
 	padding: 3px 0;
 	top: 35px;
 	background: #394876;
-/*	background: #2f4380;*/
-/*  background: #633c1f;*/
 }
 #linkbar ul {
 	list-style: none;
@@ -190,9 +191,6 @@ div.progressBar div.background {
 	width: 100%;
 	color: #ffd;
 }
-#cfl {
-	padding: 20px;
-}
 #ulog {
 	position: relative;
 	display: inline;
@@ -205,23 +203,11 @@ div.progressBar div.background {
 	font-size: 14px;
 	color: #ffd;
 }
-#person_form label {
-	display: block;
-	float: left;
-	padding-right: 10px;
-	text-align: right;
-	width: 150px;
-}
-#top_content {
-	float:left;
-}
-
-/* --------------------- User pages specific style --------------- */
+/* --------------------- User home and show --------------- */
+/***** USER BOX *****/
 #user_box {
-	position: absolute;
-	top: 145px;
 	width: 280px;
-	
+	margin-bottom: 20px;
 }
 #welcome_bar {
 	width: 276px;
@@ -230,40 +216,38 @@ div.progressBar div.background {
 	color: #ffd;
 }
 #info_box {
-	float: left;
+	position: relative;
 	width: 274px;
 	height: 203px;
 	padding: 2px;
 	border: 1px solid #633c1f;
 }
 #user_photo {
-	position: absolute;
-	left: 8px;
-	top: 32px;
+	float: left;
+	margin-top: 5px;
+	margin-left: 5px;
 	width: 80px;
 	height: 120px;
 	z-index: 100;
 }
 #user_info {
-	position: absolute;
-	top: 20px;
-	left: 38px;
-	width: 180px;
+	float: left;
 }
 #user_info ul {
 	list-style: none;
+	padding: 0;
+	margin-left: 10px;
 }
 #edit_list {
-	position: absolute;
-	top: 164px;
-	left: -1px;
+	clear: both;
+	position: relative;
+	left: -50px;
 	height: 63px;
 	width: 281px;
 	overflow: auto;
 }
 #edit_list ul {
 	list-style: none;
-	position: absolute;
 	left: -60px;
 	top: -8px;
 }
@@ -271,34 +255,35 @@ div.progressBar div.background {
 	float: left;
 	padding-left: 10px;
 }
+#options_list {
+	list-style: none;
+}
+/****** MAP BOX *******/
 #map_box {
 	position: absolute;
-	top: 145px;
-	left: 373px;
-	height: 227px;
+	top: 20px;
+	left: 320px;
+	height: 247px;
 	width: 458px;
-	
 }
 #map_bar {
+	position: absolute;
 	width: 454px;
 	padding-left: 4px;
 	background: url('/images/rndtopmed.png');
 	color: #ffd;
 }
 #user_map {
-/*	position: absolute;
-	top: 136px;
-	left: 373px; */
-	height: 207px;
-	width: 456px;
+	position: absolute;
+	top: 19px;
 	border: 1px solid #633c1f;
 }
+/***** BOOK BOX *****/
 #book_box {
-	position: absolute;
-	top: 392px;
+	position: relative;
 	width: 280px;
 	height: 200px;
-/*	border: 1px solid #633c1f; */
+	margin-bottom: 20px;
 }
 #book_bar {
 	width: 276px;
@@ -316,7 +301,6 @@ div.progressBar div.background {
 }
 .book_img {
 	display: block;
-	padding-left: 22px;
 }
 .book_caption {
 	display: block;
@@ -327,8 +311,13 @@ div.progressBar div.background {
 }
 #blist {
 	list-style: none;
+	width: 100%;
+	padding: 0;
+	margin-left: 0;
 }
 #blist img {
+	position: relative;
+	left: 22px;
 	border: 0;
 	width: 36px;
 	height: 50px;
@@ -337,10 +326,11 @@ div.progressBar div.background {
 	height: 115px;
 	float: left;
 }
+/****** FRIEND BOX *****/
 #friend_box {
 	position: absolute;
-	top: 392px;
-	left: 373px;
+	top: 268px;
+	left: 320px;
 	width: 458px;
 	height: 200px;
 }
@@ -352,18 +342,8 @@ div.progressBar div.background {
 }
 #friend_list {
 	overflow: auto;
-	top: 0;
-	left: 0;
 	width: 456px;
 	height: 180px;
-	border: 1px solid #633c1f;
-}
-#friend_map {
-	position: absolute;
-	top: 0;
-	left: 310px;
-	height: 227px;
-	width: 458px;
 	border: 1px solid #633c1f;
 }
 .friend_caption {
@@ -375,6 +355,8 @@ div.progressBar div.background {
 }
 #flist {
 	list-style: none;
+	padding: 0;
+	margin-left: 20px;
 }
 #flist img {
 	border: 0;
@@ -386,61 +368,12 @@ div.progressBar div.background {
 	width: 100px;
 	float: left;
 }
-.sfriend_image {
-	float: left;
-}
-.sfriend_info {
-	display: block;
-	height: 120px;
-}
-.sfriend_address {
-	position: relative;
-	left: 20px;
-	width: 240px;
-}
-#sflist {
-	position: absolute;
-	overflow: auto;
-	left: 10px;
-	height: 580px;
-	width: 300px;
-	list-style: none;
-}
-#sflist img {
-	border: 0;
-}
-.right_rlink {
-	position: absolute;
-	left: 330px;
-	top: 5px;
-	text-align: left;
-	color: #ffd;
-	text-decoration: none;
-	font-size: 12px;
-}
-.right_mlink {
-	position: absolute;
-	left: 240px;
-	top: 5px;
-	text-align: right;
-	color: #ffd;
-	text-decoration: none;
-	font-size: 12px;
-}
-.left_rlink {
-	position: absolute;
-	left: 205px;
-	top: 5px;
-	text-align: right;
-	color: #ffd;
-	text-decoration: none;
-	font-size: 12px;
-}
+/***** STAT BOX *****/
 #stat_box {
-	position: absolute;
-	top: 614px;
+	position: relative;
 	width: 759px;
 	height: 173px;
+	margin-bottom: 20px;
 }
 #stat_bar {
 	width: 755px;
@@ -471,10 +404,91 @@ div.progressBar div.background {
 .udl {
 	list-style: none;
 }
-#options_list {
+/***** FOOTER *****/
+#footer {
+	position: relative;
+	width: 100%;
+	text-align: center;
+}
+#footer_links {
+	height: 40px;
 	list-style: none;
+	display: block;
+}
+#footer_links li {
+	float: left;
+	width: 180px;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+/***** Friend and Book links *****/
+.header_title {
+	width: 180px;
+}
+.right_rlink {
+	position: absolute;
+	top: 4px;
+	left: 348px;
+	color: #ffd;
+	text-decoration: none;
+	font-size: 12px;
+}
+.left_rlink {
+	position: absolute;
+	top: 4px;
+	margin-left: 55px;
+	color: #ffd;
+	text-decoration: none;
+	font-size: 12px;
+}
+/***** Friend List *****/
+#friend_list_box {
+	position: relative;
+	height: 580px;
+	padding: 0;
+	margin: 0;
+}
+#sflist {
+	overflow: auto;
+	height: 580px;
+	width: 300px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+#sflist img {
+	border: 0;
+}
+#friend_map {
+	position: absolute;
+	top: -580px;
+	left: 310px;
+	border: 1px solid #633c1f;
+}
+.sfriend_image {
+	float: left;
+}
+.sfriend_info {
+	display: block;
+	height: 120px;
+}
+.sfriend_address {
+	position: relative;
+	left: 20px;
+	width: 240px;
+}
+/***** JOIN PAGE *****/
+#person_form label {
+	display: block;
+	float: left;
+	padding-right: 10px;
+	text-align: right;
+	width: 150px;
 }
 /******** Profile Form section ***********/
+#profile_box {
+	min-height: 300px;
+}
 #edit_person p {
 	padding-bottom: 10px;
 }
@@ -505,6 +519,11 @@ div.progressBar div.background {
 	position: relative;
 	left: 160px;
 }
+#profile_links {
+	display: block;
+	background: #ffe7a5;
+	padding-bottom: 10px;
+}
 /******** Location Editing **********/
 .short_loc {
 	float: left;
@@ -513,18 +532,8 @@ div.progressBar div.background {
 	background: #98a1be;
 	border: 3px solid #ffe7a5;
 }
-.short_loc_short {
-	float: left;
-	width: 240px;
-	height: 80px;
-	background: #98a1be;
-	border: 3px solid #ffe7a5;
-}
 .short_loc p {
 	font-size: 12pt;
-}
-.short_loc_list {
-	list-style: none;
 }
 #loc_form label {
 	position: absolute;
@@ -541,31 +550,22 @@ div.progressBar div.background {
 	left: 160px;
 }
 /*********** Photos section ***********/
-#photo_editing {
-	width: 760px;
-}
 #photo_listing {
+	position: relative;
 	width: 760px;
+	padding: 0;
+	margin: 0;
 }
 #photo_list {
-	list-style: none;
-	position: absolute;
-	left: 12px;
 	width: 766px;
+	padding-left: 0;
+	margin-left: 0;
 }
 .photo_list_item {
-	float: left;
 	display: block;
 	padding: 6px;
 	width: 240px;
 	height: 420px;
-}
-.photo_list_item_short {
-	float: left;
-	display: block;
-	padding: 6px;
-	width: 240px;
-	height: 80px;
 }
 .photo_list_item img {
 	width: 240px;
@@ -601,25 +601,45 @@ div.progressBar div.background {
 #track {
 	width: 200px;
 	height: 18px;
-	background-image: url('/images/scaler_slider_track.gif');
-	background-repeat: repeat-x;
-	background-position: center left;
-	margin: 4px 0 0 10px;
+	background-image: url('/images/scaler_slider_track.png');
+	background-repeat: no-repeat;
+	background-position: 0 0;
 }
 #handle {
 	width: 18px;
 	height: 18px;
 	cursor:move;
 }
+#photo_controls {
+	position: absolute;
+	z-index: 1000;
+	background: #ffe7a5;
+}
+#photo_controls div {
+	float: left;
+	padding-right: 10px;
+}
 /************** Item section **************/
+#item_list_box {
+	position: relative;
+	height: 580px;
+	padding: 0;
+	margin: 0;
+}
+#book_info_box {
+	position: relative;
+	height: 580px;
+	padding: 0;
+	margin: 0;
+}
 #book_info {
-	display: block;
 	width:280px;
 	height: 580px;
 	overflow: auto;
 }
 #book_info ul {
 	list-style: none;
+	margin-left: 10px;
 }
 #book_info img {
 	width: 200px;
@@ -629,7 +649,7 @@ div.progressBar div.background {
 }
 #item_map {
 	position: absolute;
-	top: 0;
+	top: -580px;
 	left: 310px;
 	border: 1px solid #633c1f;
 }
@@ -655,6 +675,20 @@ div.progressBar div.background {
 #message_body pre {
 	font-family: Lucida, serif;
 }
+#mailbox_list {
+	width: 720px;
+	padding: 5px;
+}
+#mailbox_list li {
+	list-style: none;
+	float: left;
+	width: 140px;
+	text-align: center;
+	background: #98a1be;
+}
+#compose_form {
+	padding-top: 5px;
+}
 /************* Tracking section ***************/
 .results_list {
 	list-style: none;
@@ -668,20 +702,31 @@ div.progressBar div.background {
 }
 .results_list a {
 	text-decoration: none;
-	font-style: none;
+	font-style: normal;
 	color: #000;
 }
-/************** Vacation section **************/
+/************** Trip section **************/
+#trip_page {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	height: 580px;
+}
 #vacation_list {
-	list-style: none;
 	width: 290px;
+	height: 580px;
+	overflow: auto;
+}
+#vacation_list ul {
+	list-style: none;
+	padding: 0;
 }
 #destination_list li {
 	cursor: move;
 }
 #vacation_map {
 	position: absolute;
-	top: 0;
+	top: -580px;
 	left: 310px;
 	height: 227px;
 	width: 458px;

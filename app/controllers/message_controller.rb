@@ -60,4 +60,9 @@ class MessageController < ApplicationController
     redirect_to :action => 'list'
   end
   
+  def post
+    @sender = Person.find(session[:user_id])
+    
+  end
+  
 end

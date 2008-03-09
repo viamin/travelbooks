@@ -1,13 +1,10 @@
 <h1>Edit Your Public Profile</h1>
-
-<% form_for 'person', @person, :url => {:action => 'update', :id => @person} do %>
-  <div id="edit_person">
-    <%= render :partial => 'form', :object => @person %>
-    <%= submit_tag 'Update' %>
-  </div>
-<% end %>
-<%= link_to "Change my password", :action => 'reset_password' %> |
-
-<%= link_to "Edit my Photos", :action => "edit", :controller => 'photo', :id => @person.id %> |
-<%= link_to "Edit my Locations", :action => "list", :controller => 'location', :id => @person.id %> | 
-<%= link_to 'Edit my Trips', :controller => 'trip', :action => 'list' %>
+<%= render :partial => 'profile_links'%>
+<div id="profile_box">
+	<% form_for 'person', @person, :url => {:action => 'update', :id => @person} do %>
+	  <div id="edit_person">
+	    <%= render :partial => 'form', :object => @person %>
+	    <%= submit_tag 'Update' %>
+	  </div>
+	<% end %>
+</div>

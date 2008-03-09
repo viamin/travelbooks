@@ -1,6 +1,7 @@
 <h1><%= @person.display_name %>'s TravellerBooks</h1>
-<ul id="sflist">
-	<%= render :partial => 'item_short', :collection => @items %>
-</ul>
-	<%= @map.div(:width => 458, :height => 458) %>
+<div id="item_list_box">
+	<ul id="sflist">
+		<%= render :partial => 'item_short', :collection => @items %>
+	</ul>
+	<%= @map.div(:width => 458, :height => 578) %>
 </div>

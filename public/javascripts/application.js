@@ -1,7 +1,6 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
-
 // "Borrowed" from http://www.agilepartners.com/blog/2005/12/07/iphoto-image-resizing-using-javascript/
 function scaleIt(v, width, height) {
 	var scalePhoto = document.getElementById("photo_block");

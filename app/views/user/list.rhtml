@@ -1,5 +1,7 @@
 <h1><%= @person.display_name %>'s friends</h1>
-<ul id="sflist">
-	<%= render :partial => 'friend_short', :collection => @friends %>
-</ul>
-	<%= @map.div(:width => 458, :height => 458) %>
+<div id="friend_list_box">
+	<ul id="sflist">
+		<%= render :partial => 'friend_short', :collection => @friends %>
+	</ul>
+	<%= @map.div(:width => 458, :height => 578) %>
+</div>

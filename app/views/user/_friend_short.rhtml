@@ -1,12 +1,15 @@
-<li><div class="sfriend_image"><%= link_to( 
+<li>
+	<div class="sfriend_image"><%= link_to( 
 			image_tag( "#{friend_short.main_photo.url}", :class => "main_photo", :size => "80x120"),
 	 		{ :action => 'show', 
 		      :controller => 'user', 
-		      :id => friend_short.id } ) %></div>
-		<div class="sfriend_info">
-			<p class="sfriend_address"><%= link_to friend_short.display_name, {:action => 'show', :controller => 'user', :id => friend_short.id} %><br />
+		      :id => friend_short.id } ) %>
+	</div>
+	<div class="sfriend_info">
+		<p class="sfriend_address"><%= link_to friend_short.display_name, {:action => 'show', :controller => 'user', :id => friend_short.id} %><br />
 			<%= friend_short.current_location.address("<br />") unless friend_short.current_location.address.empty? %><br />
 			<%= friend_short.current_location.city_state_zip %><br />
-			<%= friend_short.current_location.country %></p>
-		</div>
-		</li>
+			<%= friend_short.current_location.country %>
+		</p>
+	</div>
+</li>

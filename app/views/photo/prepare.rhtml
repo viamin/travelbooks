@@ -4,7 +4,8 @@
 
 <p>Scale and crop the photo using the tools below. To scale, drag the slider control right and left to zoom in and out. To adjust the cropping, drag the edges of the photo until the area you want to be displayed is outlined in red. Click the button to submit the photo.</p>
 
-<% form_for 'photo', @photo, :url => {:action => 'create'} do |f| %>
+<% form_for 'photo', @photo, :url => {:action => 'create'}, :html => {:id => 'photo_controls'} do |f| %>
+	<div>Scale Photo:</div>
 	<%= hidden_field_tag 'offset_x' %>
 	<%= hidden_field_tag 'offset_y' %>
 	<%= hidden_field_tag 'scale' %>
@@ -12,12 +13,12 @@
 	<%= hidden_field_tag 'is_primary', @photo.is_primary %>
 	<%= hidden_field_tag 'photo_type', @photo.photo_type %>
 	<%= hidden_field_tag 'file_name', @photo.file_name %>
-	Scale Photo:<div id="track">
+	<div id="track">
 		<div id="handle">
-			<%= image_tag 'scaler_slider.gif' %>
+			<%= image_tag 'scaler_slider.png' %>
 		</div>
 	</div>
-	<p><%= check_box_tag 'stretch', 'yes', false, {:onclick => "stretchImage('stretch', 'photo_block', '#{@photo.width}', '#{@photo.height}');"} %><label for="stretch">Squeeze Image (Don't Crop)</label></p>
+	<%= check_box_tag 'stretch', 'yes', false, {:onclick => "stretchImage('stretch', 'photo_block', '#{@photo.width}', '#{@photo.height}');"} %><label for="stretch">Squeeze Image (Don't Crop)</label>
 	<%= f.submit @submit_message %>
 <% end %>
 

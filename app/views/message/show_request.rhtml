@@ -1,3 +1,4 @@
+<%= render :partial => 'mail_actions' %>
 <div id="show_message">
 	<div id="message_header">
 		<%= link_to image_tag("#{@sender.main_photo.url}", :class => "sender_photo", :size => "80x120"), :controller => :user, :action => :show, :id => @sender.id  %><%= @sender.display_name %>

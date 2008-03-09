@@ -277,10 +277,9 @@ class UserController < ApplicationController
   
   def user_stats
     @person = Person.find(params[:id])
-    @all_items = @person.all_items
     @trips = @person.trips
-    @items_given = @person.items_given.count
-    @items_received = @person.items_received.count
+    @items_given = @person.items_given.length
+    @items_received = @person.items_received.length
   end
   
 end

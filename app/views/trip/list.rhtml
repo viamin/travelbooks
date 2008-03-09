@@ -1,9 +1,11 @@
 <h1><%= @person.display_name %>'s Trip Logs</h1>
-
-<%= link_to 'Add a trip log', :action => 'new' %>
-<div id="vacation_list">
-	<ul>
-		<%= render :partial => 'trip', :collection => @trips %>
-	</ul>
+<%= render :partial => 'user/profile_links' %>
+<div id="trip_page">
+	<div id="vacation_list">
+		<%= link_to 'Add a trip log', :action => 'new' %>
+		<ul>
+			<%= render :partial => 'trip', :collection => @trips %>
+		</ul>
+	</div>
+	<%= @map.div(:width => 458, :height => 578) %>
 </div>
-<%= @map.div(:width => 458, :height => 458) %>

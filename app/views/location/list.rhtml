@@ -1,5 +1,5 @@
 <h1>Edit Your Traveller Location Data</h1>
-
+<%= render :partial => 'user/profile_links'%>
 <p>This page lists the places you have lived and visited that will show up on your TravellerBooks.com home page. Other people can see this information if you mark it as public.</p>
 <%= link_to "Add a new location", {:action => "new", :controller => 'location'} %>
 <div class="block_list">
@@ -12,11 +12,4 @@
 			</ul>
 		</div>
 	<% end %>
-</div>
-<div class="short_loc_short">
-	<ul class="short_loc_list">
-		<li><%= link_to "Edit my Profile", :action => "edit", :controller => 'user', :id => @person.id %></li>
-		<li><%= link_to "Edit my Photos", :action => "edit", :controller => 'photo', :id => @person.id %></li>
-		<li><%= link_to 'Edit my Trips', :controller => 'trip', :action => 'list' %></li>
-	</ul>
 </div>

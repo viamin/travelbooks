@@ -1,37 +1,36 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <title>Welcome to TravellerBook.com</title>
     <style type="text/css" media="screen">
+	html,body {
+		height: 100%;
+	}
 	p {
-		font-family: Optima, verdana, arial, helvetica, sans-serif;
+		font-family: Optima, Trebuchet, Book Antiqua, verdana, arial, helvetica, sans-serif;
 	}
     #main_index {
-		font-family: Optima, verdana, arial, helvetica, sans-serif;
+		font-family: Optima, Trebuchet, Book Antiqua, verdana, arial, helvetica, sans-serif;
 		margin-top: 0;
 		margin-left: 52px;
 		margin-bottom: 0;
 		background: #633c1f;
     }
-	#lbg {
-		position: absolute;
-		left:32px;
-		top: 0;
-		width: 20px;
-	}
 	#rbg {
 		position: absolute;
 		left: 852px;
 		top: 0;
 		width: 6px;
-		height: 800px;
+		min-height: 678px;
+		height: 100%;
 	}
 	#main_stripe {
 		width: 800px;
-		height: 800px;
+		min-height: 678px;
 		background: #ffd;
+		height: 100%;
 	}
 	#main_box {
 		top:140px;
@@ -47,7 +46,7 @@
 		left: 25px;
 	}
 	#titlebar {
-		font-family: Optima, verdana, arial, helvetica, sans-serif;
+		font-family: Optima, Trebuchet, Book Antiqua, verdana, arial, helvetica, sans-serif;
 		display: block;
 		position:relative;
 		top: 20px;
@@ -166,7 +165,7 @@
 		height: 12px;
 	}
 	#lgnbut {
-		font-family: Optima, verdana, arial, helvetica, sans-serif;
+		font-family: Optima, Trebuchet, Book Antiqua, verdana, arial, helvetica, sans-serif;
 		height: 18px;
 	}
 	#ulog {
@@ -206,7 +205,7 @@
 			<%= render :partial => "toplinks" %>
 		</div>
 	  <div id="main_box">
-		<%= link_to "<br \>About", {:action => "about"}, {:id => "aboutlk"} %>
+		<%= link_to "<br />About", {:action => "about"}, {:id => "aboutlk"} %>
 		<%= form_tag :controller => "track", :action => "item" %>
 			<label for="tbid" id="fm_lbl">Search by TravellerBook Code:</label><br />
 			<%= text_field_tag "tbid", "Enter TBook #", {:size => "20", :onfocus => "clear_form();", :onblur => "repop_form();"} %><br />
@@ -218,6 +217,6 @@
 		<p>TravellerBook.com allows to you track the TravellerBook gifts you've given to friends, and see how those gifts have travelled, sometimes around the entire world!</p>
 	  </div>
 	</div>
-	<img src="images/rsh.png" id="rbg">
+	<img src="images/rsh.png" id="rbg" alt="Sweet Shadow" />
   </body>
 </html>

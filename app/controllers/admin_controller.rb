@@ -46,6 +46,14 @@ class AdminController < ApplicationController
   
   def create_book
     @book = Item.create(params[:item])
+    @book.person_id = NOBODY_USER
+    @book.save!
+    @change = Change.new
+    @change.change_type = Change::ITEM_LOCATION
+    @change.effective_date = Time.new
+    @change.item_id = @book.id
+    @change.new_value = 1
+    @change.save!
     redirect_to :action => 'books'
   end
   

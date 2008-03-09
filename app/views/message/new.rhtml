@@ -1,6 +1,7 @@
-<h3>Send a message</h3>
-<% form_tag :action => 'create' do |f| %>
-	<%= render :partial => 'compose', :locals => {:form => f, :message => @reply_to, :friends => @friends, :recipient => @reply_to.sender} %>
+<h1>Send a message</h1>
+<%= render :partial => 'mail_actions' %>
+<% form_tag( {:action => 'create'}, {:id => 'compose_form'}) do %>
+	<%= render :partial => 'compose', :locals => {:message => @reply_to, :friends => @friends, :recipient => @reply_to.sender} %>
 	<%= submit_tag 'Send' %>
 	<%= submit_tag 'Cancel' %>
 <% end %>

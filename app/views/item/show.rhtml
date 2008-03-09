@@ -1,13 +1,15 @@
 <h1><%= @item.name %></h1>
-<div id="book_info">
-	<p>
-		<img src='/item/image/<%= @item.id -%>' alt='<%= @item.name -%>'>
-	</p>
-	<ul>
-		<li><%= @item.name %></li>
-		<li><%= @item.description %></li>
-	</ul>
-	<%= @message unless @message.nil? %>
-	<%= render :partial => 'prev_owners', :object => @owners unless @owners.empty? %>
+<div id="book_info_box">
+	<div id="book_info">
+		<p>
+			<img src='/item/image/<%= @item.id -%>' alt='<%= @item.name -%>'>
+		</p>
+		<ul>
+			<li><%= @item.name %></li>
+			<li><%= @item.description %></li>
+		</ul>
+		<%= @message unless @message.nil? %>
+		<%= render :partial => 'prev_owners', :object => @owners unless @owners.empty? %>
+	</div>
+	<%= @map.div(:width => 458, :height => 578) %>
 </div>
-<%= @map.div(:width => 458, :height => 458) %>
