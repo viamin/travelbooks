@@ -26,7 +26,6 @@ class ItemController < ApplicationController
   end
 
   def show
-    timing session.pretty_inspect
     @item = Item.find(params[:id])
     @owners = Array.new
     if session[:user_id]

@@ -63,14 +63,13 @@ SAMPLE_LOCATION = { :address_line_1 => "1600 Pennsylvania Ave.",
                     :city => "Washington",
                     :state => "DC",
                     :country => "USA" }
-                    
-ExceptionNotifier.exception_recipients = %w(support@travellerbook.com)
-ExceptionNotifier.sender_address = %("Application Error" <do-not-reply@travellerbook.com>)
 
 COLORS = ['#fff', '#633c1f', '#394876', '#2f4380', '#ffe7a5', '#000']
 ENV['TMPDIR'] = "#{RAILS_ROOT}/public/images/tmp"
 ENV['TEMP'] = "#{RAILS_ROOT}/public/images/tmp"
 ENV['TMP'] = "#{RAILS_ROOT}/public/images/tmp"
+APPLICATION_ERROR_EMAIL = "TravellerBook.com support <support@travellerbook.com>"
+MAP_TYPE = :yahoo
 
 require 'pp'
 require 'action_mailer/ar_mailer'

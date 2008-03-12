@@ -10,7 +10,7 @@
 #  location_id :integer         
 #  notes       :text            
 #  arrival     :datetime        
-#  departure   :datetime        
+#  departure   :datetime        # deprecating departure
 #  change_id   :integer         
 #
 

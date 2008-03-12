@@ -25,15 +25,16 @@ class Item < ActiveRecord::Base
       Location.find(change.new_value) unless change.nil?
     end
     def sorted(how="ASC")
-      changes = Change.find(:all, :conditions => {:change_type => Change::ITEM_LOCATION}, :order => "effective_date #{how}")
-      self.trips.each {|trip| trip.destinations.each {|d| changes << Change.new({:new_value => d.location.id, :effective_date => d.arrival}) if d.has_location? } } unless self.trips.empty?
-      changes.sort!{ |a,b| a.effective_date <=> b.effective_date }
-      changes.collect!{ |c| Location.find(c.new_value)}
+      @changes = Change.find(:all, :conditions => {:change_type => Change::ITEM_LOCATION}, :order => "effective_date #{how}")
+      proxy_owner.trips.each {|trip| trip.destinations.each {|d| @changes << Change.new({:new_value => d.location.id, :effective_date => d.arrival.to_date || Date.now}) if d.has_location? } } unless proxy_owner.trips.empty?
+      timing @changes.pretty_inspect
+      @changes.sort!{ |x,y| x.effective_date <=> y.effective_date } if @changes.length > 1
+      @changes.collect!{ |c| Location.find(c.new_value)}
     end
   end
   has_many :people, :through => :changes do
     def owners(how = "ASC")
-      changes = Change.find(:all, :conditions => {:item_id => self.id, :change_type => Change::OWNERSHIP}, :order => "effective_date #{how}")
+      changes = Change.find(:all, :conditions => {:item_id => proxy_owner.id, :change_type => Change::OWNERSHIP}, :order => "effective_date #{how}")
       changes.collect!{ |c| Person.find(c.new_value)}
       changes.delete_if {|p| p.id == NOBODY_USER }
     end

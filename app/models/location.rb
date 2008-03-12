@@ -51,6 +51,10 @@ class Location < ActiveRecord::Base
     end
   end
   
+  def person
+    Person.find(self.person_id) unless self.person_id.nil?
+  end
+  
   # Determines if the location is used in more than one place. 
   def used_elsewhere?
     # check the changes table to see if this location is being used 
