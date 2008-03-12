@@ -27,6 +27,7 @@ class UserController < ApplicationController
   def show
     if (params[:id] == session[:user_id])
       redirect_to :action => 'home'
+      return
     end
     @person = Person.find(params[:id])
     @me = Person.find(session[:user_id])
@@ -52,8 +53,10 @@ class UserController < ApplicationController
     if @person.save
       flash[:notice] = 'Person was successfully created.'
       redirect_to :action => 'list'
+      return
     else
       render :action => 'new'
+      return
     end
   end
 
@@ -111,6 +114,7 @@ class UserController < ApplicationController
   def login
     unless session[:user_id].nil?
       redirect_to :action => 'home'
+      return
     end
     login_status = nil
     if params[:person] && Person.is_valid_login?(params[:person][:email])
@@ -130,11 +134,14 @@ class UserController < ApplicationController
             if person.needs_reset == true
               flash[:notice] = "Your password was recently reset. You will need to enter a new password in order to log in next time."
               redirect_to :action => 'reset_password', :temp_pass => params[:person][:password]
+              return
             else
               redirect_to :action => "home"
+              return
             end
           else
             redirect_to :action => 'login'
+            return
           end
         end
       end
@@ -157,6 +164,7 @@ class UserController < ApplicationController
   def iforgot
     if (params.nil? || params.empty? || params[:retrieve].nil? || params[:retrieve].empty?)
       redirect_to :action => 'retrieve'
+      return
     else
       @person = Person.find(:first, :conditions => {:email => params[:retrieve][:email_address]})
       if @person.nil?
@@ -266,8 +274,10 @@ class UserController < ApplicationController
       if @person.change_password(params[:temp_password], params[:person][:password])
         flash[:notice] = "Your password has been successfully changed"
         redirect_to :action => 'home'
+        return
       else
         render :action => 'reset_password'
+        return
       end
     else
       flash[:notice] = "The passwords you typed do not match"

@@ -11,6 +11,7 @@ class PhotoController < ApplicationController
     @person = Person.find(params[:id])
     if @person == Person.find(session[:user_id])
       redirect_to :action => 'edit', :id => @person
+      return
     end
     @photos = @person.photos
     @message = "No photos have been uploaded" if @photos.length == 0

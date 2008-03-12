@@ -6,6 +6,7 @@ class TrackController < ApplicationController
     if params[:tbook]
       if params[:tbook].length > 0
         redirect_to(:action => 'track')
+        return
       end
     else
       redirect_to(:action => 'search')

@@ -20,6 +20,7 @@ class MessageController < ApplicationController
     @message = Message.find(params[:id])
     if @message.message_type == Message::FRIENDREQUEST
       redirect_to :action => 'show_request', :id => @message.id
+      return
     end
     @message.mark_read
     @sender = @message.sender_p
@@ -63,6 +64,7 @@ class MessageController < ApplicationController
   
   def post
     redirect_to :action => 'list'
+    return
     @sender = Person.find(session[:user_id])
     @reply_to = Message.new
   end

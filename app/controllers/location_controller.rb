@@ -60,12 +60,15 @@ class LocationController < ApplicationController
       @new_location = Location.new(params[:location])
       @person.swap_locations(@location, @new_location)
       redirect_to :action => 'list'
+      return
     else
       if @location.update_attributes(params[:location])
         flash[:notice] = 'Location was successfully updated.'
         redirect_to :action => 'list'
+        return
       else
         render :action => 'edit'
+        return
       end
     end
   end
