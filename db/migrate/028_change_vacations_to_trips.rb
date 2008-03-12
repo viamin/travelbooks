@@ -7,6 +7,7 @@ class ChangeVacationsToTrips < ActiveRecord::Migration
   end
 
   def self.down
+    remove_column :trips, :item_id
     rename_table :trips, :vacations
     rename_column :destinations, :trip_id, :vacation_id
     remove_column :destinations, :change_id

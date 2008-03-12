@@ -71,7 +71,6 @@ COLORS = ['#fff', '#633c1f', '#394876', '#2f4380', '#ffe7a5', '#000']
 ENV['TMPDIR'] = "#{RAILS_ROOT}/public/images/tmp"
 ENV['TEMP'] = "#{RAILS_ROOT}/public/images/tmp"
 ENV['TMP'] = "#{RAILS_ROOT}/public/images/tmp"
-MAP_TYPE = :yahoo
 
 require 'pp'
 require 'action_mailer/ar_mailer'

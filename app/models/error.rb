@@ -1,6 +1,5 @@
-# Error informs the address contained by APPLICATION_ERROR_EMAIL (defined in config/environment.rb) when application errors occur.
-
-class Error < ActionMailer::Base
+class Error < ActionMailer::ARMailer
+  # Error informs the address contained by APPLICATION_ERROR_EMAIL (defined in config/environment.rb) when application errors occur.
   
   # Sends a email detailing the given exception. 
   def warn(exception, trace, session, params, env, sent_on = Time.now)

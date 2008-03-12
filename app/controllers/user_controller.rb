@@ -2,6 +2,8 @@ class UserController < ApplicationController
   before_filter :authorize, :except => [:login, :join, :retrieve, :mark_friends, :mark_items, :iforgot]
   layout 'user', :except => 'user_stats'
   
+  MAP_TYPE = :yahoo
+  
   def index
     redirect_to :action => 'home'
   end
