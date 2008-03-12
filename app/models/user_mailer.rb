@@ -1,4 +1,4 @@
-class UserMailer < ActionMailer::Base
+class UserMailer < ActionMailer::ARMailer
 
   def retrieve(person, password, sent_at = Time.now)
     @subject    = 'Your TravellerBook.com password has been reset'

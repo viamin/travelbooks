@@ -16,16 +16,11 @@ config.action_controller.perform_caching             = true
 # Enable serving of images, stylesheets, and javascripts from an asset server
 # config.action_controller.asset_host                  = "http://assets.example.com"
 
-# Disable delivery errors if you bad email addresses should just be ignored
-# config.action_mailer.raise_delivery_errors = false
-ActionMailer::Base.smtp_settings = { 
-  :address => "mail.travellerbook.com", 
-  :port => 465, 
-  :domain => "travellerbook.com", 
-  :authentication => :login, 
-  :user_name => "do-not-reply+travellerbook.com", 
-  :password => "/1<$xFMp!-k-", 
-}
+# To use ar_mailer, the following line must be uncommented
+ActionMailer::Base.delivery_method = :activerecord
+ActionMailer::Base.perform_deliveries = true  
+ActionMailer::Base.raise_delivery_errors = true  
+ActionMailer::Base.default_charset = "utf-8"
 
 # Person id of the "Nobody" user, where given away books stay
 NOBODY_USER = 2

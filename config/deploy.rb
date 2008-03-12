@@ -1,5 +1,6 @@
 set :application, "travelbooks"
 set :repository,  "svn+ssh://bart@elguapo.homedns.org/home/Documents/subversion/#{application}/trunk"
+set :application_root, "/home/travell0/#{application}/current/."
 
 # If you aren't deploying to /u/apps/#{application} on the target
 # servers (which is the default), you can specify the actual location
@@ -68,4 +69,10 @@ deploy.task :fix_perms, :roles => :web do
   run "/usr/bin/find #{deploy_to}/ -type d | /usr/bin/xargs /bin/chmod 755"
   run "/bin/chmod 755 #{deploy_to}/current/public/dispatch.*"
   run "/bin/chmod 777 #{deploy_to}/shared/tmp_images"
+end
+  
+desc "Replace ActionMailer::Base with ActionMailer::ARMailer in Exception Notifier"
+deploy.task :use_ar_mailer, :roles => :web do
+#  run "sed -i .bak -E s/ActionMailer::Base/ActionMailer::ARMailer/g vendor/plugins/exception_notification/lib/exception_notifier.rb"
+  run "ar_sendmail -d -c #{application_root} -e production"
 end

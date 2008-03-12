@@ -1,8 +1,16 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class DestinationTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  def test_truth
+  def test_has_location
     assert true
+  end
+  def test_location
+    
+  end
+  def test_trip
+    
+  end
+  def test_other_locations
+    
   end
 end

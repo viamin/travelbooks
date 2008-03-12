@@ -19,3 +19,6 @@ config.action_mailer.raise_delivery_errors = false
 
 # Person id of the "Nobody" user, where given away books stay
 NOBODY_USER = 5
+
+# To use ar_mailer, the following line must be uncommented
+ActionMailer::Base.delivery_method = :activerecord
