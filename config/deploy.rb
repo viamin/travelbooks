@@ -38,6 +38,7 @@ role :db,  "75.126.168.192", :primary => true
 
 deploy.task :restart, :roles => :web do
     run "killall -u `whoami` dispatch.fcgi"
+    run "killall -u `whoami` ar_sendmail"
 end
 
 desc "Displays simple diagnostic information about the server"
@@ -61,6 +62,7 @@ deploy.task :after_deploy, :roles => :web do
   fix_perms
   run "/bin/mv #{deploy_to}/current/config/environment.rb.server #{deploy_to}/current/config/environment.rb"
   restart
+  use_ar_mailer
 end
 
 desc "Sets all file perms (except dispatch.*) to 644 and all directory perms to 755"
