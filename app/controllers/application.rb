@@ -3,6 +3,8 @@
 class ApplicationController < ActionController::Base
   after_filter :after_action
   
+  MAP_TYPE = :yahoo
+  
   protected  
 
     def log_error(exception) 

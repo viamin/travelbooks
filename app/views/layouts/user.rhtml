@@ -6,7 +6,7 @@
 	<title>TravellerBooks - <%= random_saying %></title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<%= stylesheet_link_tag 'main' %>
-	<%= Mapstraction.header(MAP_TYPE) unless @map.nil? %>
+	<%= Mapstraction.header(ApplicationController::MAP_TYPE) unless @map.nil? %>
 	<%= @map.to_html unless @map.nil? %>
 	<%= javascript_include_tag :defaults %>
 </head>
