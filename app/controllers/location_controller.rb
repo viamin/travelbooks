@@ -15,6 +15,7 @@ class LocationController < ApplicationController
   def list
     @person = Person.find(session[:user_id])
     @locations = @person.all_locations
+    @current = @person.current_location
   end
   
   def show
@@ -52,7 +53,7 @@ class LocationController < ApplicationController
   end
   
   def update
-    @location = Location.find(params[:location][:id])
+    @location = Location.find(params[:id])
     @person = Person.find(session[:user_id])
     if @location.used_elsewhere?
       timing "Location used elsewhere"
@@ -79,6 +80,13 @@ class LocationController < ApplicationController
   
   def home
     redirect_to :controller => 'user', :action => 'home'
+  end
+  
+  def make_main
+    @location = Location.find(params[:id])
+    @person = Person.find(session[:user_id])
+    @person.main_location(@location)
+    redirect_to :action => 'list'
   end
 
 end

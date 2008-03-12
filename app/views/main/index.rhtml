@@ -8,8 +8,12 @@
 	html,body {
 		height: 100%;
 	}
-	p {
+	p, ol, ul, td {
 		font-family: Optima, Trebuchet, Book Antiqua, verdana, arial, helvetica, sans-serif;
+		font-size: 13px;
+		line-height: 18px;
+		margin-left: 20px;
+		margin-right: 20px;
 	}
     #main_index {
 		font-family: Optima, Trebuchet, Book Antiqua, verdana, arial, helvetica, sans-serif;
@@ -40,11 +44,6 @@
 		position:absolute;
 		background: url('images/logo800.png');
 	}
-	#topbar {
-		position:relative;
-		top: 20px;
-		left: 25px;
-	}
 	#titlebar {
 		font-family: Optima, Trebuchet, Book Antiqua, verdana, arial, helvetica, sans-serif;
 		display: block;
@@ -56,6 +55,7 @@
 		background: url('/images/topbar2.png');
 	}
 	#titlebar a {
+		float: left;
 		display: block;
 		color: #ffe7af;
 		text-decoration: none;
@@ -63,7 +63,6 @@
 		text-shadow: #3f2800 3px 3px 2px;
 		font-size: 36pt;
 		width: 756px;
-		height: 66px;
 	}
 	#fm_lbl {
 		font-family: Optima;
@@ -123,6 +122,27 @@
 		background: #d7a47e;
 		border: 1px solid #633c1f;
 	}
+	#loginbox {
+		position: absolute;
+		left: 400px;
+		color: #ffd;
+		display: inline;
+	}
+	#loginbox label {
+		top: 3px;
+		padding-bottom: 3px;
+		font-size: 17px;
+		display: inline;
+	}
+	#loginbox input {
+		position: relative;
+		top: -1px;
+	}
+	#lgnbut {
+		position: relative;
+		font-family: Optima, Trebuchet, Book Antiqua, verdana, arial, helvetica, sans-serif;
+		top: -1px;
+	}
 	#linkbar {
 		position: relative;
 		padding: 3px 0;
@@ -148,25 +168,6 @@
 		font-size: 17px;
 		width: 100%;
 		color: #ffd;
-	}
-	#loginbox {
-		position: absolute;
-		left: 410px;
-		color: #ffd;
-		display: inline;
-	}
-	#loginbox label {
-		top: 3px;
-		padding-bottom: 3px;
-		font-size: 17px;
-		display: inline;
-	}
-	.txinput {
-		height: 12px;
-	}
-	#lgnbut {
-		font-family: Optima, Trebuchet, Book Antiqua, verdana, arial, helvetica, sans-serif;
-		height: 18px;
 	}
 	#ulog {
 		position: relative;

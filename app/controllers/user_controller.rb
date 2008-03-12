@@ -280,6 +280,11 @@ class UserController < ApplicationController
     @trips = @person.trips
     @items_given = @person.items_given.length
     @items_received = @person.items_received.length
+    @countries_visited = 0
+    @countries_books_visited = 0
+    @miles_travelled = 0
+    @miles_books_given_travelled = 0
+    @miles_last_book = 0
   end
   
 end

@@ -212,7 +212,11 @@ class Person < ActiveRecord::Base
     changes_list = self.changes.clone
     all_locations = changes_list.delete_if {|change| ((change.change_type == Change::OWNERSHIP) || (change.change_type == Change::ITEM_LOCATION))}
     all_locations.sort {|x,y| x.effective_date <=> y.effective_date}
-    all_locations.collect! {|c| Location.find(c.new_value)}
+    all_locations.collect! {|c| Location.find(c.new_value)}.uniq
+  end
+  
+  def all_location_options
+    self.all_locations.collect {|l| [l.description, l.id]}
   end
   
   # remove the association with this location
@@ -237,6 +241,18 @@ class Person < ActiveRecord::Base
     change.save
 #    self.locations << new_location
 #    self.save!
+  end
+  
+  def main_location(new_location, date = Time.now)
+    change = Change.new
+    change.change_type = Change::PERSON_MAIN_LOCATION
+    change.old_value = self.current_location.id unless self.current_location.nil?
+    change.new_value = new_location.id
+    change.effective_date = date
+    change.person_id = self.id
+    change.save
+    self.changes << change
+    change.save
   end
   
   # This function will calculate how far the user has travelled himself, and store the data in 
@@ -269,7 +285,7 @@ class Person < ActiveRecord::Base
   end
   
   def sent_messages
-    Message.find(:all, :conditions => {:sender => self.id}).delete_if {|m| m.state == (m.state & Message::DELETEDBYSENDER) }
+    Message.find(:all, :conditions => {:sender => self.id}).delete_if {|m| (m.state == (m.state & Message::DELETEDBYSENDER) || m.message_type == (m.message_type & Message::FRIENDREQUEST)) }
   end
   
   def self.titles

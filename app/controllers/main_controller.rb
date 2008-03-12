@@ -10,4 +10,10 @@ class MainController < ApplicationController
   def faq
   end
   
+  def privacy
+  end
+  
+  def site_map
+  end
+  
 end

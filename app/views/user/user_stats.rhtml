@@ -3,15 +3,15 @@
 	<ul class="udl">
 		<li>Books Given: <%= h(@items_given) %></li>
 		<li>Books Received: <%= h(@items_received) %></li>
-		<li>Countries Visited:</li>
-		<li>Countries Books Visited:</li>
+		<li>Countries Visited: <%= h(@countries_visited) %></li>
+		<li>Countries Books Visited: <%= h(@countries_books_visited) %></li>
 	</ul>
 </div>
 <div id="mileage">
 	<h3>My Mileage</h3>
 	<ul class="udl">
-		<li>Miles Travelled:</li>
-		<li>Miles Books given Travelled:</li>
-		<li>Miles last book received travelled:</li>
+		<li>Miles Travelled: <%= h(@miles_travelled) %></li>
+		<li>Miles Books given Travelled: <%= h(@miles_books_given_travelled) %></li>
+		<li>Miles last book received travelled: <%= h(@miles_last_book) %></li>
 	</ul>
 </div>

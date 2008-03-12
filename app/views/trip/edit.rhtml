@@ -1,7 +1,9 @@
 <h1>Edit a Trip</h1>
+<%= render :partial => 'user/profile_links'%>
 <div id="profile_box">
-	<% form_for 'trip', @trip, :url => {:action => 'update', :id => @trip} do |f| %>
+	<% form_for 'trip', @trip, :url => {:action => 'update', :id => @trip}, :html => {:class => 'gen_form'} do |f| %>
 		<%= render :partial => 'form', :object => @trip %>
+		<label for="trip_submit">&nbsp;</label><%= f.submit "Update" %>
 	<% end %>
 	<%= link_to "Add a destination", :action => 'add', :id => @trip %>
 	<ol id="destination_list">

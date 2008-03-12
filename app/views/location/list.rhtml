@@ -9,6 +9,7 @@
 			<ul class="short_loc_list">
 				<li><%= link_to "Edit This Location", :action => "edit", :controller => 'location', :id => location.id %></li>
 				<li><%= link_to "Delete This Location", {:action => "destroy", :controller => 'location', :id => location.id}, {:confirm => 'Are you sure?', :method => :post} %></li>
+				<li><%= @current == location ? "(Current Main Location)" : link_to("Main this my main location", :action => 'make_main', :id => location.id) %>
 			</ul>
 		</div>
 	<% end %>

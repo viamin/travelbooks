@@ -1,8 +1,8 @@
 <h1>Add a Location</h1>
 
-<% form_for 'location', @location, :url => {:action => 'create'} do |f| %>
+<% form_for 'location', @location, :url => {:action => 'create'}, :html => {:class => 'gen_form'} do |f| %>
 	<%= render :partial => 'form', :locals => {:f => f} %>
 	<p><%= check_box_tag 'location_current' %><label for="location_current">Make this my current address</label></p>
-	<p><%= f.submit %>
+	<p><label for="location_submit">&nbsp;</label><%= f.submit %>
 		<%= f.submit 'Cancel' %></p>
 <% end %>

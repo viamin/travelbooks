@@ -26,6 +26,8 @@ class Item < ActiveRecord::Base
     end
     def sorted(how="ASC")
       changes = Change.find(:all, :conditions => {:change_type => Change::ITEM_LOCATION}, :order => "effective_date #{how}")
+      self.trips.each {|trip| trip.destinations.each {|d| changes << Change.new({:new_value => d.location.id, :effective_date => d.arrival}) if d.has_location? } } unless self.trips.empty?
+      changes.sort!{ |a,b| a.effective_date <=> b.effective_date }
       changes.collect!{ |c| Location.find(c.new_value)}
     end
   end

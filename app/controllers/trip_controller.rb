@@ -56,16 +56,21 @@ class TripController < ApplicationController
   end
   
   def add
+    @person = Person.find(session[:user_id])
     @trip = Trip.find(params[:id])
     @destination = Destination.new
   end
   
   def insert
-    @trip = Trip.find(params[:trip_id])
+    @trip = Trip.find(params[:id])
+    @person = Person.find(session[:user_id])
     @destination = Destination.create(params[:destination])
     @trip.destinations << @destination
-    @trip.save!
-    redirect_to :action => 'edit', :id => @trip.id
+    if @trip.save
+      redirect_to :action => 'edit', :id => @trip
+    else
+      render :action => 'add', :id => @trip
+    end
   end
   
   def add_book
@@ -76,7 +81,7 @@ class TripController < ApplicationController
   
   def insert_book
     @trip = Trip.find(params[:id])
-    @item = Item.find(params[:item_id])
+    @item = Item.find(params[:book])
     @trip.items << @item
     redirect_to :action => 'edit', :id => @trip
   end
@@ -94,7 +99,7 @@ class TripController < ApplicationController
     @destination = Destination.find(params[:id])
     @location = Location.new
     @location.description = @destination.name
-    @all_locations = Person.find(Trip.find(@destination.trip_id).person_id).all_locations
+    @all_locations = @destination.trip.person.all_locations.concat(@destination.other_locations)
     render :layout => false
   end
   
@@ -122,6 +127,10 @@ class TripController < ApplicationController
 	  @line = Polyline.new(@points, :width => 5, :color => COLORS[rand(6)], :opacity => 0.8)
 #	  @map.polyline_init(@line)
 	  render :layout => false
+  end
+  
+  def edit_dest
+    @destination = Destination.find(params[:id])
   end
   
 end

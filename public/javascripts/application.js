@@ -78,3 +78,9 @@ function stretchImage(caller, photo_div, orig_width, orig_height) {
 	$('offset_x').value = 0;
 	$('offset_y').value = 0;
 }
+
+function updatePhoto(form, photo_id) {
+	var photo = document.getElementById(photo_id);
+	book_id = form.elements[0].value;
+	photo.src = "/images/books/book" + book_id + ".jpg";
+}

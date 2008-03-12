@@ -1,0 +1,7 @@
+<h1>Post a bulletin</h1>
+<%= render :partial => 'mail_actions' %>
+<% form_tag( {:action => 'bulletin'}, {:id => 'compose_form'}) do %>
+	<%= render :partial => 'compose', :locals => {:message => @reply_to, :friends => @groups, :recipient => @reply_to.sender} %>
+	<%= submit_tag 'Send' %>
+	<%= submit_tag 'Cancel' %>
+<% end %>

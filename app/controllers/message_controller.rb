@@ -53,7 +53,8 @@ class MessageController < ApplicationController
     @person = Person.find(session[:user_id])
     unless params[:commit] == "Cancel"
       @message = Message.new(params[:message])
-      @message.sender = @person.id
+      @message.sender = @person
+      @message.state = 0
       @message.save!
       flash[:notice] = "Your message has been sent to #{Person.find(@message.person_id).display_name}"
     end
@@ -61,7 +62,12 @@ class MessageController < ApplicationController
   end
   
   def post
+    redirect_to :action => 'list'
     @sender = Person.find(session[:user_id])
+    @reply_to = Message.new
+  end
+  
+  def bulletin
     
   end
   

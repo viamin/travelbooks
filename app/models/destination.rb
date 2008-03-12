@@ -10,7 +10,7 @@
 #  location_id :integer         
 #  notes       :text            
 #  arrival     :datetime        
-#  departure   :datetime        
+#  departure   :datetime  #deprecated      
 #  change_id   :integer         
 #
 
@@ -18,6 +18,7 @@ class Destination < ActiveRecord::Base
   belongs_to :trip
   has_one :change
   acts_as_list :scope => :trip
+  validates_presence_of :name
   
   def location
     Location.find(self.location_id)
@@ -34,5 +35,13 @@ class Destination < ActiveRecord::Base
       return false
     end
   end
+
+  def trip
+    Trip.find(self.trip_id)
+  end
   
+  def other_locations
+    self.trip.destinations.collect {|d| d.location if d.has_location?}
+  end
+
 end
