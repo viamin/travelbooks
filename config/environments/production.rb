@@ -24,3 +24,5 @@ ActionMailer::Base.default_charset = "utf-8"
 
 # Person id of the "Nobody" user, where given away books stay
 NOBODY_USER = 2
+
+APPLICATION_ERROR_EMAIL = "TravellerBook.com support <support@travellerbook.com>"

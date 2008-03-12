@@ -1,9 +1,25 @@
 # Filters added to this controller will be run for all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 class ApplicationController < ActionController::Base
-  include ExceptionNotifiable
   after_filter :after_action
   
+  protected  
+
+    def log_error(exception) 
+      super(exception)
+
+      begin
+        Error.deliver_warn(
+          exception, 
+          clean_backtrace(exception), 
+          @session.instance_variable_get("@data"), 
+          @params, 
+          @request.env)
+      rescue => e
+        logger.error(e)
+      end
+    end
+    
   private
   
   def after_action
