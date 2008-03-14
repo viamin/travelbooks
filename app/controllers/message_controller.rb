@@ -23,6 +23,7 @@ class MessageController < ApplicationController
       return
     end
     @message.mark_read
+    @message.body.gsub!("\n", "<br />")
     @sender = @message.sender_p
     @no_reply = (@sender.id == session[:user_id])
   end
@@ -35,19 +36,22 @@ class MessageController < ApplicationController
   def new
     @sender = Person.find(session[:user_id])
     @recipient = Person.find(params[:id]) if params[:id]
+    params[:sent_at].nil? ? sent_at = String.new : sent_at = params[:sent_at]
     @friends = @sender.friends.collect!{|f| [f.display_name, f.id] }
     @friends.concat([[@recipient.display_name, @recipient.id]]) unless @recipient.nil?
     if params[:message_id]
       @reply_to = Message.find(params[:message_id])
+      reply_to_name = Person.find(@reply_to.sender).display_name
       @reply_to.subject = "Re: #{@reply_to.subject}" unless @reply_to.subject =~ /^Re:/
     else
       @reply_to = Message.new
       @reply_to.sender = params[:id] if params[:id]
+      reply_to_name = String.new
     end
     # since @reply_to expects the message to be a reply, reverse sender and person_id meanings
     # I know, it's lame...
 #    @reply_to = Message.new({:sender => params[:id]}) if params[:id]
-    @reply_to.body = "\n\n-----------------------\n#{@reply_to.body}" if @reply_to.body && @reply_to.body.length > 0
+    @reply_to.body = "\n\n\n-----------------------\n#{reply_to_name} on #{sent_at} wrote:\n#{@reply_to.body}" if @reply_to.body && @reply_to.body.length > 0
   end
   
   def create
@@ -59,6 +63,12 @@ class MessageController < ApplicationController
       @message.save!
       flash[:notice] = "Your message has been sent to #{Person.find(@message.person_id).display_name}"
     end
+    redirect_to :action => 'list'
+  end
+  
+  def delete
+    @message = Message.find(params[:id])
+    @message.delete_by(session[:user_id])
     redirect_to :action => 'list'
   end
   

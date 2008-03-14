@@ -469,6 +469,8 @@ div.progressBar div.background {
 #friend_map {
 	position: absolute;
 	top: -580px;
+	width: 458px;
+	height: 578px;
 	left: 310px;
 	border: 1px solid #633c1f;
 }
@@ -643,7 +645,7 @@ div.progressBar div.background {
 }
 #book_info_box {
 	position: relative;
-	height: 580px;
+	width: 100%;
 	padding: 0;
 	margin: 0;
 }
@@ -661,31 +663,60 @@ div.progressBar div.background {
 }
 #owner_list img {
 	width: 50px;
+	height: auto;
 }
 #item_map {
 	position: absolute;
 	top: -580px;
 	left: 310px;
+	width: 458px;
+	height: 578px;
 	border: 1px solid #633c1f;
 }
 /************* Message Section **************/
 .message_short {
-	border: 1px solid black;
+	background: #98a1be;
 	padding: 5px;
+	margin: 5px;
 }
 .message_short a {
 	text-decoration: none;
 	color: #000;
 }
+.msg_photo {
+	float: left;
+	margin-right: 10px;
+}
+.msg_link {
+	z-index: 1;
+}
+.mail_tools {
+	position: relative;
+	vertical-align: middle;
+}
+.mail_tools form {
+	float: left;
+	vertical-align: middle;
+	margin-top: 30px;
+}
+.msg_from {
+	clear: both;
+}
 #message_area {
-	overflow: auto;
-	height: 520px;
+/*	overflow: auto;
+	height: 520px;*/
+	position: relative;
+	left: -40px;
+	margin-top: 20px;
 }
 #message_list {
 	list-style: none;
 }
 .msg_subject {
 	font-weight: bold;
+}
+#message_body {
+	width: 90%;
 }
 #message_body pre {
 	font-family: Lucida, serif;
@@ -697,12 +728,26 @@ div.progressBar div.background {
 #mailbox_list li {
 	list-style: none;
 	float: left;
-	width: 140px;
-	text-align: center;
+	padding-left: 20px;
+	padding-right: 20px;
 	background: #98a1be;
 }
 #compose_form {
 	padding-top: 5px;
+}
+#show_message {
+	position: relative;
+	top: 20px;
+	left: 20px;
+}
+.msg_body {
+	background: #fff;
+	padding: 5px;
+}
+.sender_photo {
+	vertical-align: middle;
+	margin-left: 5px;
+	margin-right: 20px;
 }
 /************* Tracking section ***************/
 .results_list {

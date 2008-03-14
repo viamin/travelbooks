@@ -25,9 +25,8 @@ class UserController < ApplicationController
   end
 
   def show
-    if (params[:id] == session[:user_id])
+    if (params[:id].to_i == session[:user_id].to_i)
       redirect_to :action => 'home'
-      return
     end
     @person = Person.find(params[:id])
     @me = Person.find(session[:user_id])
@@ -53,10 +52,8 @@ class UserController < ApplicationController
     if @person.save
       flash[:notice] = 'Person was successfully created.'
       redirect_to :action => 'list'
-      return
     else
       render :action => 'new'
-      return
     end
   end
 
@@ -87,7 +84,6 @@ class UserController < ApplicationController
       when "item_associate"
         unless session[:item_last_viewed].nil?
           redirect_to :controller => 'item', :action => 'associate', :id => session[:item_last_viewed]
-          return
         end
       end
     end
@@ -95,6 +91,8 @@ class UserController < ApplicationController
     if @person.nil?
       redirect_to :action => 'login'
     else
+      new_messages = @person.messages.unread
+      flash[:notice] = "#{flash[:notice].concat('<br />') if flash[:notice]}You have #{new_messages.length} new message#{"s" if new_messages.length > 1} in your inbox." unless session[:settled_in] || new_messages.empty?
       @location = @person.current_location
       @locations = @person.all_locations
       @items = @person.items
@@ -108,6 +106,7 @@ class UserController < ApplicationController
           @map.marker_init(Marker.new([l.lat, l.lng], :info_bubble => l.description))
         end
       end
+      session[:settled_in] = true
     end
   end  
   
@@ -136,6 +135,7 @@ class UserController < ApplicationController
               redirect_to :action => 'reset_password', :temp_pass => params[:person][:password]
               return
             else
+              session[:settled_in] = nil
               redirect_to :action => "home"
               return
             end
@@ -154,6 +154,7 @@ class UserController < ApplicationController
   
   def logout
     session[:user_id] = nil
+    session[:settled_in] = nil
     redirect_to :controller => 'main', :action => 'index'
   end
   

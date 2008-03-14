@@ -1,18 +1,20 @@
 <%= render :partial => 'mail_actions' %>
 <div id="show_message">
 	<div id="message_header">
-		<%= link_to image_tag("#{@sender.main_photo.url}", :class => "sender_photo", :size => "80x120"), :controller => :user, :action => :show, :id => @sender.id  %><%= @sender.display_name %>
+		<%= image_tag("#{@sender.main_photo.url}", :class => "sender_photo", :size => "80x120") %><%= link_to  @sender.display_name, {:controller => :user, :action => :show, :id => @sender.id}, {:class => 'msg_link'} %>
 		<p class="msg_subject">Subject: <%= h @message.subject %></p>
-		<p class="msg_date">Date Sent: <%= @message.created_at %></p>
+		<p class="msg_date">Sent: <%= @message.created_at.to_formatted_s(:long_ordinal) %></p>
 	</div>
 	<div id="message_body">
-		<pre><%= h @message.body %></pre>
+		<p class="msg_body"><%= auto_link sanitize @message.body %></p>
 	</div>
 	<div id="message_tools">
-		<% form_for 'message', @message, :url => {:action => 'new'} do |f| %>
+		<% form_for 'message', @message, :url => {:action => 'new'}, :html => {:method => :get} do |f| %>
 			<%= hidden_field_tag 'message_id', @message.id %>
+			<%= hidden_field_tag 'sent_at', @message.created_at.to_formatted_s(:long_ordinal) %>
 			<%= submit_tag 'Reply' unless @no_reply %>
 		<% end %>
+		<%= button_to "Delete", {:action => 'delete', :id => @message.id}, {:confirm => 'Are you sure you want to permanently delete this message?'} %>
 	</div>
 </div>
 

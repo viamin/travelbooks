@@ -27,7 +27,7 @@ class Person < ActiveRecord::Base
       find(:all, :conditions => {:state => 0})
     end
     def inbox
-      find(:all, :conditions => ['state<?', Message::DELETEDBYRECIPIENT])
+      find(:all, :conditions => ['state<?', Message::DELETEDBYRECIPIENT], :order => "id desc")
     end
   end
   has_many :trips

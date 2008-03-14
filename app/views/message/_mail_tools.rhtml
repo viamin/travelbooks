@@ -1,0 +1,5 @@
+<span class="mail_tools">
+	<%= button_to "Read", {:action => 'show', :id => mail_tools.id}, {:method => :get} %>
+	<%= button_to "Reply", {:action => 'new'}, {:method => :get} %>
+	<%= button_to "Delete", {:action => 'delete', :id => mail_tools.id}, {:confirm => 'Are you sure you want to permanently delete this message?'} %>
+</span>
