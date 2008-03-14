@@ -1,5 +1,9 @@
 <span class="mail_tools">
 	<%= button_to "Read", {:action => 'show', :id => mail_tools.id}, {:method => :get} %>
-	<%= button_to "Reply", {:action => 'new'}, {:method => :get} %>
-	<%= button_to "Delete", {:action => 'delete', :id => mail_tools.id}, {:confirm => 'Are you sure you want to permanently delete this message?'} %>
+	<% form_for 'message', mail_tools, :url => {:action => 'new'}, :html => {:method => :get} do |f| %>
+		<%= hidden_field_tag 'message_id', mail_tools.id %>
+		<%= hidden_field_tag 'sent_at', mail_tools.created_at.to_formatted_s(:long_ordinal) %>
+		<%= submit_tag 'Reply' unless @no_reply %>
+	<% end %>
+	<%= button_to "Delete", {:action => 'delete', :id => mail_tools.id}, {:confirm => 'Are you sure you want to permanently remove this message from this mailbox?'} %>
 </span>

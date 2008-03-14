@@ -14,6 +14,7 @@ class MessageController < ApplicationController
   def sent
     @person = Person.find(session[:user_id])
     @messages = @person.sent_messages
+    @no_reply = true
   end
   
   def show
@@ -39,8 +40,9 @@ class MessageController < ApplicationController
     params[:sent_at].nil? ? sent_at = String.new : sent_at = params[:sent_at]
     @friends = @sender.friends.collect!{|f| [f.display_name, f.id] }
     @friends.concat([[@recipient.display_name, @recipient.id]]) unless @recipient.nil?
-    if params[:message_id]
+    if params[:message_id] # is a reply
       @reply_to = Message.find(params[:message_id])
+      @reply_to.mark_replied!
       reply_to_name = Person.find(@reply_to.sender).display_name
       @reply_to.subject = "Re: #{@reply_to.subject}" unless @reply_to.subject =~ /^Re:/
     else
@@ -58,7 +60,7 @@ class MessageController < ApplicationController
     @person = Person.find(session[:user_id])
     unless params[:commit] == "Cancel"
       @message = Message.new(params[:message])
-      @message.sender = @person
+      @message.sender = @person.id
       @message.state = 0
       @message.save!
       flash[:notice] = "Your message has been sent to #{Person.find(@message.person_id).display_name}"

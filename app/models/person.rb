@@ -285,7 +285,7 @@ class Person < ActiveRecord::Base
   end
   
   def sent_messages
-    Message.find(:all, :conditions => {:sender => self.id}).delete_if {|m| (m.state == (m.state & Message::DELETEDBYSENDER) || m.message_type == (m.message_type & Message::FRIENDREQUEST)) }
+    Message.find(:all, :conditions => {:sender => self.id}).delete_if {|m| (m.state == (m.state & Message::DELETEDBYSENDER) || (m.message_type == (m.message_type | Message::FRIENDREQUEST) ) ) }
   end
   
   def self.titles

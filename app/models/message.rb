@@ -22,18 +22,47 @@ class Message < ActiveRecord::Base
   # for bitwise operations
   UNREAD = 0
   READ = 1
+  REPLIED = 2
   DELETEDBYRECIPIENT = 4
-  DELETEDBYSENDER = 2
-  FRIENDSHIPREJECTED = 8
+  DELETEDBYSENDER = 8
+  FRIENDSHIPREJECTED = 16
   
   # Message Types
   NORMAL = 0
   FRIENDREQUEST = 1
   
+  def is_read?
+    return (self.state | Message::READ) == self.state
+  end
+  
+  def mark_unread!
+    self.state = self.state | Message::READ
+    self.save!
+  end
+  
+  def is_replied?
+    return (self.state | Message::REPLIED) == self.state
+  end
+  
+  def mark_replied!
+    self.state = self.state | Message::REPLIED
+    self.save!
+  end
+  
+  def state_string
+    state_array = %w{ Unread }
+    if self.is_read?
+      state_array.delete "Unread"
+    end
+    if self.is_replied?
+      state_array << "Replied"
+    end
+    return state_array.join(", ")
+  end
   
   def delete_by(deleter_id)
     if self.sender == deleter_id
-      if (self.state & Message::DELETEDBYRECIPIENT) == Message::DELETEDBYRECIPIENT
+      if (self.state | Message::DELETEDBYRECIPIENT) == Message::DELETEDBYRECIPIENT
         # Then both sender and recipient have deleted it
         self.delete
       else
@@ -41,7 +70,7 @@ class Message < ActiveRecord::Base
         self.save
       end
     elsif self.person_id == deleter_id
-      if (self.state & Message::DELETEDBYSENDER) == Message::DELETEDBYSENDER
+      if (self.state | Message::DELETEDBYSENDER) == Message::DELETEDBYSENDER
         self.delete
       else
         self.state = self.state | Message::DELETEDBYRECIPIENT
@@ -59,7 +88,9 @@ class Message < ActiveRecord::Base
   end
   
   def mark_read(time_read = Time.now)
+    timing self.state
     self.state = self.state | Message::READ
+    timing self.state
     self.date_read = time_read
     self.save!
   end

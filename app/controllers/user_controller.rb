@@ -91,8 +91,8 @@ class UserController < ApplicationController
     if @person.nil?
       redirect_to :action => 'login'
     else
-      new_messages = @person.messages.unread
-      flash[:notice] = "#{flash[:notice].concat('<br />') if flash[:notice]}You have #{new_messages.length} new message#{"s" if new_messages.length > 1} in your inbox." unless session[:settled_in] || new_messages.empty?
+      @new_messages = @person.messages.unread
+      flash[:notice] = "#{flash[:notice].concat('<br />') if flash[:notice]}You have #{@new_messages.length} new message#{"s" if @new_messages.length > 1} in your inbox." unless session[:settled_in] || @new_messages.empty?
       @location = @person.current_location
       @locations = @person.all_locations
       @items = @person.items

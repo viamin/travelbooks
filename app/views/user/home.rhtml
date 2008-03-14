@@ -16,7 +16,7 @@
 		<div id="edit_list">
 			<ul id="edit_options_list">
 				<li><%= link_to "Edit my Details", :action => "edit" %></li>
-				<li><%= link_to "Message Center", :controller => 'message', :action => 'list' %></li>
+				<li><%= link_to "Message Center", :controller => 'message', :action => 'list' %><%= "(#{@new_messages.length})" unless @new_messages.empty? %></li>
 			</ul>
 		</div>
 	</div>

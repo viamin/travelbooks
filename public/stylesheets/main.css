@@ -699,8 +699,22 @@ div.progressBar div.background {
 	vertical-align: middle;
 	margin-top: 30px;
 }
+.msg_state {
+	float: left;
+	margin-top: 32px;
+	margin-left: 10px;
+}
 .msg_from {
 	clear: both;
+}
+.message_tools form {
+	margin: 0;
+	padding: 0;
+}
+.end_button {
+	position: relative;
+	top: -22px;
+	left: 60px;
 }
 #message_area {
 /*	overflow: auto;
