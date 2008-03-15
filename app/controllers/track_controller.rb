@@ -14,13 +14,15 @@ class TrackController < ApplicationController
   end
 
   def find
-    @books = Item.find(:all, :conditions => {:tbid => params[:search_box]})
-    if @books.empty?
-      if (params[:tbid].length > 6)
+    books = Item.find(:all, :conditions => {:tbid => params[:search_box]})
+    if books.empty?
+      if (params[:search_box].length > 6)
         @message = "Nothing found with that code"
       else
         @message = "Invalid code"
       end
+    else
+      @book = books.first
     end
     render :layout => false
   end

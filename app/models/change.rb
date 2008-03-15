@@ -36,4 +36,12 @@ class Change < ActiveRecord::Base
     end
   end
   
+  def old_person
+    Person.find(:first, :conditions => {:id => self.old_value})
+  end
+  
+  def old_location
+    Location.find(:first, :conditions => {:id => self.old_value})
+  end
+  
 end

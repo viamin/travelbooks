@@ -30,6 +30,13 @@ class Location < ActiveRecord::Base
   belongs_to :credit_card
   has_many :changes
   validates_presence_of :country, :message => "must be selected"
+  validates_length_of :description, :maximum => 250
+  validates_length_of :address_line_1, :maximum => 250
+  validates_length_of :address_line_2, :maximum => 250
+  validates_length_of :city, :maximum => 250
+  validates_length_of :state, :maximum => 250
+  validates_length_of :zip_code, :maximum => 250
+  validates_length_of :country, :maximum => 250
   acts_as_mappable
   
   include GeoKit::Geocoders

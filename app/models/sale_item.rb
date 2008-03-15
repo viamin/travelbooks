@@ -22,6 +22,9 @@ class SaleItem < ActiveRecord::Base
   has_many :shopping_carts
   belongs_to :category
   validates_numericality_of :price, :quantity_in_stock, :sale_price
+  validates_length_of :name, :maximum => 250
+  validates_length_of :description, :maximum => 250
+  validates_length_of :for_sale, :maximum => 250
   
   STATUS = [["Normal Price", 1], ["On Sale", 2], ["Going on sale", 3], ["Not on Sale", 4]]
 

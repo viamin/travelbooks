@@ -5,7 +5,7 @@
 <p>In order to track your TravellerBook, and to track your own travels, please enter your information below.</p>
 
 <div id="person_form">
-<% form_for 'person', @person, :url => {:action => 'join'} do |f| %>
+<% form_for 'person', @person, :url => {:action => 'join'}, :html => {:class => 'gen_form'} do |f| %>
 	<%= error_messages_for(:person) %>
 	<%= error_messages_for(:location) %>
 	<label for="person_email">E-mail Address</label>
@@ -28,7 +28,7 @@
 	<%= text_field :location, :zip_code %><br />
 	<label for="location_country">Country</label>
 	<%= country_select :location, :country, ["United States"] %>*<br />
-	<%= f.submit 'Create Account' %>
+	<label for="submit">&nbsp;</label><%= f.submit 'Create Account' %>
 
 	<p>* denotes a required field</p>
 <% end %>

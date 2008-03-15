@@ -88,7 +88,7 @@ class LocationController < ApplicationController
   def make_main
     @location = Location.find(params[:id])
     @person = Person.find(session[:user_id])
-    @person.main_location(@location)
+    @person.set_main_location(@location)
     redirect_to :action => 'list'
   end
 

@@ -19,6 +19,7 @@ class Destination < ActiveRecord::Base
   has_one :change
   acts_as_list :scope => :trip
   validates_presence_of :name
+  validates_length_of :name, :maximum => 250
   
   def location
     Location.find(self.location_id)

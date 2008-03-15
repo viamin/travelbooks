@@ -16,6 +16,10 @@
 class CreditCard < ActiveRecord::Base
   belongs_to :person
   has_one :location
+  validates_length_of :card_type, :maximum => 250
+  validates_length_of :name_on_card, :maximum => 250
+  validates_length_of :card_number, :maximum => 250
+  validates_length_of :ccv, :maximum => 250
   
   def initialize(*params)
     super(*params)

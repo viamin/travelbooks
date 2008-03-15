@@ -1,0 +1,8 @@
+<h1>Added TravellerBook</h1>
+<div id="add_friend">
+	<p>The item (<%= h @item.name %>) has been added to your library.</p>
+	<p><%= h @item.name %> was last owned by <%= @change.old_person.display_name %>. Would you like to add this person to your friends?
+		<%= button_to "Yes", {:controller => 'user', :action => 'add', :id => '@change.old_person'}, {:method => :get} %>
+		<%= button_to "No", {:controller => 'user', :action => 'home'}, {:method => :get} %>
+	</p>
+</div>

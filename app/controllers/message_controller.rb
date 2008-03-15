@@ -62,16 +62,25 @@ class MessageController < ApplicationController
       @message = Message.new(params[:message])
       @message.sender = @person.id
       @message.state = 0
-      @message.save!
-      flash[:notice] = "Your message has been sent to #{Person.find(@message.person_id).display_name}"
+      if @message.save
+        flash[:notice] = "Your message has been sent to #{Person.find(@message.person_id).display_name}"
+        redirect_to :action => 'list'
+      else
+        render :action => 'new'
+      end
+    else
+      redirect_to :action => 'list'
     end
-    redirect_to :action => 'list'
   end
   
   def delete
     @message = Message.find(params[:id])
     @message.delete_by(session[:user_id])
-    redirect_to :action => 'list'
+    if session[:last_action] == "message_sent"
+      redirect_to :action => 'sent'
+    else
+      redirect_to :action => 'list'
+    end
   end
   
   def post

@@ -22,7 +22,7 @@ class AdminController < ApplicationController
     data = params[:photo][:data]
     @photo = Photo.new
     @photo.item_id = @item.id
-    @photo.photo_type = Photo::ITEM
+    @photo.photo_type = Photo::MAIN
     @photo.file_name = "book#{@item.id}.jpg"
     @photo.url = "/images/books/#{@photo.file_name}"
     @photo.path = "#{RAILS_ROOT}/public#{@photo.url}"

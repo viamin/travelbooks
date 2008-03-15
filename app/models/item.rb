@@ -16,9 +16,15 @@ require 'digest/sha2'
 class Item < ActiveRecord::Base
   has_many :changes
   belongs_to :person
-  has_many :photos
+  has_many :photos do
+    def main
+      find(:first, :conditions => {:photo_type => Photo::MAIN})
+    end
+  end
   has_and_belongs_to_many :trips
   validates_uniqueness_of :tbid
+  validates_length_of :tbid, :maximum => 250
+  validates_length_of :name, :maximum => 250
   has_many :locations, :through => :changes do
     def current(as_of = Time.now)
       change = Change.find(:first, :conditions => ["change_type=? and effective_date<=?", Change::ITEM_LOCATION, as_of], :order => "effective_date DESC")

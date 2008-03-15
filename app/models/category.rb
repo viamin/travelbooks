@@ -11,6 +11,8 @@
 # Category is used to link types of locations, people, etc, without hard coding it into the program
 class Category < ActiveRecord::Base
   has_many :sale_items
+  validates_length_of :name, :maximum => 250
+  validates_length_of :description, :maximum => 250
   
   def initialize(*params)
     super(*params)

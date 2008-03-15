@@ -26,6 +26,11 @@ class Photo < ActiveRecord::Base
   belongs_to :item
   belongs_to :location
   has_many :data
+  validates_length_of :path, :maximum => 250
+  validates_length_of :file_name, :maximum => 250
+  validates_length_of :url, :maximum => 250
+  validates_length_of :content_type, :maximum => 250
+  validates_length_of :caption, :maximum => 250
   
   # photo_types
   MAIN = 1

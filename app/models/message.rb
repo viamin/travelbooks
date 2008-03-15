@@ -17,6 +17,7 @@
 
 class Message < ActiveRecord::Base
   belongs_to :person
+  validates_length_of :subject, :maximum => 250
   
   # States keep track of who has done what with it - using powers of 2
   # for bitwise operations

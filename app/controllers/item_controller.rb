@@ -31,7 +31,6 @@ class ItemController < ApplicationController
     if session[:user_id]
       @person = Person.find(session[:user_id])
       if @person.items.include?(@item)
-        @message = "<p><a href=\"/item/giveaway/#{@item.id}\"  onclick=\"return confirm('This will remove this book from your item list. You can find this item again in your &quot;All Items&quot; list.');\">I've given this book away</a></p>"
         @owners = @item.people.owners.uniq.delete_if {|p| p.id == session[:user_id]}
       elsif (session[:last_action] =~ /^track_(find|item)$/)
         @message = "<p>Do you have this book? To add it to your library, click <a href=\"/item/associate/#{@item.id}\">here</a></p>"
@@ -91,7 +90,7 @@ class ItemController < ApplicationController
   def image
     item = Item.find(params[:id])
     # Need to decide if I'll be grabbing images from the hard drive or out of the DB
-    main_photo = item.photos.find(:first, :conditions => {:photo_type => Photo::ITEM, :item_id => item.id})
+    main_photo = item.photos.main
     unless main_photo.nil?
       if (main_photo.url == "db")
         send_data(main_photo.data,
@@ -126,9 +125,19 @@ class ItemController < ApplicationController
     @person.items << @item
     @item.person_id = @person.id
     @item.save!
-    flash[:notice] = "This item (#{@item.name}) has been added to your library."
+    # Need to add ability to add giver of book to friends here, need to add book move change here as well
+    @loc_change = Change.new
+    @loc_change.change_type = Change::ITEM_LOCATION
+    @loc_change.item = @item
+    @loc_change.old_value = @change.old_person.main_location
+    @loc_change.new_value = @person.main_location
+    @loc_change.effective_date = @change.effective_date
+    @loc_change.save!
     session[:entered_tbid] = nil
-    redirect_to :action => 'home', :controller => 'user'
+    if @person.is_friend?(@change.old_person)
+      flash[:notice] = "The item (#{@item.name}) has been added to your library."
+      redirect_to :action => 'home', :controller => 'user'
+    end
   end
 
 end

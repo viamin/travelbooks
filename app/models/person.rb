@@ -29,6 +29,13 @@ class Person < ActiveRecord::Base
     def inbox
       find(:all, :conditions => ['state<?', Message::DELETEDBYRECIPIENT], :order => "id desc")
     end
+    def sent
+      Message.find(:all, :conditions => ["sender=? and state|?!=? and message_type|?!=?", proxy_owner.id, Message::DELETEDBYSENDER, Message::DELETEDBYSENDER, Message::FRIENDREQUEST, Message::FRIENDREQUEST])
+    end
+  end
+  
+  def sent_messages
+    Message.find(:all, :conditions => {:sender => self.id}).delete_if {|m| (m.state == (m.state | Message::DELETEDBYSENDER) || (m.message_type == (m.message_type | Message::FRIENDREQUEST) ) ) }
   end
   has_many :trips
   validates_uniqueness_of :email, :on => :create, :message => "There is already an account using that email address"
@@ -39,6 +46,11 @@ class Person < ActiveRecord::Base
   validates_format_of :email, 
 		      :with => /^(.+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
 	validates_length_of :password, :within => 6..40, :on => :create, :too_long => 'must be 40 characters or less', :too_short => 'must be at least 6 characters'
+	validates_length_of :first_name, :maximum => 250
+  validates_length_of :middle_name, :maximum => 250
+  validates_length_of :last_name, :maximum => 250
+  validates_length_of :email, :maximum => 250
+  validates_length_of :nickname, :maximum => 250
 
   attr_accessor :password
   
@@ -208,6 +220,10 @@ class Person < ActiveRecord::Base
     main_location
   end
   
+  def main_location
+    self.current_location
+  end
+  
   def all_locations
     changes_list = self.changes.clone
     all_locations = changes_list.delete_if {|change| ((change.change_type == Change::OWNERSHIP) || (change.change_type == Change::ITEM_LOCATION))}
@@ -243,7 +259,7 @@ class Person < ActiveRecord::Base
 #    self.save!
   end
   
-  def main_location(new_location, date = Time.now)
+  def set_main_location(new_location, date = Time.now)
     change = Change.new
     change.change_type = Change::PERSON_MAIN_LOCATION
     change.old_value = self.current_location.id unless self.current_location.nil?
@@ -275,6 +291,15 @@ class Person < ActiveRecord::Base
     friends.map! {|f| Person.find(f.entry_person_id) unless f.nil?}
   end
   
+  def is_friend?(person)
+    person = Person.find(person) unless person.kind_of?(Person)
+    if self.friends.include?(person)
+      return true
+    else
+      return false
+    end
+  end
+  
   def add_friend(friend_id)
     @friend = Friend.new
     @friend.owner_person_id = self.id
@@ -282,10 +307,6 @@ class Person < ActiveRecord::Base
     @friend.permissions = "rwrwrw"
     @friend.save
     @friend.create_symmetrical
-  end
-  
-  def sent_messages
-    Message.find(:all, :conditions => {:sender => self.id}).delete_if {|m| (m.state == (m.state & Message::DELETEDBYSENDER) || (m.message_type == (m.message_type | Message::FRIENDREQUEST) ) ) }
   end
   
   def self.titles

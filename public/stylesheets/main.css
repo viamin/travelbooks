@@ -678,10 +678,14 @@ div.progressBar div.background {
 	background: #98a1be;
 	padding: 5px;
 	margin: 5px;
+	width: 49%;
 }
 .message_short a {
 	text-decoration: none;
 	color: #000;
+}
+.body_short {
+	position: relative;
 }
 .msg_photo {
 	float: left;
@@ -697,15 +701,20 @@ div.progressBar div.background {
 .mail_tools form {
 	float: left;
 	vertical-align: middle;
-	margin-top: 30px;
+	margin-top: 10px;
 }
 .msg_state {
 	float: left;
-	margin-top: 32px;
+	margin-top: 12px;
 	margin-left: 10px;
 }
-.msg_from {
+.msg_info {
+	float: left;
+}
+.msg_subj {
+	position: relative;
 	clear: both;
+	padding-top: 10px;
 }
 .message_tools form {
 	margin: 0;
