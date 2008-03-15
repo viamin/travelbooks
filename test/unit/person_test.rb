@@ -23,7 +23,6 @@ class PersonTest < Test::Unit::TestCase
   
   def test_login
     person = Person.new
-    person.login = "Viamin"
     person.password = "rsh56w"
     person.email = "bart@sonic.net"
     assert_kind_of Person, Person.login(person.login, person.password)
@@ -33,7 +32,7 @@ class PersonTest < Test::Unit::TestCase
   
   def test_age
     person = Person.find(1)
-    assert_equal(29, person.age)
+    assert_equal(30, person.age)
   end
   
   def test_latest_location

@@ -5,7 +5,7 @@ set :application_root, "/home/travell0/#{application}/current/."
 # If you aren't deploying to /u/apps/#{application} on the target
 # servers (which is the default), you can specify the actual location
 # via the :deploy_to variable:
- set :deploy_to, "~/#{application}"
+ set :deploy_to, "/home/travell0/#{application}"
 
 # If you aren't using Subversion to manage your source code, specify
 # your SCM below:
@@ -67,8 +67,8 @@ end
 
 desc "Sets all file perms (except dispatch.*) to 644 and all directory perms to 755"
 deploy.task :fix_perms, :roles => :web do
-  run "/usr/bin/find #{deploy_to}/ -type f | /usr/bin/xargs /bin/chmod 644"
-  run "/usr/bin/find #{deploy_to}/ -type d | /usr/bin/xargs /bin/chmod 755"
+  run "/usr/bin/find #{deploy_to}/current/ -type f | /usr/bin/xargs /bin/chmod 644"
+  run "/usr/bin/find #{deploy_to}/current/ -type d | /usr/bin/xargs /bin/chmod 755"
   run "/bin/chmod 755 #{deploy_to}/current/public/dispatch.*"
   run "/bin/chmod 777 #{deploy_to}/shared/tmp_images"
 end
