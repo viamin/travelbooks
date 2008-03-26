@@ -88,4 +88,8 @@ class AdminController < ApplicationController
     
   end
   
+  def test_errors
+    
+  end
+  
 end

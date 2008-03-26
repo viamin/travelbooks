@@ -21,6 +21,12 @@ ActionMailer::Base.delivery_method = :activerecord
 ActionMailer::Base.perform_deliveries = true  
 ActionMailer::Base.raise_delivery_errors = true  
 ActionMailer::Base.default_charset = "utf-8"
+ActionMailer::Base.smtp_settings = {
+  :address => 'basil.server0571.info',
+  :port => 25,
+  :user_name => 'do-not-reply',
+  :password => '/1<$xFMp!-k-'
+}
 
 # Person id of the "Nobody" user, where given away books stay
 NOBODY_USER = 2

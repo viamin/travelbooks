@@ -467,11 +467,13 @@ div.progressBar div.background {
 	border: 0;
 }
 #friend_map {
-	position: absolute;
-	top: -580px;
-	width: 458px;
-	height: 578px;
+/*	position: absolute;
 	left: 310px;
+	top: -580px; */
+	float: right;
+	margin-right: 5px;
+	width: 458px; 
+	height: 578px;
 	border: 1px solid #633c1f;
 }
 .sfriend_image {
@@ -666,9 +668,11 @@ div.progressBar div.background {
 	height: auto;
 }
 #item_map {
-	position: absolute;
+/*	position: absolute;
 	top: -580px;
-	left: 310px;
+	left: 310px; */
+	float: right;
+	margin-right: 5px;
 	width: 458px;
 	height: 578px;
 	border: 1px solid #633c1f;
@@ -808,9 +812,11 @@ div.progressBar div.background {
 	cursor: move;
 }
 #vacation_map {
-	position: absolute;
+/*	position: absolute;
 	top: -580px;
-	left: 310px;
+	left: 310px; */
+	float: right;
+	margin-right: 5px;
 	height: 227px;
 	width: 458px;
 	border: 1px solid #633c1f;

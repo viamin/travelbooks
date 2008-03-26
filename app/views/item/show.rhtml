@@ -1,4 +1,5 @@
 <h1><%= @item.name %></h1>
+<%= @map.div %>
 <div id="book_info_box">
 	<div id="book_info">
 		<p>
@@ -11,5 +12,4 @@
 		<%= @message unless @message.nil? %>
 		<%= render :partial => 'prev_owners', :object => @owners unless @owners.empty? %>
 	</div>
-	<%= @map.div %>
 </div>
