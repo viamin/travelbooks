@@ -14,15 +14,15 @@ class TrackController < ApplicationController
   end
 
   def find
-    books = Item.find(:all, :conditions => {:tbid => params[:search_box]})
-    if books.empty?
+    @books = Item.find(:all, :conditions => {:tbid => params[:search_box]})
+    if @books.nil? || @books.empty?
       if (params[:search_box].length > 6)
         @message = "Nothing found with that code"
       else
         @message = "Invalid code"
       end
     else
-      @book = books.first
+      @book = @books.first
     end
     render :layout => false
   end
@@ -30,10 +30,10 @@ class TrackController < ApplicationController
   def friend
     @user = Person.find(session[:user_id]) if logged_in?
     search_term = params[:search_box]
-    @people = Person.find(:all, :conditions => ["email like ?", "%#{search_term.downcase}%"]).concat(Person.find(:all, :conditions => ["nickname like ?", "%#{search_term}%"])).uniq.delete_if {|p| p.email == "noemail@travellerbook.com"}
+    @people = Person.find(:all, :conditions => ["email like ?", "%#{search_term.downcase}%"]).concat(Person.find(:all, :conditions => ["nickname like ?", "%#{search_term}%"])).uniq.delete_if {|p| p.email == "noemail@travellerbook.com"} unless (search_term.nil? || search_term == String.new)
 #    @people = Person.find(:all, :conditions => {:email => search_term}).concat(Person.find(:all, :conditions => {:nickname => search_term})).uniq
-    if @people.empty?
-      @message = "No one was found for the search term: #{search_term}"
+    if (@people.nil? || @people.empty?)
+      @message = "No one was found for the search term \"#{search_term}\""
     end
     render :layout => false
   end

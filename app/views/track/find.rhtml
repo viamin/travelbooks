@@ -1,5 +1,5 @@
 <h3>Search Results</h3>
 <p><%= h(@message) if @books.empty? %></p>
 <ul class="results_list">
-	<li><%= link_to( image_tag(@book.photos.main.url).concat("&nbsp;&nbsp;#{@book.name}"), {:controller => 'item', :action => 'show', :id => @book.id}) %></li>
+	<li><%= link_to( image_tag(@book.photos.main.url).concat("&nbsp;&nbsp;#{@book.name}"), {:controller => 'item', :action => 'show', :id => @book.id}) unless @book.nil? %></li>
 </ul>
