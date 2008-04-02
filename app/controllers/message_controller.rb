@@ -3,7 +3,7 @@ class MessageController < ApplicationController
   layout 'user'
   
   def index
-    redirect_to :action => 'home'
+    redirect_to :action => 'list'
   end
   
   def list

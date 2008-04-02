@@ -1,21 +1,26 @@
 class SaleItemController < ApplicationController
+  before_filter :admin_auth
   layout 'user'
   
+  def index
+    redirect_to :controller => 'shop'
+  end
+  
   def list
-    @items = SaleItem.find(:all)
+    @sale_items = SaleItem.find(:all)
   end
   
   def show
-    @item = SaleItem.find(params[:id])
+    @sale_item = SaleItem.find(params[:id])
   end
   
   def edit
-    @item = SaleItem.find(params[:id])
+    @sale_item = SaleItem.find(params[:id])
   end
   
   def update
-    @item = SaleItem.find(params[:sale_item][:id])
-    if @item.update_attributes(params[:sale_item])
+    @sale_item = SaleItem.find(params[:sale_item][:id])
+    if @sale_item.update_attributes(params[:sale_item])
       redirect_to :action => 'list'
     else
       render :action => 'edit', :id => params[:sale_item][:id]
@@ -23,11 +28,11 @@ class SaleItemController < ApplicationController
   end
   
   def new
-    @item = SaleItem.new
+    @sale_item = SaleItem.new
   end
   
   def create
-    @item = SaleItem.create(params[:sale_item])
+    @sale_item = SaleItem.create(params[:sale_item])
     redirect_to :action => 'list'
   end
   

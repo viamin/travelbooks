@@ -80,26 +80,12 @@ class AdminController < ApplicationController
     redirect_to :action => 'books'
   end
   
-  def people
-    
-  end
-  
-  def locations
-    
-  end
-  
-  def test_errors
-    
-  end
-  
   def create_sale_item_from_item
     @item = Item.find(params[:id])
     @sale_item = SaleItem.new
     @sale_item.name = @item.name
     @sale_item.description = @item.description
-    @sale_item.status = 3
-    @sale_item.save!
-    render :action => 'edit_sale_item'
+    render :action => 'new'
   end
   
   def update_sale_item

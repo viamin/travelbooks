@@ -7,6 +7,10 @@ class PhotoController < ApplicationController
   # Put: update
   # Delete: destroy
   
+  def index
+    redirect_to :controller => 'user', :action => 'home'
+  end
+  
   def list
     @person = Person.find(params[:id])
     if @person == Person.find(session[:user_id])

@@ -2,7 +2,7 @@ class ShopController < ApplicationController
   layout 'user'
 
   def index
-    redirect_to(:action => 'coming_soon')
+    render :action => 'coming_soon'
   end
 
   def store
