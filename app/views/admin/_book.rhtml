@@ -3,5 +3,6 @@
 	<%= book.tbid %> : <%= book.name %> &mdash; Last owner: <%= get_person(book.person_id).display_name %>
 	<%= link_to 'Edit', :action => 'edit_book', :id => book.id %>
 	<%= link_to 'Show', :controller => 'item', :action => 'show', :id => book.id %>
-	<%= link_to 'Delete', {:action => 'destroy_book', :id => book.id}, :confirm => 'Are you sure?' %></div>
+	<%= link_to 'Delete', {:action => 'destroy_book', :id => book.id}, :confirm => 'Are you sure?' %>
+	<%= link_to 'Sell', {:action => 'create_sale_item_from_item', :id => book.id}, :confirm => 'This will create a new sale_item from this book. Continue?' %></div>
 </li>

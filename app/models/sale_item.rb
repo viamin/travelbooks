@@ -28,4 +28,13 @@ class SaleItem < ActiveRecord::Base
   
   STATUS = [["Normal Price", 1], ["On Sale", 2], ["Going on sale", 3], ["Not on Sale", 4]]
 
+  def initialize(*params)
+    super(*params)
+    if self.new_record?
+      self.name = String.new if self.name.nil?
+      self.description = self.description if self.description.nil?
+      self.for_sale = String.new
+    end
+  end
+
 end

@@ -15,6 +15,9 @@ RewriteCond %{REQUEST_URI} ^/images/users/.*
    RewriteRule .* - [L]
 RewriteEngine On
 
+RewriteCond %{REQUEST_URI} ^/bartandkat.* 
+RewriteRule .* - [L]
+
 RewriteRule ^$ index.html [QSA]
 RewriteRule ^([^.]+)$ $1.html [QSA]
 RewriteCond %{REQUEST_FILENAME} !-f

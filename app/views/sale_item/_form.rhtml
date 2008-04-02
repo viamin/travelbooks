@@ -9,19 +9,19 @@
 <%= f.text_area 'description', :size => '40x5' %></p>
 
 <p><label for="sale_item_quantity_in_stock">Quantity</label><br/>
-<%= f.text_field 'quantity_in_stock' %></p>
+<%= f.text_field 'quantity_in_stock', :size => 5 %></p>
 
 <p><label for="sale_item_price">Price</label><br/>
-<%= f.text_field 'price'  %></p>
+<%= f.text_field 'price', :size => 5 %></p>
 
-<p><label for="sale_item_for_sale">For Sale</label><br/>
+<p><label for="sale_item_for_sale">Sale Banner Message</label><br/>
 <%= f.text_field 'for_sale' %></p>
 
 <p><label for="sale_item_price">Status</label><br/>
 <%= f.select 'status', SaleItem::STATUS %></p>
 
 <p><label for="sale_item_sale_price">Sale Price</label><br/>
-<%= f.text_field 'sale_price' %></p>
+<%= f.text_field 'sale_price', :size => 5 %></p>
 
 <p><label for="sale_item_sale_begins">Sale Begins</label><br/>
 <%= f.date_select 'sale_begins', :default => Time.now.months_since(1) %></p>

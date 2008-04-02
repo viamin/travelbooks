@@ -1,0 +1,5 @@
+<h1>You have a friend request</h1>
+
+<p><%= h @friend.display_name %> has sent you a friend request at TravellerBook.com. </p>
+
+<p>You can log in and confirm <%= h @friend.display_name %>'s friend request by clicking this link: <%= link_to "My Message Center", :controller => 'message', :action => 'list' %></p>

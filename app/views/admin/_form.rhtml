@@ -11,6 +11,6 @@
 <%= f.text_area 'description', :size => '40x5' %></p>
 
 <p><label for="item_person_id">Current Owner</label><br/>
-<%= f.select 'person_id', Person.find(:all).collect {|p| [ p.display_name, p.id ] } %></p>
+<%= f.select 'person_id', Person.find(:all).collect {|p| [ p.display_name, p.id ] }, :include_blank => true %></p>
 <!--[eoform:item]-->
 

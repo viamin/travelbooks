@@ -3,12 +3,6 @@
 <!--[form:person]-->
 <p><label for="person_nickname">Display Name</label>
 	<%= text_field 'person', 'nickname' %></p>
-
-<p><label for="person_invisible">Don't show me in item owner lists</label>
-	<%= check_box 'person', 'invisible', {}, 'Yes', 'No' %></p>
-	
-<p><label for="person_location_resolution">How detailed a location can others see on their maps?</label>
-	<%= select 'person', 'location_resolution', Person::LOCRESOLUTIONS %></p>
 	
 <p><label for="person_share_trips">Allow others to see my trips</label>
 	<%= check_box 'person', 'share_trips', {}, 'Yes', 'No' %></p>

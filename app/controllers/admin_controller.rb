@@ -68,7 +68,7 @@ class AdminController < ApplicationController
   def update_book
     @item = Item.find(params[:item][:id])
     if @item.update_attributes(params[:item])
-      flash[:notice] = 'Book was successfully updated.'
+      #flash[:notice] = 'Book was successfully updated.'
       redirect_to :action => 'books'
     else
       render :action => 'edit_book', :id => params[:item][:id]
@@ -90,6 +90,32 @@ class AdminController < ApplicationController
   
   def test_errors
     
+  end
+  
+  def create_sale_item_from_item
+    @item = Item.find(params[:id])
+    @sale_item = SaleItem.new
+    @sale_item.name = @item.name
+    @sale_item.description = @item.description
+    @sale_item.status = 3
+    @sale_item.save!
+    render :action => 'edit_sale_item'
+  end
+  
+  def update_sale_item
+    @sale_item = SaleItem.find(params[:id])
+    if @sale_item.update_attributes(params[:sale_
+      
+      
+      
+      
+      
+      item])
+      flash[:notice] = 'Item was successfully updated.'
+      redirect_to :action => 'show', :id => @item
+    else
+      render :action => 'edit'
+    end
   end
   
 end

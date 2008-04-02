@@ -18,7 +18,7 @@ class Item < ActiveRecord::Base
   belongs_to :person
   has_many :photos do
     def main
-      find(:first, :conditions => {:photo_type => Photo::MAIN})
+      find(:first, :conditions => {:photo_type => [Photo::MAIN, Photo::ITEM]})
     end
   end
   has_and_belongs_to_many :trips
