@@ -24,7 +24,8 @@ ActionMailer::Base.default_charset = "utf-8"
 ActionMailer::Base.smtp_settings = {
   :address => 'basil.server0571.info',
   :port => 25,
-  :user_name => 'do-not-reply',
+  :authentication => :login,
+  :user_name => 'do-not-reply@travellerbook.com',
   :password => '/1<$xFMp!-k-'
 }
 

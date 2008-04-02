@@ -104,18 +104,16 @@ class AdminController < ApplicationController
   
   def update_sale_item
     @sale_item = SaleItem.find(params[:id])
-    if @sale_item.update_attributes(params[:sale_
-      
-      
-      
-      
-      
-      item])
-      flash[:notice] = 'Item was successfully updated.'
-      redirect_to :action => 'show', :id => @item
+    if @sale_item.update_attributes(params[:sale_item])
+      flash[:notice] = 'SaleItem was successfully updated.'
+      redirect_to :controller => 'sale_item', :action => 'list'
     else
-      render :action => 'edit'
+      render :action => 'edit_sale_item'
     end
+  end
+  
+  def edit_sale_item
+    @sale_item = SaleItem.find(params[:id])
   end
   
 end
