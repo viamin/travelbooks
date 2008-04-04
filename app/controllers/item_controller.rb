@@ -129,7 +129,7 @@ class ItemController < ApplicationController
     @loc_change = Change.new
     @loc_change.change_type = Change::ITEM_LOCATION
     @loc_change.item = @item
-    @loc_change.old_value = @change.old_person.main_location
+    @loc_change.old_value = @change.old_person.main_location unless @change.old_person.nil?
     @loc_change.new_value = @person.main_location
     @loc_change.effective_date = @change.effective_date
     @loc_change.save!
