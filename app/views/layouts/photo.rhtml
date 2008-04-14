@@ -17,6 +17,9 @@
 		<%= render(:partial => 'main/flash', :locals => {:flash => flash}) if flash[:notice] %>
 		<div id="cfl">
 			<%= @content_for_layout %>
+			<div id="footer">
+				<%= render :partial => 'main/footer' %>
+			</div>
 		</div>
 	</div>
 	<%= image_tag("rsh.png", {:id => 'rsh'}) %>

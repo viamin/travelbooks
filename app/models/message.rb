@@ -45,6 +45,10 @@ class Message < ActiveRecord::Base
     return (self.state | Message::REPLIED) == self.state
   end
   
+  def is_friend_request?
+    return self.message_type == Message::FRIENDREQUEST
+  end
+  
   def mark_replied!
     self.state = self.state | Message::REPLIED
     self.save!

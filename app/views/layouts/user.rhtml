@@ -18,6 +18,9 @@
 		</div>
 		<div id="cfl">
 			<%= @content_for_layout %>
+			<div id="footer">
+				<%= render :partial => 'main/footer' %>
+			</div>
 		</div>
 		<%= render(:partial => 'main/flash', :locals => {:flash => flash}) if flash[:notice] %>
 	</div>
