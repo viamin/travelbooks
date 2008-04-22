@@ -1,4 +1,5 @@
 class MainController < ApplicationController
+  caches_page :about, :faq, :privacy, :site_map
 
   def index
     render :layout => false
