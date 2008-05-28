@@ -12,9 +12,9 @@ class ApplicationController < ActionController::Base
         Error.deliver_warn(
           exception, 
           clean_backtrace(exception), 
-          @session.instance_variable_get("@data"), 
+          @session.instance_variable_get("@data") unless @session.nil?, 
           @params, 
-          @request.env)
+          @request.env unless @request.nil?)
       rescue => e
         logger.error(e)
       end
