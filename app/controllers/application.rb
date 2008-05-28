@@ -9,12 +9,14 @@ class ApplicationController < ActionController::Base
       super(exception)
 
       begin
+        session_block = @session.instance_variable_get("@data") unless @session.nil?
+        request_env = @request.env unless @request.nil?
         Error.deliver_warn(
           exception, 
           clean_backtrace(exception), 
-          @session.instance_variable_get("@data") unless @session.nil?, 
+          session_block, 
           @params, 
-          @request.env unless @request.nil?)
+          request_env)
       rescue => e
         logger.error(e)
       end
