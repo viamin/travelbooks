@@ -71,7 +71,7 @@ COLORS = ['#fff', '#633c1f', '#394876', '#2f4380', '#ffe7a5', '#000']
 ENV['TMPDIR'] = "#{RAILS_ROOT}/public/images/tmp"
 ENV['TEMP'] = "#{RAILS_ROOT}/public/images/tmp"
 ENV['TMP'] = "#{RAILS_ROOT}/public/images/tmp"
-APPLICATION_ERROR_EMAIL = "TravellerBook.com support <support@travellerbook.com>"
+APPLICATION_ERROR_EMAIL = "support@travellerbook.com"
 MAP_TYPE = :yahoo
 
 require 'pp'
