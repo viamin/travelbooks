@@ -56,13 +56,16 @@ end
 DIFFERENCE_THRESHOLD = 1
 
 # Replace this after every presidential election
-SAMPLE_PERSON = { :first_name => "George W.",
-                  :birthday => Time.local(1946, 7, 6) }
+SAMPLE_PERSON = { :nickname => "B. Obama",
+                  :birthday => Time.local(1961, 8, 4) }
 
 SAMPLE_LOCATION = { :address_line_1 => "1600 Pennsylvania Ave.",
                     :city => "Washington",
                     :state => "DC",
-                    :country => "USA" }
+                    :country => "USA",
+                    :zip_code => "20006",
+                    :lat => 38.89859,
+                    :lng => -77.035971 }
 
 COLORS = ['#fff', '#633c1f', '#394876', '#2f4380', '#ffe7a5', '#000']
 ENV['TMPDIR'] = "#{RAILS_ROOT}/public/images/tmp"

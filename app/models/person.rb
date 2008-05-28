@@ -208,12 +208,12 @@ class Person < ActiveRecord::Base
   
   #checks all location changes for this person and find the current information
   def latest_location
-    self.all_locations.last
+    self.all_locations.last || Location.new(SAMPLE_LOCATION)
   end
   
   def current_location
     changes_list = self.changes.clone
-    main_location = changes_list.delete_if {|change| change.change_type != Change::PERSON_MAIN_LOCATION }.sort { |x,y| x.effective_date <=> y.effective_date }.collect! {|c| Location.find(c.new_value)}.last
+    main_location = changes_list.delete_if {|change| change.change_type != Change::PERSON_MAIN_LOCATION }.sort { |x,y| x.effective_date <=> y.effective_date }.collect! {|c| Location.find(c.new_value) unless c.new_value.nil?}.last
     if main_location.nil?
       main_location = self.latest_location
     end
@@ -228,7 +228,7 @@ class Person < ActiveRecord::Base
     changes_list = self.changes.clone
     all_locations = changes_list.delete_if {|change| ((change.change_type == Change::OWNERSHIP) || (change.change_type == Change::ITEM_LOCATION))}
     all_locations.sort {|x,y| x.effective_date <=> y.effective_date}
-    all_locations.collect! {|c| Location.find(c.new_value)}.uniq
+    all_locations.collect! {|c| Location.find(c.new_value) unless c.new_value.nil?}.uniq
   end
   
   def all_location_options

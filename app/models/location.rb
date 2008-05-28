@@ -134,8 +134,18 @@ class Location < ActiveRecord::Base
   def before_save
     # Geocode the address and save the lat/lng returned
     @person = Person.find(self.person_id) unless self.person_id.nil?
-    unless @person.nil?
-      case @person.location_resolution
+    loc = MultiGeocoder.geocode(self.address_to_geocode(@person))
+    if loc.success
+      self.lat = loc.lat
+      self.lng = loc.lng
+      self.zip_code = loc.zip unless loc.zip.nil?
+    end
+    #timing self.pretty_inspect
+  end
+  
+  def address_to_geocode(person)
+    unless person.nil?
+      case person.location_resolution
       when "City Only"
         address_to_geocode = "#{self.city}, #{self.state}, #{self.country}"
       when "State Only"
@@ -150,13 +160,7 @@ class Location < ActiveRecord::Base
     else
       address_to_geocode = "#{self.address_line_1} #{self.address_line_2} #{self.city}, #{self.state} #{self.zip_code}, #{self.country}"
     end
-    loc = MultiGeocoder.geocode(address_to_geocode)
-    if loc.success
-      self.lat = loc.lat
-      self.lng = loc.lng
-      self.zip_code = loc.zip unless loc.zip.nil?
-    end
-    #timing self.pretty_inspect
+    address_to_geocode
   end
   
   def public_message
