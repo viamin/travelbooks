@@ -47,6 +47,6 @@
 <div id="stat_box">
 	<div id="stat_bar">My Traveller Stats</div>
 	<div id="stat_list">
-		<%= render_component :action => 'user_stats', :id => @person %>
+		<%= render_component :controller => 'user', :action => 'user_stats', :id => @person.id %>
 	</div>
 </div>
