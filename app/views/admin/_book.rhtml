@@ -1,6 +1,6 @@
 <li id="book<%= book.id %>" class="abook">
 	<div id="blink<%= book.id %>" class="blink"><%= book.photos.main.nil? ? link_to_remote('Add Photo', :update => "blink#{book.id}", :url => {:action => 'add_image', :id => book.id}) : link_to_remote(image_tag(book.photos.main.url, :size => '36x50'), :update => "blink#{book.id}", :url => {:action => 'add_image', :id => book.id}) %></div><div class="binfo">
-	<%= book.tbid %> : <%= book.name %> &mdash; Last owner: <%= link_to(get_person(book.person_id).display_name, url_for(:controller => 'user' :action => 'show', :id => book.person_id)) %>
+	<%= book.tbid %> : <%= book.name %> &mdash; Last owner: <%= link_to(get_person(book.person_id).display_name, :controller => 'user' :action => 'show', :id => book.person_id) %>
 	<%= link_to 'Edit', :action => 'edit_book', :id => book.id %>
 	<%= link_to 'Show', :controller => 'item', :action => 'show', :id => book.id %>
 	<%= link_to 'Delete', {:action => 'destroy_book', :id => book.id}, :confirm => 'Are you sure?' %>
