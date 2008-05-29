@@ -266,7 +266,11 @@ class UserController < ApplicationController
   end
   
   def reset_password
-    @person = Person.find(params[:id])
+    if params[:id].nil?
+      @person = Person.find(session[:user_id])
+    else
+      @person = Person.find(params[:id])
+    end
     @temp_pass = params[:temp_pass]
   end
   

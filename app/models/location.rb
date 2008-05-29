@@ -76,6 +76,20 @@ class Location < ActiveRecord::Base
     retval
   end
   
+  # Determines if the location is used in any place. 
+  def used_anywhere?
+    # check the changes table to see if this location is being used 
+    # for more than one change, so really this should be called
+    # used_in_more_than_one_place?
+    loc_changes = Change.find(:all, :conditions => {:new_value => self.id, :change_type => [Change::PERSON_LOCATION, Change::PERSON_MAIN_LOCATION]})
+    if loc_changes.length >= 1
+      retval = true
+    else
+      retval = false
+    end
+    retval
+  end
+  
   def used_in
     Change.find(:all, :conditions => {:new_value => self.id, :change_type => [Change::PERSON_LOCATION, Change::PERSON_MAIN_LOCATION]}).length  
   end

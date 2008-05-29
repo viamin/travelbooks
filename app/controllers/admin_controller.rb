@@ -1,9 +1,9 @@
 class AdminController < ApplicationController
-  before_filter :admin_auth
+  before_filter :admin_auth, :except => [:cleanup, :index]
   layout 'user'
   
   def index
-    redirect_to :action => 'books'
+    
   end
   
   def books
@@ -100,6 +100,46 @@ class AdminController < ApplicationController
   
   def edit_sale_item
     @sale_item = SaleItem.find(params[:id])
+  end
+  
+  # This method will cleanup broken links. It will sweep through the changes table looking for stale entries and remove them. 
+  def cleanup
+    # First, find any changes that reference people or places that no longer exist
+    @changes = Change.find(:all)
+    @changes.each do |change|
+      case change.change_type
+      when Change::OWNERSHIP
+        person = Person.find(:all, :conditions => {:id => change.new_value})
+        timing "Will destroy OWNERSHIP change #{change.pretty_inspect}" if person.empty?
+        change.destroy if person.empty?
+      when Change::PERSON_LOCATION
+        location = Location.find(:all, :conditions => {:id => change.new_value})
+        timing "Will destroy PERSON_LOCATION change #{change.pretty_inspect}" if location.empty?
+        change.destroy if location.empty?
+      when Change::PERSON_MAIN_LOCATION
+        location = Location.find(:all, :conditions => {:id => change.new_value})
+        timing "Will destroy PERSON_MAIN_LOCATION change #{change.pretty_inspect}" if location.empty?
+        change.destroy if location.empty?
+      when Change::ITEM_LOCATION
+        location = Location.find(:all, :conditions => {:id => change.new_value})
+        timing "Will destroy ITEM_LOCATION change #{change.pretty_inspect}" if location.empty?
+        change.destroy if location.empty?
+      end
+    end
+    # next, find any locations that aren't referenced by changes, people, or anywhere else there is a location_id field
+    @locations = Location.find(:all)
+    @locations.each do |location|
+      
+    end
+    redirect_to :action => 'index'
+  end
+  
+  def users
+    
+  end
+  
+  def locations
+    
   end
   
 end
