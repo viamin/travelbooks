@@ -133,7 +133,7 @@ class UserController < ApplicationController
           if login_status == :success
             if person.needs_reset == true
               flash[:notice] = "Your password was recently reset. You will need to enter a new password in order to log in next time."
-              redirect_to :action => 'reset_password', :temp_pass => params[:person][:password]
+              redirect_to :action => 'reset_password', :temp_pass => params[:person][:password], :id => person.id
               return
             else
               session[:settled_in] = nil
@@ -266,7 +266,7 @@ class UserController < ApplicationController
   end
   
   def reset_password
-    @person = Person.find(session[:user_id])
+    @person = Person.find(params[:id])
     @temp_pass = params[:temp_pass]
   end
   
@@ -275,6 +275,7 @@ class UserController < ApplicationController
     if params[:person][:password] == params[:person][:password_confirmation]
       if @person.change_password(params[:temp_password], params[:person][:password])
         flash[:notice] = "Your password has been successfully changed"
+        session[:user_id] = @person.id
         redirect_to :action => 'home'
         return
       else
