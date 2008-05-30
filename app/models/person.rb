@@ -239,7 +239,7 @@ class Person < ActiveRecord::Base
   def remove_location(location)
     changes_list = self.changes.clone
     all_location_changes = changes_list.delete_if {|change| ((change.change_type == Change::OWNERSHIP) || (change.change_type == Change::ITEM_LOCATION))}
-    all_location_changes.each {|c| c.destroy if (c.new_value == location.id && location.class == Location) }
+    all_location_changes.each {|c| c.destroy if (c.new_value.to_s == location.id.to_s && location.class == Location) }
   end
   
   # change the active location if someone or something else is using old_location
@@ -249,7 +249,7 @@ class Person < ActiveRecord::Base
     changes_list = self.changes.clone
     all_location_changes = changes_list.delete_if {|change| ((change.change_type == Change::OWNERSHIP) || (change.change_type == Change::ITEM_LOCATION))}
     all_location_changes.each do |change|
-      if change.new_value == old_location.id
+      if change.new_value.to_s == old_location.id.to_s
         new_location.save! # commit to database, since it hasn't been saved at this point
         change.new_value = new_location.id
         change.save!

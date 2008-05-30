@@ -22,3 +22,14 @@ NOBODY_USER = 5
 
 # To use ar_mailer, the following line must be uncommented
 ActionMailer::Base.delivery_method = :activerecord
+ActionMailer::Base.perform_deliveries = true  
+ActionMailer::Base.raise_delivery_errors = true  
+ActionMailer::Base.default_charset = "utf-8"
+ActionMailer::Base.smtp_settings = {
+  :address => 'localhost',
+  :port => 8025,
+  :authentication => :login,
+  :domain => 'elguapo.homedns.org',
+  :user_name => 'bart',
+  :password => '13pzgx'
+}

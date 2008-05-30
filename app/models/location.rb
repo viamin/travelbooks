@@ -114,8 +114,8 @@ class Location < ActiveRecord::Base
   def has_good_info?
     #Either there's an address, or GPS coordinates
     if self.loc_type == 1
-      #Check that the address is more than just the country
-      return true if self.state != ""
+      #Check that the address is at least the country
+      return true if self.country != ""
     else
       return false if self.lat.nil? || self.lng.nil?
     end

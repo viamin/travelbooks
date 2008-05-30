@@ -1,5 +1,3 @@
-<h1>Welcome to TravellerBook.com!</h1>
-
 <p>Thank you for joining TravellerBook.com, a fun way to track the books and gifts you give to your friends.</p>
 
-<p>You can log in to TravellerBook.com by clicking this link: <%= link_to "TravellerBook.com Login Page", :host => 'www.travellerbook.com', :controller => 'user', :action => 'login' %> or by going to <%= link_to "http://www.TravellerBook.com" %>.</p>
+<p>You can log in to TravellerBook.com by clicking this link: <%= link_to "TravellerBook.com Login Page", :host => 'www.travellerbook.com', :controller => 'user', :action => 'login' %> or by going to <%= link_to "http://www.TravellerBook.com", "http://www.TravellerBook.com" %> and entering your email address (<%= @person.email %>) and the password you entered when registering. If you forget your password, you can reset it by <%= link to "clicking here", :host => 'www.travellerbook.com', :controller => 'user', :action => 'retrieve' %> and entering your email address. </p> 

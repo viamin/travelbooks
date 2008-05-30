@@ -194,6 +194,7 @@ class UserController < ApplicationController
             @person.changes.create( :location => @location, :person => @person, :effective_date => Time.now, :change_type => Change::PERSON_LOCATION, :new_value => @location.id.to_s)
           end
           flash[:notice] = "Thank you for joining TravellerBook.com"
+          UserMailer.deliver_welcome(@person)
           session[:user_id] = @person.id
           redirect_to :action => :home
         else

@@ -1,0 +1,37 @@
+Travellerbook.com error report from <%= Time.now %>
+
+Message: <%= @exception.message unless @exception.message.nil? %>
+Location: <%= @env['REQUEST_URI'] unless @env['REQUEST_URI'].nil? %>
+Action: <%= @params.delete('action') unless @params.delete('action').nil? %>
+Controller<%= @params.delete('controller') unless @params.delete('controller').nil? %>
+Query<%= @env['QUERY_STRING'] unless @env['QUERY_STRING'].nil? %>
+Method<%= @env['REQUEST_METHOD'] unless @env['REQUEST_METHOD'].nil? %>
+SSL<%= @env['SERVER_PORT'].to_i == 443 ? "true" : "false"  %>
+Agent<%= @env['HTTP_USER_AGENT'] unless @env['HTTP_USER_AGENT'].nil? %>
+<% if @session['user'] -%>
+User id<%= @session['user_id'] %>
+User name<%= @person.display_name %>
+User email<%= @person.email %>
+Registered<%= @person.created_on %>
+<% end -%>
+
+Backtrace
+<%= @trace.to_a.join("</p>\n<p>") unless @trace.nil? -%>
+
+Params
+<% for key, val in @params -%>
+<%= key %>
+<%= val.to_yaml.to_a.join("</p>\n<p>    ") %>
+<% end if @params -%>
+
+Session
+<% for key, val in @session -%>
+<%= key %>
+<%= val.to_yaml.to_a.join("</p>\n<p>    ") %>
+<% end if @session -%>
+
+Environment
+<% for key, val in @env -%>
+<%= key %>
+<%= val %>
+<% end if @env -%>

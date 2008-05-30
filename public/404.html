@@ -9,7 +9,10 @@
 	<div id="main_stripe">
 		<div id="cfl">
 			<h1>File not found</h1>
-			  <p>The page you were looking for cannot be found.</p>
+			  <p>Sorry, the page you were looking for could be found.</p>
+			  <p>Please send an email to <%= mail_to "support@travellerbook.com" %> if you think this page should be there (or used to be there) and isn't. Please include the URL of the page you are trying to reach. We appreciate your feedback. </p>
+			  <p><%= link_to "Home", :controller => 'user', :action => 'home' %> |
+				<%= link_to "Main Page", "http://www.travellerbook.com" %></p>
 		</div>
 	</div>
 	<img src="/images/rsh.png" id="rsh">

@@ -10,6 +10,9 @@
 		<div id="cfl">
 			<h1>Application error</h1>
 			  <p>There's been an error in the application. Please try back later.</p>
+			  <p>An email has been sent to the support team. You can also send feedback to <%= mail_to "support@travellerbook.com" %> if you like. We appreciate the feedback.</p>
+			<p><%= link_to "Home", :controller => 'user', :action => 'home' %> |
+				<%= link_to "Main Page", "http://www.travellerbook.com" %></p>
 		</div>
 	</div>
 	<img src="/images/rsh.png" id="rsh">
