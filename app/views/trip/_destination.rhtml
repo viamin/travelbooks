@@ -1,4 +1,5 @@
 <li id="destination_<%= destination.id %>" class="dest_li">
 	<div id="dest_loc_<%= destination.id %>" class="dest_info"><%= destination.name %> &mdash; <%= destination.has_location? ? destination.location.to_s : link_to_remote('Add Location Info', :update => "dest_loc_#{destination.id}", :url => {:action => 'add_loc', :id => destination.id}) %></div>
 	<div class="dest_ops"><%= link_to "Edit", :action => 'edit_dest', :id => destination.id %></div>
+	<div class="dest_ops"><%= link_to "Delete", {:action => 'delete_dest', :id => destination.id}, {:confirm => "Are you sure you want to remove this destination from the trip?"} %></div>
 </li>

@@ -61,6 +61,7 @@ SAMPLE_PERSON = { :nickname => "B. Obama",
 
 SAMPLE_LOCATION = { :address_line_1 => "1600 Pennsylvania Ave.",
                     :city => "Washington",
+                    :description => "The White House",
                     :state => "DC",
                     :country => "USA",
                     :zip_code => "20006",

@@ -25,13 +25,16 @@ class TripController < ApplicationController
   def edit
     @person = Person.find(session[:user_id])
     @trip = Trip.find(params[:id])
+    @item_count = @person.items.length
   end
   
   def create
     @person = Person.find(session[:user_id])
-    @trip = Trip.create(params[:trip])
+    @trip = Trip.new(params[:trip])
+    @trip.save!
+    timing @trip.pretty_inspect
     @person.trips << @trip
-    @person.save!
+    timing @trip.pretty_inspect
     redirect_to :action => 'list'
   end
   
@@ -135,7 +138,24 @@ class TripController < ApplicationController
   end
   
   def edit_dest
+    @person = Person.find(session[:user_id])
     @destination = Destination.find(params[:id])
+  end
+  
+  def update_dest
+    @destination = Destination.find(params[:id])
+    if @destination.update_attributes(params[:destination])
+      redirect_to :action => 'edit', :id => @destination.trip
+    else
+      render :action => 'edit_dest'
+    end
+  end
+  
+  def delete_dest
+    @destination = Destination.find(params[:id])
+    @trip = @destination.trip
+    @destination.destroy
+    redirect_to :action => 'edit', :id => @trip
   end
   
 end

@@ -21,6 +21,7 @@ class Person < ActiveRecord::Base
   has_many :changes
   has_many :locations, :through => :changes
   has_many :items
+  has_many :trips
   has_many :photos
   has_many :messages do
     def unread

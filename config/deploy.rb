@@ -76,7 +76,7 @@ end
   
 desc "Fixes symlinks for other deployed sites under this one"
 deploy.task :fix_others, :roles => :web do
-  run "ln -s #{current_path}/public/bartandkat.com /home/#{user}/bartandkat.com/current/public"
+  run "ln -s /home/#{user}/bartandkat.com/current/public/ #{deploy_to}/current/public/bartandkat.com"
 end
   
 desc "Replace ActionMailer::Base with ActionMailer::ARMailer in Exception Notifier"

@@ -1,5 +1,5 @@
 <li>
 	<%= trip.name %><br />(<%= trip.start_date.to_s(:long) %> - <%= trip.end_date.to_s(:long) %>)<br />
 	<%= link_to 'Edit', :action => 'edit', :id => trip.id %>
-	<%= link_to_remote 'Zoom To', :url => {:action => 'zoom', :id => trip.id} %>
+	<%= link_to_remote 'Zoom To', :url => {:action => 'zoom', :id => trip.id} unless trip.destinations.count == 0 %>
 </li>

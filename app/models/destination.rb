@@ -42,7 +42,7 @@ class Destination < ActiveRecord::Base
   end
   
   def other_locations
-    self.trip.destinations.collect {|d| d.location if d.has_location?}
+    self.trip.destinations.collect {|d| d.location if d.has_location?}.compact
   end
 
 end

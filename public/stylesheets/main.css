@@ -676,6 +676,7 @@ div.progressBar div.background {
 	width: 458px;
 	height: 578px;
 	border: 1px solid #633c1f;
+	z-index: 1000;
 }
 /************* Message Section **************/
 .message_short {
@@ -820,6 +821,7 @@ div.progressBar div.background {
 	height: 227px;
 	width: 458px;
 	border: 1px solid #633c1f;
+	z-index: 1000;
 }
 #book_image {
 	vertical-align: middle;
@@ -831,8 +833,10 @@ div.progressBar div.background {
 	position: relative;
 }
 .dest_info {
-	float: left; 
-	padding-right: 10px;
+	display: inline;
+}
+.dest_ops {
+	display: inline;
 }
 .gen_form {
 	position: relative;
