@@ -61,6 +61,7 @@ deploy.task :after_deploy, :roles => :web do
   run "/bin/ln -s #{deploy_to}/shared/book_images #{deploy_to}/current/public/images/books"
   fix_perms
   run "/bin/mv #{deploy_to}/current/config/environment.rb.server #{deploy_to}/current/config/environment.rb"
+  fix_others
   restart
 #  use_ar_mailer
 end
@@ -71,6 +72,11 @@ deploy.task :fix_perms, :roles => :web do
   run "/usr/bin/find #{deploy_to}/current/ -type d | /usr/bin/xargs /bin/chmod 755"
   run "/bin/chmod 755 #{deploy_to}/current/public/dispatch.*"
   run "/bin/chmod 777 #{deploy_to}/shared/tmp_images"
+end
+  
+desc "Fixes symlinks for other deployed sites under this one"
+deploy.task :fix_others, :roles => :web do
+  run "ln -s #{current_path}/public/bartandkat.com /home/#{user}/bartandkat.com/current/public"
 end
   
 desc "Replace ActionMailer::Base with ActionMailer::ARMailer in Exception Notifier"
