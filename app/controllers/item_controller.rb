@@ -14,6 +14,8 @@ class ItemController < ApplicationController
     @person = Person.find(params[:id])
     @location = @person.current_location
     @items = @person.all_items
+    @current_items = @person.items
+    @old_items = @items - @current_items
     @map = Mapstraction.new("item_map", MAP_TYPE)
   	@map.control_init(:small => true)
   	@map.center_zoom_init([@location.lat, @location.lng],10)
@@ -30,7 +32,7 @@ class ItemController < ApplicationController
     @owners = Array.new
     if session[:user_id]
       @person = Person.find(session[:user_id])
-      if @person.items.include?(@item)
+      if @person.all_items.include?(@item)
         @owners = @item.people.owners.uniq.delete_if {|p| p.id == session[:user_id]}
       elsif (session[:last_action] =~ /^track_(find|item)$/)
         @message = "<p>Do you have this book? To add it to your library, click <a href=\"/item/associate/#{@item.id}\">here</a></p>"
@@ -128,6 +130,7 @@ class ItemController < ApplicationController
     # Need to add ability to add giver of book to friends here, need to add book move change here as well
     @loc_change = Change.new
     @loc_change.change_type = Change::ITEM_LOCATION
+    @loc_change.person = @person
     @loc_change.item = @item
     @loc_change.old_value = @change.old_person.main_location unless @change.old_person.nil?
     @loc_change.new_value = @person.main_location

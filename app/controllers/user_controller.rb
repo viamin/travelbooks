@@ -97,6 +97,11 @@ class UserController < ApplicationController
       @location = @person.current_location
       @locations = @person.all_locations
       @items = @person.items
+      @list_all_items = false
+      if @items.empty?
+        @items = @person.all_items
+        @list_all_items = true
+      end
       @friends = @person.friends
       @map = Mapstraction.new('user_map', MAP_TYPE)
       @map.control_init(:small => true)
@@ -303,6 +308,13 @@ class UserController < ApplicationController
     @miles_travelled = 0
     @miles_books_given_travelled = 0
     @miles_last_book = 0
+  end
+  
+  def item_locations
+    @person = Person.find(session[:user_id])
+    @locations = @person.all_locations
+    @items = @person.items
+    
   end
   
 end

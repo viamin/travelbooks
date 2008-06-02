@@ -29,7 +29,7 @@
 	<%= @map.div(:width => 456, :height => 207) %>
 </div>
 <div id="book_box">
-	<div id="book_bar">My TravellerBooks (<%= @items.length %>)<%= link_to "View All", {:controller => 'item', :action => 'list', :id => @person.id}, {:class => 'left_rlink'} %></div>
+	<div id="book_bar"><%= @list_all_items ? "All" : "My" %> TravellerBooks (<%= @items.length %>)<%= link_to (@list_all_items ? "Details" : "View All"), {:controller => 'item', :action => 'list', :id => @person.id}, {:class => 'left_rlink'} %></div>
 	<div id="book_list">
 		<ul id="blist">
 			<%= render :partial => 'item', :collection => @items %>

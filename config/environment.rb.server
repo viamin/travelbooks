@@ -10,9 +10,9 @@ Rails::Initializer.run do |config|
 end
 
 def timing(str)
-  time = Time.now
-  string = "[#{time.strftime "%H:%M:%S"}-#{ (time.usec / 1000).to_s.rjust(3,"0") }] #{str}"
-  RAILS_DEFAULT_LOGGER.info string
+#  time = Time.now
+#  string = "[#{time.strftime "%H:%M:%S"}-#{ (time.usec / 1000).to_s.rjust(3,"0") }] #{str}"
+#  RAILS_DEFAULT_LOGGER.info string
 end
 DIFFERENCE_THRESHOLD = 1
 SAMPLE_PERSON = { :nickname => "B. Obama",

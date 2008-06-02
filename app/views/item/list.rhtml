@@ -2,7 +2,9 @@
 <%= @map.div %>
 <div id="item_list_box">
 	<ul id="sflist">
-		<%= render :partial => 'item_short', :collection => @items %>
+		<li style="font-size: 14pt;font-weight:bold;text-align:center;">Current Items</li>
+		<%= render :partial => 'item_short', :collection => @current_items %>
+		<li style="font-size: 14pt;font-weight:bold;text-align:center;padding-top: 10px;">Books Given Away</li>
+		<%= render :partial => 'item_short', :collection => @old_items %>
 	</ul>
-	
 </div>
