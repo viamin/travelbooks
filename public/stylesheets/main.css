@@ -19,6 +19,8 @@ p, ol, ul, td {
 }
 img {
 	border: 0;
+	/* http://www.twinhelix.com/css/iepngfix/ */
+	behavior: url(iepngfix.htc);
 }
 form {
 	padding-bottom: 20px;
