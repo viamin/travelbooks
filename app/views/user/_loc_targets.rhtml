@@ -1,8 +1,8 @@
 <li class="loc_target">
 	<p><%= h loc_targets.description %></p>
 	<ul class="loc_items">
-		<% items.each do |item| %>
-		<%= render :partial => 'drag_item', :object => item if item.locations.current == loc_targets.id %>
-		<% end %>
+		<% loc_items[loc_targets.id].each do |item| %>
+		<%= render :partial => 'drag_item', :object => item %>
+		<% end unless loc_items[loc_targets.id].nil? %>
 	</ul>
 </li>

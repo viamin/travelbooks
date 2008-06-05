@@ -1,7 +1,18 @@
 <h1>Move Your TravellerBooks</h1>
+<%= render :partial => 'profile_links'%>
 <div id="ubl">
 	<p>Use this page to move TravellerBooks from one location to another. Simply drag a book from one location to another. You can change the current location of a book on this page. If you have taken a book with you on a trip, you can add the book to a trip in the <%= link_to "Trip Editing", :controller => 'trip', :action => 'list' %> page.</p>
-	<ul id="locations_items_list">
-		<%= render :partial => 'loc_targets', :collection => @locations, :locals => {:items => @items} %>
-	</ul>
+	<div id="locitemdiv">
+		<ul id="locations_items_list">
+			<%= render :partial => 'loc_targets', :collection => @locations, :locals => {:loc_items => @loc_items} %>
+			<% begin %>
+			<li class="loc_target">
+				<p>No Location Set</p>
+				<ul class="loc_items">
+					<%= render :partial => 'drag_item', :collection => @unfound_items %>
+				</ul>
+			</li>
+			<% end unless @unfound_items.empty? %>
+		</ul>
+	</div>
 </div>

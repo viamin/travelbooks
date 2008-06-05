@@ -537,6 +537,28 @@ div.progressBar div.background {
 	background: #ffe7a5;
 	padding-bottom: 10px;
 }
+/******** Item Location Editing *******/
+#locitemdiv {
+	position: relative;
+}
+.draggable_book {
+	float: left;
+}
+.loc_target {
+	list-style: none;
+	position: relative;
+	clear: left;
+	background: #98a1be;
+	padding: 10px;
+}
+.loc_items {
+	list-style: none;
+	position: relative;
+	clear: right;
+}
+.loc_items span {
+	vertical-align: middle;
+}
 /******** Location Editing **********/
 .short_loc {
 	position: relative;

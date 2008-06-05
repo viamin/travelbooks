@@ -314,7 +314,15 @@ class UserController < ApplicationController
     @person = Person.find(session[:user_id])
     @locations = @person.all_locations
     @items = @person.items
-    
+    @loc_items = Hash.new
+    @items.each do |item|
+      loc = item.locations.current
+      @loc_items[loc.id] = ([@loc_items[loc.id], nil] << item).flatten.compact || [item] unless loc.nil?
+    end
+    timing @loc_items.pretty_inspect
+    @unfound_items = @items.clone.delete_if { |i| @locations.include?(i.locations.current)}
+#    timing @items.pretty_inspect
+#    timing @unfound_items.pretty_inspect
   end
   
 end

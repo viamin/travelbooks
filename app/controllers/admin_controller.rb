@@ -131,6 +131,7 @@ class AdminController < ApplicationController
     @locations.each do |location|
       
     end
+    flash[:notice] = "Cleaned up the database"
     redirect_to :action => 'index'
   end
   
