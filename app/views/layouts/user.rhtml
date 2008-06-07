@@ -9,8 +9,8 @@
 	<%= Mapstraction.header(MAP_TYPE) unless @map.nil? %>
 	<%= @map.to_html unless @map.nil? %>
 	<%= javascript_include_tag :defaults %>
-	<!--[if lt IE 7.]>
-	<script defer type="text/javascript" src="pngfix.js"></script>
+	<!--[if lte IE 6]>
+	<script type="text/javascript" src="supersleight-min.js"></script>
 	<![endif]-->
 </head>
 <body>
