@@ -1,0 +1,8 @@
+<h1>User Admin</h1>
+<%= render :partial => 'admin_links' %>
+<div id="admusrlst">
+	<ul id="along_list">
+		<%= render :partial => 'user', :collection => @users %>
+	</ul>
+</div>
+<%= render :partial => 'admin_links' %>

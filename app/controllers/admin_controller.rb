@@ -136,11 +136,23 @@ class AdminController < ApplicationController
   end
   
   def users
-    
+    @users = Person.find(:all)
+  end
+  
+  def edit_user
+    @user = Person.find(params[:id])
+    session[:user_id] = @user.id
+    redirect_to :controller => 'user', :action => 'edit'
+  end
+  
+  def destroy_user
+    Person.find(params[:id]).destroy
+    flash[:notice] = "You'll probably want to run cleanup now"
+    redirect_to :action => 'users'
   end
   
   def locations
-    
+    @locations = Location.find(:all)
   end
   
 end

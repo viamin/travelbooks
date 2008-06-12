@@ -1,5 +1,5 @@
-<%= link_to "Store Admin", :controller => 'sale_item', :action => 'list' %> |
-<%= link_to "Book Admin", :controller => 'admin', :action => 'books' %> |
-<%= link_to "Location Admin", :controller => 'admin', :action => 'locations' %> |
-<%= link_to "User Admin", :controller => 'admin', :action => 'users' %> |
-<%= link_to "Cleanup", :controller => 'admin', :action => 'cleanup' %> 
+<%= link_to_unless_current "Store Admin", :controller => 'sale_item', :action => 'list' %> |
+<%= link_to_unless_current "Book Admin", :controller => 'admin', :action => 'books' %> |
+<%= link_to_unless_current "Location Admin", :controller => 'admin', :action => 'locations' %> |
+<%= link_to_unless_current "User Admin", :controller => 'admin', :action => 'users' %> |
+<%= link_to_unless_current "Cleanup", :controller => 'admin', :action => 'cleanup' %> 

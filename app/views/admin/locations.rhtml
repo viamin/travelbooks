@@ -1,0 +1,8 @@
+<h1>Location Admin</h1>
+<%= render :partial => 'admin_links' %>
+<div id="admloclst">
+	<ul id="along_list">
+		<%= render :partial => 'location/location_small', :collection => @locations %>
+	</ul>
+</div>
+<%= render :partial => 'admin_links' %>

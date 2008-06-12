@@ -198,7 +198,7 @@ class UserController < ApplicationController
           if @location.has_good_info? && @location.save!
             @person.changes.create( :location => @location, :person => @person, :effective_date => Time.now, :change_type => Change::PERSON_LOCATION, :new_value => @location.id.to_s)
           end
-          flash[:notice] = "Thank you for joining TravellerBook.com"
+          flash[:notice] = "Thank you for joining TravellerBook.com."
           UserMailer.deliver_welcome(@person)
           session[:user_id] = @person.id
           redirect_to :action => :home
@@ -207,7 +207,7 @@ class UserController < ApplicationController
           render :action => :join
         end
       else
-        flash[:notice] = "There was a problem creating your account"
+        flash[:notice] = "There was a problem creating your account. The address or location you entered is giving us problems."
         render :action => :join
       end
     end
