@@ -131,6 +131,12 @@ class AdminController < ApplicationController
     @locations.each do |location|
       
     end
+    # Clean up friends table - make sure everyone exists
+    @friends = Friend.find(:all)
+    @friends.each do |friend|
+      friend.destroy unless Person.find(:first, :conditions => {:id => friend.owner_person_id}).kind_of?(Person)
+      friend.destroy unless Person.find(:first, :conditions => {:id => friend.entry_person_id}).kind_of?(Person)
+    end
     flash[:notice] = "Cleaned up the database"
     redirect_to :action => 'index'
   end
