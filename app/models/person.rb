@@ -215,7 +215,7 @@ class Person < ActiveRecord::Base
   def current_location
     changes_list = self.changes.clone
     main_location = changes_list.delete_if {|change| change.change_type != Change::PERSON_MAIN_LOCATION }.sort { |x,y| x.effective_date <=> y.effective_date }.collect! {|c| Location.find(c.new_value) unless c.new_value.nil?}.last
-    if main_location.nil?
+    if (main_location.nil? || main_location.empty?)
       main_location = self.latest_location
     end
     main_location

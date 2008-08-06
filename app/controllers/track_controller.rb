@@ -57,7 +57,7 @@ class TrackController < ApplicationController
       @message << "<h3>Search Results</h3>\n"
       @message << "<ul class=\"results_list\">\n"
       @books.each do |book|
-      	@message << "\t<li><a href=\"/item/show/#{book.tbid}\">#{book.name}</a></li>\n"
+      	@message << "\t<li><a href=\"/item/show/#{book.id}\">#{book.name}</a></li>\n"
       end
       @message << "</ul>\n"
     end

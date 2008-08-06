@@ -121,7 +121,7 @@ class ItemController < ApplicationController
     @change.change_type = Change::OWNERSHIP
     @change.item = @item
     @change.old_value = @item.person_id
-    @change.new_value = session[:user_id]
+    @change.new_value = @person.id
     @change.effective_date = Time.now
     @change.save!
     @person.items << @item
@@ -133,11 +133,11 @@ class ItemController < ApplicationController
     @loc_change.person = @person
     @loc_change.item = @item
     @loc_change.old_value = @change.old_person.main_location unless @change.old_person.nil?
-    @loc_change.new_value = @person.main_location
+    @loc_change.new_value = @person.main_location.id
     @loc_change.effective_date = @change.effective_date
     @loc_change.save!
     session[:entered_tbid] = nil
-    if @person.is_friend?(@change.old_person)
+    if (@change.old_value.nil? || @person.is_friend?(@change.old_person))
       flash[:notice] = "The item (#{@item.name}) has been added to your library."
       redirect_to :action => 'home', :controller => 'user'
     end
