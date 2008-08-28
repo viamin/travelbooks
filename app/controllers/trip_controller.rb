@@ -45,7 +45,16 @@ class TripController < ApplicationController
   
   def update
     @person = Person.find(session[:user_id])
-    
+    @trip = Trip.find(params[:id])
+    timing @trip.pretty_inspect
+    if @trip.update_attributes(params[:trip])
+      flash[:notice] = 'Trip was successfully updated.'
+      redirect_to :action => 'edit', :id => @trip
+      return
+    else
+      render :action => 'edit', :id => @trip
+      return
+    end
   end
   
   def list
@@ -156,6 +165,16 @@ class TripController < ApplicationController
     @trip = @destination.trip
     @destination.destroy
     redirect_to :action => 'edit', :id => @trip
+  end
+  
+  def update_dest_loc
+    @destination = Destination.find(params[:destination_id])
+    @location = @destination.location
+    if @location.update_attributes(params[:location])
+      redirect_to :action => 'edit', :id => @destination.trip
+    else
+      render :action => 'edit_dest'
+    end
   end
   
 end

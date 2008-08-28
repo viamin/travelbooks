@@ -17,7 +17,7 @@ class Trip < ActiveRecord::Base
   has_many :destinations, :order => :position
   has_and_belongs_to_many :items
   validates_length_of :name, :maximum => 250, :message => "must be less than 250 characters please"
-  validates_length_of :companions, :maximum => 250, :message => "must be less than 250 characters please"
+#  validates_length_of :companions, :maximum => 250, :message => "must be less than 250 characters please"
   
   def initialize(*params)
     super(*params)

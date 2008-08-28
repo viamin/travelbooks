@@ -6,6 +6,7 @@
 	<% end %>
 	<% if @destination.has_location? %>
 		<% form_for 'location', @destination.location, :url => {:action => 'update_dest_loc', :id => @destination.location}, :html => {:class => 'gen_form'} do |f| %>
+			<%= hidden_field_tag 'destination_id', @destination.id %>
 			<%= render :partial => 'location/form', :object => @destination.location, :locals => {:f => f} %>
 			<label for="location_submit">&nbsp;</label><%= f.submit 'Update Location' %>
 		<% end %>

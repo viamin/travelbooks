@@ -131,7 +131,7 @@ class Location < ActiveRecord::Base
   end
   
   def city_state_zip
-    "#{self.city}, #{self.state} #{self.zip_code}"
+    "#{self.city}, #{self.state} #{self.zip_code} #{self.country}"
   end
   
   # This method will return true or false depending on if the new location information added
@@ -184,6 +184,10 @@ class Location < ActiveRecord::Base
       public_message = "This location is private"
     end
     public_message
+  end
+  
+  def empty?
+    false
   end
   
 end
