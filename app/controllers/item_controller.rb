@@ -1,5 +1,5 @@
 class ItemController < ApplicationController
-  before_filter :authorize
+  before_filter :authorize, :except => [:image]
   
   def index
     list

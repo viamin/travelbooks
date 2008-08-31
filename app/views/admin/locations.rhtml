@@ -2,7 +2,9 @@
 <%= render :partial => 'admin_links' %>
 <div id="admloclst">
 	<ul id="along_list">
-		<%= render :partial => 'location/location_small', :collection => @locations %>
+		<p class="spacer">&nbsp;</p>
+		<%= render :partial => 'location/location_small', :collection => @locations, :spacer_template => 'spacer' %>
+		<p class="spacer">&nbsp;</p>
 	</ul>
 </div>
 <%= render :partial => 'admin_links' %>

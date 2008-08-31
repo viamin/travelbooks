@@ -159,8 +159,7 @@ class UserController < ApplicationController
   end
   
   def logout
-    session[:user_id] = nil
-    session[:settled_in] = nil
+    reset_session
     redirect_to :controller => 'main', :action => 'index'
   end
   
