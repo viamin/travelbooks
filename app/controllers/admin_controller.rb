@@ -67,6 +67,9 @@ class AdminController < ApplicationController
   
   def update_book
     @item = Item.find(params[:item][:id])
+    @item.add_new_location_change = params[:item][:add_new_location_change]
+    params[:item].delete_if {|key, value| key == "add_new_location_change"}
+    timing params[:item].pretty_inspect
     if @item.update_attributes(params[:item])
       #flash[:notice] = 'Book was successfully updated.'
       redirect_to :action => 'books'
@@ -129,7 +132,23 @@ class AdminController < ApplicationController
     # next, find any locations that aren't referenced by changes, people, or anywhere else there is a location_id field
     @locations = Location.find(:all)
     @locations.each do |location|
-      
+      @location_info_changed = false
+      loc_check = location.used_anywhere?
+      timing "Will destroy Location #{location.description}" unless loc_check
+      location.destroy unless loc_check
+      person_array = Person.find(:all, :conditions => {:id => location.person_id})
+      if person_array.empty? && !location.person_id.nil?
+        location.person_id = nil
+        timing "Will remove person info from Location #{location.description}"
+        @location_info_changed = true
+      end
+      item_array = Item.find(:all, :conditions => {:id => location.item_id})
+      if item_array.empty? && !location.item_id.nil?
+        location.item_id = nil
+        timing "Will remove item info from Location #{location.description}"
+        @location_info_changed = true
+      end
+      location.save if @location_info_changed
     end
     # Clean up friends table - make sure everyone exists
     @friends = Friend.find(:all)
@@ -159,6 +178,13 @@ class AdminController < ApplicationController
   
   def locations
     @locations = Location.find(:all)
+  end
+  
+  def test_email
+    @person = Person.new
+    @person.email = "info@travellerbook.com"
+    UserMailer.deliver_welcome(@person)
+    redirect_to :action => 'index'
   end
   
 end

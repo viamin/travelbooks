@@ -33,3 +33,9 @@ ActionMailer::Base.smtp_settings = {
   :user_name => 'bart',
   :password => '13pzgx'
 }
+
+def timing(str)
+  time = Time.now
+  string = "[#{time.strftime "%H:%M:%S"}-#{ (time.usec / 1000).to_s.rjust(3,"0") }] #{str}"
+  RAILS_DEFAULT_LOGGER.info string
+end

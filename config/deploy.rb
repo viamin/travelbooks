@@ -82,5 +82,5 @@ end
 desc "Replace ActionMailer::Base with ActionMailer::ARMailer in Exception Notifier"
 deploy.task :use_ar_mailer, :roles => :web do
 #  run "sed -i .bak -E s/ActionMailer::Base/ActionMailer::ARMailer/g vendor/plugins/exception_notification/lib/exception_notifier.rb"
-  run "ar_sendmail -d -c #{application_root} -e production"
+  run "ar_sendmail --max-age 0 -d -c #{application_root} -e production"
 end

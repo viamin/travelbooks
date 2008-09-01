@@ -1,0 +1,8 @@
+<!--[div:location_small]-->
+<p><%= h(location_small.id.to_s + ":" + location_small.description)%></p>
+<p><%= h(location_small.address_line_1) %>
+<%= h(location_small.address_line_2) %><br />
+<%= h(location_small.city_state_zip) %></p>
+<p><%= h("Person: " + location_small.person.display_name) unless location_small.person.nil? %><br />
+	<%= h("Item: " + location_small.item.display_name) unless location_small.item.nil? %></p>
+<!--[eodiv:location_small]-->

@@ -152,7 +152,7 @@ class Item < ActiveRecord::Base
 #    timing "Changes list: #{changes_list.pretty_inspect}"
     location = changes_list.delete_if {|change| change.change_type != Change::ITEM_LOCATION }.sort { |x,y| x.effective_date <=> y.effective_date }.collect! {|c| Location.find(c.new_value)}.last
     if location.nil?
-#      timing "Using latest location"
+      timing "Using latest location"
       location = self.latest_location
     end
     location
@@ -165,6 +165,25 @@ class Item < ActiveRecord::Base
     all_locations.collect! {|c| Location.find(c.new_value)}
   end
   
+  def add_new_location_change
+    self.current_location.id
+  end
+  
+  def add_new_location_change=(new_location_id)
+    unless (new_location_id.nil? || (!self.current_location.nil? && new_location_id == self.current_location.id))
+      timing "Creating a new item change for Location id:#{new_location_id}"
+      @change = Change.new
+      @change.change_type = Change::ITEM_LOCATION
+      @change.item_id = self.id
+      @change.old_value = self.current_location.id unless self.current_location.nil?
+      @change.new_value = new_location_id
+      @change.effective_date = Time.now
+      @change.save
+      timing "Done creating new item change"
+    end
+    new_location_id
+  end
+  
   def before_save
     set_current_owner
     # Calculate mileage here
@@ -173,9 +192,9 @@ class Item < ActiveRecord::Base
   
   private
   def set_current_owner
-    changes = Change.find(:all, :conditions => {:change_type => [1,4], :item_id => self.id}, :order => "effective_date")
+    changes = Change.find(:all, :conditions => {:change_type => Change::OWNERSHIP, :item_id => self.id}, :order => "effective_date")
     latest_owner = changes.last.new_value unless changes.empty?
-    self.person_id = latest_owner
+    self.person_id = latest_owner unless changes.empty?
   end
   
 end

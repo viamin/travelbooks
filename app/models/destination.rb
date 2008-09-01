@@ -22,7 +22,7 @@ class Destination < ActiveRecord::Base
   validates_length_of :name, :maximum => 250
   
   def location
-    Location.find(self.location_id)
+    Location.find(:first, :conditions => {:id => self.location_id})
   end
   
   def location=(value)
@@ -30,7 +30,7 @@ class Destination < ActiveRecord::Base
   end
   
   def has_location?
-    if self.location_id
+    unless self.location_id.nil?
       return !(self.location.nil?)
     else
       return false

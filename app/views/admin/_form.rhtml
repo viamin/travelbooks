@@ -10,7 +10,10 @@
 <p><label for="item_description">Description</label><br/>
 <%= f.text_area 'description', :size => '40x5' %></p>
 
+<p><label for="item_add_new_location_change">Change Current Location</label><br/>
+<%= f.select 'add_new_location_change', Location.find(:all).collect {|l| [ "#{l.id}:#{l.description}", l.id ] }, :include_blank => true %></p>
+
 <p><label for="item_person_id">Current Owner</label><br/>
-<%= f.select 'person_id', Person.find(:all).collect {|p| [ p.display_name, p.id ] }, :include_blank => true %></p>
+<%= f.select 'person_id', Person.find(:all).collect {|p| [ "#{p.id}:#{p.display_name}", p.id ] }, :include_blank => true %></p>
 <!--[eoform:item]-->
 
