@@ -2,6 +2,8 @@
 
 <% form_for :location, @location, :url => {:action => 'update', :id => @location}, :html => {:id => 'loc_form'} do |f| %>
 	<%= render :partial => 'form', :locals => {:f => f} %>
+	<p><label for="location_move">Move current TravellerBooks to this location</label><%= check_box_tag "move", "yes", true %></p>
+	<br />
 	<%= f.submit %>
 <% end %>
 

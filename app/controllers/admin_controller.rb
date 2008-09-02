@@ -107,6 +107,9 @@ class AdminController < ApplicationController
   
   # This method will cleanup broken links. It will sweep through the changes table looking for stale entries and remove them. 
   def cleanup
+    # Actually first, remove any duplicates
+    Change.remove_duplicates
+    Location.remove_duplicates
     # First, find any changes that reference people or places that no longer exist
     @changes = Change.find(:all)
     @changes.each do |change|
@@ -156,6 +159,13 @@ class AdminController < ApplicationController
       friend.destroy unless Person.find(:first, :conditions => {:id => friend.owner_person_id}).kind_of?(Person)
       friend.destroy unless Person.find(:first, :conditions => {:id => friend.entry_person_id}).kind_of?(Person)
     end
+    # Clean up messages to and from users that don't exist
+    timing "Checking messages for valid senders and recipients"
+    @messages = Message.find(:all)
+    @messages.each do |message|
+      message.destroy unless Person.find(:first, :conditions => {:id => message.person_id}).kind_of?(Person)
+      message.destroy unless Person.find(:first, :conditions => {:id => message.sender}).kind_of?(Person)
+    end
     flash[:notice] = "Cleaned up the database"
     redirect_to :action => 'index'
   end
@@ -166,6 +176,7 @@ class AdminController < ApplicationController
   
   def edit_user
     @user = Person.find(params[:id])
+    reset_session
     session[:user_id] = @user.id
     redirect_to :controller => 'user', :action => 'edit'
   end
@@ -185,6 +196,22 @@ class AdminController < ApplicationController
     @person.email = "info@travellerbook.com"
     UserMailer.deliver_welcome(@person)
     redirect_to :action => 'index'
+  end
+  
+  def friends
+    @users = Person.find(:all)
+    @messages = Message.find(:all, :conditions => {:message_type => Message::FRIENDREQUEST})
+  end
+  
+  def mark_message
+    @message = Message.find(params[:message_id])
+    if params[:mark] == "unread"
+      @message.mark_unread!
+    end
+    if params[:mark] == "undelete"
+      @message.undelete!
+    end
+    redirect_to :action => 'friends'
   end
   
 end

@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 30
+# Schema version: 31
 #
 # Table name: destinations
 #
@@ -10,7 +10,7 @@
 #  location_id :integer         
 #  notes       :text            
 #  arrival     :datetime        
-#  departure   :datetime        # deprecating departure
+#  departure   :datetime        
 #  change_id   :integer         
 #
 

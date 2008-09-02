@@ -75,6 +75,12 @@ require 'action_mailer/ar_mailer'
 require 'rmagick'
 include Magick
 
+def timing(str)
+  time = Time.now
+  string = "[#{time.strftime "%H:%M:%S"}-#{ (time.usec / 1000).to_s.rjust(3,"0") }] #{str}"
+  RAILS_DEFAULT_LOGGER.info string unless ENV['RAILS_ENV'] == 'production'
+end
+
 # These defaults are used in GeoKit::Mappable.distance_to and in acts_as_mappable
 GeoKit::default_units = :miles
 GeoKit::default_formula = :sphere

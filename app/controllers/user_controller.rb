@@ -93,7 +93,7 @@ class UserController < ApplicationController
       redirect_to :action => 'login'
     else
       @new_messages = @person.messages.unread
-      flash[:notice] = "#{flash[:notice].concat('<br />') if flash[:notice]}You have #{@new_messages.length} new message#{"s" if @new_messages.length > 1} in your inbox." unless session[:settled_in] || @new_messages.empty?
+      flash[:notice] = "#{flash[:notice].concat('<br />') if flash[:notice]}You have #{@new_messages.length} new message#{"s" if @new_messages.length > 1} in your <a href=\"/message/list\">inbox</a>." unless session[:settled_in] || @new_messages.empty?
       @location = @person.current_location
       @locations = @person.all_locations
       @items = @person.items
@@ -253,7 +253,7 @@ class UserController < ApplicationController
     @person = Person.find(params[:id])
     @friend = Person.find(params[:friend_id])
     if params[:commit] == "Confirm"
-      flash[:notice] = "A message has been sent to #{@friend.display_name}."
+      flash[:notice] = "A message has been sent to <a href=\"/user/show/#{@friend.id}\">#{@friend.display_name}</a>."
       Message.send_request(@person, @friend)
     end
     redirect_to :action => 'show', :id => @friend.id
@@ -261,7 +261,7 @@ class UserController < ApplicationController
   
   def accept
     @message = Message.find(params[:message_id])
-    @message.accept_friendship(params[:commit])
+    flash[:notice] = "<a href=\"/user/show/#{@message.sender}\">#{@message.sender_p.display_name}</a> has been added to your <a href=\"/user/list/#{@message.person_id}\">friends</a>" if @message.accept_friendship(params[:acceptance])
     redirect_to :action => 'list', :controller => 'message'
   end
   

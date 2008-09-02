@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 30
+# Schema version: 31
 #
 # Table name: messages
 #
@@ -36,13 +36,12 @@ class Message < ActiveRecord::Base
     return (self.state | Message::READ) == self.state
   end
   
-  def mark_unread!
-    self.state = self.state | Message::READ
-    self.save!
-  end
-  
   def is_replied?
     return (self.state | Message::REPLIED) == self.state
+  end
+  
+  def is_rejected?
+    return (self.state | Message::FRIENDSHIPREJECTED) == self.state
   end
   
   def is_friend_request?
@@ -50,7 +49,12 @@ class Message < ActiveRecord::Base
   end
   
   def mark_replied!
-    self.state = self.state | Message::REPLIED
+    self.state = self.state - Message::REPLIED if self.is_replied?
+    self.save!
+  end
+  
+  def unreject
+    self.state = self.state - Message::FRIENDSHIPREJECTED if self.is_rejected?
     self.save!
   end
   
@@ -65,6 +69,23 @@ class Message < ActiveRecord::Base
     return state_array.join(", ")
   end
   
+  def admin_state_string
+    state_array = %w{ Unread }
+    if self.is_read?
+      state_array.delete "Unread"
+    end
+    if self.is_replied?
+      state_array << "Replied"
+    end
+    if self.is_deleted_by_sender?
+      state_array << "Deleted by Sender"
+    end
+    if self.is_deleted_by_recipient?
+      state_array << "Deleted by Recipient"
+    end
+    return state_array.join(", ")
+  end
+  
   def delete_by(deleter_id)
     if self.sender == deleter_id
       if (self.state | Message::DELETEDBYRECIPIENT) == Message::DELETEDBYRECIPIENT
@@ -72,6 +93,7 @@ class Message < ActiveRecord::Base
         self.delete
       else
         self.state = self.state | Message::DELETEDBYSENDER
+        self.state = self.state | Message::READ
         self.save
       end
     elsif self.person_id == deleter_id
@@ -79,9 +101,25 @@ class Message < ActiveRecord::Base
         self.delete
       else
         self.state = self.state | Message::DELETEDBYRECIPIENT
+        self.state = self.state | Message::READ
         self.save
       end
     end
+  end
+  
+  def is_deleted_by_recipient?
+    return (self.state | Message::DELETEDBYRECIPIENT) == self.state
+  end
+  
+  def is_deleted_by_sender?
+    return (self.state | Message::DELETEDBYSENDER) == self.state
+  end
+  
+  def undelete!
+    self.state = self.state - Message::DELETEDBYRECIPIENT if self.is_deleted_by_recipient?
+    self.unreject
+    self.mark_unread
+    self.save
   end
   
   def sender_p
@@ -102,7 +140,7 @@ class Message < ActiveRecord::Base
   
   def mark_unread
     self.date_read = nil
-    self.state = self.state - Message::READ unless (self.state | Message::READ) == Message::READ
+    self.state = self.state - Message::READ if self.is_read?
     self.save!
   end
   
@@ -124,11 +162,14 @@ class Message < ActiveRecord::Base
     if self.message_type == Message::FRIENDREQUEST && acceptance == "Accept"
       self.sender_p.add_friend(self.person_id)
       self.destroy
+      friend_added = true
     else # friendship was not accepted
       self.state = self.state | Message::FRIENDSHIPREJECTED
       self.save!
       self.delete_by(self.person_id)
+      friend_added = false
     end
+    return friend_added
   end
   
 end

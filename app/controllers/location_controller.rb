@@ -62,10 +62,21 @@ class LocationController < ApplicationController
     @person = Person.find(session[:user_id])
     if @location.used_elsewhere?
       timing "Location used elsewhere"
-      @new_location = Location.new(params[:location])
-      @person.swap_locations(@location, @new_location)
-      redirect_to :action => 'list'
-      return
+      @new_location = Location.create(params[:location])
+      if @location.is_identical_to?(@new_location, false) # false allows the description to change without creating a new location
+        @new_location.destroy
+        if @location.update_attributes(params[:location])
+          flash[:notice] = 'Location was successfully updated.'
+          redirect_to :action => 'list'
+          return
+        else
+          render :action => 'edit'
+          return
+        end
+      else
+        @person.swap_locations(@location, @new_location)
+        redirect_to :action => 'list'
+      end
     else
       if @location.update_attributes(params[:location])
         flash[:notice] = 'Location was successfully updated.'

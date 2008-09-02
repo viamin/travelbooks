@@ -1,0 +1,8 @@
+<h1>Message Admin</h1>
+<%= render :partial => 'admin_links' %>
+<div id="admfrlst">
+	<ul id="along_list">
+		<%= render :partial => 'messages', :collection => @messages %>
+	</ul>
+</div>
+<%= render :partial => 'admin_links' %>

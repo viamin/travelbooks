@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 30
+# Schema version: 31
 #
 # Table name: locations
 #
@@ -8,7 +8,6 @@
 #  loc_type       :integer         default(1)
 #  person_id      :integer         
 #  item_id        :integer         
-#  credit_card_id :integer         default(0)
 #  address_line_1 :string(255)     not null
 #  address_line_2 :string(255)     
 #  city           :string(255)     not null
@@ -27,7 +26,6 @@
 class Location < ActiveRecord::Base
   belongs_to :item
   belongs_to :person
-  belongs_to :credit_card
   has_many :changes
   validates_presence_of :country, :message => "must be selected"
   validates_length_of :description, :maximum => 250
@@ -58,12 +56,28 @@ class Location < ActiveRecord::Base
     end
   end
   
+  def before_save
+    # Geocode the address and save the lat/lng returned
+    @person = Person.find(self.person_id) unless self.person_id.nil?
+    loc = MultiGeocoder.geocode(self.address_to_geocode(@person))
+    if loc.success
+      self.lat = loc.lat
+      self.lng = loc.lng
+      self.zip_code = loc.zip unless loc.zip.nil?
+    end
+    #timing self.pretty_inspect
+  end
+  
   def person
     Person.find(self.person_id) unless self.person_id.nil?
   end
   
   def item
     Item.find(self.item_id) unless self.item_id.nil?
+  end
+  
+  def self.default
+    Location.new(SAMPLE_LOCATION)
   end
   
   # Determines if the location is used in more than one place. 
@@ -144,21 +158,74 @@ class Location < ActiveRecord::Base
   def is_different_than?(params_hash)
     #compare each item in params_hash against the data in self
     difference_count = 0
-    params_hash.each { |param, value| difference_count += 1 unless self.send(param).down_case.strip == value.down_case.strip }
-    return true if difference_count > DIFFERENCE_THRESHOLD
+    params_hash.delete_if{|c,v| c == "id"}.each { |param, value| difference_count += 1 unless (self.send(param).to_s.downcase.strip == value.to_s.downcase.strip) }
+    return true if difference_count >= DIFFERENCE_THRESHOLD
     return false
   end
   
-  def before_save
-    # Geocode the address and save the lat/lng returned
-    @person = Person.find(self.person_id) unless self.person_id.nil?
-    loc = MultiGeocoder.geocode(self.address_to_geocode(@person))
-    if loc.success
-      self.lat = loc.lat
-      self.lng = loc.lng
-      self.zip_code = loc.zip unless loc.zip.nil?
+  # Removes locations with the same address and GPS coordinates
+  def self.remove_duplicates
+    @locations = Location.find(:all, :order => :id)
+    @remaining_locations = @locations.dup
+    @same_as = Hash.new {|hash, key| hash[key] = Array.new}
+    @locations.each do |location|
+      @remaining_locations.delete(location)
+#      timing "#{location.id}: #{@remaining_locations.collect{|loc| loc.id}.pretty_inspect}"
+      @remaining_locations.each do |loc|
+        if ( (location.id != loc.id) && location.is_identical_to?(loc, true) )
+#          timing "Found identical locations"
+          @same_as[location.id] << loc
+        end
+      end
+      unless @same_as[location.id].empty?
+        @same_as[location.id].each {|loc| @remaining_locations.delete(loc)}
+        @same_as[location.id].collect!{|loc| loc.id}
+      end
     end
-    #timing self.pretty_inspect
+    @same_as = @same_as.delete_if {|k,v| v.empty?}
+#   timing "Duplicate locations: #{@same_as.pretty_inspect}"
+    @same_as.each do |original, duplicate|
+      # find all changes, references to duplicate, etc. and replace them with original
+      duplicate.each do |location|
+        changes1 = Change.find(:all, :conditions => {:new_value => location})
+        changes2 = Change.find(:all, :conditions => {:old_value => location})
+        changes3 = Change.find(:all, :conditions => {:location_id => location})
+        changes4 = Destination.find(:all, :conditions => {:location_id => location})
+        changes5 = Order.find(:all, :conditions => {:shipping_location_id => location})
+        changes6 = Photo.find(:all, :conditions => {:location_id => location})
+        changes7 = CreditCard.find(:all, :conditions => {:billing_address_location_id => location})
+#        all_changes = changes1 + changes2 + changes3 + changes4 + changes5 + changes6 + changes7
+#        timing all_changes.uniq.pretty_inspect
+        begin
+          changes1.each {|change| (change.new_value = original) && change.save!}
+          changes2.each {|change| (change.old_value = original) && change.save!}
+          changes3.each {|change| (change.location_id = original) && change.save!}
+          changes4.each {|change| (change.location_id = original) && change.save!}
+          changes5.each {|change| (change.shipping_location_id = original) && change.save!}
+          changes6.each {|change| (change.location_id = original) && change.save!}
+          changes7.each {|change| (change.billing_address_location_id = original) && change.save!}
+        end
+        timing "Deleting location #{location}"
+        Location.destroy(location)
+      end
+    end
+    @same_as
+  end
+  
+  # Checks for exact matches for removing duplicates (but ignore id column)
+  def is_identical_to?(location, exact = false)
+    difference_count = 0
+    if exact # if exact match, then check description column, otherwise ignore it
+      loc_hash = location.attributes.delete_if{|col, val| col == "id" || val.nil?}
+    else
+      loc_hash = location.attributes.delete_if{|col, val| col == "id" || col == "description" || val.nil?}
+    end
+    loc_hash.each { |column, value| difference_count += 1 unless self.send(column).to_s.strip == value.to_s.strip }
+    if difference_count >= DIFFERENCE_THRESHOLD
+      return false
+    else
+      return true
+    end
   end
   
   def address_to_geocode(person)

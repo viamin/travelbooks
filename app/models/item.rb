@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 30
+# Schema version: 31
 #
 # Table name: items
 #
@@ -27,13 +27,17 @@ class Item < ActiveRecord::Base
   validates_length_of :name, :maximum => 250
   has_many :locations, :through => :changes do
     def current(as_of = Time.now)
-      change = Change.find(:first, :conditions => ["change_type=? and effective_date<=?", Change::ITEM_LOCATION, as_of], :order => "effective_date DESC")
-      Location.find(change.new_value) unless change.nil?
+      change = Change.find(:first, :conditions => ["change_type=? and effective_date<=? and item_id=?", Change::ITEM_LOCATION, as_of, proxy_owner.id], :order => "effective_date DESC")
+      if change.nil?
+        Location.default
+      else
+        Location.find(change.new_value)
+      end
     end
-    def sorted(how="ASC")
-      @changes = Change.find(:all, :conditions => {:change_type => Change::ITEM_LOCATION}, :order => "effective_date #{how}")
-      proxy_owner.trips.each {|trip| trip.destinations.each {|d| @changes << Change.new({:new_value => d.location.id, :effective_date => d.arrival.to_date || Date.now}) if d.has_location? } } unless proxy_owner.trips.empty?
-      timing @changes.pretty_inspect
+    def sorted(how="ASC") 
+      @changes = Change.find(:all, :conditions => {:change_type => Change::ITEM_LOCATION, :item_id => proxy_owner.id}, :order => "effective_date #{how}")
+      proxy_owner.trips.each {|trip| trip.destinations.each {|d| @changes << Change.new({:new_value => d.location.id, :effective_date => (d.arrival.to_date || Date.now)}) if d.has_location? } } unless proxy_owner.trips.empty?
+#      timing @changes.pretty_inspect
       @changes.sort!{ |x,y| x.effective_date <=> y.effective_date } if @changes.length > 1
       @changes.collect!{ |c| Location.find(c.new_value)}
     end
@@ -166,7 +170,11 @@ class Item < ActiveRecord::Base
   end
   
   def add_new_location_change
-    self.current_location.id
+    if self.current_location.nil?
+      return nil
+    else
+      self.current_location.id
+    end
   end
   
   def add_new_location_change=(new_location_id)

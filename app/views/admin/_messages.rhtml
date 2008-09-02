@@ -1,0 +1,10 @@
+<li class="message_short">
+	<div class="body_short">
+		<span class="msg_state"><%= messages.admin_state_string %></span>
+		<p class="msg_info">From: <%= messages.sender_p.display_name %><br />
+			To: <%= messages.recipient_p.display_name %></p>
+		<p class="msg_subj">Subject: <%= messages.subject %></p>
+	</div>
+	<%= button_to("Mark Unread", {:action => 'mark_message', :controller => 'admin', :message_id => messages.id, :mark => "unread"}, {:method => :post}) if messages.is_read? %>
+	<%= button_to("Undelete", {:action => 'mark_message', :controller => 'admin', :message_id => messages.id, :mark => "undelete"}, {:method => :post}) if messages.is_deleted_by_recipient? %>
+</li>

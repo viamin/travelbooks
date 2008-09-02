@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 30
+# Schema version: 31
 #
 # Table name: friends
 #
@@ -22,7 +22,7 @@ class Friend < ActiveRecord::Base
       @sym_friend.owner_person_id = self.entry_person_id
       @sym_friend.entry_person_id = self.owner_person_id
       @sym_friend.permissions = self.permissions
-      @sym_friend.save
+      @sym_friend.save!
     end
   end
   

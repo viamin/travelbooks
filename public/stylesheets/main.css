@@ -884,7 +884,8 @@ div.progressBar div.background {
 /************ Admin section **************/
 .blink {
 	float: left;
-	border: 1px solid black;
+/*	border: 1px solid black; */
+	padding-right: 5px;
 }
 #along_list {
 	list-style: none;
@@ -899,4 +900,5 @@ div.progressBar div.background {
 .abook {
 	padding-bottom: 5px;
 	height: 50px;
+	list-style: none;
 }

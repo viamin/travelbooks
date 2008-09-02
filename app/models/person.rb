@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 30
+# Schema version: 31
 #
 # Table name: people
 #
@@ -251,7 +251,6 @@ class Person < ActiveRecord::Base
     all_location_changes = changes_list.delete_if {|change| ((change.change_type == Change::OWNERSHIP) || (change.change_type == Change::ITEM_LOCATION))}
     all_location_changes.each do |change|
       if change.new_value.to_s == old_location.id.to_s
-        new_location.save! # commit to database, since it hasn't been saved at this point
         change.new_value = new_location.id
         change.save!
       end
@@ -314,6 +313,7 @@ class Person < ActiveRecord::Base
   end
   
   def add_friend(friend_id)
+    timing "Adding friend for person ids #{self.id} and #{friend_id}"
     @friend = Friend.new
     @friend.owner_person_id = self.id
     @friend.entry_person_id = friend_id
