@@ -99,8 +99,17 @@ class Location < ActiveRecord::Base
     # check the changes table to see if this location is being used 
     # for more than one change, so really this should be called
     # used_in_more_than_one_place?
+    places_used = 0
     loc_changes = Change.find(:all, :conditions => {:new_value => self.id, :change_type => [Change::PERSON_LOCATION, Change::PERSON_MAIN_LOCATION]})
-    if loc_changes.length >= 1
+    places_used += loc_changes.length
+    # Ah, but also need to check people, items and destinations!
+    person_array = Person.find(:all, :conditions => {:id => self.person_id})
+    places_used += person_array.length
+    item_array = Item.find(:all, :conditions => {:id => self.item_id})
+    places_used += item_array.length
+    destination_array = Destination.find(:all, :conditions => {:location_id => self.id})
+    places_used += destination_array.length
+    if places_used >= 1
       retval = true
     else
       retval = false

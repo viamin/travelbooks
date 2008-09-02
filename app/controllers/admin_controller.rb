@@ -214,4 +214,8 @@ class AdminController < ApplicationController
     redirect_to :action => 'friends'
   end
   
+  def trips
+    @trips = Trip.find(:all)
+  end
+  
 end

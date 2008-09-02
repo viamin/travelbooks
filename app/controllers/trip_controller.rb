@@ -135,11 +135,11 @@ class TripController < ApplicationController
 #  	@map.control_init(:small => true)
 	  @points = get_points_for(@trip)
 	  @markers = get_markers_for(@trip)
-	  timing @markers.pretty_inspect
+#	  timing @markers.pretty_inspect
 	  @center = LatLonPoint.new(find_center(@points))
 	  @zoom = best_zoom(@points, @center, 227, 458) #227x458 is size of map on page
-	  timing @center.pretty_inspect
-	  timing @zoom.pretty_inspect
+#	  timing @center.pretty_inspect
+#	  timing @zoom.pretty_inspect
 #	  @map.center_zoom_init(@center, @zoom)
 	  @line = Polyline.new(@points, :width => 5, :color => COLORS[rand(6)], :opacity => 0.8)
 #	  @map.polyline_init(@line)
