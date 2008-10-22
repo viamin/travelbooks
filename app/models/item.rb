@@ -1,14 +1,14 @@
 # == Schema Information
-# Schema version: 31
+# Schema version: 34
 #
 # Table name: items
 #
 #  id          :integer         not null, primary key
-#  tbid        :string(255)     
+#  tbid        :string(255)
 #  name        :string(255)     not null
 #  description :text            not null
-#  person_id   :integer         
-#  created_on  :date            
+#  person_id   :integer
+#  created_on  :date
 #
 
 require 'digest/sha2'
@@ -16,11 +16,18 @@ require 'digest/sha2'
 class Item < ActiveRecord::Base
   has_many :changes
   belongs_to :person
+  has_many :statuses, :dependent => :destroy do 
+    def current(as_of = Time.now)
+      find :first, :order => "updated_at desc, created_at desc"
+    end
+  end
   has_many :photos do
     def main
       find(:first, :conditions => {:photo_type => [Photo::MAIN, Photo::ITEM]})
     end
   end
+  has_many :reviews
+  has_many :statistics
   has_and_belongs_to_many :trips
   validates_uniqueness_of :tbid
   validates_length_of :tbid, :maximum => 250

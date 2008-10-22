@@ -1,17 +1,17 @@
 # == Schema Information
-# Schema version: 31
+# Schema version: 34
 #
 # Table name: credit_cards
 #
 #  id                          :integer         not null, primary key
-#  person_id                   :integer         
+#  person_id                   :integer
 #  card_type                   :string(255)     not null
 #  name_on_card                :string(255)     not null
 #  card_number                 :string(255)     not null
-#  expiration_date             :date            
+#  expiration_date             :date
 #  ccv                         :string(255)     not null
-#  created_on                  :date            
-#  billing_address_location_id :integer         
+#  created_on                  :date
+#  billing_address_location_id :integer
 #
 
 --- 
@@ -20,6 +20,7 @@ credit_cards_001:
   created_on: 
   expiration_date: Sun Nov 30 00:00:00 -0800 2008
   card_type: Mastercard
+  billing_address_location_id: 
   id: "1"
   card_number: "4444"
   person_id: "1"

@@ -1,0 +1,17 @@
+# == Schema Information
+# Schema version: 34
+#
+# Table name: statistics
+#
+#  id            :integer         not null, primary key
+#  person_id     :integer
+#  item_id       :integer
+#  location_id   :integer
+#  stat_type     :integer
+#  key           :string(255)
+#  value         :string(255)
+#  related_stats :string(255)
+#
+
+--- {}
+

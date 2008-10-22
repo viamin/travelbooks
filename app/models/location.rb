@@ -1,32 +1,36 @@
 # == Schema Information
-# Schema version: 31
+# Schema version: 34
 #
 # Table name: locations
 #
 #  id             :integer         not null, primary key
 #  description    :string(255)     not null
 #  loc_type       :integer         default(1)
-#  person_id      :integer         
-#  item_id        :integer         
+#  person_id      :integer
+#  item_id        :integer
 #  address_line_1 :string(255)     not null
-#  address_line_2 :string(255)     
+#  address_line_2 :string(255)
 #  city           :string(255)     not null
 #  state          :string(255)     not null
 #  zip_code       :string(255)     not null
 #  country        :string(255)     not null
 #  altitude_feet  :integer         default(0)
-#  date_start     :datetime        
-#  date_end       :datetime        
-#  public         :boolean         
-#  lat            :float           
-#  lng            :float           
-#  icon           :string(255)     
+#  date_start     :datetime
+#  date_end       :datetime
+#  public         :boolean
+#  lat            :float
+#  lng            :float
+#  icon           :string(255)
+#  status_id      :integer
 #
 
 class Location < ActiveRecord::Base
   belongs_to :item
   belongs_to :person
+  belongs_to :status
   has_many :changes
+  has_many :reviews
+  has_many :statistics
   validates_presence_of :country, :message => "must be selected"
   validates_length_of :description, :maximum => 250
   validates_length_of :address_line_1, :maximum => 250
@@ -107,6 +111,8 @@ class Location < ActiveRecord::Base
     places_used += person_array.length
     item_array = Item.find(:all, :conditions => {:id => self.item_id})
     places_used += item_array.length
+    status_array = Status.find(:all, :conditions => {:id => self.status_id})
+    places_used += status_array.length
     destination_array = Destination.find(:all, :conditions => {:location_id => self.id})
     places_used += destination_array.length
     if places_used >= 1

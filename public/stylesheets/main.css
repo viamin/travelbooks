@@ -477,6 +477,7 @@ div.progressBar div.background {
 	width: 458px; 
 	height: 578px;
 	border: 1px solid #633c1f;
+	z-index: 1000;
 }
 .sfriend_image {
 	float: left;

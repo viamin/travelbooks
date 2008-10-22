@@ -302,11 +302,11 @@ class UserController < ApplicationController
     @trips = @person.trips
     @items_given = @person.items_given.length
     @items_received = @person.items_received.length
-    @countries_visited = 0
-    @countries_books_visited = 0
-    @miles_travelled = 0
-    @miles_books_given_travelled = 0
-    @miles_last_book = 0
+    @countries_visited = @person.statistics.countries_visited
+    @countries_books_visited = @person.statistics.countries_books_visited
+    @miles_travelled = @person.statistics.miles_travelled
+    @miles_books_given_travelled = @person.statistics.miles_books_given_travelled
+    @miles_last_book = @person.statistics.miles_last_book_recieved_travelled
   end
   
   def item_locations

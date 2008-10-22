@@ -1,14 +1,14 @@
 # == Schema Information
-# Schema version: 31
+# Schema version: 34
 #
 # Table name: emails
 #
 #  id                :integer         not null, primary key
-#  from              :string(255)     
-#  to                :string(255)     
+#  from              :string(255)
+#  to                :string(255)
 #  last_send_attempt :integer         default(0)
-#  mail              :text            
-#  created_on        :datetime        
+#  mail              :text
+#  created_on        :datetime
 #
 
 class Email < ActiveRecord::Base

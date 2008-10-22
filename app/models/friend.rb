@@ -1,12 +1,12 @@
 # == Schema Information
-# Schema version: 31
+# Schema version: 34
 #
 # Table name: friends
 #
 #  id              :integer         not null, primary key
-#  owner_person_id :integer         
-#  entry_person_id :integer         
-#  permissions     :integer         
+#  owner_person_id :integer
+#  entry_person_id :integer
+#  permissions     :integer
 #
 
 class Friend < ActiveRecord::Base

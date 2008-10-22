@@ -1,18 +1,18 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class ItemTest < Test::Unit::TestCase
+class ItemTest < ActiveSupport::TestCase
   fixtures :items, :people
 
   # Replace this with your real tests.
   def test_truth
-    assert_kind_of Item, items(:first)
+    assert_kind_of Item, items(:items_005)
   end
   
   def test_change_owners
-    item = Item.find(1)
-    new_owner = Person.find(2)
+    item = Item.find(15)
+    new_owner = Person.find(9)
     time = Time.now
-    item.change_owners(new_owner, time)
+    item.change_owner(new_owner, time)
     assert_equal(item.person, new_owner)
 #    assert_equal(item.changes.last.effective_date, Date.new(ParseDate.parsedate(time.to_s)))
   end
@@ -28,8 +28,8 @@ class ItemTest < Test::Unit::TestCase
   end
   
   def test_get_trail
-    item3 = Item.find(4)
-    item4 = Item.find(5)
+    item3 = Item.find(14)
+    item4 = Item.find(15)
     changes3 = item3.get_trail
     changes4 = item4.get_trail
     assert_equal(changes3.collect{ |change| change.person }, changes4.collect{|change| change.person})

@@ -1,10 +1,10 @@
 # == Schema Information
-# Schema version: 31
+# Schema version: 34
 #
 # Table name: data
 #
 #  id   :integer         not null, primary key
-#  data :binary          
+#  data :binary
 #
 
 class Datum < ActiveRecord::Base

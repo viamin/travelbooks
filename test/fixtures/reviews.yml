@@ -1,0 +1,18 @@
+# == Schema Information
+# Schema version: 34
+#
+# Table name: reviews
+#
+#  id          :integer         not null, primary key
+#  person_id   :integer
+#  review_type :integer
+#  reviewee_id :integer
+#  rating      :integer
+#  comments    :text
+#  flags       :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
+--- {}
+

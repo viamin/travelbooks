@@ -1,15 +1,15 @@
 # == Schema Information
-# Schema version: 31
+# Schema version: 34
 #
 # Table name: trips
 #
 #  id         :integer         not null, primary key
-#  name       :string(255)     
-#  person_id  :integer         
-#  start_date :date            
-#  end_date   :date            
-#  companions :string(255)     
-#  item_id    :integer         
+#  name       :string(255)
+#  person_id  :integer
+#  start_date :date
+#  end_date   :date
+#  companions :string(255)
+#  item_id    :integer
 #
 
 --- 
@@ -17,6 +17,31 @@ trips_001:
   name: Hawaii Vacation
   start_date: "2007-12-14"
   end_date: "2007-12-27"
+  item_id: 
   id: "1"
   companions: 
   person_id: "1"
+trips_002: 
+  name: Costa Rica Trip
+  start_date: "2003-07-09"
+  end_date: "2003-08-20"
+  item_id: 
+  id: "2"
+  companions: 
+  person_id: "1"
+trips_003: 
+  name: Test Trip to San Diego
+  start_date: "2008-04-30"
+  end_date: "2008-05-30"
+  item_id: 
+  id: "3"
+  companions: ""
+  person_id: "8"
+trips_004: 
+  name: India Vacation
+  start_date: "2008-09-02"
+  end_date: "2008-09-03"
+  item_id: 
+  id: "4"
+  companions: ""
+  person_id: "9"

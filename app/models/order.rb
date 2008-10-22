@@ -1,15 +1,15 @@
 # == Schema Information
-# Schema version: 31
+# Schema version: 34
 #
 # Table name: orders
 #
 #  id                   :integer         not null, primary key
-#  person_id            :integer         
-#  shipping_location_id :integer         
-#  created_on           :date            
-#  shipped_on           :date            
-#  paid_on              :date            
-#  status               :integer         
+#  person_id            :integer
+#  shipping_location_id :integer
+#  created_on           :date
+#  shipped_on           :date
+#  paid_on              :date
+#  status               :integer
 #
 
 class Order < ActiveRecord::Base

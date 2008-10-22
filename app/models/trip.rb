@@ -1,15 +1,15 @@
 # == Schema Information
-# Schema version: 31
+# Schema version: 34
 #
 # Table name: trips
 #
 #  id         :integer         not null, primary key
-#  name       :string(255)     
-#  person_id  :integer         
-#  start_date :date            
-#  end_date   :date            
-#  companions :string(255)     
-#  item_id    :integer         
+#  name       :string(255)
+#  person_id  :integer
+#  start_date :date
+#  end_date   :date
+#  companions :string(255)
+#  item_id    :integer
 #
 
 class Trip < ActiveRecord::Base

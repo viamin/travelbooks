@@ -17,3 +17,6 @@ config.action_controller.perform_caching             = false
 # The :test delivery method accumulates sent emails in the
 # ActionMailer::Base.deliveries array.
 config.action_mailer.delivery_method = :test
+
+# Person id of the "Nobody" user, where given away books stay
+NOBODY_USER = 5

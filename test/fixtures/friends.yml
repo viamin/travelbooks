@@ -1,12 +1,12 @@
 # == Schema Information
-# Schema version: 31
+# Schema version: 34
 #
 # Table name: friends
 #
 #  id              :integer         not null, primary key
-#  owner_person_id :integer         
-#  entry_person_id :integer         
-#  permissions     :integer         
+#  owner_person_id :integer
+#  entry_person_id :integer
+#  permissions     :integer
 #
 
 --- 
@@ -21,29 +21,34 @@ friends_006:
   entry_person_id: "4"
   permissions: "0"
 friends_007: 
-  owner_person_id: "6"
-  id: "7"
-  entry_person_id: "1"
-  permissions: "0"
-friends_008: 
-  owner_person_id: "1"
-  id: "8"
-  entry_person_id: "6"
-  permissions: "0"
-friends_009: 
-  owner_person_id: "6"
-  id: "9"
-  entry_person_id: "1"
-  permissions: "0"
-friends_010: 
   owner_person_id: "7"
   id: "10"
   entry_person_id: "1"
   permissions: "0"
-friends_011: 
+friends_008: 
   owner_person_id: "1"
   id: "11"
   entry_person_id: "7"
+  permissions: "0"
+friends_009: 
+  owner_person_id: "1"
+  id: "12"
+  entry_person_id: "9"
+  permissions: "0"
+friends_010: 
+  owner_person_id: "9"
+  id: "13"
+  entry_person_id: "1"
+  permissions: "0"
+friends_011: 
+  owner_person_id: "8"
+  id: "14"
+  entry_person_id: "1"
+  permissions: "0"
+friends_012: 
+  owner_person_id: "1"
+  id: "15"
+  entry_person_id: "8"
   permissions: "0"
 friends_001: 
   owner_person_id: "1"

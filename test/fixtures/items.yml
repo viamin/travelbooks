@@ -1,14 +1,14 @@
 # == Schema Information
-# Schema version: 31
+# Schema version: 34
 #
 # Table name: items
 #
 #  id          :integer         not null, primary key
-#  tbid        :string(255)     
+#  tbid        :string(255)
 #  name        :string(255)     not null
 #  description :text            not null
-#  person_id   :integer         
-#  created_on  :date            
+#  person_id   :integer
+#  created_on  :date
 #
 
 --- 
@@ -18,7 +18,7 @@ items_005:
   id: "14"
   description: A classic styled butterfly book with a leaf
   tbid: TB438A825F
-  person_id: 
+  person_id: "1"
 items_006: 
   name: Brown Alligator
   created_on: "2008-02-12"
@@ -32,7 +32,7 @@ items_007:
   id: "16"
   description: A hard cover book with a brown woven style
   tbid: TBD7D071C6
-  person_id: "1"
+  person_id: "9"
 items_008: 
   name: Contemporary Floral
   created_on: "2008-02-12"
@@ -60,6 +60,13 @@ items_011:
   id: "20"
   description: A hard cover book with an intricate brown design
   tbid: TBB3047EFE
+  person_id: 
+items_012: 
+  name: Leather Sunflower
+  created_on: "2008-03-14"
+  id: "21"
+  description: "A Nice dark brown leather book with a sunflower stamped on the cover. "
+  tbid: TB628265A0
   person_id: "1"
 items_001: 
   name: World Cup Leopard
@@ -68,6 +75,13 @@ items_001:
   description: A wood cover book with the special World Cup logo and Leopard print design
   tbid: TB20G070225LX482Y
   person_id: "3"
+items_013: 
+  name: New Book
+  created_on: "2008-08-30"
+  id: "22"
+  description: Test book for adding new users
+  tbid: TB556AE621
+  person_id: "9"
 items_002: 
   name: Green Leather
   created_on: "2007-02-26"

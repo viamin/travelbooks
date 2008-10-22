@@ -1,10 +1,11 @@
 # Filters added to this controller will be run for all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 class ApplicationController < ActionController::Base
+  include ExceptionNotifiable
   after_filter :after_action
   
   protected  
-
+=begin
     def log_error(exception) 
       super(exception)
 
@@ -21,7 +22,7 @@ class ApplicationController < ActionController::Base
         logger.error(e)
       end
     end
-    
+=end
   private
   
   def after_action

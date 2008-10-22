@@ -1,10 +1,10 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class SaleItemTest < Test::Unit::TestCase
+class SaleItemTest < ActiveSupport::TestCase
   fixtures :sale_items
 
   # Replace this with your real tests.
   def test_truth
-    assert_kind_of SaleItem, sale_items(:first)
+    assert_kind_of SaleItem, sale_items(:sale_items_001)
   end
 end

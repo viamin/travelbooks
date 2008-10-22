@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 31
+# Schema version: 34
 #
 # Table name: categories
 #
@@ -10,6 +10,10 @@
 
 --- 
 categories_001: 
-  name: test
+  name: TravellerBook
   id: "1"
-  description: this is a test
+  description: TravellerBooks for sale
+categories_002: 
+  name: T-shirt
+  id: "2"
+  description: T-shirts for sale

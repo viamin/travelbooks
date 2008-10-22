@@ -1,22 +1,81 @@
 # == Schema Information
-# Schema version: 31
+# Schema version: 34
 #
 # Table name: destinations
 #
 #  id          :integer         not null, primary key
-#  trip_id     :integer         
-#  name        :string(255)     
-#  position    :integer         
-#  location_id :integer         
-#  notes       :text            
-#  arrival     :datetime        
-#  departure   :datetime        
-#  change_id   :integer         
+#  trip_id     :integer
+#  name        :string(255)
+#  position    :integer
+#  location_id :integer
+#  notes       :text
+#  arrival     :datetime
+#  departure   :datetime
+#  change_id   :integer
 #
 
 --- 
+destinations_007: 
+  name: Leave for Manuel Antonio
+  id: "8"
+  location_id: "43"
+  notes: ""
+  arrival: 2003-08-11 14:41:00
+  position: "1"
+  departure: 
+  trip_id: "2"
+  change_id: 
+destinations_008: 
+  name: Surf in Mal Pais
+  id: "9"
+  location_id: "40"
+  notes: ""
+  arrival: 2003-08-16 14:45:00
+  position: "1"
+  departure: 
+  trip_id: "2"
+  change_id: 
+destinations_009: 
+  name: Leave for Alajuela
+  id: "10"
+  location_id: "41"
+  notes: ""
+  arrival: 2003-08-19 14:46:00
+  position: "1"
+  departure: 
+  trip_id: "2"
+  change_id: 
+destinations_010: 
+  name: Leaving Costa Rica
+  id: "11"
+  location_id: "42"
+  notes: ""
+  arrival: 2003-08-20 16:50:00
+  position: "1"
+  departure: 
+  trip_id: "2"
+  change_id: 
+destinations_011: 
+  name: Test dest
+  id: "15"
+  location_id: "31"
+  notes: ""
+  arrival: 2008-05-30 08:38:00
+  position: "1"
+  departure: 
+  trip_id: "3"
+  change_id: 
+destinations_012: 
+  name: Santa Barbara
+  id: "16"
+  location_id: "32"
+  notes: ""
+  arrival: 2008-05-30 08:56:00
+  position: "1"
+  departure: 
+  trip_id: "3"
+  change_id: 
 destinations_001: 
-  vacation_id: "1"
   name: Hale O Pua Lani Condo
   id: "1"
   location_id: "12"
@@ -24,8 +83,19 @@ destinations_001:
   arrival: 2007-12-14 17:00:00
   position: "1"
   departure: 2007-12-18 10:30:00
+  trip_id: "1"
+  change_id: 
+destinations_013: 
+  name: New Delhi
+  id: "17"
+  location_id: "44"
+  notes: ""
+  arrival: 2008-09-02 06:00:00
+  position: "1"
+  departure: 
+  trip_id: "4"
+  change_id: 
 destinations_002: 
-  vacation_id: "1"
   name: Nohonani Condo
   id: "2"
   location_id: "13"
@@ -33,3 +103,55 @@ destinations_002:
   arrival: 2007-12-18 16:00:00
   position: "1"
   departure: 2007-12-24 11:00:00
+  trip_id: "1"
+  change_id: 
+destinations_014: 
+  name: Goa
+  id: "18"
+  location_id: "45"
+  notes: ""
+  arrival: 2008-09-03 16:00:00
+  position: "1"
+  departure: 
+  trip_id: "4"
+  change_id: 
+destinations_003: 
+  name: Arrive San Jose
+  id: "4"
+  location_id: "36"
+  notes: ""
+  arrival: 2003-06-09 09:55:00
+  position: "1"
+  departure: 2008-03-09 14:36:00
+  trip_id: "2"
+  change_id: 
+destinations_004: 
+  name: Leave for Heredia
+  id: "5"
+  location_id: "37"
+  notes: ""
+  arrival: 2003-07-28 13:00:00
+  position: "1"
+  departure: 
+  trip_id: "2"
+  change_id: 
+destinations_005: 
+  name: Leave for Puerto Viejo
+  id: "6"
+  location_id: "38"
+  notes: ""
+  arrival: 2003-08-04 12:00:00
+  position: "1"
+  departure: 
+  trip_id: "2"
+  change_id: 
+destinations_006: 
+  name: Arrive in San Jose
+  id: "7"
+  location_id: "39"
+  notes: ""
+  arrival: 2003-08-08 12:00:00
+  position: "1"
+  departure: 
+  trip_id: "2"
+  change_id: 

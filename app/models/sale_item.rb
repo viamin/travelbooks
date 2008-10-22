@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 31
+# Schema version: 34
 #
 # Table name: sale_items
 #
@@ -10,12 +10,12 @@
 #  price             :float           default(0.0)
 #  for_sale          :string(255)     not null
 #  sale_price        :float           default(0.0)
-#  status            :integer         
-#  category_id       :integer         
-#  created_on        :date            
-#  updated_on        :date            
-#  sale_ends         :date            
-#  sale_begins       :date            
+#  status            :integer
+#  category_id       :integer
+#  created_on        :date
+#  updated_on        :date
+#  sale_ends         :date
+#  sale_begins       :date
 #
 
 class SaleItem < ActiveRecord::Base

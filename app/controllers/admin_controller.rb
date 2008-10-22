@@ -195,6 +195,7 @@ class AdminController < ApplicationController
     @person = Person.new
     @person.email = "info@travellerbook.com"
     UserMailer.deliver_welcome(@person)
+    flash[:notice] = "A test email has been sent to #{@person.email}"
     redirect_to :action => 'index'
   end
   

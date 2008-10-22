@@ -1,22 +1,22 @@
 # == Schema Information
-# Schema version: 31
+# Schema version: 34
 #
 # Table name: destinations
 #
 #  id          :integer         not null, primary key
-#  trip_id     :integer         
-#  name        :string(255)     
-#  position    :integer         
-#  location_id :integer         
-#  notes       :text            
-#  arrival     :datetime        
-#  departure   :datetime        
-#  change_id   :integer         
+#  trip_id     :integer
+#  name        :string(255)
+#  position    :integer
+#  location_id :integer
+#  notes       :text
+#  arrival     :datetime
+#  departure   :datetime
+#  change_id   :integer
 #
 
 class Destination < ActiveRecord::Base
   belongs_to :trip
-  has_one :change
+  belongs_to :change
   acts_as_list :scope => :trip
   validates_presence_of :name
   validates_length_of :name, :maximum => 250

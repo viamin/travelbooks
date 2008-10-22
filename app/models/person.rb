@@ -1,28 +1,54 @@
 # == Schema Information
-# Schema version: 31
+# Schema version: 34
 #
 # Table name: people
 #
 #  id              :integer         not null, primary key
 #  first_name      :string(255)     not null
-#  middle_name     :string(255)     
+#  middle_name     :string(255)
 #  last_name       :string(255)     not null
 #  email           :string(255)     not null
-#  hashed_password :text            
-#  created_on      :date            
-#  nickname        :string(255)     
-#  salt            :string(255)     
+#  hashed_password :text
+#  created_on      :date
+#  nickname        :string(255)
+#  salt            :string(255)
 #  privacy_flags   :integer         default(0)
-#  needs_reset     :boolean         
+#  needs_reset     :boolean
 #
 
 class Person < ActiveRecord::Base
   require "digest/sha2"
+  before_destroy :remove_all_messages
   has_many :changes
   has_many :locations, :through => :changes
   has_many :items
   has_many :trips
-  has_many :photos
+  has_many :orders
+  has_many :credit_cards, :dependent => :destroy
+  has_many :reviews
+  has_many :statistics, :dependent => :destroy do
+    def countries_visited
+      find(:first, :conditions => {:stat_type => Statistic::COUNTRIES_VISITED_COUNT}).count
+    end
+    def countries_books_visited
+      0
+    end
+    def miles_travelled
+      0
+    end
+    def miles_books_given_travelled
+      0
+    end
+    def miles_last_book_recieved_travelled
+      0
+    end
+  end
+  has_many :statuses, :dependent => :destroy do
+    def current(as_of = Time.now)
+      find :first, :order => "updated_at desc, created_at desc"
+    end
+  end
+  has_many :photos, :dependent => :nullify
   has_many :messages do
     def unread
       find(:all, :conditions => {:state => 0})
@@ -34,11 +60,9 @@ class Person < ActiveRecord::Base
       Message.find(:all, :conditions => ["sender=? and state|?!=? and message_type|?!=?", proxy_owner.id, Message::DELETEDBYSENDER, Message::DELETEDBYSENDER, Message::FRIENDREQUEST, Message::FRIENDREQUEST])
     end
   end
-  
   def sent_messages
     Message.find(:all, :conditions => {:sender => self.id}).delete_if {|m| (m.state == (m.state | Message::DELETEDBYSENDER) || (m.message_type == (m.message_type | Message::FRIENDREQUEST) ) ) }
   end
-  has_many :trips
   validates_uniqueness_of :email, :on => :create, :message => "There is already an account using that email address"
   validates_presence_of :email, :on => :create, :message => "can't be blank"
   validates_presence_of :nickname, :on => :create, :message => "can't be blank"
@@ -75,6 +99,7 @@ class Person < ActiveRecord::Base
       self.email = String.new if self.email.nil?
       self.password = String.new if self.password.nil?
       self.salt = Digest::SHA2.hexdigest(rand.to_s)[5..10]
+      self.location_resolution = "Full Address"
     end
   end
   
@@ -349,6 +374,10 @@ class Person < ActiveRecord::Base
   private
   def self.hash_password(password)
     main = Digest::SHA2.hexdigest(password)
+  end
+  
+  def remove_all_messages
+    self.messages.each {|message| message.delete_by(self.id)}
   end
 
 end

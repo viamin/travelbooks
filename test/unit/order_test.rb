@@ -1,10 +1,10 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class OrderTest < Test::Unit::TestCase
+class OrderTest < ActiveSupport::TestCase
   fixtures :orders
 
   # Replace this with your real tests.
   def test_truth
-    assert_kind_of Order, orders(:first)
+    assert_kind_of Order, orders(:orders_001)
   end
 end

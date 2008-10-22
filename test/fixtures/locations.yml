@@ -1,75 +1,55 @@
 # == Schema Information
-# Schema version: 31
+# Schema version: 34
 #
 # Table name: locations
 #
 #  id             :integer         not null, primary key
 #  description    :string(255)     not null
 #  loc_type       :integer         default(1)
-#  person_id      :integer         
-#  item_id        :integer         
+#  person_id      :integer
+#  item_id        :integer
 #  address_line_1 :string(255)     not null
-#  address_line_2 :string(255)     
+#  address_line_2 :string(255)
 #  city           :string(255)     not null
 #  state          :string(255)     not null
 #  zip_code       :string(255)     not null
 #  country        :string(255)     not null
 #  altitude_feet  :integer         default(0)
-#  date_start     :datetime        
-#  date_end       :datetime        
-#  public         :boolean         
-#  lat            :float           
-#  lng            :float           
-#  icon           :string(255)     
+#  date_start     :datetime
+#  date_end       :datetime
+#  public         :boolean
+#  lat            :float
+#  lng            :float
+#  icon           :string(255)
+#  status_id      :integer
 #
 
 --- 
+locations_014: 
+  item_id: 
+  city: Alajuela
+  public: 
+  icon: 
+  zip_code: ""
+  country: Costa Rica
+  altitude_feet: "0"
+  id: "41"
+  lng: "-84.438272"
+  description: Leave for Alajuela
+  address_line_1: ""
+  loc_type: "1"
+  address_line_2: ""
+  status_id: 
+  person_id: 
+  lat: "10.391583"
+  state: ""
+  date_start: 
+  date_end: 
 locations_003: 
-  item_id: 
-  city: Mulgrave
-  public: 
-  icon: 
-  credit_card_id: "0"
-  zip_code: "3170"
-  country: Australia
-  altitude_feet: "0"
-  id: "3"
-  lng: "145.165253"
-  description: Work Addess
-  address_line_1: L4, 690 Springvale Road
-  loc_type: "1"
-  address_line_2: ""
-  person_id: "3"
-  lat: "-37.921429"
-  state: ""
-  date_start: 
-  date_end: 
-locations_004: 
-  item_id: 
-  city: London
-  public: 
-  icon: 
-  credit_card_id: "0"
-  zip_code: W1F 8HT
-  country: United Kingdom
-  altitude_feet: "0"
-  id: "4"
-  lng: "-0.135286"
-  description: Work Address
-  address_line_1: 20 Broadwick St.
-  loc_type: "1"
-  address_line_2: ""
-  person_id: "4"
-  lat: "51.513803"
-  state: ""
-  date_start: 
-  date_end: 
-locations_005: 
   item_id: 
   city: Cupertino
   public: 
   icon: 
-  credit_card_id: "0"
   zip_code: 95014-2083
   country: United States
   altitude_feet: "0"
@@ -79,17 +59,37 @@ locations_005:
   address_line_1: 1 Infinite Loop
   loc_type: "1"
   address_line_2: ""
+  status_id: 
   person_id: 
   lat: "37.332315"
   state: CA
   date_start: 
   date_end: 
-locations_006: 
+locations_015: 
+  item_id: 
+  city: San Jose
+  public: 
+  icon: 
+  zip_code: ""
+  country: Costa Rica
+  altitude_feet: "0"
+  id: "42"
+  lng: "-84.078621"
+  description: Leaving Costa Rica
+  address_line_1: ""
+  loc_type: "1"
+  address_line_2: ""
+  status_id: 
+  person_id: 
+  lat: "9.93047"
+  state: ""
+  date_start: 
+  date_end: 
+locations_004: 
   item_id: 
   city: Melbourne
   public: 
   icon: 
-  credit_card_id: "0"
   zip_code: "3001"
   country: Australia
   altitude_feet: "0"
@@ -99,57 +99,37 @@ locations_006:
   address_line_1: GPO Box 1581P
   loc_type: "1"
   address_line_2: ""
+  status_id: 
   person_id: 
   lat: "-37.814251"
   state: Victoria
   date_start: 
   date_end: 
-locations_007: 
+locations_016: 
   item_id: 
-  city: Kailua Kona
+  city: Manuel Antonio
   public: 
   icon: 
-  credit_card_id: "0"
-  zip_code: "96740"
-  country: United States
+  zip_code: ""
+  country: Costa Rica
   altitude_feet: "0"
-  id: "12"
-  lng: "-155.97022"
-  description: Hale O Pua Lani Condo
-  address_line_1: 77-6548 Princess Keelikolani
+  id: "43"
+  lng: "-84.139313"
+  description: Leave for Manuel Antonio
+  address_line_1: ""
   loc_type: "1"
   address_line_2: ""
+  status_id: 
   person_id: 
-  lat: "19.588972"
-  state: HI
+  lat: "9.38324"
+  state: ""
   date_start: 
   date_end: 
-locations_008: 
-  item_id: 
-  city: Kaanapali
-  public: 
-  icon: 
-  credit_card_id: "0"
-  zip_code: 96761-9311
-  country: United States
-  altitude_feet: "0"
-  id: "13"
-  lng: "-156.68536"
-  description: Nohonani Condo
-  address_line_1: 3723 Lower Honoapiilani Rd
-  loc_type: "1"
-  address_line_2: ""
-  person_id: 
-  lat: "20.956671"
-  state: HI
-  date_start: 
-  date_end: 
-locations_009: 
+locations_005: 
   item_id: 
   city: Santa Cruz
   public: 
   icon: 
-  credit_card_id: "0"
   zip_code: 95060-3408
   country: United States
   altitude_feet: "0"
@@ -159,17 +139,37 @@ locations_009:
   address_line_1: "214 King St. #3"
   loc_type: "1"
   address_line_2: ""
+  status_id: 
   person_id: "5"
   lat: "36.975706"
   state: CA
   date_start: 
   date_end: 
-locations_010: 
+locations_017: 
+  item_id: 
+  city: New Delhi
+  public: 
+  icon: 
+  zip_code: ""
+  country: India
+  altitude_feet: "0"
+  id: "44"
+  lng: "81.33463"
+  description: New Delhi
+  address_line_1: ""
+  loc_type: "1"
+  address_line_2: ""
+  status_id: 
+  person_id: 
+  lat: "24.7338"
+  state: ""
+  date_start: 
+  date_end: 
+locations_006: 
   item_id: 
   city: Santa Clara
   public: 
   icon: 
-  credit_card_id: "0"
   zip_code: 95054-3586
   country: United States
   altitude_feet: "0"
@@ -179,17 +179,37 @@ locations_010:
   address_line_1: 4492 Lick Mill Blvd.
   loc_type: "1"
   address_line_2: ""
-  person_id: "6"
+  status_id: 
+  person_id: 
   lat: "37.398604"
   state: CA
   date_start: 
   date_end: 
-locations_011: 
+locations_018: 
+  item_id: 
+  city: Goa
+  public: 
+  icon: 
+  zip_code: ""
+  country: India
+  altitude_feet: "0"
+  id: "45"
+  lng: "74.013931"
+  description: Goa
+  address_line_1: ""
+  loc_type: "1"
+  address_line_2: ""
+  status_id: 
+  person_id: 
+  lat: "15.35023"
+  state: ""
+  date_start: 
+  date_end: 
+locations_007: 
   item_id: 
   city: Sunnyvale
   public: 
   icon: 
-  credit_card_id: "0"
   zip_code: "94086"
   country: United States
   altitude_feet: "0"
@@ -199,9 +219,110 @@ locations_011:
   address_line_1: 821 East California Ave.
   loc_type: "1"
   address_line_2: ""
+  status_id: 
   person_id: "7"
   lat: "37.379698"
   state: CA
+  date_start: 
+  date_end: 
+locations_008: 
+  item_id: 
+  city: Paris
+  public: 
+  icon: 
+  zip_code: ""
+  country: France
+  altitude_feet: "0"
+  id: "33"
+  lng: "2.34121"
+  description: ""
+  address_line_1: ""
+  loc_type: "1"
+  address_line_2: ""
+  status_id: 
+  person_id: "9"
+  lat: "48.856925"
+  state: ""
+  date_start: 
+  date_end: 
+locations_009: 
+  item_id: 
+  city: San Jose
+  public: 
+  icon: 
+  zip_code: ""
+  country: Costa Rica
+  altitude_feet: "0"
+  id: "36"
+  lng: "-84.078621"
+  description: Arrive San Jose
+  address_line_1: ""
+  loc_type: "1"
+  address_line_2: ""
+  status_id: 
+  person_id: 
+  lat: "9.93047"
+  state: ""
+  date_start: 
+  date_end: 
+locations_010: 
+  item_id: 
+  city: Heredia
+  public: 
+  icon: 
+  zip_code: ""
+  country: Costa Rica
+  altitude_feet: "0"
+  id: "37"
+  lng: "-84.016742"
+  description: Leave for Heredia
+  address_line_1: ""
+  loc_type: "1"
+  address_line_2: ""
+  status_id: 
+  person_id: 
+  lat: "10.473523"
+  state: ""
+  date_start: 
+  date_end: 
+locations_011: 
+  item_id: 
+  city: Puerto Viejo
+  public: 
+  icon: 
+  zip_code: ""
+  country: Costa Rica
+  altitude_feet: "0"
+  id: "38"
+  lng: "-82.749031"
+  description: Leave for Puerto Viejo
+  address_line_1: ""
+  loc_type: "1"
+  address_line_2: ""
+  status_id: 
+  person_id: 
+  lat: "9.64616"
+  state: ""
+  date_start: 
+  date_end: 
+locations_012: 
+  item_id: 
+  city: San Jose
+  public: 
+  icon: 
+  zip_code: ""
+  country: Costa Rica
+  altitude_feet: "0"
+  id: "39"
+  lng: "-84.078621"
+  description: Arrive in San Jose
+  address_line_1: ""
+  loc_type: "1"
+  address_line_2: ""
+  status_id: 
+  person_id: 
+  lat: "9.93047"
+  state: ""
   date_start: 
   date_end: 
 locations_001: 
@@ -209,7 +330,6 @@ locations_001:
   city: Santa Cruz
   public: 
   icon: 
-  credit_card_id: "0"
   zip_code: 95060-3408
   country: United States
   altitude_feet: "0"
@@ -219,28 +339,49 @@ locations_001:
   address_line_1: "214 King St. #3"
   loc_type: "1"
   address_line_2: ""
+  status_id: 
   person_id: "1"
   lat: "36.975706"
   state: California
   date_start: 
   date_end: 
-locations_002: 
+locations_013: 
   item_id: 
-  city: Encinitas
+  city: Mal Pais
   public: 
   icon: 
-  credit_card_id: "0"
-  zip_code: 92024-1459
-  country: United States
+  zip_code: ""
+  country: Costa Rica
   altitude_feet: "0"
-  id: "2"
-  lng: "-117.305574"
-  description: Kat House
-  address_line_1: 170 Phoebe St.
+  id: "40"
+  lng: "-85.150002"
+  description: Surf in Mal Pais
+  address_line_1: ""
   loc_type: "1"
-  address_line_2: Apt. 7
-  person_id: "2"
-  lat: "33.069163"
-  state: California
+  address_line_2: ""
+  status_id: 
+  person_id: 
+  lat: "9.6167"
+  state: ""
+  date_start: 
+  date_end: 
+locations_002: 
+  item_id: 
+  city: Mulgrave
+  public: 
+  icon: 
+  zip_code: "3170"
+  country: Australia
+  altitude_feet: "0"
+  id: "3"
+  lng: "145.158676"
+  description: Work Addess
+  address_line_1: L4, 690 Springvale Road
+  loc_type: "1"
+  address_line_2: ""
+  status_id: 
+  person_id: "3"
+  lat: "-37.920788"
+  state: ""
   date_start: 
   date_end: 

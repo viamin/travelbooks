@@ -1,20 +1,359 @@
 # == Schema Information
-# Schema version: 31
+# Schema version: 34
 #
 # Table name: emails
 #
 #  id                :integer         not null, primary key
-#  from              :string(255)     
-#  to                :string(255)     
+#  from              :string(255)
+#  to                :string(255)
 #  last_send_attempt :integer         default(0)
-#  mail              :text            
-#  created_on        :datetime        
+#  mail              :text
+#  created_on        :datetime
 #
 
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+--- 
+emails_010: 
+  created_on: 
+  from: do-not-reply@travellerbook.com
+  id: "10"
+  to: info@travellerbook.com
+  mail: |
+    Date: Sun, 31 Aug 2008 14:15:29 -0700
+    From: TravellerBooks <do-not-reply@travellerbook.com>
+    To: info@travellerbook.com
+    Subject: Welcome to TravellerBook.com
+    Mime-Version: 1.0
+    Content-Type: multipart/alternative; boundary=mimepart_48bb09f15ed91_296812b0ab0221
+    
+    
+    --mimepart_48bb09f15ed91_296812b0ab0221
+    Content-Type: text/plain; charset=utf-8
+    Content-Transfer-Encoding: Quoted-printable
+    Content-Disposition: inline
+    
+    Thank you for joining TravellerBook.com, a fun way to track the books and=
+     gifts you give to your friends.
+    
+    You can log in to TravellerBook.com using your email address (info@travel=
+    lerbook.com) and the password you entered when registering. If you forget=
+     your password, you can reset it by going to http://www.travellerbook.com=
+    /user/retrieve and entering your email address. =
+    
+    --mimepart_48bb09f15ed91_296812b0ab0221
+    Content-Type: text/html; charset=utf-8
+    Content-Transfer-Encoding: Quoted-printable
+    Content-Disposition: inline
+    
+    <p>Thank you for joining TravellerBook.com, a fun way to track the books =
+    and gifts you give to your friends.</p>
+    
+    <p>You can log in to TravellerBook.com by clicking this link: <a href=3D"=
+    http://www.travellerbook.com/user/login">TravellerBook.com Login Page</a>=
+     or by going to <a href=3D"http://www.TravellerBook.com">http://www.Trave=
+    llerBook.com</a> and entering your email address (info@travellerbook.com)=
+     and the password you entered when registering. If you forget your passwo=
+    rd, you can reset it by <a href=3D"http://www.travellerbook.com/user/retr=
+    ieve">clicking here</a> and entering your email address. </p> =
+    
+    --mimepart_48bb09f15ed91_296812b0ab0221--
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+  last_send_attempt: "0"
+emails_001: 
+  created_on: 
+  from: do-not-reply@travellerbook.com
+  id: "1"
+  to: bart@sonic.net
+  mail: |
+    Date: Wed, 28 May 2008 11:14:08 -0700
+    From: TravellerBooks <do-not-reply@travellerbook.com>
+    To: bart@sonic.net
+    Subject: Your TravellerBook.com password has been reset
+    Mime-Version: 1.0
+    Content-Type: text/plain; charset=utf-8
+    
+    <p>Hello, this email has been sent from TravellerBook.com regarding your user account. Your password has been reset. Your new, temporary password is "6dda19af3". Log in at http://www.TravellerBook.com with your email address (the one this message was sent to) and your temporary password. After you login next, you will be asked to change your password. </p>
+    
+    <p>You can log in by clicking this link: <a href="http://www.travellerbook.com/user/login">TravellerBook.com Login Page</a></p>
+    
+    <p>Thanks, and enjoy sending and tracking your TravellerBooks!</p>
+
+  last_send_attempt: "0"
+emails_002: 
+  created_on: 
+  from: do-not-reply@travellerbook.com
+  id: "2"
+  to: bart@sonic.net
+  mail: |
+    Date: Wed, 28 May 2008 11:16:56 -0700
+    From: TravellerBooks <do-not-reply@travellerbook.com>
+    To: bart@sonic.net
+    Subject: Your TravellerBook.com password has been reset
+    Mime-Version: 1.0
+    Content-Type: text/plain; charset=utf-8
+    
+    <p>Hello, this email has been sent from TravellerBook.com regarding your user account. Your password has been reset. Your new, temporary password is "cfaab6219". Log in at http://www.TravellerBook.com with your email address (the one this message was sent to) and your temporary password. After you login next, you will be asked to change your password. </p>
+    
+    <p>You can log in by clicking this link: <a href="http://www.travellerbook.com/user/login">TravellerBook.com Login Page</a></p>
+    
+    <p>Thanks, and enjoy sending and tracking your TravellerBooks!</p>
+
+  last_send_attempt: "0"
+emails_003: 
+  created_on: 
+  from: do-not-reply@travellerbook.com
+  id: "3"
+  to: bart@sonic.net
+  mail: |
+    Date: Wed, 28 May 2008 11:25:28 -0700
+    From: TravellerBooks <do-not-reply@travellerbook.com>
+    To: bart@sonic.net
+    Subject: Your TravellerBook.com password has been reset
+    Mime-Version: 1.0
+    Content-Type: text/plain; charset=utf-8
+    
+    <p>Hello, this email has been sent from TravellerBook.com regarding your user account. Your password has been reset. Your new, temporary password is "90eb04deb". Log in at http://www.TravellerBook.com with your email address (the one this message was sent to) and your temporary password. After you login next, you will be asked to change your password. </p>
+    
+    <p>You can log in by clicking this link: <a href="http://www.travellerbook.com/user/login">TravellerBook.com Login Page</a></p>
+    
+    <p>Thanks, and enjoy sending and tracking your TravellerBooks!</p>
+
+  last_send_attempt: "0"
+emails_004: 
+  created_on: 
+  from: do-not-reply@travellerbook.com
+  id: "4"
+  to: bart@sonic.net
+  mail: |
+    Date: Wed, 28 May 2008 17:34:25 -0700
+    From: TravellerBooks <do-not-reply@travellerbook.com>
+    To: bart@sonic.net
+    Subject: Your TravellerBook.com password has been reset
+    Mime-Version: 1.0
+    Content-Type: text/plain; charset=utf-8
+    
+    <p>Hello, this email has been sent from TravellerBook.com regarding your user account. Your password has been reset. Your new, temporary password is "72cb25e9e". Log in at http://www.TravellerBook.com with your email address (the one this message was sent to) and your temporary password. After you login next, you will be asked to change your password. </p>
+    
+    <p>You can log in by clicking this link: <a href="http://www.travellerbook.com/user/login">TravellerBook.com Login Page</a></p>
+    
+    <p>Thanks, and enjoy sending and tracking your TravellerBooks!</p>
+
+  last_send_attempt: "0"
+emails_005: 
+  created_on: 
+  from: do-not-reply@travellerbook.com
+  id: "5"
+  to: bart@sonic.net
+  mail: |
+    Date: Wed, 28 May 2008 17:40:13 -0700
+    From: TravellerBooks <do-not-reply@travellerbook.com>
+    To: bart@sonic.net
+    Subject: Your TravellerBook.com password has been reset
+    Mime-Version: 1.0
+    Content-Type: text/plain; charset=utf-8
+    
+    <p>Hello, this email has been sent from TravellerBook.com regarding your user account. Your password has been reset. Your new, temporary password is "81ccf36aa". Log in at http://www.TravellerBook.com with your email address (the one this message was sent to) and your temporary password. After you login next, you will be asked to change your password. </p>
+    
+    <p>You can log in by clicking this link: <a href="http://www.travellerbook.com/user/login">TravellerBook.com Login Page</a></p>
+    
+    <p>Thanks, and enjoy sending and tracking your TravellerBooks!</p>
+
+  last_send_attempt: "0"
+emails_006: 
+  created_on: 
+  from: do-not-reply@travellerbook.com
+  id: "6"
+  to: bagapinan@apple.com
+  mail: |
+    Date: Thu, 29 May 2008 10:20:33 -0700
+    From: TravellerBooks <do-not-reply@travellerbook.com>
+    To: bagapinan@apple.com
+    Subject: Your TravellerBook.com password has been reset
+    Mime-Version: 1.0
+    Content-Type: multipart/alternative; boundary=mimepart_483ee5e1e5606_13e117e7f02c
+    
+    
+    --mimepart_483ee5e1e5606_13e117e7f02c
+    Content-Type: text/plain; charset=utf-8
+    Content-Transfer-Encoding: Quoted-printable
+    Content-Disposition: inline
+    
+    Hello, this email has been sent from TravellerBook.com regarding your use=
+    r account. Your password has been reset. Your new, temporary password is =
+    "011bb937c". Log in at http://www.TravellerBook.com with your email addre=
+    ss (the one this message was sent to) and your temporary password (do not=
+     type the quotes). After you login, you will be asked to change your pass=
+    word.
+    
+    You can log in by going to http://www.travellerbook.com/user/login. =
+    
+    
+    Thanks, and enjoy sending and tracking your TravellerBooks!
+    
+    --mimepart_483ee5e1e5606_13e117e7f02c
+    Content-Type: text/html; charset=utf-8
+    Content-Transfer-Encoding: Quoted-printable
+    Content-Disposition: inline
+    
+    <p>Hello, this email has been sent from TravellerBook.com regarding your =
+    user account. Your password has been reset. Your new, temporary password =
+    is "011bb937c". Log in at http://www.TravellerBook.com with your email ad=
+    dress (the one this message was sent to) and your temporary password (do =
+    not type the quotes). After you login, you will be asked to change your p=
+    assword. </p>
+    
+    <p>You can log in by clicking this link: <a href=3D"http://www.travellerb=
+    ook.com/user/login">TravellerBook.com Login Page</a></p>
+    
+    <p>Thanks, and enjoy sending and tracking your TravellerBooks!</p>
+    
+    --mimepart_483ee5e1e5606_13e117e7f02c--
+
+  last_send_attempt: "0"
+emails_007: 
+  created_on: 
+  from: do-not-reply@travellerbook.com
+  id: "7"
+  to: bagapinan@apple.com
+  mail: |
+    Date: Thu, 29 May 2008 17:46:59 -0700
+    From: TravellerBooks <do-not-reply@travellerbook.com>
+    To: bagapinan@apple.com
+    Subject: Your TravellerBook.com password has been reset
+    Mime-Version: 1.0
+    Content-Type: multipart/alternative; boundary=mimepart_483f4e83b7e07_230117fb6e2da
+    
+    
+    --mimepart_483f4e83b7e07_230117fb6e2da
+    Content-Type: text/plain; charset=utf-8
+    Content-Transfer-Encoding: Quoted-printable
+    Content-Disposition: inline
+    
+    Hello, this email has been sent from TravellerBook.com regarding your use=
+    r account. Your password has been reset. Your new, temporary password is =
+    "dc3dff6ec". Log in at http://www.TravellerBook.com with your email addre=
+    ss (the one this message was sent to) and your temporary password (do not=
+     type the quotes). After you login, you will be asked to change your pass=
+    word.
+    
+    You can log in by going to http://www.travellerbook.com/user/login. =
+    
+    
+    Thanks, and enjoy sending and tracking your TravellerBooks!
+    
+    --mimepart_483f4e83b7e07_230117fb6e2da
+    Content-Type: text/html; charset=utf-8
+    Content-Transfer-Encoding: Quoted-printable
+    Content-Disposition: inline
+    
+    <p>Hello, this email has been sent from TravellerBook.com regarding your =
+    user account. Your password has been reset. Your new, temporary password =
+    is "dc3dff6ec". Log in at http://www.TravellerBook.com with your email ad=
+    dress (the one this message was sent to) and your temporary password (do =
+    not type the quotes). After you login, you will be asked to change your p=
+    assword. </p>
+    
+    <p>You can log in by clicking this link: <a href=3D"http://www.travellerb=
+    ook.com/user/login">TravellerBook.com Login Page</a></p>
+    
+    <p>Thanks, and enjoy sending and tracking your TravellerBooks!</p>
+    
+    --mimepart_483f4e83b7e07_230117fb6e2da--
+
+  last_send_attempt: "0"
+emails_008: 
+  created_on: 
+  from: do-not-reply@travellerbook.com
+  id: "8"
+  to: test1@newemail.com
+  mail: |
+    Date: Sat, 30 Aug 2008 23:37:31 -0700
+    From: TravellerBooks <do-not-reply@travellerbook.com>
+    To: test1@newemail.com
+    Subject: Welcome to TravellerBook.com
+    Mime-Version: 1.0
+    Content-Type: multipart/alternative; boundary=mimepart_48ba3c2bbd89e_279c11ae63a2db
+    
+    
+    --mimepart_48ba3c2bbd89e_279c11ae63a2db
+    Content-Type: text/plain; charset=utf-8
+    Content-Transfer-Encoding: Quoted-printable
+    Content-Disposition: inline
+    
+    Thank you for joining TravellerBook.com, a fun way to track the books and=
+     gifts you give to your friends.
+    
+    You can log in to TravellerBook.com using your email address (test1@newem=
+    ail.com) and the password you entered when registering. If you forget you=
+    r password, you can reset it by going to http://www.travellerbook.com/use=
+    r/retrieve and entering your email address. =
+    
+    --mimepart_48ba3c2bbd89e_279c11ae63a2db
+    Content-Type: text/html; charset=utf-8
+    Content-Transfer-Encoding: Quoted-printable
+    Content-Disposition: inline
+    
+    <p>Thank you for joining TravellerBook.com, a fun way to track the books =
+    and gifts you give to your friends.</p>
+    
+    <p>You can log in to TravellerBook.com by clicking this link: <a href=3D"=
+    http://www.travellerbook.com/user/login">TravellerBook.com Login Page</a>=
+     or by going to <a href=3D"http://www.TravellerBook.com">http://www.Trave=
+    llerBook.com</a> and entering your email address (test1@newemail.com) and=
+     the password you entered when registering. If you forget your password, =
+    you can reset it by <a href=3D"http://www.travellerbook.com/user/retrieve=
+    ">clicking here</a> and entering your email address. </p> =
+    
+    --mimepart_48ba3c2bbd89e_279c11ae63a2db--
+
+  last_send_attempt: "0"
+emails_009: 
+  created_on: 
+  from: do-not-reply@travellerbook.com
+  id: "9"
+  to: test1@newemail.com
+  mail: |
+    Date: Sat, 30 Aug 2008 23:47:39 -0700
+    From: TravellerBooks <do-not-reply@travellerbook.com>
+    To: test1@newemail.com
+    Subject: Your TravellerBook.com password has been reset
+    Mime-Version: 1.0
+    Content-Type: multipart/alternative; boundary=mimepart_48ba3e8c2e19_279c117af24427
+    
+    
+    --mimepart_48ba3e8c2e19_279c117af24427
+    Content-Type: text/plain; charset=utf-8
+    Content-Transfer-Encoding: Quoted-printable
+    Content-Disposition: inline
+    
+    Hello, this email has been sent from TravellerBook.com regarding your use=
+    r account. Your password has been reset. Your new, temporary password is =
+    "1e7c4e26e". Log in at http://www.TravellerBook.com with your email addre=
+    ss (the one this message was sent to) and your temporary password (do not=
+     type the quotes). After you login, you will be asked to change your pass=
+    word.
+    
+    You can log in by going to http://www.travellerbook.com/user/login. =
+    
+    
+    Thanks, and enjoy sending and tracking your TravellerBooks!
+    
+    --mimepart_48ba3e8c2e19_279c117af24427
+    Content-Type: text/html; charset=utf-8
+    Content-Transfer-Encoding: Quoted-printable
+    Content-Disposition: inline
+    
+    <p>Hello, this email has been sent from TravellerBook.com regarding your =
+    user account. Your password has been reset. Your new, temporary password =
+    is "1e7c4e26e". Log in at http://www.TravellerBook.com with your email ad=
+    dress (the one this message was sent to) and your temporary password (do =
+    not type the quotes). After you login, you will be asked to change your p=
+    assword. </p>
+    
+    <p>You can log in by clicking this link: <a href=3D"http://www.travellerb=
+    ook.com/user/login">TravellerBook.com Login Page</a></p>
+    
+    <p>Thanks, and enjoy sending and tracking your TravellerBooks!</p>
+    
+    --mimepart_48ba3e8c2e19_279c117af24427--
+
+  last_send_attempt: "0"

@@ -1,16 +1,16 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class PersonTest < Test::Unit::TestCase
+class PersonTest < ActiveSupport::TestCase
   fixtures :people, :locations
 
   # Replace this with your real tests.
   def test_truth
-    assert_kind_of Person, people(:first)
+    assert_kind_of Person, people(:people_007)
   end
   
   def test_id
-    assert people(:first).first_name == "Bart"
-    assert people(:first).id == 1
+    assert people(:people_001).first_name == "Bart"
+    assert people(:people_001).id == 1
   end
   
   def test_person
@@ -26,13 +26,7 @@ class PersonTest < Test::Unit::TestCase
     person.password = "rsh56w"
     person.email = "bart@sonic.net"
     assert_kind_of Person, Person.login(person.login, person.password)
-    assert Person.login(person.login, person.password) == Person.find(:first, ["id = ?", 1])
     assert Person.email_login(person.email, person.password) == Person.find(:first, ["id = ?", 1])
-  end
-  
-  def test_age
-    person = Person.find(1)
-    assert_equal(30, person.age)
   end
   
   def test_latest_location
