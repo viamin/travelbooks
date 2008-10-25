@@ -5,7 +5,7 @@ require 'item_controller'
 class ItemController; def rescue_action(e) raise e end; end
 
 class ItemControllerTest < Test::Unit::TestCase
-  fixtures :items
+  fixtures :items, :people
 
   def setup
     @controller = ItemController.new
@@ -16,13 +16,14 @@ class ItemControllerTest < Test::Unit::TestCase
   end
 
   def test_index
-    get :index
-    assert_response :success
-    assert_template 'list'
+    session_vals = {:user_id => people(:people_001).id}
+    get :index, {:id => people(:people_001).id}, session_vals
+    assert_redirected_to :action => 'list'
   end
 
   def test_list
-    get :list
+    session_vals = {:user_id => people(:people_001).id}
+    get :list, {:id => people(:people_001).id}, session_vals
 
     assert_response :success
     assert_template 'list'
@@ -31,7 +32,8 @@ class ItemControllerTest < Test::Unit::TestCase
   end
 
   def test_show
-    get :show, :id => @first_id
+    session_vals = {:user_id => people(:people_001).id}
+    get :show, {:id => @first_id}, session_vals
 
     assert_response :success
     assert_template 'show'
@@ -41,18 +43,18 @@ class ItemControllerTest < Test::Unit::TestCase
   end
 
   def test_new
-    get :new
+    session_vals = {:user_id => @first_id}
+    get :new, {}, session_vals
 
-    assert_response :success
-    assert_template 'new'
-
-    assert_not_nil assigns(:item)
+    assert_redirected_to :controller => 'user', :action => 'home'
   end
 
   def test_create
     num_items = Item.count
-
-    post :create, :item => {}
+    @item = Item.new
+    @item.generate_tbid_no_save
+    session_vals = {:user_id => people(:people_001).id}
+    post :create, {:item => {:tbid => @item.tbid}}, session_vals
 
     assert_response :redirect
     assert_redirected_to :action => 'list'
@@ -61,8 +63,9 @@ class ItemControllerTest < Test::Unit::TestCase
   end
 
   def test_edit
-    get :edit, :id => @first_id
-
+    session_vals = {:user_id => people(:people_001).id}
+    get :edit, {:id => @first_id}, session_vals
+    
     assert_response :success
     assert_template 'edit'
 
@@ -71,7 +74,8 @@ class ItemControllerTest < Test::Unit::TestCase
   end
 
   def test_update
-    post :update, :id => @first_id
+    session_vals = {:user_id => people(:people_001).id}
+    post :update, {:id => @first_id}, session_vals
     assert_response :redirect
     assert_redirected_to :action => 'show', :id => @first_id
   end
@@ -80,8 +84,8 @@ class ItemControllerTest < Test::Unit::TestCase
     assert_nothing_raised {
       Item.find(@first_id)
     }
-
-    post :destroy, :id => @first_id
+    session_vals = {:user_id => people(:people_001).id}
+    post :destroy, {:id => @first_id}, session_vals
     assert_response :redirect
     assert_redirected_to :action => 'list'
 

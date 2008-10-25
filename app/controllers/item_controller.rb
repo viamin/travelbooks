@@ -2,8 +2,7 @@ class ItemController < ApplicationController
   before_filter :authorize, :except => [:image]
   
   def index
-    list
-    render :action => 'list'
+    redirect_to :action => 'list'
   end
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
@@ -11,6 +10,10 @@ class ItemController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
+    if params[:id].blank?
+      redirect_to :controller => 'user', :action => 'home'
+      return
+    end
     @person = Person.find(params[:id])
     @location = @person.current_location
     @items = @person.all_items

@@ -101,7 +101,7 @@ class Item < ActiveRecord::Base
     self.person_id = new_owner.id
     self.changes << change
     change.save
-    self.save!
+    self.save
   end
   
   def change_location(new_owner, date = Time.now)

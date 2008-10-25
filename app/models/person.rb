@@ -28,7 +28,8 @@ class Person < ActiveRecord::Base
   has_many :reviews
   has_many :statistics, :dependent => :destroy do
     def countries_visited
-      find(:first, :conditions => {:stat_type => Statistic::COUNTRIES_VISITED_COUNT}).count
+      collection = find(:first, :conditions => {:stat_type => Statistic::COUNTRIES_VISITED_COUNT})
+      collection.nil? ? 0 : collection.count
     end
     def countries_books_visited
       0
@@ -126,6 +127,7 @@ class Person < ActiveRecord::Base
   end
   
   def after_save
+    timing "Clearing password"
     @password = nil
   end
   
@@ -171,7 +173,6 @@ class Person < ActiveRecord::Base
       arith = 0
     end
     self.privacy_flags = self.privacy_flags & (NOMESSAGES | NOTVISIBLEONITEMS | SHAREVACATIONS | arith)
-    self.save
   end
   
   def share_trips
@@ -184,7 +185,6 @@ class Person < ActiveRecord::Base
     else
       self.privacy_flags = self.privacy_flags - SHAREVACATIONS if self.share_trips
     end
-    self.save
   end
 
   def display_name

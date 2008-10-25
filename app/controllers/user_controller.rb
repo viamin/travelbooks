@@ -184,9 +184,11 @@ class UserController < ApplicationController
 
   def join
     if request.get?
+      timing "Path 1 (Request method: GET)"
       @person = Person.new
       @location = Location.new
     else
+      timing "Path 2 (Request method: POST)"
       @person = Person.new(params[:person])
       @location = Location.new(params[:location])
       @location.loc_type = 1

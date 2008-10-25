@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ItemTest < ActiveSupport::TestCase
-  fixtures :items, :people
+  fixtures :items, :people, :locations
 
   # Replace this with your real tests.
   def test_truth
@@ -9,10 +9,11 @@ class ItemTest < ActiveSupport::TestCase
   end
   
   def test_change_owners
-    item = Item.find(15)
-    new_owner = Person.find(9)
+    item = items(:items_006)
+    new_owner = people(:people_008)
     time = Time.now
     item.change_owner(new_owner, time)
+    item.reload
     assert_equal(item.person, new_owner)
 #    assert_equal(item.changes.last.effective_date, Date.new(ParseDate.parsedate(time.to_s)))
   end

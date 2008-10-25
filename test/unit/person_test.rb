@@ -25,24 +25,25 @@ class PersonTest < ActiveSupport::TestCase
     person = Person.new
     person.password = "rsh56w"
     person.email = "bart@sonic.net"
-    assert_kind_of Person, Person.login(person.login, person.password)
+    assert_kind_of Person, Person.email_login(person.email, person.password)
     assert Person.email_login(person.email, person.password) == Person.find(:first, ["id = ?", 1])
   end
   
   def test_latest_location
-    person = Person.find(2)
-    location1 = Location.find(2)
-    location2 = Location.find(1)
-    assert_equal(person.locations, [location1, location2])
+    person = Person.find(1)
+    location1 = Location.find(1)
+    location2 = Location.find(9)
+    assert_equal(person.all_locations, [location1, location2])
     assert_equal(person.latest_location, location2)
   end
   
   def test_change_location
     person = Person.find(1)
-    new_location = Location.find(2)
+    new_location = locations(:locations_014)
     date = Time.now
     person.change_location(new_location, date)
-    assert_equal(person.locations.find_all.last, new_location)
+    person.reload
+    assert_equal(person.all_locations.last, new_location)
 #    assert_equal(person.change.last.effective_date, date)
   end
   

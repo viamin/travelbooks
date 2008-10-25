@@ -107,10 +107,10 @@ class AdminController < ApplicationController
   
   # This method will cleanup broken links. It will sweep through the changes table looking for stale entries and remove them. 
   def cleanup
-    # Actually first, remove any duplicates
+    # first, remove any duplicates
     Change.remove_duplicates
     Location.remove_duplicates
-    # First, find any changes that reference people or places that no longer exist
+    # next, find any changes that reference people or places that no longer exist
     @changes = Change.find(:all)
     @changes.each do |change|
       case change.change_type
