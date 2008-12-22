@@ -1,3 +1,5 @@
+<div class="yui-gd">
+	<div class="yui-u first">
 <div id="user_box">
 	<div id="welcome_bar">Welcome, <%= @person.display_name %>!</div>
 	<div id="info_box">
@@ -21,13 +23,25 @@
 		</div>
 	</div>
 </div>
+
+	</div>
+	<div class="yui-u">
+		
 <div id="map_box">
 	<div id="map_bar">
 		<span class="header_title">My World</span>
-		<%= link_to_remote "Show Trips", :url => {:controller => 'user', :action => 'show_trips', :id => @person.id, :width => 456, :height => 207}, :html => {:class => 'right_rlink', :id => 'mvacation'} %>
+		<%= link_to_remote "Show Trips", :url => {:controller => 'user', :action => 'show_trips', :id => @person.id#, :width => 456, :height => 207
+			}, :html => {:class => 'right_rlink', :id => 'mvacation'} %>
 	</div>
-	<%= @map.div(:width => 456, :height => 207) %>
+	<%= @map.div#(:width => 456, :height => 207) 
+	%>
 </div>
+
+	</div>
+</div>
+<div class="yui-gd">
+	<div class="yui-u first">
+	
 <div id="book_box">
 	<div id="book_bar"><%= @list_all_items ? "All" : "My" %> TravellerBooks (<%= @items.length %>)<%= link_to (@list_all_items ? "Details" : "View All"), {:controller => 'item', :action => 'list', :id => @person.id}, {:class => 'left_rlink'} %></div>
 	<div id="book_list">
@@ -36,6 +50,10 @@
 		</ul>
 	</div>
 </div>
+	
+	</div>
+	<div class="yui-u">
+		
 <div id="friend_box">
 	<div id="friend_bar">My Friends (<%= @friends.length %>)<%= link_to "View All", {:controller => 'user', :action => 'list', :id => @person.id}, {:class => 'right_rlink'} %></div>
 	<div id="friend_list">
@@ -44,9 +62,18 @@
 		</ul>
 	</div>
 </div>
+
+	</div>
+</div>
+<div class="yui-g">
+	<div class="yui-u">
+
 <div id="stat_box">
 	<div id="stat_bar">My Traveller Stats</div>
 	<div id="stat_list">
 		<%= render_component :controller => 'user', :action => 'user_stats', :id => @person.id %>
+	</div>
+</div>
+	
 	</div>
 </div>

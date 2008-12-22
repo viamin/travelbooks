@@ -1,24 +1,31 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+       "http://www.w3.org/TR/html4/strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <title>TravellerBooks - <%= random_saying %></title>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/reset-fonts-grids/reset-fonts-grids.css"> 
   <%= stylesheet_link_tag 'main' %>
 <!--[if lte IE 6]>
 <script type="text/javascript" src="/javascripts/supersleight-min.js"></script>
 <![endif]-->
 </head>
 <body id="main">
-	<div id="main_stripe">
-		<%= render :partial => "main/titlebar" %>
-		<div id="linkbar">
-			<%= render :partial => "toplinks" %>
+	<div id="doc2">
+		<div id="hd">
+			<%= render :partial => "main/titlebar" %>
+			<div id="linkbar">
+				<%= render :partial => "toplinks" %>
+			</div>
 		</div>
-		<%= render(:partial => 'main/flash', :locals => {:flash => flash}) if flash[:notice] %>
-		<div id="cfl">
-			<%= @content_for_layout %>
+		<div id="bd">
+			<%= render(:partial => 'main/flash', :locals => {:flash => flash}) if flash[:notice] %>
+			<div id="cfl">
+				<%= @content_for_layout %>
+			</div>
+		</div>
+		<div id="ft">
 			<div id="footer">
 				<%= render :partial => 'main/footer' %>
 			</div>

@@ -37,8 +37,9 @@ def timing(str)
   RAILS_DEFAULT_LOGGER.info string unless ENV['RAILS_ENV'] == 'production'
 end
 
-ExceptionNotifier.exception_recipients = %w( support@travellerbook.com )
+ExceptionNotifier.exception_recipients = %w( support@travellerbook.com bart@sonic.net )
 ExceptionNotifier.sender_address = %("TravellerBook Application Error" <do-not-reply@travellerbook.com>)
+ExceptionNotifier.email_prefix = "[ERROR] "
 
 GeoKit::default_units = :miles
 GeoKit::default_formula = :sphere

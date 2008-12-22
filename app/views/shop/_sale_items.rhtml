@@ -1,5 +1,5 @@
 <tr>
-  <td><%= h(@sale_item.name) %></td>
-  <td><%= h(@sale_item.description) %></td>
-  <td><%= number_to_currency(@sale_item.price) %></td>
+  <td><%= link_to sale_items.name, {:action => 'show', :id => sale_items.id} %></td>
+  <td><%= h(sale_items.description) %></td>
+  <td><%= number_to_currency(sale_items.price) %></td>
 </tr>

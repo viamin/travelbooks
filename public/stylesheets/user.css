@@ -1,0 +1,268 @@
+/* --------------------- User home and show --------------- */
+/***** USER BOX *****/
+#user_box {
+/*	width: 280px; */
+	margin-bottom: 20px;
+}
+#welcome_bar {
+/*	width: 276px; */
+	padding-left: 4px;
+	background-image: url('/images/rndtop124.png');
+	background-repeat: repeat-x;
+	color: #ffd;
+}
+#info_box {
+	position: relative;
+/*	width: 274px; */
+	height: 203px;
+	padding: 2px;
+	border: 1px solid #633c1f;
+}
+#user_photo {
+	float: left;
+	margin-top: 5px;
+	margin-left: 5px;
+	width: 80px;
+	height: 120px;
+	z-index: 100;
+}
+#user_info {
+	float: left;
+}
+#user_info ul {
+	list-style: none;
+	padding: 0;
+	margin-left: 10px;
+}
+#edit_list {
+	clear: both;
+	position: relative;
+	left: -50px;
+	height: 63px;
+	width: 281px;
+	overflow: auto;
+}
+#edit_list ul {
+	list-style: none;
+	left: -60px;
+	top: -8px;
+}
+#edit_list ul li {
+	float: left;
+	padding-left: 10px;
+}
+#options_list {
+	list-style: none;
+}
+/****** MAP BOX *******/
+#map_box {
+/*	position: absolute; */
+	top: 20px;
+	height: 247px;
+/*	left: 320px;
+	width: 458px; */
+}
+#map_bar {
+/*	position: absolute;
+	width: 454px; */
+	padding-left: 4px;
+	background-image: url('/images/rndtop124.png');
+	background-repeat: repeat-x;
+	color: #ffd;
+}
+#user_map {
+/*	position: absolute; */
+/*	top: 19px; */
+	height: 207px;
+	border: 1px solid #633c1f;
+}
+/***** BOOK BOX *****/
+#book_box {
+	position: relative;
+/* 	width: 280px; */
+	height: 200px;
+	margin-bottom: 20px;
+}
+#book_bar {
+/*	width: 276px; */
+	padding-left: 4px;
+	background-image: url('/images/rndtop124.png');
+	background-repeat: repeat-x;
+	color: #ffd;
+}
+#book_list {
+	overflow: auto;
+	top: 0;
+/*	left: 0;
+	width: 278px; */
+	height: 180px;
+	border: 1px solid #622c1f;
+}
+.book_img {
+	display: block;
+}
+.book_caption {
+	display: block;
+	width: 80px;
+	text-align: center;
+	text-decoration: none;
+	color: #000;
+}
+#blist {
+	list-style: none;
+	width: 100%;
+	padding: 0;
+	margin-left: 0;
+}
+#blist img {
+	position: relative;
+	left: 22px;
+	border: 0;
+	width: 36px;
+	height: 50px;
+}
+#blist li {
+	height: 115px;
+	float: left;
+}
+/****** FRIEND BOX *****/
+#friend_box {
+	position: absolute;
+	top: 268px;
+/*	left: 320px;
+	width: 458px; */
+	height: 200px;
+}
+#friend_bar {
+/* 	width: 454px; */
+	padding-left: 4px;
+	background-image: url('/images/rndtop124.png');
+	background-repeat: repeat-x;
+	color: #ffd;
+}
+#friend_list {
+	overflow: auto;
+/*	width: 456px; */
+	height: 180px;
+	border: 1px solid #633c1f;
+}
+.friend_caption {
+	width: 80px;
+	text-align: center;
+	display: block;
+	text-decoration: none;
+	color: #000;
+}
+#flist {
+	list-style: none;
+	padding: 0;
+	margin-left: 20px;
+}
+#flist img {
+	border: 0;
+	width: 80px;
+	height: 120px;
+}
+#flist li {
+	height: 175px;
+	width: 100px;
+	float: left;
+}
+/***** STAT BOX *****/
+#stat_box {
+	position: relative;
+/*	width: 759px; */
+	height: 173px;
+	margin-bottom: 20px;
+}
+#stat_bar {
+/*	width: 755px; */
+	padding-left: 4px;
+	background-image: url('/images/rndtop124.png');
+	background-repeat: repeat-x;
+	color: #ffd;
+}
+#stat_list {
+	overflow: auto;
+	top: 0;
+/*	left: 0;
+	width: 757px; */
+	height: 153px;
+	border: 1px solid #633c1f;
+}
+#tb_stats {
+	float: left;
+	height: 150px;
+/*	width: 280px; */
+	overflow: auto;
+}
+#mileage {
+	float: left;
+	height: 150px;
+/*	width: 445px; */
+	overflow: auto;
+}
+.udl {
+	list-style: none;
+}
+/***** Friend and Book links *****/
+.header_title {
+/*	width: 180px; */
+}
+.right_rlink {
+/*	position: absolute; */
+	top: 4px;
+/*	left: 348px; */
+	color: #ffd;
+	text-decoration: none;
+	font-size: 12px;
+}
+.left_rlink {
+	position: absolute;
+	top: 4px;
+	margin-left: 55px;
+	color: #ffd;
+	text-decoration: none;
+	font-size: 12px;
+}
+/***** Friend List *****/
+#friend_list_box {
+	position: relative;
+	height: 580px;
+	padding: 0;
+	margin: 0;
+}
+#sflist {
+	overflow: auto;
+	height: 580px;
+/*	width: 300px; */
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+#sflist img {
+	border: 0;
+}
+#friend_map {
+/*	position: absolute;
+	left: 310px;
+	top: -580px; */
+	float: right;
+	margin-right: 5px;
+/*	width: 458px;  */
+	height: 578px;
+	border: 1px solid #633c1f;
+	z-index: 1000;
+}
+.sfriend_image {
+	float: left;
+}
+.sfriend_info {
+	display: block;
+	height: 120px;
+}
+.sfriend_address {
+	position: relative;
+	left: 20px;
+/*	width: 240px; */
+}

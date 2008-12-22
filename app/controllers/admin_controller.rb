@@ -199,6 +199,10 @@ class AdminController < ApplicationController
     redirect_to :action => 'index'
   end
   
+  def exception_email
+    nil.raise_exception
+  end
+  
   def friends
     @users = Person.find(:all)
     @messages = Message.find(:all, :conditions => {:message_type => Message::FRIENDREQUEST})

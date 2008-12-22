@@ -1,0 +1,21 @@
+/************ Admin section **************/
+.blink {
+	float: left;
+/*	border: 1px solid black; */
+	padding-right: 5px;
+}
+#along_list {
+	list-style: none;
+	border: 1px solid #98a1be;
+	padding: 0;
+}
+.spacer {
+	background: #98a1be;
+	padding: 5px;
+	margin: 5px;
+}
+.abook {
+	padding-bottom: 5px;
+	height: 50px;
+	list-style: none;
+}
