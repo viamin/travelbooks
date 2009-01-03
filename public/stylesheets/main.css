@@ -1,21 +1,11 @@
 html,body {
 	font-family: Optima, Trebuchet, Book Antiqua, verdana, arial, helvetica, sans-serif;
-	margin-top: 0;
-	margin-left: 52px;
-	margin-bottom: 0;
 	background: #394876;
 }
-h1, h2, h3 {
-	margin-left: 10px;
-	margin-right: 10px;
-}
-p, ol, ul, td {
-	font-family: Optima, Trebuchet, Book Antiqua, verdana, arial, helvetica, sans-serif;
-	font-size: 13px;
-	line-height: 18px;
-	margin-left: 20px;
-	margin-right: 20px;
-	padding-bottom: 5px;
+h1 {
+	font-size: 123.1%;
+	font-weight: bold;
+	margin-bottom: 1em;
 }
 img {
 	border: 0;
@@ -26,17 +16,25 @@ form {
 	padding-bottom: 20px;
 }
 #main_stripe {
-	position: relative;
+/*	position: relative;
 	left: -52px;
 	width: 800px;
-	background: #ffe7a5;
+	background: #ffe7a5; */
 }
-#cfl {
+/* #cfl { */
+#doc2 {
 	position: relative;
-	top: 35px;
-	padding-top: 20px;
-	padding-left: 20px;
-	background: #ffe7a5;
+	background: #ffe7a5; 
+}
+#hd {
+	padding-top: 1em;
+	padding-bottom: .5em;
+	margin-bottom: 1em;
+	background: #394876;
+}
+#bd {
+	padding-left: 1em;
+	padding-right: 1em;
 }
 #rsh {
 	width: 6px;
@@ -94,7 +92,14 @@ div.progressBar div.background {
   height: 18px;
   width: 0%;
 }
+.helpicon {
+	float: right;
+	clear: both;
+}
 /* ---------------- Layout styles ----------------*/
+.slider {
+	position: relative;
+}
 /***** Flash Box *****/
 #float_flash {
 	position: absolute;
@@ -104,14 +109,18 @@ div.progressBar div.background {
 	clear: none;
 }
 #float_bar {
+	position: relative;
 	width: 276px;
-	padding-left: 4px;
-	background: url('/images/rndtopyel.png');
+	padding-left: 1em;
+	padding-right: 1em;
+	background: url('/images/rndtopyel124.png');
+	background-repeat: repeat-x;
 }
 #float_box {
+	position: relative;
 	float: left;
 	width: 274px;
-	padding: 2px;
+	padding: 1em;
 	background: #fff;
 	border: 1px solid #633c1f;
 	color: green;
@@ -120,24 +129,55 @@ div.progressBar div.background {
 	position: relative;
 	color: #ffd;
 	text-decoration: none;
-	top: 2px;
-	left: 200px;
+	top: 3px;
+	float: right;
+}
+/***** Help Box *****/
+#help {
+	position: absolute;
+}
+#float_help {
+	left: 1em;
+	z-index: 10001;
+}
+#float_help_bar {
+	width: 526px;
+	padding-left: 1em;
+	padding-right: 1em;
+	background: url('/images/rndtop124.png');
+	background-repeat: repeat-x;
+	color: #ffd;
+}
+#float_help_box {
+	width: 524px;
+	padding: 1em;
+	background: #fff;
+	border: 1px solid #633c1f;
+}
+#help_text {
+	position: relative;
+}
+#hcl {
+	position: relative;
+	float: right;
+	color: #ffd;
+	text-decoration: none;
+	top: 3px;
 }
 /***** Title Bar *****/
 #smlogo {
 	position: absolute;
-	left: 10px;
-	top: 3px;
+	left: 2.25em;
+	top: .35em;
 }
 #titlebar {
 	font-family: Optima, Trebuchet, Book Antiqua, verdana, arial, helvetica, sans-serif;
-	display: block;
-	position:relative;
-	top: 20px;
-	left: 25px;
-	height: 66px;
-	width: 756px;
+/*	width: 756px; */
+	width: 100%;
+	height: 5em;
 	background: url('/images/topbar2.png');
+	background-repeat: no-repeat;
+	background-position: center center;
 }
 #titlebar a {
 	float: left;
@@ -146,38 +186,47 @@ div.progressBar div.background {
 	text-decoration: none;
 	text-align: center;
 	text-shadow: #3f2800 3px 3px 2px;
-	font-size: 36pt;
-	width: 756px;
+	font-size: 364%;
+	width: 100%;
+/*	width: 756px; */
 }
 #titlebar strong {
 	display: none;
 }
 /***** Link and Login Bar *****/
+.txinput {
+	font-family: Optima, Trebuchet, Book Antiqua, verdana, arial, helvetica, sans-serif;
+	font-size: 93%;
+	width: 100%;
+}
 #loginbox {
 	position: absolute;
-	left: 400px;
-	color: #ffd;
-	display: inline;
+	padding: 1em 1em 0 1em;
+	z-index: 10000;
+	top: 110px;
+	left: 200px;
+	clear: none;
+	width: 330px;
+	border: 1px solid black;
+	border-top: none;
+	background: #fff;
 }
 #loginbox label {
-	top: 3px;
-	padding-bottom: 3px;
-	font-size: 17px;
-	display: inline;
+	font-size: 131%;
 }
 #loginbox input {
 	position: relative;
+	margin-top: .5em;
 	top: -1px;
 }
-#lgnbut {
-	position: relative;
+#openidicon {
+	
+}
+.lgnbut {
 	font-family: Optima, Trebuchet, Book Antiqua, verdana, arial, helvetica, sans-serif;
-	top: -1px;
 }
 #linkbar {
-	position: relative;
-	padding: 3px 0;
-	top: 35px;
+	padding-top: .5em;
 	background: #394876;
 }
 #linkbar ul {
@@ -196,33 +245,33 @@ div.progressBar div.background {
 #linkbar ul li a {
 	display: inline;
 	text-decoration: none;
-	font-size: 17px;
+	font-size: 131%;
 	width: 100%;
 	color: #ffd;
+}
+#smlink {
+	font-size: 108%;
 }
 #ulog {
-	position: relative;
 	display: inline;
-	width: 100%;
-	left: 280px;
-	font-size: 14px;
+	font-size: 108%;
 	color: #ffd;
 }
-#ulog a {
-	font-size: 14px;
-	color: #ffd;
-}
-.openidicon {
-	float: right;
+.imgaligned {
+	padding-left: 1em;
+	position: relative;
+	top: -.25em;
 }
 /***** FOOTER *****/
+#ft {
+	margin-top: 1em;
+	padding-bottom: 1em;
+}
 #footer {
-	position: relative;
 	width: 100%;
 	text-align: center;
 }
 #footer_links {
-	height: 40px;
 	list-style: none;
 	display: block;
 }
@@ -231,7 +280,7 @@ div.progressBar div.background {
 	width: 180px;
 	padding-right: 5px;
 	padding-left: 5px;
-}
+} 
 
 /***** JOIN PAGE *****/
 #person_form label {

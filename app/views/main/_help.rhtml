@@ -1,0 +1,7 @@
+<div id="float_help" style="display:none;">
+	<div id="float_help_bar">Help
+		<%= link_to_function image_tag('/images/smlclose.png'), "Element.fade($('float_help'))", :id => 'hcl', :alt => 'Close Window' %>
+	</div>
+	<div id="float_help_box"><p id="help_text"><%= @help_text %></p></div>
+</div>
+<%= javascript_tag "new Draggable('float_help')" %>

@@ -223,4 +223,12 @@ class AdminController < ApplicationController
     @trips = Trip.find(:all)
   end
   
+  def flash_test
+    flash[:notice] = "Test of the flash. This is a test of a long flash message to see how it looks in the floating flash box."
+    redirect_to :action => 'index'
+  end
+  
+  def help_test
+  end
+  
 end

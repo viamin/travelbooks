@@ -1,10 +1,18 @@
-<div id="loginbox">
+<div id="loginbox" style="display:none;">
 	<% form_for :person, @person, :url => {:controller => 'user', :action => 'login'} do |f| %>
-	<label for="person_email">Email:</label>
-	<%= f.text_field :email, {:size => '11', :class => "txinput"} %>
-	<label for="person_password">Password:</label>
-	<%= f.password_field :password, {:size => '11', :class => "txinput"} %>
-	<%= submit_tag 'Login', {:id => 'lgnbut'} %>
+		<label for="person_email">Email:</label>
+		<%= f.text_field :email, {:class => "txinput"} %>
+		<label for="person_password">Password:</label>
+		<%= f.password_field :password, {:class => "txinput"} %>
+		<%= submit_tag 'Login', {:class => 'lgnbut'} %>
 	<% end -%>
-	<%= image_tag "openid_small_logo.png", :id => 'openidicon' %>
+	<div class="slider">
+	<%= image_tag "openid_small_logo.png", :id => 'openidicon' %><span class="imgaligned">Log in using your OpenID</span>
+	<%= link_to_remote image_tag("help.png", {:class => 'helpicon'}), :url => {:controller => 'help', :action => 'login'} %>
+	<% form_for :person, @person, :url => {:controller => 'user', :action => 'openidlogin'} do |f| %>
+		<label for="person_openid">OpenID URL:</label>
+		<%= f.text_field :open_id, {:class => "txinput"} %>
+		<%= submit_tag "OpenID Login", {:class => 'lgnbut'} %>
+	<% end -%>
+	</div>
 </div>

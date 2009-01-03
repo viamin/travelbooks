@@ -1,9 +1,9 @@
 <div id="float_flash">
 	<div id="float_bar">Notice
-		<%= link_to_function image_tag('/images/close.png'), "Element.toggle($('float_flash'))", :id => 'flcl' %>
+		<%= link_to_function image_tag('/images/smclose.png'), "Element.fade($('float_flash'))", :id => 'flcl' %>
 	</div>
 	<div id="float_box">
-		<p><%= flash[:notice] %>
+		<p><%= flash[:notice] %></p>
 	</div>
 </div>
 <%= javascript_tag "new Draggable('float_flash')" %>

@@ -1,30 +1,26 @@
 /* --------------------- User home and show --------------- */
 /***** USER BOX *****/
 #user_box {
-/*	width: 280px; */
 	margin-bottom: 20px;
 }
 #welcome_bar {
-/*	width: 276px; */
-	padding-left: 4px;
+	padding-left: 1em;
 	background-image: url('/images/rndtop124.png');
 	background-repeat: repeat-x;
 	color: #ffd;
 }
 #info_box {
 	position: relative;
-/*	width: 274px; */
-	height: 203px;
-	padding: 2px;
+	height: 181px;
+	padding: 1em;
 	border: 1px solid #633c1f;
 }
 #user_photo {
 	float: left;
-	margin-top: 5px;
-	margin-left: 5px;
 	width: 80px;
 	height: 120px;
 	z-index: 100;
+	margin-bottom: 1em;
 }
 #user_info {
 	float: left;
@@ -36,16 +32,10 @@
 }
 #edit_list {
 	clear: both;
-	position: relative;
-	left: -50px;
-	height: 63px;
-	width: 281px;
 	overflow: auto;
 }
 #edit_list ul {
 	list-style: none;
-	left: -60px;
-	top: -8px;
 }
 #edit_list ul li {
 	float: left;
@@ -56,36 +46,29 @@
 }
 /****** MAP BOX *******/
 #map_box {
-/*	position: absolute; */
 	top: 20px;
 	height: 247px;
-/*	left: 320px;
-	width: 458px; */
 }
 #map_bar {
-/*	position: absolute;
-	width: 454px; */
-	padding-left: 4px;
+	padding-left: 1em;
+	padding-right: 1em;
 	background-image: url('/images/rndtop124.png');
 	background-repeat: repeat-x;
 	color: #ffd;
 }
 #user_map {
-/*	position: absolute; */
-/*	top: 19px; */
 	height: 207px;
 	border: 1px solid #633c1f;
 }
 /***** BOOK BOX *****/
 #book_box {
 	position: relative;
-/* 	width: 280px; */
 	height: 200px;
 	margin-bottom: 20px;
 }
 #book_bar {
-/*	width: 276px; */
-	padding-left: 4px;
+	padding-left: 1em;
+	padding-right: 1em;
 	background-image: url('/images/rndtop124.png');
 	background-repeat: repeat-x;
 	color: #ffd;
@@ -93,10 +76,9 @@
 #book_list {
 	overflow: auto;
 	top: 0;
-/*	left: 0;
-	width: 278px; */
 	height: 180px;
 	border: 1px solid #622c1f;
+	padding-left: 1em;
 }
 .book_img {
 	display: block;
@@ -110,39 +92,32 @@
 }
 #blist {
 	list-style: none;
-	width: 100%;
-	padding: 0;
-	margin-left: 0;
+	padding-top: 1em;
 }
 #blist img {
 	position: relative;
-	left: 22px;
+	left: 1.7em;
 	border: 0;
 	width: 36px;
 	height: 50px;
 }
 #blist li {
-	height: 115px;
+	height: 115px; 
 	float: left;
 }
 /****** FRIEND BOX *****/
 #friend_box {
-	position: absolute;
-	top: 268px;
-/*	left: 320px;
-	width: 458px; */
 	height: 200px;
 }
 #friend_bar {
-/* 	width: 454px; */
-	padding-left: 4px;
+	padding-left: 1em;
+	padding-right: 1em;
 	background-image: url('/images/rndtop124.png');
 	background-repeat: repeat-x;
 	color: #ffd;
 }
 #friend_list {
 	overflow: auto;
-/*	width: 456px; */
 	height: 180px;
 	border: 1px solid #633c1f;
 }
@@ -155,8 +130,7 @@
 }
 #flist {
 	list-style: none;
-	padding: 0;
-	margin-left: 20px;
+	padding: 1em;
 }
 #flist img {
 	border: 0;
@@ -171,13 +145,11 @@
 /***** STAT BOX *****/
 #stat_box {
 	position: relative;
-/*	width: 759px; */
 	height: 173px;
-	margin-bottom: 20px;
 }
 #stat_bar {
-/*	width: 755px; */
-	padding-left: 4px;
+	padding-left: 1em;
+	padding-right: 1em;
 	background-image: url('/images/rndtop124.png');
 	background-repeat: repeat-x;
 	color: #ffd;
@@ -185,45 +157,39 @@
 #stat_list {
 	overflow: auto;
 	top: 0;
-/*	left: 0;
-	width: 757px; */
-	height: 153px;
+	height: 127px;
+	padding: 1em;
 	border: 1px solid #633c1f;
 }
 #tb_stats {
 	float: left;
-	height: 150px;
-/*	width: 280px; */
 	overflow: auto;
+	padding-right: 1em;
 }
 #mileage {
 	float: left;
-	height: 150px;
-/*	width: 445px; */
 	overflow: auto;
 }
 .udl {
 	list-style: none;
+	padding: 1em;
 }
 /***** Friend and Book links *****/
 .header_title {
-/*	width: 180px; */
 }
 .right_rlink {
-/*	position: absolute; */
-	top: 4px;
-/*	left: 348px; */
+	top: 5px;
+	float: right;
 	color: #ffd;
 	text-decoration: none;
-	font-size: 12px;
+	font-size: 93%;
 }
 .left_rlink {
-	position: absolute;
-	top: 4px;
-	margin-left: 55px;
+	top: 5px;
+	float: right;
 	color: #ffd;
 	text-decoration: none;
-	font-size: 12px;
+	font-size: 93%;
 }
 /***** Friend List *****/
 #friend_list_box {
@@ -235,7 +201,6 @@
 #sflist {
 	overflow: auto;
 	height: 580px;
-/*	width: 300px; */
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -244,12 +209,8 @@
 	border: 0;
 }
 #friend_map {
-/*	position: absolute;
-	left: 310px;
-	top: -580px; */
 	float: right;
 	margin-right: 5px;
-/*	width: 458px;  */
 	height: 578px;
 	border: 1px solid #633c1f;
 	z-index: 1000;
@@ -264,5 +225,4 @@
 .sfriend_address {
 	position: relative;
 	left: 20px;
-/*	width: 240px; */
 }

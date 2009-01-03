@@ -267,11 +267,6 @@ class UserController < ApplicationController
     redirect_to :action => 'list', :controller => 'message'
   end
   
-  def flash_test
-    flash[:notice] = "Test of the flash. This is a test of a long flash message to see how it looks in the floating flash box."
-    redirect_to :action => 'home'
-  end
-  
   def reset_password
     if params[:id].nil?
       @person = Person.find(session[:user_id])

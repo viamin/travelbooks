@@ -1,0 +1,5 @@
+@help_text = <<ENDHELP
+<p>Help content goes here.</p>
+ENDHELP
+page['help_text'].replace_html @help_text
+page['float_help'].appear
