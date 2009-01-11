@@ -49,7 +49,7 @@ class ItemController < ApplicationController
   	@points = @item.locations.sorted.collect{ |p| LatLonPoint.new([p.lat, p.lng])}
   	@line = Polyline.new(@points, :width => 5, :color => "#FF00AB", :opacity => 0.8)
   	@map.polyline_init(@line)
-  	render :layout => 'user'
+#  	render :layout => 'user'
   end
   
   def giveaway

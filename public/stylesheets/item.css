@@ -1,0 +1,41 @@
+/************** Item section **************/
+#item_list_box {
+/*	position: relative; 
+	height: 580px;
+	padding: 0;
+	margin: 0;*/
+}
+#book_info_box {
+/*	position: relative; 
+	width: 100%; 
+	padding: 0;
+	margin: 0;*/
+}
+#book_info {
+/*	width:280px;
+	height: 580px;
+	overflow: auto; */
+}
+#book_info ul {
+	list-style: none;
+/*	margin-left: 10px;*/
+}
+#book_info img {
+/*	width: 200px; */
+	width: 95%;
+}
+#owner_list img {
+/*	width: 50px;
+	height: auto;*/
+}
+#item_map {
+/*	position: absolute;
+	top: -580px;
+	left: 310px; 
+	float: right;
+	margin-right: 5px;
+	width: 458px;*/
+	height: 578px;
+	border: 1px solid #633c1f;
+	z-index: 1000;
+}

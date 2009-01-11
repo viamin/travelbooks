@@ -1,5 +1,5 @@
 @help_text = <<ENDHELP
-<p>Help content goes here.</p>
+<p>OpenID allows you to log in at many different sites without having to create a new user. You already have an OpenID if you have a Yahoo! email account, a Gmail account, an AOL account or a Windows Live account. You can find a complete list of OpenID providers at #{link_to "this link", "http://openid.net/get/", :popup => true}.</p>
 ENDHELP
 page['help_text'].replace_html @help_text
 page['float_help'].appear

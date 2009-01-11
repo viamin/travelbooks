@@ -1,10 +1,8 @@
 <h1><%= @item.name %></h1>
-<%= @map.div %>
-<div id="book_info_box">
-	<div id="book_info">
-		<p>
-			<img src='/item/image/<%= @item.id -%>' alt='<%= @item.name -%>'>
-		</p>
+
+<div class="yui-gd">
+	<div id="book_info" class="yui-u first">
+		<p><img src='/item/image/<%= @item.id -%>' alt='<%= @item.name -%>'></p>
 		<ul>
 			<li><%= @item.name %></li>
 			<li><%= @item.description %></li>
@@ -12,4 +10,5 @@
 		<%= @message unless @message.nil? %>
 		<%= render :partial => 'prev_owners', :object => @owners unless @owners.empty? %>
 	</div>
+	<%= @map.div :class => 'yui-u' %>
 </div>
