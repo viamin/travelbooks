@@ -1,10 +1,18 @@
 <li class="message_short">
-	<div class="body_short">
-		<%= image_tag "#{message_short.sender_p.main_photo.url}", :class => "msg_photo", :size => "80x120" %>
-		<%= render :partial => 'mail_tools', :object => message_short %>
-		<span class="msg_state"><%= message_short.state_string %></span>
-		<p class="msg_info">From: <%= message_short.sender_p.display_name %><br />
-			Sent <%= message_short.created_at.to_formatted_s(:long_ordinal) %></p>
+	<div class="body_short yui-gf">
+		<div class="yui-u first">
+			<%= image_tag "#{message_short.sender_p.main_photo.url}", :class => "msg_photo", :size => "80x120" %>
+		</div>
+		<div class="yui-g">
+			<div class="yui-u first">
+				<%= render :partial => 'mail_tools', :object => message_short %>
+				<span class="msg_state"><%= message_short.state_string %></span>
+			</div>				
+			<div class="yui-u">
+				<p class="msg_info">From: <%= message_short.sender_p.display_name %><br />
+					Sent <%= message_short.created_at.to_formatted_s(:long_ordinal) %></p>
+			</div>
+		</div>
 		<p class="msg_subj">Subject: <%= message_short.subject %></p>
 	</div>
 </li>

@@ -84,3 +84,16 @@ function updatePhoto(form, photo_id) {
 	book_id = form.elements[0].value;
 	photo.src = "/images/books/book" + book_id + ".jpg";
 }
+
+function clear_form() {
+	var box = document.getElementById('tbid');
+	if (box.value == "Enter TBook #") {
+		box.value = "";
+	}
+}
+function repop_form() {
+	var box = document.getElementById('tbid');
+	if (box.value == "") {
+		box.value = "Enter TBook #";
+	}
+}

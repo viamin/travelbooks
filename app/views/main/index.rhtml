@@ -7,145 +7,35 @@
 	<%= javascript_include_tag :defaults %>
 	<%= stylesheet_link_tag 'reset-fonts-grids' %>
 	<%= stylesheet_link_tag 'main' %>
+	<%= stylesheet_link_tag 'index' %>
     <title>Welcome to TravellerBook.com</title>
-	
-    <style type="text/css" media="screen">
-	html,body {
-		background: #633c1f;
-	}
-	#rbg {
-		position: absolute;
-		left: 1078px;
-		top: 0;
-		width: 6px;
-		height: 100%;
-	} 
-	#main_box {
-		position: relative;
-/*		top:140px;
-		left:50px; */
-		height:470px;
-		background: url('images/logo800.png');
-		background-position: center center;
-		background-repeat: no-repeat;
-	}
-	#main_box form {
-		position: absolute;
-	}
-	#fm_lbl {
-		font-family: Optima;
-		position: relative;
-		top: 320px;
-		left: 370px;
-	}
-	#tbid {
-		position: relative;
-		top: 325px;
-		left: 370px;
-		width: 180px;
-		color: #999;
-	}
-	#fmsub {
-		position: relative;
-		top: 330px;
-		left: 370px;
-	}
-	#aboutlk {
-		position: absolute;
-		display: block;
-		text-align: center;
-		text-decoration: none;
-		font-family: Optima;
-		font-size: xx-large;
-		color: black;
-		top: 173px;
-		left: 89px;
-		width: 120px;
-		height: 121px;
-		background: url('images/glbutte2sm.png');
-		text-shadow: #ffe7af 1px 1px 3px;
-	}
-	#booklk {
-		position: absolute;
-		display: block;
-		text-align: center;
-		text-decoration: none;
-		font-family: Optima;
-		font-size: xx-large;
-		color: black;
-		top: 173px;
-		left: 716px;
-		width: 120px;
-		height: 121px;
-		background: url('images/glbuttesm.png');
-		text-shadow: #ffe7af 1px 1px 3px;
-	}
-	#hd {
-		background: #633c1f;
-	}
-	#bd {
-		position: relative;
-	}
-	#ft {
-		border-left: 10px;
-		border-right: 10px;
-		padding-left: 10px;
-		padding-right: 10px;
-		background: #d7a47e;
-		border: 1px solid #633c1f;
-	}
-	#lgnbut {
-		position: relative;
-		font-family: Optima, Trebuchet, Book Antiqua, verdana, arial, helvetica, sans-serif;
-		top: -1px;
-	}
-	#linkbar {
-		background: #633c1f;
-	}
-    </style>
-	<script type="text/javascript">
-		function clear_form() {
-			var box = document.getElementById('tbid');
-			if (box.value == "Enter TBook #") {
-				box.value = "";
-			}
-		}
-		function repop_form() {
-			var box = document.getElementById('tbid');
-			if (box.value == "") {
-				box.value = "Enter TBook #";
-			}
-		}
-	</script>
   </head>
   <body id="main_index">
     <div id="doc2" class="yui-t7">
 		<div id="hd">
-			
-	  <div id="titlebar">
-		<%= link_to "TravellerBook.com", :action => 'index' %>
-	  </div>
-		<div id="linkbar">
-			<%= render :partial => "toplinks" %>
+			<div id="titlebar">
+				<%= link_to "TravellerBook.com", :action => 'index' %>
+			</div>
+			<div id="linkbar">
+				<%= render :partial => "toplinks" %>
+			</div>
 		</div>
-</div>
-	<div id="help"><%= render :partial => 'main/help' %></div>
-<div id="bd">
-	  <div id="main_box">
-		<%= link_to "<br />About", {:action => "about"}, {:id => "aboutlk"} %>
-		<%= form_tag :controller => "track", :action => "item" %>
-			<label for="tbid" id="fm_lbl">Search by TravellerBook Code:</label><br />
-			<%= text_field_tag "tbid", "Enter TBook #", {:size => "20", :onfocus => "clear_form();", :onblur => "repop_form();"} %><br />
-			<%= submit_tag "Submit", {:id => "fmsub"} %>
-		</form>
-		<%= link_to "<br />Join", {:controller => 'user', :action => 'join'}, {:id => "booklk"} %>
-	  </div>
-</div>
+		<div id="help"><%= render :partial => 'main/help' %></div>
+		<div id="bd">
+	  		<div id="main_box">
+				<%= link_to "<br />About", {:action => "about"}, {:id => "aboutlk"} %>
+				<%= form_tag :controller => "track", :action => "item" %>
+				<label for="tbid" id="fm_lbl">Search by TravellerBook Code:</label><br />
+				<%= text_field_tag "tbid", "Enter TBook #", {:size => "20", :onfocus => "clear_form();", :onblur => "repop_form();"} %><br />
+				<%= submit_tag "Submit", {:id => "fmsub"} %>
+				</form>
+				<%= link_to "<br />Join", {:controller => 'user', :action => 'join'}, {:id => "booklk"} %>
+	  		</div>
+		</div>
 
-	  <div id="ft">
-		<p>TravellerBook.com allows to you track the TravellerBook gifts you've given to friends, and see how those gifts have travelled, sometimes around the entire world!</p>
-	  </div>
+		<div id="ft">
+			<p>TravellerBook.com allows to you track the TravellerBook gifts you've given to friends, and see how those gifts have travelled, sometimes around the entire world!</p>
+		</div>
 	</div>
   </body>
-
 </html>

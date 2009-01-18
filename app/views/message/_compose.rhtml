@@ -3,8 +3,8 @@
 	<%= select_tag "message[person_id]", options_for_select(friends, recipient) %></p>
 
 <p><label for="message_subject">Subject</label>
-	<%= text_field_tag 'message[subject]', 'subject', :value => message.subject %></p>
+	<%= text_field_tag 'message[subject]', 'subject', :value => message.subject, :size => 75 %></p>
 	
-<p><%= text_area_tag 'message[body]', message.body, :cols => 40, :rows => 15 %></p>
+<p><%= text_area_tag 'message[body]', message.body, :cols => 120, :rows => 15 %></p>
 
 <!-- [eoform:compose] -->

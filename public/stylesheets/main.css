@@ -5,12 +5,12 @@ html,body {
 h1 {
 	font-size: 123.1%;
 	font-weight: bold;
-	margin-bottom: 1em;
+	padding-bottom: 1em;
 }
 h3 {
 	font-size: 138.5%;
 	font-weight: bold;
-	margin-bottom: 1em;
+	padding-bottom: 1em;
 }
 img {
 	border: 0;
@@ -20,13 +20,6 @@ img {
 form {
 	padding-bottom: 20px;
 }
-#main_stripe {
-/*	position: relative;
-	left: -52px;
-	width: 800px;
-	background: #ffe7a5; */
-}
-/* #cfl { */
 #doc2 {
 	position: relative;
 	background: #ffe7a5; 
@@ -41,10 +34,7 @@ form {
 	padding-left: 1em;
 	padding-right: 1em;
 }
-#rsh {
-	width: 6px;
-	z-index: 100;
-}
+
 pre {
 	background-color: #eee;
 	padding: 10px;
@@ -117,15 +107,21 @@ div.progressBar div.background {
 	padding-right: 1em;
 	background: url('/images/rndtopyel124.png');
 	background-repeat: repeat-x;
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
+	-webkit-box-shadow: 2px 2px 6px black;
 }
 #float_box {
 	position: relative;
 	float: left;
-	width: 274px;
+	width: 276px;
 	padding: 1em;
 	background: #fff;
-	border: 1px solid #633c1f;
+/*	border: 1px solid #633c1f; */
 	color: green;
+	-webkit-border-bottom-left-radius: 10px;
+	-webkit-border-bottom-right-radius: 10px;
+	-webkit-box-shadow: 2px 2px 6px black;
 }
 #flcl {
 	position: relative;
@@ -149,12 +145,18 @@ div.progressBar div.background {
 	background: url('/images/rndtop124.png');
 	background-repeat: repeat-x;
 	color: #ffd;
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
+	-webkit-box-shadow: 2px 2px 6px black;
 }
 #float_help_box {
-	width: 524px;
+	width: 526px;
 	padding: 1em;
 	background: #fff;
-	border: 1px solid #633c1f;
+/*	border: 1px solid #633c1f; */
+	-webkit-border-bottom-left-radius: 10px;
+	-webkit-border-bottom-right-radius: 10px;
+	-webkit-box-shadow: 2px 2px 6px black;
 }
 #help_text {
 	position: relative;
@@ -212,6 +214,8 @@ div.progressBar div.background {
 	border: 1px solid black;
 	border-top: none;
 	background: #fff;
+	-webkit-border-bottom-left-radius: 10px;
+	-webkit-border-bottom-right-radius: 10px;
 }
 #loginbox label {
 	font-size: 131%;
@@ -460,105 +464,6 @@ div.progressBar div.background {
 	float: left;
 	padding-right: 10px;
 }
-/************* Message Section **************/
-.message_short {
-	background: #98a1be;
-	padding: 5px;
-	margin: 5px;
-	width: 49%;
-}
-.message_short a {
-	text-decoration: none;
-	color: #000;
-}
-.body_short {
-	position: relative;
-}
-.msg_photo {
-	float: left;
-	margin-right: 10px;
-}
-.msg_link {
-	z-index: 1;
-}
-.mail_tools {
-	position: relative;
-	vertical-align: middle;
-}
-.mail_tools form {
-	float: left;
-	vertical-align: middle;
-	margin-top: 10px;
-}
-.msg_state {
-	float: left;
-	margin-top: 12px;
-	margin-left: 10px;
-}
-.msg_info {
-	float: left;
-}
-.msg_subj {
-	position: relative;
-	clear: both;
-	padding-top: 10px;
-}
-.message_tools form {
-	margin: 0;
-	padding: 0;
-}
-.end_button {
-	position: relative;
-	top: -22px;
-	left: 60px;
-}
-#message_area {
-/*	overflow: auto;
-	height: 520px;*/
-	position: relative;
-	left: -40px;
-	margin-top: 20px;
-}
-#message_list {
-	list-style: none;
-}
-.msg_subject {
-	font-weight: bold;
-}
-#message_body {
-	width: 90%;
-}
-#message_body pre {
-	font-family: Lucida, serif;
-}
-#mailbox_list {
-	width: 720px;
-	padding: 5px;
-}
-#mailbox_list li {
-	list-style: none;
-	float: left;
-	padding-left: 20px;
-	padding-right: 20px;
-	background: #98a1be;
-}
-#compose_form {
-	padding-top: 5px;
-}
-#show_message {
-	position: relative;
-	top: 20px;
-	left: 20px;
-}
-.msg_body {
-	background: #fff;
-	padding: 5px;
-}
-.sender_photo {
-	vertical-align: middle;
-	margin-left: 5px;
-	margin-right: 20px;
-}
 /************* Tracking section ***************/
 .results_list {
 	list-style: none;
@@ -638,4 +543,33 @@ div.progressBar div.background {
 }
 .gen_form p div {
 	float: left;
+}
+#sflist {
+	overflow: auto;
+	height: 580px;
+	list-style: none;
+	margin: 0;
+	padding: 0.5em;
+}
+#sflist li {
+	float: left;
+}
+#sflist img {
+	border: 0;
+}
+.sfi_li {
+	clear: both;
+	padding-top: 1em;
+}
+.sfriend_image {
+	float: left;
+}
+.sfriend_info {
+	float: left;
+/*	display: block; */
+	height: 120px;
+}
+.sfriend_address {
+/*	position: relative;
+	left: 20px;*/
 }

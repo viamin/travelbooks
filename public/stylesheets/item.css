@@ -4,6 +4,8 @@
 	height: 580px;
 	padding: 0;
 	margin: 0;*/
+	-webkit-box-shadow: 2px 2px 4px #633c1f;
+	background-color: #fff;
 }
 #book_info_box {
 /*	position: relative; 
@@ -12,9 +14,9 @@
 	margin: 0;*/
 }
 #book_info {
-/*	width:280px;
+/*	width:280px; */
 	height: 580px;
-	overflow: auto; */
+	overflow: auto;
 }
 #book_info ul {
 	list-style: none;
@@ -35,7 +37,8 @@
 	float: right;
 	margin-right: 5px;
 	width: 458px;*/
-	height: 578px;
-	border: 1px solid #633c1f;
+	height: 592px;
+/*	border: 1px solid #633c1f;*/
 	z-index: 1000;
+	-webkit-box-shadow: 2px 2px 4px #633c1f;
 }

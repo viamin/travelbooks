@@ -27,7 +27,6 @@ class ItemController < ApplicationController
   	  il = i.locations.current
   	  @map.marker_init(Marker.new([il.lat, il.lng], :info_bubble => i.name, :icon => "/images/ambericonsh.png"))
 	  end
-    render :layout => 'user'
   end
 
   def show

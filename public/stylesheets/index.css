@@ -1,0 +1,84 @@
+html,body {
+	background: #633c1f;
+}
+#hd {
+	background: #633c1f;
+}
+#ft {
+	border-left: 10px;
+	border-right: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	background: #d7a47e;
+	border: 1px solid #633c1f;
+}
+
+#rbg {
+	position: absolute;
+	left: 1078px;
+	top: 0;
+	width: 6px;
+	height: 100%;
+} 
+#main_box {
+	position: relative;
+	height:470px;
+	background: url('/images/logo800.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+#main_box form {
+	position: absolute;
+}
+#fm_lbl {
+	font-family: Optima;
+	position: relative;
+	top: 320px;
+	left: 370px;
+}
+#tbid {
+	position: relative;
+	top: 325px;
+	left: 370px;
+	width: 180px;
+	color: #999;
+}
+#fmsub {
+	position: relative;
+	top: 330px;
+	left: 370px;
+}
+#aboutlk {
+	position: absolute;
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	font-family: Optima;
+	font-size: xx-large;
+	color: black;
+	top: 173px;
+	left: 89px;
+	width: 120px;
+	height: 121px;
+	background: url('/images/glbutte2sm.png');
+	text-shadow: #ffe7af 1px 1px 3px;
+}
+#booklk {
+	position: absolute;
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	font-family: Optima;
+	font-size: xx-large;
+	color: black;
+	top: 173px;
+	left: 716px;
+	width: 120px;
+	height: 121px;
+	background: url('/images/glbuttesm.png');
+	text-shadow: #ffe7af 1px 1px 3px;
+}
+
+#linkbar {
+	background: #633c1f;
+}

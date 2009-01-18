@@ -172,4 +172,11 @@ class Message < ActiveRecord::Base
     return friend_added
   end
   
+  # Adds '>' characters in front of a reply
+  def reply_body(reply_to, sent_at)
+    # replace the line below with the body with '>' characters
+    body = self.body
+    "\n\n\n-----------------------\n#{reply_to} on #{sent_at} wrote:\n#{body}"
+  end
+  
 end

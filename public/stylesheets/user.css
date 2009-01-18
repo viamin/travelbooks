@@ -1,19 +1,26 @@
 /* --------------------- User home and show --------------- */
 /***** USER BOX *****/
 #user_box {
-	margin-bottom: 20px;
+	margin-bottom: 1em;
 }
 #welcome_bar {
 	padding-left: 1em;
 	background-image: url('/images/rndtop124.png');
 	background-repeat: repeat-x;
 	color: #ffd;
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
+	-webkit-box-shadow: 2px 2px 4px #633c1f;
 }
 #info_box {
-	position: relative;
-	height: 181px;
+/*	position: relative;
+	height: 181px; */
+	height: 154px;
 	padding: 1em;
 	border: 1px solid #633c1f;
+	-webkit-border-bottom-left-radius: 10px;
+	-webkit-border-bottom-right-radius: 10px;
+	-webkit-box-shadow: 2px 2px 4px #633c1f;
 }
 #user_photo {
 	float: left;
@@ -46,8 +53,8 @@
 }
 /****** MAP BOX *******/
 #map_box {
-	top: 20px;
-	height: 247px;
+/*	top: 20px;
+	height: 247px;*/
 }
 #map_bar {
 	padding-left: 1em;
@@ -55,16 +62,22 @@
 	background-image: url('/images/rndtop124.png');
 	background-repeat: repeat-x;
 	color: #ffd;
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
+	-webkit-box-shadow: 2px 2px 4px #633c1f;
 }
 #user_map {
-	height: 207px;
+	height: 446px;
 	border: 1px solid #633c1f;
+/*	-webkit-border-bottom-left-radius: 10px;
+	-webkit-border-bottom-right-radius: 10px;*/
+	-webkit-box-shadow: 2px 2px 4px #633c1f;
 }
 /***** BOOK BOX *****/
 #book_box {
-	position: relative;
+/*	position: relative;*/
 	height: 200px;
-	margin-bottom: 20px;
+	margin-bottom: 1em;
 }
 #book_bar {
 	padding-left: 1em;
@@ -72,13 +85,19 @@
 	background-image: url('/images/rndtop124.png');
 	background-repeat: repeat-x;
 	color: #ffd;
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
+	-webkit-box-shadow: 2px 2px 4px #633c1f;
 }
 #book_list {
 	overflow: auto;
-	top: 0;
+/*	top: 0; */
 	height: 180px;
 	border: 1px solid #622c1f;
 	padding-left: 1em;
+	-webkit-border-bottom-left-radius: 10px;
+/*	-webkit-border-bottom-right-radius: 10px;*/
+	-webkit-box-shadow: 2px 2px 4px #633c1f;
 }
 .book_img {
 	display: block;
@@ -115,11 +134,17 @@
 	background-image: url('/images/rndtop124.png');
 	background-repeat: repeat-x;
 	color: #ffd;
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
+	-webkit-box-shadow: 2px 2px 4px #633c1f;
 }
 #friend_list {
 	overflow: auto;
 	height: 180px;
 	border: 1px solid #633c1f;
+	-webkit-border-bottom-left-radius: 10px;
+	-webkit-border-bottom-right-radius: 10px;
+	-webkit-box-shadow: 2px 2px 4px #633c1f;
 }
 .friend_caption {
 	width: 80px;
@@ -144,8 +169,8 @@
 }
 /***** STAT BOX *****/
 #stat_box {
-	position: relative;
-	height: 173px;
+/*	position: relative; */
+/*	height: 220px;*/
 }
 #stat_bar {
 	padding-left: 1em;
@@ -153,13 +178,20 @@
 	background-image: url('/images/rndtop124.png');
 	background-repeat: repeat-x;
 	color: #ffd;
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
+	-webkit-box-shadow: 2px 2px 4px #633c1f;
 }
 #stat_list {
 	overflow: auto;
 	top: 0;
-	height: 127px;
-	padding: 1em;
+	height: 220px;
+	padding-left: 1em;
+	padding-top: 1em;
 	border: 1px solid #633c1f;
+	-webkit-border-bottom-left-radius: 10px;
+	-webkit-border-bottom-right-radius: 10px;
+	-webkit-box-shadow: 2px 2px 4px #633c1f;
 }
 #tb_stats {
 	float: left;
@@ -172,7 +204,8 @@
 }
 .udl {
 	list-style: none;
-	padding: 1em;
+	padding-left: 0.5em;
+	padding-bottom: 0.5em;
 }
 /***** Friend and Book links *****/
 .header_title {
@@ -193,36 +226,18 @@
 }
 /***** Friend List *****/
 #friend_list_box {
-	position: relative;
+/*	position: relative;
 	height: 580px;
 	padding: 0;
-	margin: 0;
-}
-#sflist {
-	overflow: auto;
-	height: 580px;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-#sflist img {
-	border: 0;
+	margin: 0;*/
+	background-color: #fff;
+	-webkit-box-shadow: 2px 2px 4px #633c1f;
 }
 #friend_map {
-	float: right;
-	margin-right: 5px;
-	height: 578px;
-	border: 1px solid #633c1f;
+/*	float: right;
+	margin-right: 5px;*/
+	height: 592px;
+/*	border: 1px solid #633c1f;*/
 	z-index: 1000;
-}
-.sfriend_image {
-	float: left;
-}
-.sfriend_info {
-	display: block;
-	height: 120px;
-}
-.sfriend_address {
-	position: relative;
-	left: 20px;
+	-webkit-box-shadow: 2px 2px 4px #633c1f;
 }

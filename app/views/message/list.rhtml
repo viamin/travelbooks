@@ -1,5 +1,6 @@
 <h1><%= @person.display_name %>'s Messages</h1>
 <%= render :partial => 'mail_actions' %>
+
 <div id="message_area">
 	<ul id="message_list">
 		<%= @messages.empty? ? "<li>No Messages</li>" : render( :partial => 'message_short', :collection => @messages) %>

@@ -1,0 +1,100 @@
+#mailbox_list {
+/*	width: 720px;*/
+	height: 3em;
+	background: #98a1be;
+	-webkit-box-shadow: 2px 2px 4px black;
+}
+#mailbox_list li {
+	list-style: none;
+	float: left;
+	padding: 1em;
+}
+/**** List View ****/
+#message_area {
+/*	overflow: auto;
+	height: 520px;
+	position: relative;
+	left: -40px;*/
+	margin-top: 1em;
+}
+#message_list {
+	list-style: none;
+}
+.message_short {
+	background: #98a1be;
+	padding: 1em;
+	margin: 1em 0 1em 0;
+	-webkit-border-radius: 1em;
+	-webkit-box-shadow: 2px 2px 4px black;
+}
+.message_short a {
+	text-decoration: none;
+	color: #000;
+}
+.body_short {
+/*	position: relative;*/
+}
+.msg_photo {
+	margin-right: 1em;
+}
+.mail_tools {
+	vertical-align: middle;
+}
+.mail_tools form {
+	float: left;
+	vertical-align: middle;
+	margin: .5em 1em .5em 0;
+}
+.msg_state {
+	float: left;
+	margin: .5em 1em .5em 0;
+}
+.msg_info {
+	line-height: 1.4em;
+}
+.msg_subj {
+	line-height: 1.4em;
+}
+/***** Show *****/
+#show_message {
+	margin-top: 1em;
+	padding: 1em;
+}
+.sender_photo {
+	vertical-align: middle;
+	margin: .5em;
+}
+.msg_link {
+	z-index: 1;
+}
+.msg_subject {
+	font-weight: bold;
+	line-height: 1.4em;
+}
+.msg_date {
+	line-height: 1.4em;
+}
+.message_tools form {
+	float: left;
+	padding: .5em;
+}
+#message_body {
+	
+}
+.msg_body {
+	background: #fff;
+	padding: 5px;
+	-webkit-box-shadow: 2px 2px 4px black;
+}
+/***** New *****/
+#new_message {
+	padding: 1em;
+}
+#compose_form select {
+	width: 250px;
+}
+#compose_form p {
+	float: left;
+	padding-right: 1em;
+	margin-bottom: .5em;
+}

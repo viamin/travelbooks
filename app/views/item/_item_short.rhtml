@@ -1,12 +1,15 @@
-<li><div class="sfriend_image"><%= link_to( 
+<li class="sfi_li">
+	<div class="sfriend_image"><%= link_to( 
 			"<img src='/item/image/#{item_short.id}' width='80' height='120' alt='#{item_short.name}'>",
 	 		{ :action => 'show', 
 		      :controller => 'item', 
-		      :id => item_short.id } ) %></div>
+		      :id => item_short.id } ) %>
+	</div>
 	<div class="sfriend_info">
 		<p class="sfriend_address"><%= link_to(item_short.name, {:action => 'show', :controller => 'item', :id => item_short.id}) %><br />
-		<%= item_short.locations.current.address("<br />") unless item_short.locations.current.address.empty? %><br />
-		<%= item_short.locations.current.city_state_zip %><br />
-		<%= item_short.locations.current.country %></p>
+			<%= item_short.locations.current.address("<br />") unless item_short.locations.current.address.empty? %><br />
+			<%= item_short.locations.current.city_state_zip %><br />
+			<%= item_short.locations.current.country %>
+		</p>
 	</div>
 </li>

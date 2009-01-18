@@ -1,6 +1,5 @@
 class MessageController < ApplicationController
   before_filter :authorize
-  layout 'user'
   
   def index
     redirect_to :action => 'list'
@@ -53,7 +52,7 @@ class MessageController < ApplicationController
     # since @reply_to expects the message to be a reply, reverse sender and person_id meanings
     # I know, it's lame...
 #    @reply_to = Message.new({:sender => params[:id]}) if params[:id]
-    @reply_to.body = "\n\n\n-----------------------\n#{reply_to_name} on #{sent_at} wrote:\n#{@reply_to.body}" if @reply_to.body && @reply_to.body.length > 0
+    @reply_to.body = @reply_to.reply_body(reply_to, sent_at) if @reply_to.body && @reply_to.body.length > 0
   end
   
   def create

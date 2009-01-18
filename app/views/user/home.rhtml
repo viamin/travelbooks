@@ -1,77 +1,66 @@
 <div class="yui-gd">
 	<div class="yui-u first">
-<div id="user_box">
-	<div id="welcome_bar">Welcome, <%= @person.display_name %>!</div>
-	<div id="info_box">
-		<div id="user_photo">
-			<%= link_to image_tag( "#{@person.main_photo.url}", :class => "main_photo", :size => "80x120"), :controller => :photo, :action => :list, :id => @person %>
+		<div id="user_box">
+			<div id="welcome_bar">Welcome, <%= @person.display_name %>!</div>
+			<div id="info_box">
+				<div id="user_photo">
+					<%= link_to image_tag( "#{@person.main_photo.url}", :class => "main_photo", :size => "80x120"), :controller => :photo, :action => :list, :id => @person %>
+				</div>
+				<div id="user_info">
+					<ul id="ilist">
+		      			<li><%= h(@person.display_name) %></li>
+		      			<li><%= h(@location.address_line_1) %></li>
+		      			<li><%= h(@location.city) %></li>
+		      			<li><%= h(@location.state) %></li>
+		      			<li><%= h(@location.country) %></li>
+		    		</ul>
+				</div>
+				<div id="edit_list">
+					<ul id="edit_options_list">
+						<li><%= link_to "Edit my Details", :action => "edit" %></li>
+						<li><%= link_to "Message Center", :controller => 'message', :action => 'list' %><%= "(#{@new_messages.length})" unless @new_messages.empty? %></li>
+					</ul>
+				</div>
+			</div>
 		</div>
-		<div id="user_info">
-			<ul id="ilist">
-      			<li><%= h(@person.display_name) %></li>
-      			<li><%= h(@location.address_line_1) %></li>
-      			<li><%= h(@location.city) %></li>
-      			<li><%= h(@location.state) %></li>
-      			<li><%= h(@location.country) %></li>
-    		</ul>
-		</div>
-		<div id="edit_list">
-			<ul id="edit_options_list">
-				<li><%= link_to "Edit my Details", :action => "edit" %></li>
-				<li><%= link_to "Message Center", :controller => 'message', :action => 'list' %><%= "(#{@new_messages.length})" unless @new_messages.empty? %></li>
-			</ul>
-		</div>
-	</div>
-</div>
-
 	</div>
 	<div class="yui-u">
-		
-<div id="map_box">
-	<div id="map_bar">
-		<span class="header_title">My World</span>
-		<%= link_to_remote "Show Trips", :url => {:controller => 'user', :action => 'show_trips', :id => @person.id#, :width => 456, :height => 207
-			}, :html => {:class => 'right_rlink', :id => 'mvacation'} %>
-	</div>
-	<%= @map.div#(:width => 456, :height => 207) 
-	%>
-</div>
-
+		<div id="friend_box">
+			<div id="friend_bar">My Friends (<%= @friends.length %>)<%= link_to "View All", {:controller => 'user', :action => 'list', :id => @person.id}, {:class => 'right_rlink'} %></div>
+			<div id="friend_list">
+				<ul id="flist">
+					<%= render :partial => "friend", :collection => @friends %>
+				</ul>
+			</div>
+		</div>
 	</div>
 </div>
 <div class="yui-gd">
 	<div class="yui-u first">
-	
-<div id="book_box">
-	<div id="book_bar"><%= @list_all_items ? "All" : "My" %> TravellerBooks (<%= @items.length %>)<%= link_to (@list_all_items ? "Details" : "View All"), {:controller => 'item', :action => 'list', :id => @person.id}, {:class => 'left_rlink'} %></div>
-	<div id="book_list">
-		<ul id="blist">
-			<%= render :partial => 'item', :collection => @items %>
-		</ul>
-	</div>
-</div>
-	
+		<div id="book_box">
+			<div id="book_bar"><%= @list_all_items ? "All" : "My" %> TravellerBooks (<%= @items.length %>)<%= link_to (@list_all_items ? "Details" : "View All"), {:controller => 'item', :action => 'list', :id => @person.id}, {:class => 'left_rlink'} %></div>
+			<div id="book_list">
+				<ul id="blist">
+					<%= render :partial => 'item', :collection => @items %>
+				</ul>
+			</div>
+		</div>
+		<div id="stat_box">
+			<div id="stat_bar">My Traveller Stats</div>
+			<div id="stat_list">
+				<%= render_component :controller => 'user', :action => 'user_stats', :id => @person.id %>
+			</div>
+		</div>
 	</div>
 	<div class="yui-u">
-		
-<div id="friend_box">
-	<div id="friend_bar">My Friends (<%= @friends.length %>)<%= link_to "View All", {:controller => 'user', :action => 'list', :id => @person.id}, {:class => 'right_rlink'} %></div>
-	<div id="friend_list">
-		<ul id="flist">
-			<%= render :partial => "friend", :collection => @friends %>
-		</ul>
+		<div id="map_box">
+			<div id="map_bar">
+				<span class="header_title">My World</span>
+				<%= link_to_remote "Show Trips", :url => {:controller => 'user', :action => 'show_trips', :id => @person.id#, :width => 456, :height => 207
+					}, :html => {:class => 'right_rlink', :id => 'mvacation'} %>
+			</div>
+			<%= @map.div#(:width => 456, :height => 207) 
+			%>
+		</div>
 	</div>
-</div>
-
-	</div>
-</div>
-<div class="yui-g">
-
-<div id="stat_box">
-	<div id="stat_bar">My Traveller Stats</div>
-	<div id="stat_list">
-		<%= render_component :controller => 'user', :action => 'user_stats', :id => @person.id %>
-	</div>
-</div>
-
 </div>

@@ -27,15 +27,14 @@
 </div>
 <div class="yui-u">
 	
-<div id="map_box">
-	<div id="map_bar">
-		<%= h(@person.display_name) %>'s World 
-		<%= link_to_remote "Show Trips", :url => {:controller => 'user', :action => 'show_trips', :id => @person.id#, :width => 456, :height => 207
-			}, :html => {:class => 'right_rlink', :id => 'mvacation'} if @person.share_trips %>
+	<div id="friend_box">
+		<div id="friend_bar"><%= h(@person.display_name) %>'s Friends</div>
+		<div id="friend_list">
+			<ul id="flist">
+				<%= render :partial => "friend", :collection => @friends %>
+			</ul>
+		</div>
 	</div>
-	<%= @map.div#(:width => 456, :height => 207) 
-	%>
-</div>
 
 	</div>
 </div>
@@ -50,26 +49,26 @@
 		</ul>
 	</div>
 </div>
-
-</div>
-<div class="yui-u">
-	
-<div id="friend_box">
-	<div id="friend_bar"><%= h(@person.display_name) %>'s Friends</div>
-	<div id="friend_list">
-		<ul id="flist">
-			<%= render :partial => "friend", :collection => @friends %>
-		</ul>
-	</div>
-</div>
-
-	</div>
-</div>
-<div class="yui-g">
-	
 <div id="stat_box">
 	<div id="stat_bar"><%= h(@person.display_name) %>'s Traveller Stats</div>
 	<div id="stat_list">
 		<%= render_component :action => 'user_stats', :id => @person %>
 	</div>
 </div>
+
+	</div>
+	<div class="yui-u">
+		
+		<div id="map_box">
+			<div id="map_bar">
+				<%= h(@person.display_name) %>'s World 
+				<%= link_to_remote "Show Trips", :url => {:controller => 'user', :action => 'show_trips', :id => @person.id#, :width => 456, :height => 207
+					}, :html => {:class => 'right_rlink', :id => 'mvacation'} if @person.share_trips %>
+			</div>
+			<%= @map.div#(:width => 456, :height => 207) 
+			%>
+		</div>
+		
+	</div>
+</div>
+	

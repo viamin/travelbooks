@@ -1,7 +1,10 @@
 <h1><%= @person.display_name %>'s friends</h1>
-<%= @map.div %>
-<div id="friend_list_box">
-	<ul id="sflist">
-		<%= render :partial => 'friend_short', :collection => @friends %>
-	</ul>
+
+<div class="yui-gd">
+	<div id="friend_list_box" class="yui-u first">
+		<ul id="sflist">
+			<%= render :partial => 'friend_short', :collection => @friends %>
+		</ul>
+	</div>
+	<%= @map.div :class => "yui-u" %>
 </div>
