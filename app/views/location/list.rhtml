@@ -1,16 +1,20 @@
 <h1>Edit Your Traveller Location Data</h1>
 <%= render :partial => 'user/profile_links'%>
-<p>This page lists the places you have lived and visited that will show up on your TravellerBooks.com home page. Other people can see this information if you mark it as public.</p>
+<p class="separated">This page lists the places you have lived and visited that will show up on your TravellerBooks.com home page. Other people can see this information if you mark it as public.</p>
 <%= link_to "Add a new location", {:action => "new", :controller => 'location'} %>
 <div class="block_list">
 	<% @locations.each do |location| -%>
-		<div class="short_loc">
-			<%= render :partial => 'location_small', :object => location %>
-			<ul class="short_loc_list">
-				<li><%= link_to "Edit This Location", :action => "edit", :controller => 'location', :id => location.id %></li>
-				<li><%= link_to "Delete This Location", {:action => "destroy", :controller => 'location', :id => location.id}, {:confirm => 'Are you sure?', :method => :post} %></li>
-				<li><%= @current == location ? "(Current Main Location)" : link_to("Main this my main location", :action => 'make_main', :id => location.id) %>
-			</ul>
+		<div class="short_loc yui-gc">
+			<div class="yui-u first">
+				<%= render :partial => 'location_small', :object => location %>
+			</div>
+			<div class="yui-u">
+				<ul class="short_loc_list">
+					<li><%= link_to "Edit This Location", :action => "edit", :controller => 'location', :id => location.id %></li>
+					<li><%= link_to "Delete This Location", {:action => "destroy", :controller => 'location', :id => location.id}, {:confirm => 'Are you sure?', :method => :post} %></li>
+					<li><%= @current == location ? "(Current Main Location)" : link_to("Main this my main location", :action => 'make_main', :id => location.id) %>
+				</ul>
+			</div>
 		</div>
 	<% end %>
 </div>

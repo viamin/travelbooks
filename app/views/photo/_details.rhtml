@@ -2,10 +2,11 @@
 
 <!--[form:details]-->
 <%= f.hidden_field 'id' %>
-
-<%= image_tag details.url %><br />
-
-<p><label for="photo_caption">Caption</label>
-<%= f.text_field 'caption' %></p>
+<div class="yui-u first">
+	<%= image_tag details.url %><br />
+</div>
+<div class="yui-u">
+	<p><label for="photo_caption">Caption</label>
+	<%= f.text_field 'caption' %></p>
 
 <!--[eoform:details]-->

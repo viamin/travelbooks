@@ -12,6 +12,12 @@ h3 {
 	font-weight: bold;
 	padding-bottom: 1em;
 }
+p.indented {
+	text-indent: 5em;
+}
+p.separated {
+	padding-bottom: 1em;
+}
 img {
 	border: 0;
 	/* http://www.twinhelix.com/css/iepngfix/ */
@@ -300,45 +306,6 @@ div.progressBar div.background {
 	text-align: right;
 	width: 150px;
 }
-/******** Profile Form section ***********/
-#profile_box {
-	min-height: 300px;
-}
-#edit_person p {
-	padding-bottom: 10px;
-}
-.block_list {
-	width: 760px;
-}
-#edit_person label {
-	position: absolute;
-	text-align: right;
-	display: block;
-	width: 250px;
-}
-#edit_person input {
-	position: relative;
-	left: 260px;
-}
-#edit_person select {
-	position: relative;
-	left: 260px;
-}
-#reset_form label {
-	position: absolute;
-	text-align: right;
-	display: block;
-	width: 150px;
-}
-#reset_form input {
-	position: relative;
-	left: 160px;
-}
-#profile_links {
-	display: block;
-	background: #ffe7a5;
-	padding-bottom: 10px;
-}
 /******** Item Location Editing *******/
 #locitemdiv {
 	position: relative;
@@ -360,109 +327,6 @@ div.progressBar div.background {
 }
 .loc_items span {
 	vertical-align: middle;
-}
-/******** Location Editing **********/
-.short_loc {
-	position: relative;
-	background: #98a1be;
-	border: 6px solid #ffe7a5;
-	margin-bottom: 6px;
-}
-.short_loc p {
-	font-size: 12pt;
-}
-.short_loc_list {
-	position: absolute;
-	top: 10px;
-	left: 400px;
-	list-style: none;
-}
-#loc_form label {
-	position: absolute;
-	text-align: right;
- 	display: block;
-	width: 150px;
-}
-#loc_form input {
-	position: relative;
-	left: 160px;
-}
-#loc_form select {
-	position: relative;
-	left: 160px;
-}
-/*********** Photos section ***********/
-#photo_listing {
-	position: relative;
-	padding: 0;
-	margin: 0;
-}
-#photo_list {
-	padding-left: 0;
-	margin-left: 0;
-}
-.photo_list_item {
-	position: relative;
-	list-style: none;
-}
-.photo_list_item img {
-	width: 240px;
-}
-.photo_caption {
-	position: absolute;
-	top: 10px;
-	left: 250px;
-}
-.photo_ops {
-	position: absolute;
-	top: 30px;
-	left: 250px;
-}
-.prof_edit_links {
-	list-style: none;
-}
-#photo_box {
-	position: absolute;
-	padding: 0;
-	top: 400px;
-	left: 300px;
-}
-#photo_outline {
-	position: absolute;
-	top: -2px;
-	left: -2px;
-	display: block;
-	width: 240px;
-	height: 360px;
-	border: 2px solid red;
-	z-index: 10;
-}
-#photo_block {
-	position: absolute;
-	left: 0;
-	cursor: move;
-	z-index: 1;
-}
-#track {
-	width: 200px;
-	height: 18px;
-	background-image: url('/images/scaler_slider_track.png');
-	background-repeat: no-repeat;
-	background-position: 0 0;
-}
-#handle {
-	width: 18px;
-	height: 18px;
-	cursor:move;
-}
-#photo_controls {
-	position: absolute;
-	z-index: 1000;
-	background: #ffe7a5;
-}
-#photo_controls div {
-	float: left;
-	padding-right: 10px;
 }
 /************* Tracking section ***************/
 .results_list {
@@ -526,18 +390,19 @@ div.progressBar div.background {
 	display: inline;
 }
 .gen_form {
-	position: relative;
+/*	position: relative;
 	left: 50px;
-	width: 100%;
+	width: 100%;*/
 }
 .gen_form p {
 	clear: both;
+	padding-bottom: 1em;
 }
 .gen_form label {
 	float: left;
-	left: 200px;
+/*	left: 200px;*/
 	width: 180px;
-	padding-right: 20px;
+	padding-right: 1em;
 	display: block;
 	text-align: right;
 }

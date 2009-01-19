@@ -1,0 +1,98 @@
+/*********** Photos section ***********/
+#photo_listing {
+/*	position: relative;
+	padding: 0;
+	margin: 0;*/
+	padding-top: 1em;
+	font-size: 123.1%;
+}
+#photo_list {
+	padding-left: 0;
+	margin-left: 0;
+}
+.photo_list_item {
+	padding: 1em;
+	margin: 1em 0 1em 0;
+/*	position: relative;*/
+	background-color: #ccc;
+	list-style: none;
+	-webkit-border-radius: 1em;
+	-webkit-box-shadow: 2px 2px 4px black;
+}
+.photo_list_item img {
+	width: 240px;
+	margin: 0 1em 0 2em;
+}
+.photo_caption {
+/*	position: absolute;
+	top: 10px;
+	left: 250px;*/
+	padding-bottom: 1em;
+}
+.photo_ops a {
+/*	position: absolute;
+	top: 30px;
+	left: 250px;*/
+	padding-right: .5em;
+}
+.prof_edit_links {
+	list-style: none;
+}
+#photo_details {
+	padding: 1em;
+	font-size: 123.1%;
+	background-color: #ccc;
+	-webkit-border-radius: 1em;
+	-webkit-box-shadow: 2px 2px 4px black;
+}
+#photo_details p {
+	padding-bottom: 1em;
+}
+#photo_box {
+	position: absolute;
+	padding: 0;
+	top: 400px;
+	left: 300px;
+}
+#photo_outline {
+	position: absolute;
+	top: -2px;
+	left: -2px;
+	display: block;
+	width: 240px;
+	height: 360px;
+	border: 2px solid red;
+	z-index: 10;
+}
+#photo_block {
+	position: absolute;
+	left: 0;
+	cursor: move;
+	z-index: 9;
+}
+#track {
+	width: 200px;
+	height: 18px;
+	background-image: url('/images/scaler_slider_track.png');
+	background-repeat: no-repeat;
+	background-position: 0 0;
+}
+#handle {
+	width: 18px;
+	height: 18px;
+	cursor:move;
+}
+#photo_controls {
+/*	position: absolute;*/
+	z-index: 1000;
+	background: #ffe7a5;
+	font-size: 123.1%;
+}
+#photo_controls div {
+	float: left;
+	padding-right: 1em;
+}
+#squeeze_box {
+	margin-left: 1em;
+	margin-right: .5em;
+}

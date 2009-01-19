@@ -1,0 +1,35 @@
+/******** Location Editing **********/
+.short_loc {
+/*	position: relative;*/
+	padding: 1em;
+	background: #98a1be;
+	margin: 1em 0 1em 0;
+	-webkit-border-radius: 1em;
+	-webkit-box-shadow: 2px 2px 4px black;
+}
+.short_loc p {
+	font-size: 123.1%;
+}
+.short_loc_list {
+/*	position: absolute;
+	top: 10px;
+	left: 400px;*/
+	list-style: none;
+}
+.short_loc_list li {
+	margin: .5em 0 .5em 0;
+}
+#loc_form label {
+	position: absolute;
+	text-align: right;
+ 	display: block;
+	width: 150px;
+}
+#loc_form input {
+	position: relative;
+	left: 160px;
+}
+#loc_form select {
+	position: relative;
+	left: 160px;
+}

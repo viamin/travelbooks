@@ -13,7 +13,8 @@ function scaleIt(v, width, height) {
 	scalePhoto.style.height = (v*height)+"px";
 	$('scale').value = v;
 	checkPos("photo_block");
-	$('photo_submit').value = "Crop, scale and save photo";
+	$('squeeze_box').checked = false;
+	$('photo_submit').value = "Crop, resize and save photo";
 }
 
 function checkPos(photo_div) {

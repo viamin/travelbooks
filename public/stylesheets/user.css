@@ -241,3 +241,48 @@
 	z-index: 1000;
 	-webkit-box-shadow: 2px 2px 4px #633c1f;
 }
+/******** Profile Form section ***********/
+#profile_box {
+	min-height: 300px;
+}
+#profile_box label {
+	margin-top: 1em;
+}
+#profile_box input {
+	margin-top: 1em;
+}
+#edit_person p {
+	padding-bottom: 10px;
+}
+.block_list {
+	width: 760px;
+}
+#edit_person label {
+	position: absolute;
+	text-align: right;
+	display: block;
+	width: 250px;
+}
+#edit_person input {
+	position: relative;
+	left: 260px;
+}
+#edit_person select {
+	position: relative;
+	left: 260px;
+}
+#reset_form label {
+	position: absolute;
+	text-align: right;
+	display: block;
+	width: 150px;
+}
+#reset_form input {
+	position: relative;
+	left: 160px;
+}
+#profile_links {
+	display: block;
+	background: #ffe7a5;
+	padding-bottom: 10px;
+}
