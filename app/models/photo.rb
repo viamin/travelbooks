@@ -24,7 +24,7 @@ class Photo < ActiveRecord::Base
   belongs_to :person
   belongs_to :item
   belongs_to :location
-  has_one :data, :dependent => :destroy
+  has_many :data, :dependent => :destroy
   validates_length_of :path, :maximum => 250
   validates_length_of :file_name, :maximum => 250
   validates_length_of :url, :maximum => 250
