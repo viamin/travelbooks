@@ -86,15 +86,17 @@ function updatePhoto(form, photo_id) {
 	photo.src = "/images/books/book" + book_id + ".jpg";
 }
 
-function clear_form() {
-	var box = document.getElementById('tbid');
-	if (box.value == "Enter TBook #") {
+function clear_form(id, value, color) {
+	var box = document.getElementById(id);
+	if (box.value == value) {
 		box.value = "";
+		box.style.color = color;
 	}
 }
-function repop_form() {
-	var box = document.getElementById('tbid');
+function repop_form(id, value, color) {
+	var box = document.getElementById(id);
 	if (box.value == "") {
-		box.value = "Enter TBook #";
+		box.value = value;
+		box.style.color = color;
 	}
 }

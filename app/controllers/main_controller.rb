@@ -1,5 +1,6 @@
 class MainController < ApplicationController
-  caches_page :about, :faq, :privacy, :site_map
+  before_filter :check_cookie, :only => [:index]
+#  caches_page :about, :faq, :privacy, :site_map
 
   def index
     render :layout => false

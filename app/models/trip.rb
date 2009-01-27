@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 34
+# Schema version: 36
 #
 # Table name: trips
 #
@@ -14,7 +14,11 @@
 
 class Trip < ActiveRecord::Base
   belongs_to :person
-  has_many :destinations, :order => :position
+  has_many :destinations, :order => :position do
+    def with_locations
+      proxy_target.delete_if {|destination| destination.no_location?}.compact! || proxy_target
+    end
+  end
   has_and_belongs_to_many :items
   validates_length_of :name, :maximum => 250, :message => "must be less than 250 characters please"
 #  validates_length_of :companions, :maximum => 250, :message => "must be less than 250 characters please"

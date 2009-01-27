@@ -1,5 +1,8 @@
 class UserController < ApplicationController
+  before_filter :check_cookie
   before_filter :authorize, :except => [:login, :join, :retrieve, :mark_friends, :mark_items, :iforgot]
+  after_filter :set_login_cookie, :only => [:login]
+  after_filter :delete_login_cookie, :only => [:logout]
   layout 'user', :except => 'user_stats'
 #  caches_action :home
   
@@ -121,22 +124,23 @@ class UserController < ApplicationController
       redirect_to :action => 'home'
       return
     end
-    login_status = nil
+    @login_status = nil
     if params[:person] && Person.is_valid_login?(params[:person][:email])
       unless request.get?
-        person = Person.email_login(params[:person][:email], params[:person][:password])
-        if person.kind_of?(Person)
-          session[:user_id] = person.id
-          login_status = :success
+        @person = Person.email_login(params[:person][:email], params[:person][:password])
+        if @person.kind_of?(Person)
+          session[:user_id] = @person.id
+          session[:user_email] = @person.email
+          @login_status = :success
           next_action = :redirect
         else
           flash[:notice] = "Sorry, the username/password you entered does not match with any registered users."
-          login_status = :failed
+          @login_status = :failed
           next_action = :redirect
         end
         if next_action == :redirect
-          if login_status == :success
-            if person.needs_reset == true
+          if @login_status == :success
+            if @person.needs_reset == true
               flash[:notice] = "Your password was recently reset. You will need to enter a new password in order to log in next time."
               redirect_to :action => 'reset_password', :temp_pass => params[:person][:password], :id => person.id
               return
@@ -183,6 +187,10 @@ class UserController < ApplicationController
   end
 
   def join
+    unless session[:user_id].nil?
+      flash[:notice] = "You are already logged in with a TravellerBook.com account. If you'd like to create a new account, please log out first by clicking the 'Logout' link."
+      redirect_to :action => 'home'
+    end
     if request.get?
       timing "Path 1 (Request method: GET)"
       @person = Person.new

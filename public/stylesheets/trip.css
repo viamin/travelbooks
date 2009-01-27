@@ -1,0 +1,134 @@
+/************** Trip section **************/
+#trip_page {
+/*	position: relative;
+	margin: 0;
+	padding: 0;
+	height: 580px;*/
+	padding-top: 1em;
+}
+#vacation_list {
+/*	width: 290px;*/
+	height: 580px;
+	overflow: auto;
+}
+#vacation_list ul {
+	list-style: none;
+	padding: 0;
+}
+#vacation_list li {
+	background-color: #98a1be;
+	padding: 1em;
+	margin: 1em .5em 1em .5em;
+	-webkit-border-radius: 1em;
+	-webkit-box-shadow: 2px 2px 4px black;
+}
+#destination_list li {
+	cursor: move;
+}
+#vacation_map {
+/*	position: absolute;
+	top: -580px;
+	left: 310px; 
+	float: right;
+	margin-right: 5px;
+	height: 227px;
+	width: 458px;
+	border: 1px solid #633c1f;*/
+	height: 578px;
+	z-index: 1000;
+	-webkit-box-shadow: 2px 2px 4px black;
+}
+#book_image {
+	vertical-align: middle;
+}
+#dest_form {
+	padding-bottom: 20px;
+}
+.dest_li {
+/*	position: relative;*/
+}
+.dest_info {
+	display: inline;
+	margin-right: .5em;
+}
+.dest_ops {
+	display: inline;
+	margin-right: .5em;
+}
+.gen_form {
+/*	position: relative;
+	left: 50px;
+	width: 100%;*/
+	margin-top: 1em;
+}
+.gen_form p {
+	clear: both;
+	padding-bottom: 1em;
+}
+.gen_form label {
+	float: left;
+/*	left: 200px;*/
+	width: 180px;
+	padding-right: 1em;
+	display: block;
+	text-align: right;
+}
+.gen_form p div {
+	float: left;
+}
+#sflist {
+	overflow: auto;
+	height: 580px;
+	list-style: none;
+	margin: 0;
+	padding: 0.5em;
+}
+#sflist li {
+	float: left;
+}
+#sflist img {
+	border: 0;
+}
+.sfi_li {
+	clear: both;
+	padding-top: 1em;
+}
+.sfriend_image {
+	float: left;
+}
+.sfriend_info {
+	float: left;
+/*	display: block; */
+	height: 120px;
+}
+.sfriend_address {
+/*	position: relative;
+	left: 20px;*/
+}
+.blink {
+	float: left;
+/*	border: 1px solid black; */
+	padding-right: .5em;
+}
+.abook {
+	padding-bottom: .5em;
+	height: 50px;
+	list-style: none;
+}
+#loc_form label {
+	position: absolute;
+	text-align: right;
+ 	display: block;
+	width: 150px;
+}
+#loc_form input {
+	position: relative;
+	left: 160px;
+}
+#loc_form select {
+	position: relative;
+	left: 160px;
+}
+#loc_form p {
+	margin: 1em 0 1em 0;
+}

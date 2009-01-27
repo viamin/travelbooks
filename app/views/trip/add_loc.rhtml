@@ -4,8 +4,8 @@
 	<p><label for="destination_use_location">Location:</label>
 		<%= select_tag 'destination', options_for_select([["New Location", 0]].concat(@all_locations.collect{|l| [l.description, l.id]})) %>
 	<%= render :partial => 'location/form', :object => @location, :locals => {:f => f} %>
-	<p><%= check_box_tag 'destination', 'add' %>
-	<label for="destination_add">Add to my locations</label></p>
+	<p><label for="destination_add">Add to my locations</label>
+	<%= check_box_tag 'destination', 'add' %></p>
 	<%= f.submit 'Update Destination' %>
 <% end %>
 <%= javascript_tag "$('dest_loc_#{@destination.id}').style.background = '#98a1be';"%>

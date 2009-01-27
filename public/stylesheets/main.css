@@ -18,6 +18,18 @@ p.indented {
 p.separated {
 	padding-bottom: 1em;
 }
+p.separated-top {
+	padding-top: 1em;
+}
+p.large {
+	font-size: 108%;
+}
+p.larger {
+	font-size: 123.1%;
+}
+p.bold {
+	font-weight: bold;
+}
 img {
 	border: 0;
 	/* http://www.twinhelix.com/css/iepngfix/ */
@@ -93,7 +105,7 @@ div.progressBar div.background {
   height: 18px;
   width: 0%;
 }
-.helpicon {
+.helpiconr {
 	float: right;
 	clear: both;
 }
@@ -168,11 +180,11 @@ div.progressBar div.background {
 	position: relative;
 }
 #hcl {
-	position: relative;
+	position: inline;
 	float: right;
 	color: #ffd;
 	text-decoration: none;
-	top: 3px;
+	margin-top: 3px;
 }
 /***** Title Bar *****/
 #smlogo {
@@ -227,15 +239,27 @@ div.progressBar div.background {
 	font-size: 131%;
 }
 #loginbox input {
-	position: relative;
+	position: inline;
 	margin-top: .5em;
 	top: -1px;
 }
-.slider {
-	position: relative;
+.remember_me {
+	padding: .5em;
+	font-size: 93%;
+}
+.remember_me input {
+	margin-right: .5em;
+}
+#openidloginbox {
+	position: inline;
 }
 #openidicon {
-	
+	position: inline;
+}
+.imgaligned {
+	padding-left: 1em;
+	position: inline; 
+/*	top: -.25em;*/
 }
 .lgnbut {
 	font-family: Optima, Trebuchet, Book Antiqua, verdana, arial, helvetica, sans-serif;
@@ -271,11 +295,6 @@ div.progressBar div.background {
 	display: inline;
 	font-size: 108%;
 	color: #ffd;
-}
-.imgaligned {
-	padding-left: 1em;
-/*	position: relative; */
-	top: -.25em;
 }
 /***** FOOTER *****/
 #ft {
@@ -343,98 +362,4 @@ div.progressBar div.background {
 	text-decoration: none;
 	font-style: normal;
 	color: #000;
-}
-/************** Trip section **************/
-#trip_page {
-	position: relative;
-	margin: 0;
-	padding: 0;
-	height: 580px;
-}
-#vacation_list {
-	width: 290px;
-	height: 580px;
-	overflow: auto;
-}
-#vacation_list ul {
-	list-style: none;
-	padding: 0;
-}
-#destination_list li {
-	cursor: move;
-}
-#vacation_map {
-/*	position: absolute;
-	top: -580px;
-	left: 310px; */
-	float: right;
-	margin-right: 5px;
-	height: 227px;
-	width: 458px;
-	border: 1px solid #633c1f;
-	z-index: 1000;
-}
-#book_image {
-	vertical-align: middle;
-}
-#dest_form {
-	padding-bottom: 20px;
-}
-.dest_li {
-	position: relative;
-}
-.dest_info {
-	display: inline;
-}
-.dest_ops {
-	display: inline;
-}
-.gen_form {
-/*	position: relative;
-	left: 50px;
-	width: 100%;*/
-}
-.gen_form p {
-	clear: both;
-	padding-bottom: 1em;
-}
-.gen_form label {
-	float: left;
-/*	left: 200px;*/
-	width: 180px;
-	padding-right: 1em;
-	display: block;
-	text-align: right;
-}
-.gen_form p div {
-	float: left;
-}
-#sflist {
-	overflow: auto;
-	height: 580px;
-	list-style: none;
-	margin: 0;
-	padding: 0.5em;
-}
-#sflist li {
-	float: left;
-}
-#sflist img {
-	border: 0;
-}
-.sfi_li {
-	clear: both;
-	padding-top: 1em;
-}
-.sfriend_image {
-	float: left;
-}
-.sfriend_info {
-	float: left;
-/*	display: block; */
-	height: 120px;
-}
-.sfriend_address {
-/*	position: relative;
-	left: 20px;*/
 }

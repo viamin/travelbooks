@@ -26,7 +26,7 @@
 				<%= link_to "<br />About", {:action => "about"}, {:id => "aboutlk"} %>
 				<%= form_tag :controller => "track", :action => "item" %>
 				<label for="tbid" id="fm_lbl">Search by TravellerBook Code:</label><br />
-				<%= text_field_tag "tbid", "Enter TBook #", {:size => "20", :onfocus => "clear_form();", :onblur => "repop_form();"} %><br />
+				<%= text_field_tag "tbid", "Enter TBook #", {:size => "20", :onfocus => "clear_form('tbid', 'Enter TBook #', '#000');", :onblur => "repop_form('tbid', 'Enter TBook #', '#999');"} %><br />
 				<%= submit_tag "Submit", {:id => "fmsub"} %>
 				</form>
 				<%= link_to "<br />Join", {:controller => 'user', :action => 'join'}, {:id => "booklk"} %>

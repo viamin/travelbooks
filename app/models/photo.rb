@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 34
+# Schema version: 36
 #
 # Table name: photos
 #
@@ -17,7 +17,6 @@
 #  person_id    :integer
 #  item_id      :integer
 #  created_on   :date
-#  data_id      :integer
 #
 
 # photo_type should be able to indicate if the photo is the primary photo for the given item/person/location
@@ -25,7 +24,7 @@ class Photo < ActiveRecord::Base
   belongs_to :person
   belongs_to :item
   belongs_to :location
-  has_many :data, :dependent => :destroy
+  has_one :data, :dependent => :destroy
   validates_length_of :path, :maximum => 250
   validates_length_of :file_name, :maximum => 250
   validates_length_of :url, :maximum => 250

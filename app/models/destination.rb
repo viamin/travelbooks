@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 34
+# Schema version: 36
 #
 # Table name: destinations
 #
@@ -35,6 +35,10 @@ class Destination < ActiveRecord::Base
     else
       return false
     end
+  end
+  
+  def no_location?
+    !self.has_location?
   end
 
   def trip

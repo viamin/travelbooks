@@ -48,7 +48,9 @@
 		<div id="stat_box">
 			<div id="stat_bar">My Traveller Stats</div>
 			<div id="stat_list">
-				<%= render_component :controller => 'user', :action => 'user_stats', :id => @person.id %>
+				<% cache(:action => 'user_stats', :action_suffix => @person.id) do %>
+					<%= render_component :controller => 'user', :action => 'user_stats', :id => @person.id %>
+				<% end %>
 			</div>
 		</div>
 	</div>

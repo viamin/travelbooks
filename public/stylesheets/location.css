@@ -33,3 +33,6 @@
 	position: relative;
 	left: 160px;
 }
+#loc_form p {
+	margin: 1em 0 1em 0;
+}

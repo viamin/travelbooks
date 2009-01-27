@@ -1,12 +1,12 @@
 <h1><%= @person.display_name %>'s Trip Logs</h1>
 <%= render :partial => 'user/profile_links' %>
-<%= @map.div(:width => 458, :height => 578) %>
-<div id="trip_page">
-	<div id="vacation_list">
+
+<div id="trip_page" class="yui-gd">
+	<div id="vacation_list" class="yui-u first">
 		<%= link_to 'Add a trip log', :action => 'new' %>
 		<ul>
 			<%= render :partial => 'trip', :collection => @trips %>
 		</ul>
 	</div>
-	
+	<%= @map.div :class => 'yui-u' %>
 </div>

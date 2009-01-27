@@ -1,0 +1,12 @@
+<div id="openidloginbox">
+	<%= image_tag "openid_small_logo.png", :id => 'openidicon' %><span class="imgaligned">Log in using your OpenID</span>
+	<%= link_to_remote image_tag("help.png", {:class => 'helpiconr'}), :url => {:controller => 'help', :action => 'login'} %>
+	<% form_for :person, open_id_login, :url => {:controller => 'user', :action => 'openidlogin'} do |f| %>
+		<label for="person_openid">OpenID URL:</label>
+		<%= f.text_field :open_id, {:class => "txinput"} %>
+		<p class="remember_me"><%= check_box_tag :remember %>
+			<label for="person_remember">Remember me</label>
+		</p>
+		<%= submit_tag "OpenID Login", {:class => 'lgnbut'} %>
+	<% end -%>
+</div>

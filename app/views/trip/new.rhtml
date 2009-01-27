@@ -1,6 +1,6 @@
 <h1>Add a trip log</h1>
 <%= render :partial => 'user/profile_links'%>
-<%= link_to "Back to Trip Logs", :action => 'list' %>
+<p class="separated separated-top"><%= link_to "Back to Trip Logs", :action => 'list' %></p>
 <% form_tag :action => 'create' do %>
 	<%= render :partial => 'form' %>
 	<%= submit_tag 'Create' %>

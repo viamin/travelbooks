@@ -1,10 +1,11 @@
 # == Schema Information
-# Schema version: 34
+# Schema version: 36
 #
 # Table name: data
 #
-#  id   :integer         not null, primary key
-#  data :binary
+#  id       :integer         not null, primary key
+#  data     :binary
+#  photo_id :integer
 #
 
 --- {}

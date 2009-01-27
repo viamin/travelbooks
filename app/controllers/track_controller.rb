@@ -1,6 +1,5 @@
 class TrackController < ApplicationController
   before_filter :authorize, :except => [:friend, :item]
-  layout 'user'
   
   def index
     if params[:tbook]
@@ -29,7 +28,7 @@ class TrackController < ApplicationController
   
   def friend
     @user = Person.find(session[:user_id]) if logged_in?
-    search_term = params[:search_box]
+    search_term = params[:name_search_box]
     @people = Person.find(:all, :conditions => ["email like ?", "%#{search_term.downcase}%"]).concat(Person.find(:all, :conditions => ["nickname like ?", "%#{search_term}%"])).uniq.delete_if {|p| p.email == "noemail@travellerbook.com"} unless (search_term.nil? || search_term == String.new)
 #    @people = Person.find(:all, :conditions => {:email => search_term}).concat(Person.find(:all, :conditions => {:nickname => search_term})).uniq
     if (@people.nil? || @people.empty?)

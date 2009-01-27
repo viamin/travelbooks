@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 34
+# Schema version: 36
 #
 # Table name: people
 #
@@ -14,6 +14,7 @@
 #  salt            :string(255)
 #  privacy_flags   :integer         default(0)
 #  needs_reset     :boolean
+#  login_token     :string(255)
 #
 
 class Person < ActiveRecord::Base
@@ -127,7 +128,7 @@ class Person < ActiveRecord::Base
   end
   
   def after_save
-    timing "Clearing password"
+#    timing "Clearing password"
     @password = nil
   end
   
@@ -202,21 +203,42 @@ class Person < ActiveRecord::Base
   end
 
   def self.email_login(email, password)
-    hashed_password = Person.hash_password(password || "")
-    @person = Person.find(:first, :conditions => {:email => email})
-    if "#{@person.hashed_password}" == "#{hashed_password}#{@person.salt}"
-      return_val = @person
-    else
-      return_val = nil
-    end unless @person.nil?
+    person = Person.find(:first, :conditions => {:email => email})
+    unless person.nil?
+      hashed_password = Person.hash_password("#{password}#{person.salt}" || "")
+      if person.hashed_password == hashed_password
+        return_val = person
+      else
+        return_val = Person.old_email_login(person, email, password)
+      end
+    end
     return_val
   end
   
+  def self.old_email_login(person, email, password)
+    hashed_password = Person.hash_password(password || "")
+    if person.hashed_password == "#{hashed_password}#{person.salt}"
+      timing "Changing old style password to new password"
+      person.change_password(password, password)
+      return_val = person
+    else
+      return_val = nil
+    end unless person.nil?
+    return_val
+  end
+  
+  # Generates a unique hash value for the user 
+  def set_login_cookie!
+    # hash the user's email address and a salt
+    self.login_token = Person.hash_password("#{self.email}#{Person.random_password}")
+    self.save!
+    return self.login_token
+  end
+  
   def change_password(old_pass, new_pass)
-    verified = ("#{self.hashed_password}" == "#{Person.hash_password(old_pass)}#{self.salt}")
+    verified = (self.hashed_password == "#{Person.hash_password(old_pass)}#{self.salt}") || (self.hashed_password == Person.hash_password("#{old_pass}#{self.salt}"))
     if verified
-      new_hash = Person.hash_password(new_pass)
-      self.hashed_password = "#{new_hash}#{self.salt}"
+      self.hashed_password = Person.hash_password("#{new_pass}#{self.salt}")
       self.needs_reset = false
       self.save
     end
@@ -338,7 +360,7 @@ class Person < ActiveRecord::Base
   end
   
   def add_friend(friend_id)
-    timing "Adding friend for person ids #{self.id} and #{friend_id}"
+#    timing "Adding friend for person ids #{self.id} and #{friend_id}"
     @friend = Friend.new
     @friend.owner_person_id = self.id
     @friend.entry_person_id = friend_id
@@ -361,7 +383,7 @@ class Person < ActiveRecord::Base
   end
   
   def reset_password(new_password = Person.random_password)
-    self.hashed_password = "#{Person.hash_password(new_password)}#{self.salt}"
+    self.hashed_password = Person.hash_password("#{new_password}#{self.salt}")
     self.needs_reset = true
     self.save!
   end

@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 34
+# Schema version: 36
 #
 # Table name: shopping_carts
 #

@@ -3,13 +3,13 @@
 <%= form_remote_tag :update => 'results_div', :url => {:action => 'find'}, :complete => "new Effect.Highlight('results_div', { startcolor: '#394876',
 endcolor: '#ffe7a5' }); return false;" %>
 <label for="search_box">Enter the ID of the book you would like to find:</label>
-<%= text_field_tag 'search_box' %>
+<%= text_field_tag "search_box", "Enter TBook #", {:size => "20", :onfocus => "clear_form('search_box', 'Enter TBook #', '#000');", :onblur => "repop_form('search_box', 'Enter TBook #', '#999');"} %>
 <%= submit_tag 'Search' %>
 </form>
 <%= form_remote_tag :update => 'results_div', :url => {:action => 'friend'}, :complete => "new Effect.Highlight('results_div', { startcolor: '#394876',
 endcolor: '#ffe7a5' }); return false;" %>
-<label for="search_box">Enter the name or email address of a friend you'd like to find:</label>
-<%= text_field_tag 'search_box' %>
+<label for="name_search_box">Enter the name or email address of a friend you'd like to find:</label>
+<%= text_field_tag "name_search_box", "Enter name or email", {:size => "20", :onfocus => "clear_form('name_search_box', 'Enter name or email', '#000');", :onblur => "repop_form('name_search_box', 'Enter name or email', '#999');"} %>
 <%= submit_tag 'Search' %>
 </form>
 

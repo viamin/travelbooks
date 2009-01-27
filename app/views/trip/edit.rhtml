@@ -5,18 +5,18 @@
 		<%= render :partial => 'form', :object => @trip %>
 		<label for="trip_submit">&nbsp;</label><%= f.submit "Update" %>
 	<% end %>
-	<%= link_to "Add a destination", :action => 'add', :id => @trip %>
+	<p class="separated"><%= link_to "Add a destination", :action => 'add', :id => @trip %>
 	<ol id="destination_list">
 		<%= render :partial => 'destination', :collection => @trip.destinations %>
 	</ol>
-	<p>You can change the order by dragging the destinations up and down</p>
+	<p class="separated-top">You can change the order by dragging the destinations up and down</p>
 	<%= sortable_element 'destination_list',
 		:url => {:action => 'sort', :id => @trip },
 		:complete => visual_effect(:highlight, 'destination_list' )
 	%>
-	<%= link_to "Add a TravellerBook to this trip", :action => 'add_book', :id => @trip unless @item_count == 0 %>
+	<p class="separated separated-top"><%= link_to "Add a TravellerBook to this trip", :action => 'add_book', :id => @trip unless @item_count == 0 %></p>
 	<ul id="triptblist">
 		<%= render :partial => 'book', :collection => @trip.items %>
 	</ul>
-	<%= link_to 'Back to Trips', :action => 'list' %>
+	<p class="separated-top"><%= link_to 'Back to Trips', :action => 'list' %></p>
 </div>

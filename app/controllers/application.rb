@@ -31,11 +31,34 @@ class ApplicationController < ActionController::Base
   
   # Makes sure the user is logged in and has a session before displaying certain pages
   def authorize
+    # First check if user is already logged in
     if (session[:user_id].nil? || session[:user_id] == "")
-      timing "user_id = #{session[:user_id]}"
       redirect_to :controller => 'user', :action => 'login'
       return
     end
+  end
+  
+  def check_cookie
+    unless (cookies[:user_email].nil? || cookies[:user_email] == "" && (cookies[:login].nil? || cookies[:login] == ""))
+      # check for valid cookies here
+      person = Person.find_by_email(cookies[:user_email])
+      if cookies[:login] == person.login_token
+        session[:user_id] = person.id
+      end
+    end
+  end
+  
+  def set_login_cookie
+    if @login_status == :success
+      login_token = @person.set_login_cookie!
+      cookies[:user_email] = {:value => @person.email, :expires => Time.now.next_year}
+      cookies[:login] = { :value => login_token, :expires => Time.now.next_year}
+    end
+  end
+
+  def delete_login_cookie
+    cookies.delete :login
+    cookies.delete :user_email
   end
   
   def admin_auth
