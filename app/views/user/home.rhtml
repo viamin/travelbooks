@@ -26,7 +26,7 @@
 	</div>
 	<div class="yui-u">
 		<div id="friend_box">
-			<% cache(:action => 'home', :action_suffix => "friends#{@person.id}") %>
+			<% cache(:action => 'home', :action_suffix => "friends#{@person.id}") do %>
 			<div id="friend_bar">My Friends (<%= @friends.length %>)<%= link_to "View All", {:controller => 'user', :action => 'list', :id => @person.id}, {:class => 'right_rlink'} %></div>
 			<div id="friend_list">
 				<ul id="flist">
@@ -65,8 +65,10 @@
 				<%= link_to_remote "Show Trips", :url => {:controller => 'user', :action => 'show_trips', :id => @person.id#, :width => 456, :height => 207
 					}, :html => {:class => 'right_rlink', :id => 'mvacation'} %>
 			</div>
+			<% cache(:action => 'home', :action_suffix => "mapdiv#{@person.id}") do %>
 			<%= @map.div#(:width => 456, :height => 207) 
 			%>
+			<% end %>
 		</div>
 	</div>
 </div>

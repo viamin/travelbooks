@@ -116,8 +116,8 @@ class UserController < ApplicationController
       end
       
       # Map section
+      @location = @person.current_location
       unless (read_fragment(:action => 'home', :action_suffix => "map#{@person.id}"))
-        @location = @person.current_location
         @locations = @person.all_locations
         @map = Mapstraction.new('user_map', MAP_TYPE)
         @map.control_init(:small => true)
@@ -134,7 +134,7 @@ class UserController < ApplicationController
   end  
   
   def user_stats
-    unless read_fragment(:action => 'user_stats', :action_suffix => @person.id)
+    unless read_fragment(:action => 'user_stats', :action_suffix => params[:id])
       @person = Person.find(params[:id])
       @trips = @person.trips
       @items_given = @person.items_given.length

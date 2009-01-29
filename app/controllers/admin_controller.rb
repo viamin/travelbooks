@@ -1,6 +1,5 @@
 class AdminController < ApplicationController
   before_filter :admin_auth, :except => [:cleanup, :index]
-  layout 'user'
   
   def index
     
@@ -229,6 +228,16 @@ class AdminController < ApplicationController
   end
   
   def help_test
+  end
+  
+  # Clean up all known caches
+  def cache_purge
+    expire_fragment(%r{home.action_suffix=friends\d*.cache})
+    expire_fragment(%r{home.action_suffix=items\d*.cache})
+    expire_fragment(%r{home.action_suffix=map\d*.cache})
+    expire_fragment(%r{home.action_suffix=mapdiv\d*.cache})
+    expire_fragment(%r{user_stats.action_suffix=\d*.cache})
+    redirect_to :action => 'index'
   end
   
 end
