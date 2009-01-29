@@ -26,24 +26,28 @@
 	</div>
 	<div class="yui-u">
 		<div id="friend_box">
+			<% cache(:action => 'home', :action_suffix => "friends#{@person.id}") %>
 			<div id="friend_bar">My Friends (<%= @friends.length %>)<%= link_to "View All", {:controller => 'user', :action => 'list', :id => @person.id}, {:class => 'right_rlink'} %></div>
 			<div id="friend_list">
 				<ul id="flist">
 					<%= render :partial => "friend", :collection => @friends %>
 				</ul>
 			</div>
+			<% end %>
 		</div>
 	</div>
 </div>
 <div class="yui-gd">
 	<div class="yui-u first">
 		<div id="book_box">
+			<% cache(:action => 'home', :action_suffix => "items#{@person.id}") do %>
 			<div id="book_bar"><%= @list_all_items ? "All" : "My" %> TravellerBooks (<%= @items.length %>)<%= link_to (@list_all_items ? "Details" : "View All"), {:controller => 'item', :action => 'list', :id => @person.id}, {:class => 'left_rlink'} %></div>
 			<div id="book_list">
 				<ul id="blist">
 					<%= render :partial => 'item', :collection => @items %>
 				</ul>
 			</div>
+			<% end %>
 		</div>
 		<div id="stat_box">
 			<div id="stat_bar">My Traveller Stats</div>

@@ -60,8 +60,8 @@ class Location < ActiveRecord::Base
     end
   end
   
+  # Geocode the address and save the lat/lng returned
   def before_save
-    # Geocode the address and save the lat/lng returned
     @person = Person.find(self.person_id) unless self.person_id.nil?
     loc = MultiGeocoder.geocode(self.address_to_geocode(@person))
     if loc.success
@@ -69,7 +69,6 @@ class Location < ActiveRecord::Base
       self.lng = loc.lng
       self.zip_code = loc.zip unless loc.zip.nil?
     end
-    #timing self.pretty_inspect
   end
   
   def person
@@ -130,6 +129,7 @@ class Location < ActiveRecord::Base
   # Calculates the distance between two locations
   def distance_to(location)
     ########### TBD ############
+    0
   end
   
   def location_type

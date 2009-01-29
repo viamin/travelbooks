@@ -115,7 +115,7 @@ class Photo < ActiveRecord::Base
     filename = "#{RAILS_ROOT}/public/images/users/#{person.email}/#{photo_params[:file_name]}"
     if File.exist?(filename)
       #flash[:error] = "That filename has already been used"
-      timing "filename already used - not saving"
+#      timing "filename already used - not saving"
     else
       unless File.exist?("#{RAILS_ROOT}/public/images/users/#{person.email}")
         Dir.mkdir("#{RAILS_ROOT}/public/images/users/#{person.email}")

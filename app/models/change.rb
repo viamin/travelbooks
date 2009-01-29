@@ -71,7 +71,7 @@ class Change < ActiveRecord::Base
         begin
           destinations.each {|destination| (destination.change_id = original) && destination.save!}
         end
-        timing "Deleting change #{change}"
+#        timing "Deleting change #{change}"
         Change.destroy(change)
       end
     end

@@ -1,5 +1,6 @@
 class TripController < ApplicationController
   before_filter :authorize
+  cache_sweeper :trip_sweeper, :only => [:create]
   
   # RESTful actions:
   # Get: list, show, new, edit
@@ -31,9 +32,7 @@ class TripController < ApplicationController
     @person = Person.find(session[:user_id])
     @trip = Trip.new(params[:trip])
     @trip.save!
-    timing @trip.pretty_inspect
     @person.trips << @trip
-    timing @trip.pretty_inspect
     redirect_to :action => 'list'
   end
   
@@ -45,7 +44,6 @@ class TripController < ApplicationController
   def update
     @person = Person.find(session[:user_id])
     @trip = Trip.find(params[:id])
-    timing @trip.pretty_inspect
     if @trip.update_attributes(params[:trip])
       flash[:notice] = 'Trip was successfully updated.'
       redirect_to :action => 'edit', :id => @trip

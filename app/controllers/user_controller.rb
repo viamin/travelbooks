@@ -5,6 +5,8 @@ class UserController < ApplicationController
   after_filter :delete_login_cookie, :only => [:logout]
   layout 'user', :except => 'user_stats'
 #  caches_action :home
+  cache_sweeper :person_sweeper, :only => [:update, :add, :accept]
+  cache_sweeper :friend_sweeper, :only => [:accept]
   
   def index
     redirect_to :action => 'home'
@@ -97,27 +99,53 @@ class UserController < ApplicationController
     else
       @new_messages = @person.messages.unread
       flash[:notice] = "#{flash[:notice].concat('<br />') if flash[:notice]}You have #{@new_messages.length} new message#{"s" if @new_messages.length > 1} in your <a href=\"/message/list\">inbox</a>." unless session[:settled_in] || @new_messages.empty?
-      @location = @person.current_location
-      @locations = @person.all_locations
-      @items = @person.items
-      @list_all_items = false
-      if @items.empty?
-        @items = @person.all_items
-        @list_all_items = true
+      
+      # Item section
+      unless read_fragment(:action => 'home', :action_suffix => "items{@person.id}")
+        @items = @person.items
+        @list_all_items = false
+        if @items.empty?
+          @items = @person.all_items
+          @list_all_items = true
+        end
       end
-      @friends = @person.friends
-      @map = Mapstraction.new('user_map', MAP_TYPE)
-      @map.control_init(:small => true)
-      @map.center_zoom_init([@location.lat, @location.lng], 10)
-      @map.marker_init(Marker.new([@location.lat, @location.lng], :info_bubble => @location.description, :icon => '/images/homeicon.png'))
-      @locations.each do |l|
-        unless l == @location
-          @map.marker_init(Marker.new([l.lat, l.lng], :info_bubble => l.description))
+      
+      # friends section
+      unless read_fragment(:action => 'home', :action_suffix => "friends#{@person.id}")
+        @friends = @person.friends
+      end
+      
+      # Map section
+      unless (read_fragment(:action => 'home', :action_suffix => "map#{@person.id}"))
+        @location = @person.current_location
+        @locations = @person.all_locations
+        @map = Mapstraction.new('user_map', MAP_TYPE)
+        @map.control_init(:small => true)
+        @map.center_zoom_init([@location.lat, @location.lng], 10)
+        @map.marker_init(Marker.new([@location.lat, @location.lng], :info_bubble => @location.description, :icon => '/images/homeicon.png'))
+        @locations.each do |l|
+          unless l == @location
+            @map.marker_init(Marker.new([l.lat, l.lng], :info_bubble => l.description))
+          end
         end
       end
       session[:settled_in] = true
     end
   end  
+  
+  def user_stats
+    unless read_fragment(:action => 'user_stats', :action_suffix => @person.id)
+      @person = Person.find(params[:id])
+      @trips = @person.trips
+      @items_given = @person.items_given.length
+      @items_received = @person.items_received.length
+      @countries_visited = @person.statistics.countries_visited
+      @countries_books_visited = @person.statistics.countries_books_visited
+      @miles_travelled = @person.statistics.miles_travelled
+      @miles_books_given_travelled = @person.statistics.miles_books_given_travelled
+      @miles_last_book = @person.statistics.miles_last_book_recieved_travelled
+    end
+  end
   
   def login
     unless session[:user_id].nil?
@@ -192,11 +220,11 @@ class UserController < ApplicationController
       redirect_to :action => 'home'
     end
     if request.get?
-      timing "Path 1 (Request method: GET)"
+#      timing "Path 1 (Request method: GET)"
       @person = Person.new
       @location = Location.new
     else
-      timing "Path 2 (Request method: POST)"
+#      timing "Path 2 (Request method: POST)"
       @person = Person.new(params[:person])
       @location = Location.new(params[:location])
       @location.loc_type = 1
@@ -302,18 +330,6 @@ class UserController < ApplicationController
     end
   end
   
-  def user_stats
-    @person = Person.find(params[:id])
-    @trips = @person.trips
-    @items_given = @person.items_given.length
-    @items_received = @person.items_received.length
-    @countries_visited = @person.statistics.countries_visited
-    @countries_books_visited = @person.statistics.countries_books_visited
-    @miles_travelled = @person.statistics.miles_travelled
-    @miles_books_given_travelled = @person.statistics.miles_books_given_travelled
-    @miles_last_book = @person.statistics.miles_last_book_recieved_travelled
-  end
-  
   def item_locations
     @person = Person.find(session[:user_id])
     @locations = @person.all_locations
@@ -323,7 +339,7 @@ class UserController < ApplicationController
       loc = item.locations.current
       @loc_items[loc.id] = ([@loc_items[loc.id], nil] << item).flatten.compact || [item] unless loc.nil?
     end
-    timing @loc_items.pretty_inspect
+#    timing @loc_items.pretty_inspect
     @unfound_items = @items.clone.delete_if { |i| @locations.include?(i.locations.current)}
 #    timing @items.pretty_inspect
 #    timing @unfound_items.pretty_inspect

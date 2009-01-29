@@ -1,5 +1,6 @@
 class ItemController < ApplicationController
   before_filter :authorize, :except => [:image]
+  cache_sweeper :person_sweeper, :only => [:associate]
   
   def index
     redirect_to :action => 'list'

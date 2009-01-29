@@ -1,9 +1,9 @@
 Add RSS feeds to individual books
 Fix up statistics
-Fix CSS to use YUI reset+font+grid
+[DONE] Fix CSS to use YUI reset+font+grid
 Add status adding link
 Add popups to info box
-Add help controller and popup system
+[DONE] Add help controller and popup system
 Improve book image loading performance
-Make message center prettier
-Fix email error reporting
+[WIP] Make message center prettier
+[VERIFY] Fix email error reporting

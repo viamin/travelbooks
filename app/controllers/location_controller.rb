@@ -1,5 +1,6 @@
 class LocationController < ApplicationController
   before_filter :authorize
+  cache_sweeper :person_sweeper, :only => [:create, :update, :destroy, :make_main]
   
   # RESTful actions:
   # Get: list, show, new, edit
@@ -60,7 +61,7 @@ class LocationController < ApplicationController
     @location = Location.find(params[:id])
     @person = Person.find(session[:user_id])
     if @location.used_elsewhere?
-      timing "Location used elsewhere"
+#      timing "Location used elsewhere"
       @new_location = Location.create(params[:location])
       if @location.is_identical_to?(@new_location, false) # false allows the description to change without creating a new location
         @new_location.destroy

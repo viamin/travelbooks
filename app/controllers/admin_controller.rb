@@ -69,7 +69,7 @@ class AdminController < ApplicationController
     @item = Item.find(params[:item][:id])
     @item.add_new_location_change = params[:item][:add_new_location_change]
     params[:item].delete_if {|key, value| key == "add_new_location_change"}
-    timing params[:item].pretty_inspect
+#    timing params[:item].pretty_inspect
     if @item.update_attributes(params[:item])
       #flash[:notice] = 'Book was successfully updated.'
       redirect_to :action => 'books'

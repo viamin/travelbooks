@@ -131,9 +131,9 @@ class Message < ActiveRecord::Base
   end
   
   def mark_read(time_read = Time.now)
-    timing self.state
+#    timing self.state
     self.state = self.state | Message::READ
-    timing self.state
+#    timing self.state
     self.date_read = time_read
     self.save!
   end

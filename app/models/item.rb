@@ -71,7 +71,7 @@ class Item < ActiveRecord::Base
     digest << self.id.to_s
     digest << self.description
     tbid = digest.hexdigest
-    timing "tbid: #{tbid}"
+#    timing "tbid: #{tbid}"
     self.tbid = "TB" + tbid.slice(2...10).upcase
     until self.save # if the id is not unique
       self.generate_tbid
@@ -85,7 +85,7 @@ class Item < ActiveRecord::Base
     digest << self.id.to_s
     digest << self.description
     tbid = digest.hexdigest
-    timing "tbid: #{tbid}"
+#    timing "tbid: #{tbid}"
     self.tbid = "TB" + tbid.slice(2...10).upcase
     self
   end
@@ -163,7 +163,7 @@ class Item < ActiveRecord::Base
 #    timing "Changes list: #{changes_list.pretty_inspect}"
     location = changes_list.delete_if {|change| change.change_type != Change::ITEM_LOCATION }.sort { |x,y| x.effective_date <=> y.effective_date }.collect! {|c| Location.find(c.new_value)}.last
     if location.nil?
-      timing "Using latest location"
+#      timing "Using latest location"
       location = self.latest_location
     end
     location
@@ -186,7 +186,7 @@ class Item < ActiveRecord::Base
   
   def add_new_location_change=(new_location_id)
     unless (new_location_id.nil? || (!self.current_location.nil? && new_location_id == self.current_location.id))
-      timing "Creating a new item change for Location id:#{new_location_id}"
+#      timing "Creating a new item change for Location id:#{new_location_id}"
       @change = Change.new
       @change.change_type = Change::ITEM_LOCATION
       @change.item_id = self.id
@@ -194,7 +194,7 @@ class Item < ActiveRecord::Base
       @change.new_value = new_location_id
       @change.effective_date = Time.now
       @change.save
-      timing "Done creating new item change"
+#      timing "Done creating new item change"
     end
     new_location_id
   end
