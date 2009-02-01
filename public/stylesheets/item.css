@@ -7,6 +7,26 @@
 	-webkit-box-shadow: 2px 2px 4px #633c1f;
 	background-color: #fff;
 }
+#sflist {
+	overflow: auto;
+	height: 580px;
+	list-style: none;
+	margin: 0;
+	padding: 1em 0 1em 1em;
+}
+#sflist li {
+	float: left;
+}
+#sflist img {
+	border: 0;
+}
+.friend_caption {
+	width: 80px;
+	text-align: center;
+	display: block;
+	text-decoration: none;
+	color: #000;
+}
 #book_info_box {
 /*	position: relative; 
 	width: 100%; 
@@ -15,28 +35,35 @@
 }
 #book_info {
 /*	width:280px; */
-	height: 580px;
+	height: 578px;
+/*	padding: 0.5em; */
+	padding: 1em 0 1em 1em;
 	overflow: auto;
+	-webkit-box-shadow: 2px 2px 4px #633c1f;
+	background-color: #fff;
 }
 #book_info ul {
 	list-style: none;
 /*	margin-left: 10px;*/
 }
+#book_info li {
+	margin: 1em 0 1em 1em;
+}
 #book_info img {
-/*	width: 200px; */
-	width: 95%;
+	width: 180px; 
+/*	width: 95%; */
 }
 #owner_list img {
-/*	width: 50px;
-	height: auto;*/
+	width: 80px;
+/*	height: auto;*/
 }
 #item_map {
 /*	position: absolute;
 	top: -580px;
 	left: 310px; 
 	float: right;
-	margin-right: 5px;
-	width: 458px;*/
+	margin-right: 5px;*/
+	width: 592px;
 	height: 592px;
 /*	border: 1px solid #633c1f;*/
 	z-index: 1000;

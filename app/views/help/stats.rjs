@@ -1,0 +1,5 @@
+@help_text = <<ENDHELP
+<p>Your Traveller Stats show you information about how much you and your TravellerBooks have travelled around. You can update the stats here by adding Trips to your profile, adding TravellerBooks to your profile, and making sure any TravellerBooks you've taken with you on your trips have been associated with those trips. You can get to your list of trips from your <a href="/user/edit">Profile editing page</a>. </p>
+ENDHELP
+page['help_text'].replace_html @help_text
+page['float_help'].appear

@@ -8,9 +8,12 @@
 	<%= check_box 'person', 'share_trips', {}, 'Yes', 'No' %></p>
 
 <p><label for="person_email">Email Address</label>
-	<%= text_field 'person', 'email'  %></p>
+	<%= text_field 'person', 'email' %></p>
 
-		<p><label for="person_location_resolution">Privacy: Location detail others can see</label>
-			<%= select 'person', 'location_resolution', Person::LOCRESOLUTIONS %></p>
+<p><label for="person_location_resolution">Location detail other people can see</label>
+	<%= select 'person', 'location_resolution', Person::LOCRESOLUTIONS %></p>
+	
+<p><label for="person_location_resolution">Hide my profile from non-friends</label>
+	<%= check_box 'person', 'private_profile', {}, true, false %></p>
 <!--[eoform:person]-->
 

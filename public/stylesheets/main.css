@@ -151,9 +151,10 @@ div.progressBar div.background {
 /***** Help Box *****/
 #help {
 	position: absolute;
+	top: 50%;
 }
 #float_help {
-	left: 1em;
+	left: 4em;
 	z-index: 10001;
 }
 #float_help_bar {

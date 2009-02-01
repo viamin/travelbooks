@@ -33,20 +33,36 @@ class UserController < ApplicationController
   def show
     if (params[:id].to_i == session[:user_id].to_i)
       redirect_to :action => 'home'
+      return
     end
     @person = Person.find(params[:id])
+    if @person.private_profile
+       @map = Mapstraction.new('user_map', MAP_TYPE)
+        @map.control_init(:small => true)
+        @location = Location.default
+        @map.center_zoom_init([@location.lat, @location.lng], 12)
+#        @map.marker_init(Marker.new([@location.lat, @location.lng], :info_bubble => @person.display_name, :icon => '/images/personicon.png'))
+      render :action => 'private', :layout => false
+      return
+    end
     @me = Person.find(session[:user_id])
     @location = @person.current_location
-    @items = @person.items
-    @friends = @person.friends
-    @is_my_friend = @friends.include?(@me)
+    unless read_fragment(:action => 'show', :action_suffix => "items{@person.id}")
+      @items = @person.items
+    end
+    unless read_fragment(:action => 'show', :action_suffix => "friends#{@person.id}")
+      @friends = @person.friends
+      @is_my_friend = @friends.include?(@me)
+    end
     unless @is_my_friend
       @is_my_friend = Message.check_for_request(@me, @person)
     end
-    @map = Mapstraction.new('user_map', MAP_TYPE)
-    @map.control_init(:small => true)
-    @map.center_zoom_init([@location.lat, @location.lng], 10)
-    @map.marker_init(Marker.new([@location.lat, @location.lng], :info_bubble => @person.display_name, :icon => '/images/personicon.png'))
+    unless (read_fragment(:action => 'show', :action_suffix => "map#{@person.id}"))
+      @map = Mapstraction.new('user_map', MAP_TYPE)
+      @map.control_init(:small => true)
+      @map.center_zoom_init([@location.lat, @location.lng], 10)
+      @map.marker_init(Marker.new([@location.lat, @location.lng], :info_bubble => @person.display_name, :icon => '/images/personicon.png'))
+    end
   end
 
   def new
@@ -132,20 +148,6 @@ class UserController < ApplicationController
       session[:settled_in] = true
     end
   end  
-  
-  def user_stats
-    unless read_fragment(:action => 'user_stats', :action_suffix => params[:id])
-      @person = Person.find(params[:id])
-      @trips = @person.trips
-      @items_given = @person.items_given.length
-      @items_received = @person.items_received.length
-      @countries_visited = @person.statistics.countries_visited
-      @countries_books_visited = @person.statistics.countries_books_visited
-      @miles_travelled = @person.statistics.miles_travelled
-      @miles_books_given_travelled = @person.statistics.miles_books_given_travelled
-      @miles_last_book = @person.statistics.miles_last_book_recieved_travelled
-    end
-  end
   
   def login
     unless session[:user_id].nil?
@@ -304,12 +306,14 @@ class UserController < ApplicationController
   end
   
   def reset_password
+    @needs_confirmation = false
     if params[:id].nil?
       @person = Person.find(session[:user_id])
+      @needs_confirmation = true
     else
       @person = Person.find(params[:id])
+      @temp_pass = params[:temp_pass]
     end
-    @temp_pass = params[:temp_pass]
   end
   
   def update_password

@@ -6,8 +6,9 @@
 }
 #along_list {
 	list-style: none;
-	border: 1px solid #98a1be;
+/*	border: 1px solid #98a1be;*/
 	padding: 0;
+	margin: 1em;
 }
 .spacer {
 	background: #98a1be;

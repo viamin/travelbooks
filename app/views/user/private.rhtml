@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+       "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>TravellerBooks - <%= random_saying %></title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<link rel="icon" href="/apple-touch-icon.png" type="image/png" />
+	<%= stylesheet_link_tag 'reset-fonts-grids' %>
+	<%= stylesheet_link_tag 'main' %>
+	<%= stylesheet_link_tag 'user' %>
+	<%=   Mapstraction.header(MAP_TYPE) %>
+	<%=   @map.to_html %>
+	<%= javascript_include_tag :defaults %>
+	<!--[if lte IE 6]>
+	<script type="text/javascript" src="/javascripts/supersleight-min.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<div id="doc2" class="yui-t7">
+		<div id="hd">
+			<%= render :partial => "main/titlebar" %>
+			<div id="linkbar">
+				<%= render :partial => "main/toplinks" %>
+			</div>
+		</div>
+		<div id="bd">	
+			<div id="cfl">
+				
+				
+<div class="yui-gd">
+	<div class="yui-u first">
+		<div id="user_box">
+			<div id="welcome_bar"><%= h(@person.display_name) %>'s Profile</div>
+			<div id="info_box">
+				<div id="user_photo">
+					<%= image_tag("#{@person.main_photo.url}", :class => "main_photo", :size => "80x120", :alt => @person.display_name) %>
+				</div>
+				<div id="user_info">
+					<ul id="ilist">
+		      			<li><%= h(@person.display_name) %></li>
+		    		</ul>
+					<div id="show_list">
+						<ul id="options_list">
+							<li><%= link_to("Add to my friends", :action => 'add', :id => @person.id) %>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="yui-u">
+		<div id="friend_box">
+			<div id="friend_bar"><%= h(@person.display_name) %>'s Friends</div>
+			<div id="friend_list">
+				<p class="private">This user's information has been marked as private.</p>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="yui-gd">
+	<div class="yui-u first">
+		<div id="book_box">
+			<div id="book_bar"><%= h(@person.display_name) %>'s Books</div>
+			<div id="book_list">
+				<p class="private">This user's information has been marked as private.</p>
+			</div>
+		</div>
+		<div id="stat_box">
+			<div id="stat_bar"><%= h(@person.display_name) %>'s Traveller Stats</div>
+			<div id="stat_list">
+				<p class="private">This user's information has been marked as private.</p>
+			</div>
+		</div>
+	</div>
+	<div class="yui-u">
+		<div id="map_box">
+			<div id="map_bar">
+				<%= h(@person.display_name) %>'s World 
+			</div>
+			<div id="user_map"></div>
+		</div>
+	</div>
+</div>
+
+
+</div>
+</div>
+<div id="ft" class="yui-g">
+<div id="footer">
+	<%= render :partial => 'main/footer' %>
+</div>
+</div>
+<%= render(:partial => 'main/flash', :locals => {:flash => flash}) if flash[:notice] %>
+<div id="help"><%= render :partial => 'main/help' %></div>
+</div>
+</body>
+</html>

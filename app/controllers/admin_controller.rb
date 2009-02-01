@@ -176,8 +176,10 @@ class AdminController < ApplicationController
   def edit_user
     @user = Person.find(params[:id])
     reset_session
+    cookies.delete :login
+    cookies.delete :user_email
     session[:user_id] = @user.id
-    redirect_to :controller => 'user', :action => 'edit'
+    redirect_to :controller => 'user', :action => 'home'
   end
   
   def destroy_user
@@ -235,8 +237,10 @@ class AdminController < ApplicationController
     expire_fragment(%r{home.action_suffix=friends\d*.cache})
     expire_fragment(%r{home.action_suffix=items\d*.cache})
     expire_fragment(%r{home.action_suffix=map\d*.cache})
-    expire_fragment(%r{home.action_suffix=mapdiv\d*.cache})
-    expire_fragment(%r{user_stats.action_suffix=\d*.cache})
+    expire_fragment(%r{home.action_suffix=stats\d*.cache})
+    expire_fragment(%r{\d*.action_suffix=friends\d*.cache})
+    expire_fragment(%r{show/\d*.action_suffix=items\d*.cache})
+    expire_fragment(%r{show/\d*.action_suffix=map\d*.cache})
     redirect_to :action => 'index'
   end
   

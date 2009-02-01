@@ -2,6 +2,7 @@
 	<li><%= link_to "Home", :controller => 'user', :action => 'home' %></li>
 	<li><%= link_to "Search", :controller => 'track', :action => 'search' %></li>
 	<li><%= link_to "Shop", :controller => 'shop', :action => 'store' %></li>
+	<li><%= link_to "Profile", :controller => 'user', :action => 'edit' %></li>
 	<% if session[:user_id].nil? -%>
 	  <li id="user_log"><%= link_to_function "Login", "var lb = $('loginbox');
 		if (lb.visible() == true) {

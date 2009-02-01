@@ -17,7 +17,6 @@
 				</div>
 				<div id="edit_list">
 					<ul id="edit_options_list">
-						<li><%= link_to "Edit my Details", :action => "edit" %></li>
 						<li><%= link_to "Message Center", :controller => 'message', :action => 'list' %><%= "(#{@new_messages.length})" unless @new_messages.empty? %></li>
 					</ul>
 				</div>
@@ -26,6 +25,7 @@
 	</div>
 	<div class="yui-u">
 		<div id="friend_box">
+			
 			<% cache(:action => 'home', :action_suffix => "friends#{@person.id}") do %>
 			<div id="friend_bar">My Friends (<%= @friends.length %>)<%= link_to "View All", {:controller => 'user', :action => 'list', :id => @person.id}, {:class => 'right_rlink'} %></div>
 			<div id="friend_list">
@@ -34,12 +34,14 @@
 				</ul>
 			</div>
 			<% end %>
+			
 		</div>
 	</div>
 </div>
 <div class="yui-gd">
 	<div class="yui-u first">
 		<div id="book_box">
+			
 			<% cache(:action => 'home', :action_suffix => "items#{@person.id}") do %>
 			<div id="book_bar"><%= @list_all_items ? "All" : "My" %> TravellerBooks (<%= @items.length %>)<%= link_to (@list_all_items ? "Details" : "View All"), {:controller => 'item', :action => 'list', :id => @person.id}, {:class => 'left_rlink'} %></div>
 			<div id="book_list">
@@ -48,13 +50,16 @@
 				</ul>
 			</div>
 			<% end %>
+			
 		</div>
 		<div id="stat_box">
 			<div id="stat_bar">My Traveller Stats</div>
 			<div id="stat_list">
-				<% cache(:action => 'user_stats', :action_suffix => @person.id) do %>
-					<%= render_component :controller => 'user', :action => 'user_stats', :id => @person.id %>
+				
+				<% cache(:action => 'home', :action_suffix => "stats#{@person.id}") do %>
+					<%= render :partial => 'user_stats', :action => 'user_stats', :object => @person %>
 				<% end %>
+				
 			</div>
 		</div>
 	</div>
@@ -65,10 +70,7 @@
 				<%= link_to_remote "Show Trips", :url => {:controller => 'user', :action => 'show_trips', :id => @person.id#, :width => 456, :height => 207
 					}, :html => {:class => 'right_rlink', :id => 'mvacation'} %>
 			</div>
-			<% cache(:action => 'home', :action_suffix => "mapdiv#{@person.id}") do %>
-			<%= @map.div#(:width => 456, :height => 207) 
-			%>
-			<% end %>
+			<div id="user_map"></div>
 		</div>
 	</div>
 </div>

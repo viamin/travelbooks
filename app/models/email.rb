@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 36
+# Schema version: 37
 #
 # Table name: emails
 #

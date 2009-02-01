@@ -265,11 +265,12 @@
 }
 #edit_person input {
 	position: relative;
-	left: 260px;
+	left: 22em;
 }
 #edit_person select {
 	position: relative;
-	left: 260px;
+	top: .75em;
+	left: 22em;
 }
 #reset_form label {
 	position: absolute;
@@ -285,4 +286,7 @@
 	display: block;
 	background: #ffe7a5;
 	padding-bottom: 10px;
+}
+.private {
+	margin: 1em;
 }

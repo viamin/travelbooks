@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 36
+# Schema version: 37
 #
 # Table name: people
 #
@@ -15,6 +15,7 @@
 #  privacy_flags   :integer         default(0)
 #  needs_reset     :boolean
 #  login_token     :string(255)
+#  private_profile :boolean
 #
 
 --- 

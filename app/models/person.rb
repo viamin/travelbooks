@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 36
+# Schema version: 37
 #
 # Table name: people
 #
@@ -15,6 +15,7 @@
 #  privacy_flags   :integer         default(0)
 #  needs_reset     :boolean
 #  login_token     :string(255)
+#  private_profile :boolean
 #
 
 class Person < ActiveRecord::Base
@@ -41,7 +42,7 @@ class Person < ActiveRecord::Base
     def miles_books_given_travelled
       0
     end
-    def miles_last_book_recieved_travelled
+    def miles_last_book_received_travelled
       0
     end
   end
@@ -73,9 +74,9 @@ class Person < ActiveRecord::Base
   validates_format_of :email, 
 		      :with => /^(.+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
 	validates_length_of :password, :within => 6..40, :on => :create, :too_long => 'must be 40 characters or less', :too_short => 'must be at least 6 characters'
-	validates_length_of :first_name, :maximum => 250
-  validates_length_of :middle_name, :maximum => 250
-  validates_length_of :last_name, :maximum => 250
+#	validates_length_of :first_name, :maximum => 250
+#  validates_length_of :middle_name, :maximum => 250
+#  validates_length_of :last_name, :maximum => 250
   validates_length_of :email, :maximum => 250
   validates_length_of :nickname, :maximum => 250
 

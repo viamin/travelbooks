@@ -3,7 +3,7 @@
 
 <div id="trip_page" class="yui-gd">
 	<div id="vacation_list" class="yui-u first">
-		<%= link_to 'Add a trip log', :action => 'new' %>
+		<%= button_to 'Add a trip log', :action => 'new' %>
 		<ul>
 			<%= render :partial => 'trip', :collection => @trips %>
 		</ul>

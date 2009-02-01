@@ -17,7 +17,6 @@ class TripSweeper < ActionController::Caching::Sweeper
   
   def expire_map_cache(record)
     expire_fragment(:controller => 'user', :action => 'home', :action_suffix => "map#{record.person_id}")
-    expire_fragment(:controller => 'user', :action => 'home', :action_suffix => "mapdiv#{record.person_id}")
   end
   
   def expire_trip_cache(record)

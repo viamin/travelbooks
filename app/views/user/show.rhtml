@@ -28,12 +28,16 @@
 <div class="yui-u">
 	
 	<div id="friend_box">
+		
+		<% cache(:action => 'show', :action_suffix => "friends#{@person.id}") do %>
 		<div id="friend_bar"><%= h(@person.display_name) %>'s Friends</div>
 		<div id="friend_list">
 			<ul id="flist">
 				<%= render :partial => "friend", :collection => @friends %>
 			</ul>
 		</div>
+		<% end %>
+		
 	</div>
 
 	</div>
@@ -42,17 +46,25 @@
 	<div class="yui-u first">
 
 <div id="book_box">
+	
+	<% cache(:action => 'show', :action_suffix => "items#{@person.id}") do %>
 	<div id="book_bar"><%= h(@person.display_name) %>'s Books</div>
 	<div id="book_list">
 		<ul id="blist">
 			<%= render :partial => 'item', :collection => @items %>
 		</ul>
 	</div>
+	<% end %>
+	
 </div>
 <div id="stat_box">
 	<div id="stat_bar"><%= h(@person.display_name) %>'s Traveller Stats</div>
 	<div id="stat_list">
-		<%= render_component :action => 'user_stats', :id => @person %>
+		
+		<% cache(:action => 'home', :action_suffix => "stats#{@person.id}") do %>
+			<%= render :partial => 'user_stats', :action => 'user_stats', :object => @person %>
+		<% end %>
+		
 	</div>
 </div>
 
@@ -65,8 +77,7 @@
 				<%= link_to_remote "Show Trips", :url => {:controller => 'user', :action => 'show_trips', :id => @person.id#, :width => 456, :height => 207
 					}, :html => {:class => 'right_rlink', :id => 'mvacation'} if @person.share_trips %>
 			</div>
-			<%= @map.div#(:width => 456, :height => 207) 
-			%>
+			<div id="user_map"></div>
 		</div>
 		
 	</div>

@@ -1,4 +1,4 @@
-<div id="loginbox" style="display:;">
+<div id="loginbox" style="display:none;">
 	<% form_for :person, @person, :url => {:controller => 'user', :action => 'login'} do |f| %>
 		<label for="person_email">Email:</label>
 		<%= f.text_field :email, {:class => "txinput"} %>

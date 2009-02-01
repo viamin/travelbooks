@@ -132,3 +132,24 @@
 #loc_form p {
 	margin: 1em 0 1em 0;
 }
+#edit_person p {
+	padding-bottom: 10px;
+}
+.block_list {
+	width: 760px;
+}
+#edit_person label {
+	position: absolute;
+	text-align: right;
+	display: block;
+	width: 250px;
+}
+#edit_person input {
+	position: relative;
+	left: 21em;
+}
+#edit_person select {
+	position: relative;
+	top: -.25em;
+	left: 21em;
+}
