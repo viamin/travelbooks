@@ -71,8 +71,8 @@ MAP_TYPE = :yahoo
 
 require 'pp'
 require 'action_mailer/ar_mailer'
-#require "#{RAILS_ROOT}/vendor/rmagick-2.2.2/lib/RMagick.rb"
-require 'rmagick'
+require "#{RAILS_ROOT}/vendor/rmagick-2.2.2/lib/RMagick.rb"
+#require 'rmagick'
 include Magick
 
 def timing(str)
