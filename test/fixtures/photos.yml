@@ -34,7 +34,6 @@ photos_011:
   photo_type: "1"
   path: /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/public/images/books/book17.jpg
   person_id: 
-  data_id: 
   width: "400"
 photos_012: 
   content_type: image/jpeg
@@ -49,8 +48,7 @@ photos_012:
   height: "538"
   photo_type: "1"
   path: /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/public/images/books/book16.jpg
-  person_id: 
-  data_id: 
+  person_id:  
   width: "400"
 photos_001: 
   content_type: image/jpeg
@@ -65,8 +63,7 @@ photos_001:
   height: 
   photo_type: 
   path: public/images
-  person_id: 
-  data_id: 
+  person_id:  
   width: 
 photos_013: 
   content_type: image/jpeg
@@ -81,8 +78,7 @@ photos_013:
   height: "540"
   photo_type: "1"
   path: /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/public/images/books/book15.jpg
-  person_id: 
-  data_id: 
+  person_id:  
   width: "400"
 photos_002: 
   content_type: image/jpeg
@@ -97,8 +93,7 @@ photos_002:
   height: "360"
   photo_type: "1"
   path: public/images/bart@sonic.net/temp_photo801
-  person_id: "1"
-  data_id: 
+  person_id: "1" 
   width: "240"
 photos_014: 
   content_type: image/jpeg
@@ -113,8 +108,7 @@ photos_014:
   height: "449"
   photo_type: "1"
   path: /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/public/images/books/book14.jpg
-  person_id: 
-  data_id: 
+  person_id:  
   width: "400"
 photos_003: 
   content_type: image/jpeg
@@ -129,8 +123,7 @@ photos_003:
   height: "270"
   photo_type: "2"
   path: public/images/bart@sonic.net/temp_photo404
-  person_id: "1"
-  data_id: 
+  person_id: "1" 
   width: "240"
 photos_015: 
   content_type: image/jpeg
@@ -145,8 +138,7 @@ photos_015:
   height: "439"
   photo_type: "1"
   path: /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/public/images/books/book13.jpg
-  person_id: 
-  data_id: 
+  person_id:  
   width: "400"
 photos_004: 
   content_type: image/jpeg
@@ -161,8 +153,7 @@ photos_004:
   height: "164"
   photo_type: "2"
   path: public/images/gokarte@yahoo.com/temp_photo472
-  person_id: "2"
-  data_id: 
+  person_id: "2" 
   width: "384"
 photos_016: 
   content_type: image/jpeg
@@ -177,8 +168,7 @@ photos_016:
   height: "534"
   photo_type: "1"
   path: /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/public/images/books/book3.jpg
-  person_id: 
-  data_id: 
+  person_id:  
   width: "400"
 photos_005: 
   content_type: image/jpeg
@@ -194,7 +184,6 @@ photos_005:
   photo_type: "2"
   path: public/images/bart@sonic.net/temp_photo115
   person_id: "1"
-  data_id: 
   width: "240"
 photos_017: 
   content_type: image/jpeg
@@ -209,8 +198,7 @@ photos_017:
   height: "446"
   photo_type: "1"
   path: /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/public/images/books/book1.jpg
-  person_id: 
-  data_id: 
+  person_id:  
   width: "400"
 photos_006: 
   content_type: image/jpeg
@@ -225,8 +213,7 @@ photos_006:
   height: "360"
   photo_type: "1"
   path: public/images/gokarte@yahoo.com/temp_photo572
-  person_id: "2"
-  data_id: 
+  person_id: "2" 
   width: "240"
 photos_018: 
   content_type: image/jpeg
@@ -241,8 +228,7 @@ photos_018:
   height: "360"
   photo_type: "2"
   path: /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/public/images/users/bart@sonic.net/temp_photo208
-  person_id: "1"
-  data_id: 
+  person_id: "1" 
   width: "240"
 photos_007: 
   content_type: image/jpeg
@@ -257,8 +243,7 @@ photos_007:
   height: "535"
   photo_type: "1"
   path: /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/public/images/books/book20.jpg
-  person_id: 
-  data_id: 
+  person_id:  
   width: "400"
 photos_019: 
   content_type: image/png
@@ -273,8 +258,7 @@ photos_019:
   height: "524"
   photo_type: "1"
   path: /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/public/images/books/book21.jpg
-  person_id: 
-  data_id: 
+  person_id:  
   width: "400"
 photos_008: 
   content_type: image/jpeg
@@ -289,8 +273,7 @@ photos_008:
   height: "525"
   photo_type: "1"
   path: /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/public/images/books/book4.jpg
-  person_id: 
-  data_id: 
+  person_id:  
   width: "400"
 photos_020: 
   content_type: image/png
@@ -306,7 +289,6 @@ photos_020:
   photo_type: "1"
   path: /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/public/images/books/book22.jpg
   person_id: 
-  data_id: 
   width: "101"
 photos_009: 
   content_type: image/jpeg
@@ -322,7 +304,6 @@ photos_009:
   photo_type: "1"
   path: /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/public/images/books/book19.jpg
   person_id: 
-  data_id: 
   width: "400"
 photos_010: 
   content_type: image/jpeg
@@ -338,5 +319,4 @@ photos_010:
   photo_type: "1"
   path: /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/public/images/books/book18.jpg
   person_id: 
-  data_id: 
   width: "400"
