@@ -151,6 +151,7 @@ class UserController < ApplicationController
   
   def login
     unless session[:user_id].nil?
+      flash[:notice] = "You are already logged in with a TravellerBook.com account. If you'd like to create a new account, please log out first by clicking the 'Logout' link above."
       redirect_to :action => 'home'
       return
     end
@@ -218,7 +219,7 @@ class UserController < ApplicationController
 
   def join
     unless session[:user_id].nil?
-      flash[:notice] = "You are already logged in with a TravellerBook.com account. If you'd like to create a new account, please log out first by clicking the 'Logout' link."
+      flash[:notice] = "You are already logged in with a TravellerBook.com account. If you'd like to create a new account, please log out first by clicking the 'Logout' link above."
       redirect_to :action => 'home'
     end
     if request.get?

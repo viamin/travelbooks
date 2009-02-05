@@ -3,18 +3,17 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <%= stylesheet_link_tag 'main' %>
+  <link href="/stylesheets/main.css" media="screen" rel="stylesheet" type="text/css" />
 </head>
 <body>
-	<div id="main_stripe">
-		<div id="cfl">
+	<div id="doc2" class="yui-t7">
+		<div id="bd">
 			<h1>Application error</h1>
 			  <p>There's been an error in the application. Please try back later.</p>
-			  <p>An email has been sent to the support team. You can also send feedback to <%= mail_to "support@travellerbook.com" %> if you like. We appreciate the feedback.</p>
-			<p><%= link_to "Home", :controller => 'user', :action => 'home' %> |
-				<%= link_to "Main Page", "http://www.travellerbook.com" %></p>
+			  <p>An email has been sent to the support team. You can also send feedback to <a href="mailto:support@travellerbook.com">support@travellerbook.com</a> if you like. We appreciate the feedback.</p>
+			  <p><a href="/user/home">Home</a> |
+				<a href="http://www.travellerbook.com">Main Page</a></p>
 		</div>
 	</div>
-	<img src="/images/rsh.png" id="rsh">
 </body>
 </html>

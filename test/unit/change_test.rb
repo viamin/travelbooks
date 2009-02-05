@@ -11,4 +11,5 @@ class ChangeTest < ActiveSupport::TestCase
   def test_is_identical_to
     assert @change.is_identical_to?(@change.dup)
   end
+  
 end

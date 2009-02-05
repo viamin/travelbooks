@@ -4,7 +4,7 @@
 # Code is not reloaded between requests
 config.cache_classes = true
 
-ENV['RAILS_GEM_VERSION'] = "2.0.2"
+#ENV['RAILS_GEM_VERSION'] = "2.2.2"
 
 # Use a different logger for distributed setups
 # config.logger = SyslogLogger.new
@@ -22,10 +22,10 @@ ActionMailer::Base.perform_deliveries = true
 ActionMailer::Base.raise_delivery_errors = true  
 ActionMailer::Base.default_charset = "utf-8"
 ActionMailer::Base.smtp_settings = {
-  :address => 'basil.server0571.info',
-  :port => 25,
+  :address => 'mail.travellerbook.com',
+  :port => 26,
   :authentication => :login,
-  :user_name => 'do-not-reply@travellerbook.com',
+  :user_name => 'do-not-reply+travellerbook.com',
   :password => '/1<$xFMp!-k-'
 }
 

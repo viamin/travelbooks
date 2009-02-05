@@ -7,3 +7,5 @@ Add popups to info box
 Improve book image loading performance
 [WIP] Make message center prettier
 [VERIFY] Fix email error reporting
+Fix caching
+Fix Error 500 page

@@ -22,6 +22,9 @@ role :db,  "75.126.168.192", :primary => true
  set :scm_command, "PATH=$PATH:/usr/local/bin svn"
  set :svn, "/usr/local/bin/svn"
 
+# Save some space
+ set :keep_releases, 2
+ 
 # =============================================================================
 # SSH OPTIONS
 # =============================================================================
