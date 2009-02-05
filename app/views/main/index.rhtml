@@ -17,7 +17,22 @@
 				<%= link_to "TravellerBook.com", :action => 'index' %>
 			</div>
 			<div id="linkbar">
-				<%= render :partial => "toplinks" %>
+				<ul>
+					<li><%= link_to "Home", :controller => 'user', :action => 'home' %></li>
+					<li><%= link_to "Search", :controller => 'track', :action => 'search' %></li>
+					<li><%= link_to "Shop", :controller => 'shop', :action => 'store' %></li>
+					<% if session[:user_id].nil? -%>
+					  <li id="user_log"><%= link_to_function "Login", "var lb = $('loginbox');
+						if (lb.visible() == true) {
+							lb.visualEffect('slide_up');
+						} else {
+							lb.visualEffect('slide_down');
+						}", :id => "login_flink" %>
+					   <%= render :partial => 'main/login' %></li>
+					<% else -%>
+					  <li id="user_log"><%= render :partial => 'main/user' %></li>
+					<% end -%>
+				</ul>
 			</div>
 		</div>
 		<div id="help"><%= render :partial => 'main/help' %></div>

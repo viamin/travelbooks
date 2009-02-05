@@ -103,7 +103,7 @@ class ItemController < ApplicationController
               :type => main_photo.content_type,
               :filename => main_photo.file_name)
       else
-        send_file("#{main_photo.path}",
+        send_file("#{RAILS_ROOT}/public/#{main_photo.url}",
                 :disposition => 'inline',
                 :type => main_photo.content_type,
                 :file_name => main_photo.file_name)

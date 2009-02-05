@@ -30,7 +30,7 @@
 			<div id="friend_bar">My Friends (<%= @friends.length %>)<%= link_to "View All", {:controller => 'user', :action => 'list', :id => @person.id}, {:class => 'right_rlink'} %></div>
 			<div id="friend_list">
 				<ul id="flist">
-					<%= render :partial => "friend", :collection => @friends %>
+					<%= @friends.length == 0 ? render(:partial => 'add_friends') : render(:partial => "friend", :collection => @friends) %>
 				</ul>
 			</div>
 			<% end %>

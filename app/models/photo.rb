@@ -117,6 +117,8 @@ class Photo < ActiveRecord::Base
       #flash[:error] = "That filename has already been used"
 #      timing "filename already used - not saving"
     else
+      
+      #### FIX THIS - RAILS_ROOT points to releases/<date>, not current/
       unless File.exist?("#{RAILS_ROOT}/public/images/users/#{person.email}")
         Dir.mkdir("#{RAILS_ROOT}/public/images/users/#{person.email}")
       end

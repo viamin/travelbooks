@@ -6,6 +6,7 @@ Rails::Initializer.run do |config|
   config.frameworks -= [ :action_web_service ]
   config.action_controller.session_store = :active_record_store
   config.active_record.schema_format = :sql
+  config.log_level = :warn
 end
 DIFFERENCE_THRESHOLD = 1
 SAMPLE_PERSON = { :nickname => "B. Obama",
@@ -37,7 +38,7 @@ def timing(str)
   RAILS_DEFAULT_LOGGER.info string unless ENV['RAILS_ENV'] == 'production'
 end
 
-ExceptionNotifier.exception_recipients = %w( support@travellerbook.com bart@sonic.net )
+ExceptionNotifier.exception_recipients = %w( support@travellerbook.com )
 ExceptionNotifier.sender_address = %("TravellerBook Application Error" <do-not-reply@travellerbook.com>)
 ExceptionNotifier.email_prefix = "[ERROR] "
 

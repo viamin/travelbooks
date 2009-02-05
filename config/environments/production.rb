@@ -26,7 +26,7 @@ ActionMailer::Base.smtp_settings = {
   :port => 26,
   :authentication => :login,
   :user_name => 'do-not-reply+travellerbook.com',
-  :password => '/1<$xFMp!-k-'
+  :password => 'WD,359rL-S&f'
 }
 
 # Person id of the "Nobody" user, where given away books stay

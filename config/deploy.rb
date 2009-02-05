@@ -23,7 +23,7 @@ role :db,  "75.126.168.192", :primary => true
  set :svn, "/usr/local/bin/svn"
 
 # Save some space
- set :keep_releases, 2
+ set :keep_releases, 3
  
 # =============================================================================
 # SSH OPTIONS
