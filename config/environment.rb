@@ -31,9 +31,10 @@ Rails::Initializer.run do |config|
   config.gem "rmagick"
   config.gem "ar_mailer", :lib => "action_mailer/ar_mailer"
   config.gem "csspool"
+  config.gem "inline_attachment"
   
   # Load awesome_email plugin last
-  config.plugins = [ :all, :awesome_email ] 
+  #config.plugins = [ :all, :awesome_email ] 
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
