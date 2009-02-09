@@ -14,7 +14,7 @@ Rails::Initializer.run do |config|
 
   # Force all environments to use the same logger level 
   # (by default production uses :info, the others :debug)
-  # config.log_level = :debug
+  # config.log_level = :warn
 
   # Use the database for sessions instead of the file system
   # (create the session table with 'rake db:sessions:create')
@@ -25,6 +25,15 @@ Rails::Initializer.run do |config|
   # This is necessary if your schema can't be completely dumped by the schema dumper, 
   # like if you have constraints or database-specific column types
   config.active_record.schema_format = :sql
+
+#  config.gem "hpricot", :source => "http://code.whytheluckystiff.net"
+  config.gem "hoe"
+  config.gem "rmagick"
+  config.gem "ar_mailer", :lib => "action_mailer/ar_mailer"
+  config.gem "csspool"
+  
+  # Load awesome_email plugin last
+  config.plugins = [ :all, :awesome_email ] 
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
@@ -45,6 +54,16 @@ end
 # end
 
 # Include your application configuration below
+=begin
+require 'action_mailer/ar_mailer'
+#require "#{RAILS_ROOT}/vendor/rmagick-2.9.1/lib/RMagick.rb"
+require 'rmagick'
+include Magick
+#require "#{RAILS_ROOT}/vendor/csspool-0.2.6/lib/csspool.rb"
+require 'csspool'
+=end
+require 'pp'
+include Magick
 
 # How many differences does a location need before creating a new location and change?
 DIFFERENCE_THRESHOLD = 1
@@ -68,12 +87,6 @@ ENV['TEMP'] = "#{RAILS_ROOT}/public/images/tmp"
 ENV['TMP'] = "#{RAILS_ROOT}/public/images/tmp"
 APPLICATION_ERROR_EMAIL = "support@travellerbook.com"
 MAP_TYPE = :yahoo
-
-require 'pp'
-require 'action_mailer/ar_mailer'
-#require "#{RAILS_ROOT}/vendor/rmagick-2.2.2/lib/RMagick.rb"
-require 'rmagick'
-include Magick
 
 def timing(str)
   time = Time.now

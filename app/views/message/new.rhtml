@@ -3,7 +3,7 @@
 <div id="new_message">
 	<% form_tag( {:action => 'create'}, {:id => 'compose_form'}) do %>
 		<%= render :partial => 'compose', :locals => {:message => @reply_to, :friends => @friends, :recipient => @reply_to.sender} %>
-		<p><%= submit_tag 'Send' %></p>
+		<p class="nl"><%= submit_tag 'Send' %></p>
 		<p><%= submit_tag 'Cancel' %></p>
 	<% end %>
 </div>

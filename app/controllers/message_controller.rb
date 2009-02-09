@@ -89,8 +89,25 @@ class MessageController < ApplicationController
     @reply_to = Message.new
   end
   
-  def bulletin
+  def post
     
+  end
+  
+  def invite
+    @person = Person.find(session[:user_id])
+    @message = Message.new(:message_type => Message::INVITATION, :sender => @person.id, :subject => "#{@person.display_name} has invited you to join TravellerBook.com")
+  end
+  
+  def send_invites
+    @message = Message.new(params[:message])
+    UserMailer.deliver_invitation(@message)
+    flash[:notice] = "Your invitation has been sent to #{pluralize(@message.parse_recipients.length, 'person')}"
+    redirect_to :action => 'invite'
+  end
+  
+  def test
+    @person = Person.find(session[:user_id])
+    render :text => UserMailer.create_welcome(@person), :layout => false
   end
   
 end

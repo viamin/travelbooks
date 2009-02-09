@@ -30,6 +30,9 @@ p.larger {
 p.bold {
 	font-weight: bold;
 }
+p.nl {
+	clear: both;
+}
 img {
 	border: 0;
 	/* http://www.twinhelix.com/css/iepngfix/ */
@@ -114,7 +117,7 @@ div.progressBar div.background {
 #float_flash {
 	position: absolute;
 	z-index: 10000;
-	top: 175px;
+	top: 25%;
 	left: 300px;
 	clear: none;
 }
@@ -142,11 +145,12 @@ div.progressBar div.background {
 	-webkit-box-shadow: 2px 2px 6px black;
 }
 #flcl {
-	position: relative;
 	color: #ffd;
 	text-decoration: none;
-	top: 3px;
-	float: right;
+	margin-left: 220px;
+}
+#flcl img {
+	margin-top: 3px;
 }
 /***** Help Box *****/
 #help {
@@ -177,14 +181,13 @@ div.progressBar div.background {
 	-webkit-border-bottom-right-radius: 10px;
 	-webkit-box-shadow: 2px 2px 6px black;
 }
-#help_text {
-	position: relative;
-}
 #hcl {
-	position: inline;
-	float: right;
+/*	position: relative;*/
 	color: #ffd;
 	text-decoration: none;
+	margin-left: 480px;
+}
+#hcl img {
 	margin-top: 3px;
 }
 /***** Title Bar *****/

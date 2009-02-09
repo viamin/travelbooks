@@ -54,7 +54,7 @@ class Person < ActiveRecord::Base
   has_many :photos, :dependent => :nullify
   has_many :messages do
     def unread
-      find(:all, :conditions => {:state => 0})
+      find(:all, :conditions => {:state => Message::UNREAD})
     end
     def inbox
       find(:all, :conditions => ['state<?', Message::DELETEDBYRECIPIENT], :order => "id desc")

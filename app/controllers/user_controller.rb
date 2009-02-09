@@ -173,7 +173,7 @@ class UserController < ApplicationController
           if @login_status == :success
             if @person.needs_reset == true
               flash[:notice] = "Your password was recently reset. You will need to enter a new password in order to log in next time."
-              redirect_to :action => 'reset_password', :temp_pass => params[:person][:password], :id => person.id
+              redirect_to :action => 'reset_password', :temp_pass => params[:person][:password], :id => @person.id
               return
             else
               session[:settled_in] = nil

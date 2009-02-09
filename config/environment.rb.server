@@ -1,11 +1,18 @@
 ENV['RAILS_ENV'] ||= 'production'
 
+require 'pp'
+require 'action_mailer/ar_mailer'
+require "#{RAILS_ROOT}/vendor/rmagick-2.9.1/lib/RMagick.rb"
+include Magick
+require "#{RAILS_ROOT}/vendor/csspool-0.2.6/lib/csspool.rb"
+
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
   config.frameworks -= [ :action_web_service ]
   config.action_controller.session_store = :active_record_store
   config.active_record.schema_format = :sql
+  config.plugins = [ :all, :awesome_email ]
   config.log_level = :warn
 end
 DIFFERENCE_THRESHOLD = 1
@@ -25,12 +32,6 @@ ENV['TEMP'] = "#{RAILS_ROOT}/public/images/tmp"
 ENV['TMP'] = "#{RAILS_ROOT}/public/images/tmp"
 APPLICATION_ERROR_EMAIL = "support@travellerbook.com"
 MAP_TYPE = :yahoo
-
-require 'pp'
-require 'action_mailer/ar_mailer'
-require "#{RAILS_ROOT}/vendor/rmagick-2.2.2/lib/RMagick.rb"
-#require 'rmagick'
-include Magick
 
 def timing(str)
   time = Time.now

@@ -1,0 +1,21 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+       "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title><%= @subject %></title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+</head>
+<body>
+	<div id="doc2" class="yui-t7">
+		<div id="hd">
+			<%= render :partial => "main/titlebar" %>
+		</div>
+		<div id="bd">	
+			<div id="cfl">
+				<%= @content_for_layout %>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

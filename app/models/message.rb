@@ -19,6 +19,8 @@ class Message < ActiveRecord::Base
   belongs_to :person
   validates_length_of :subject, :maximum => 250
   
+  attr_accessor :recipients
+  
   # States keep track of who has done what with it - using powers of 2
   # for bitwise operations
   UNREAD = 0
@@ -31,6 +33,8 @@ class Message < ActiveRecord::Base
   # Message Types
   NORMAL = 0
   FRIENDREQUEST = 1
+  INVITATION = 2
+  BULLETIN = 3
   
   def is_read?
     return (self.state | Message::READ) == self.state
@@ -177,6 +181,10 @@ class Message < ActiveRecord::Base
     # replace the line below with the body with '>' characters
     body = self.body
     "\n\n\n-----------------------\n#{reply_to} on #{sent_at} wrote:\n#{body}"
+  end
+  
+  def parse_recipients
+    self.recipients.scan(/(\w.+)@((?:[-a-z0-9]+\.)+[a-z]{2,})/i)
   end
   
 end

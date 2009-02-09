@@ -1,0 +1,16 @@
+<h1>Invite your friends to use TravellerBook.com</h1>
+<%= render :partial => 'mail_actions' %>
+<div id="invite_box">
+	<p class="separated separated-top">You can invite your friends to join TravellerBook.com by entering their email addresses below. </p>
+	<% form_tag( {:action => 'send_invites'}, {:id => 'compose_form'}) do %>
+	<p><label for="message_subject">Subject</label>
+		<%= text_field_tag 'message[subject]', 'subject', :value => @message.subject, :size => 75 %></p>
+		<p><label for="message_recipients">Email addresses (separate them with commas or spaces):</label>
+			<%= text_area_tag 'message[recipients]', "", :cols => 120, :rows => 10 %>
+		</p>
+		<p><label for="message_body">You can enter a message to add to your invitation if you like.</label>
+		<p><%= text_area_tag 'message[body]', @message.body, :cols => 120, :rows => 8 %></p>
+		<p class="nl"><%= submit_tag 'Send' %></p>
+		<p><%= submit_tag 'Cancel' %></p>
+	<% end %>
+</div>

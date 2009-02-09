@@ -241,6 +241,7 @@ class AdminController < ApplicationController
     expire_fragment(%r{\d*.action_suffix=friends\d*.cache})
     expire_fragment(%r{show/\d*.action_suffix=items\d*.cache})
     expire_fragment(%r{show/\d*.action_suffix=map\d*.cache})
+    flash[:notice] = "Caches have been deleted"
     redirect_to :action => 'index'
   end
   
