@@ -23,7 +23,7 @@ class UserMailer < ActionMailer::ARMailer
   end
 
   def welcome(person, sent_at = Time.now)
-    layout 'user_mailer.rhtml'
+    layout 'html-mail'
     css ['reset-fonts-grids', 'main']
     @subject    = 'Welcome to TravellerBook.com'
     @recipients = person.email

@@ -155,6 +155,7 @@ class Message < ActiveRecord::Base
     message.message_type = Message::FRIENDREQUEST
     message.subject = "#{from_person.display_name} would like to add you as a friend"
     message.save
+    message
   end
   
   def self.check_for_request(from_person, to_person)

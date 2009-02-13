@@ -5,7 +5,6 @@ class UserController < ApplicationController
   after_filter :delete_login_cookie, :only => [:logout]
   layout 'user', :except => 'user_stats'
 #  caches_action :home
-  cache_sweeper :person_sweeper, :only => [:update, :add, :accept]
   cache_sweeper :friend_sweeper, :only => [:accept]
   
   def index

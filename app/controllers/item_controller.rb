@@ -1,6 +1,6 @@
 class ItemController < ApplicationController
   before_filter :authorize, :except => [:image]
-  cache_sweeper :person_sweeper, :only => [:associate]
+  cache_sweeper :item_sweeper, :only => [:associate]
   
   def index
     redirect_to :action => 'list'
@@ -94,6 +94,7 @@ class ItemController < ApplicationController
   
   def image
     item = Item.find(params[:id])
+    thumb = params[:thumb].to_i
     # Need to decide if I'll be grabbing images from the hard drive or out of the DB
     main_photo = item.photos.main
     unless main_photo.nil?
@@ -103,7 +104,12 @@ class ItemController < ApplicationController
               :type => main_photo.content_type,
               :filename => main_photo.file_name)
       else
-        send_file("#{RAILS_ROOT}/public/#{main_photo.url}",
+        if ([18, 36, 80].include?(thumb) && File.exists?("#{RAILS_ROOT}/public#{main_photo.thumb_url(thumb)}"))
+          filename = "#{RAILS_ROOT}/public#{main_photo.thumb_url(thumb)}"
+        else
+          filename = "#{RAILS_ROOT}/public#{main_photo.url}"
+        end
+        send_file(filename,
                 :disposition => 'inline',
                 :type => main_photo.content_type,
                 :file_name => main_photo.file_name)

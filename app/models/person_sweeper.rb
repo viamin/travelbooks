@@ -1,4 +1,5 @@
 class PersonSweeper < ActionController::Caching::Sweeper
+  observe Person
   
   # Want to expire caches for person under the following conditions:
   # 1. User updates his trips
@@ -9,6 +10,12 @@ class PersonSweeper < ActionController::Caching::Sweeper
   
   def after_save(record)
     
+  end
+  
+  private
+  
+  def expire_trip_cache(record)
+    cache(:action => params[:action], :action_suffix => "map#{@person.id}")
   end
   
 end

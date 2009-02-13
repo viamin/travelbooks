@@ -8,4 +8,5 @@
 <%= link_to_unless_current "Generate Exception Email", :controller => 'admin', :action => 'exception_email' %> |
 <%= link_to_unless_current "Test Flash", :controller => 'admin', :action => 'flash_test' %> |
 <%= link_to_remote "Test Help", :url => {:controller => 'admin', :action => 'help_test'} %> |
-<%= link_to_unless_current "Delete Caches", :controller => 'admin', :action => 'cache_purge' %>
+<%= link_to_unless_current "Delete Caches", :controller => 'admin', :action => 'cache_purge' %> |
+<%= link_to_unless_current "Create Thumbnails", :controller => 'admin', :action => 'create_thumbnails' %>

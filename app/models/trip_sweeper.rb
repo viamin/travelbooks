@@ -1,4 +1,5 @@
 class TripSweeper < ActionController::Caching::Sweeper
+  observe Trip
   
   # Want to expire caches for person under the following conditions:
   # 1. User updates his trips
@@ -10,7 +11,7 @@ class TripSweeper < ActionController::Caching::Sweeper
   def after_update(trip)
     timing "Expiring map cache"
     # expire cache here 
-    #expire_trip_cache(trip)
+    expire_map_cache(trip)
   end
   
   private

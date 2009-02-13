@@ -6,7 +6,7 @@
 			</div>
 			<div id="info_box">
 				<div id="user_photo">
-					<%= link_to image_tag( "#{@person.main_photo.url}", :class => "main_photo", :size => "80x120"), :controller => :photo, :action => :list, :id => @person %>
+					<%= link_to image_tag( "#{@person.main_photo.thumb_url(80)}", :class => "main_photo", :size => "80x120"), :controller => :photo, :action => :list, :id => @person %>
 				</div>
 				<div id="user_info">
 					<ul id="ilist">

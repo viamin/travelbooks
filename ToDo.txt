@@ -9,3 +9,6 @@ Improve book image loading performance
 [VERIFY] Fix email error reporting
 Fix caching
 Fix Error 500 page
+Create thumbnails for photos: books     => 36x50
+							  users     => 80x120
+							  map icons => 18x25

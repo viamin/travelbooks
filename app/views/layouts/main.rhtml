@@ -6,8 +6,7 @@
   <title>TravellerBooks - <%= random_saying %></title>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<link rel="icon" href="/apple-touch-icon.png" type="image/png" />
-	<%= stylesheet_link_tag 'reset-fonts-grids' %> 
-  <%= stylesheet_link_tag 'main' %>
+	<%= stylesheet_link_tag 'reset-fonts-grids', 'main', :cache => "cache/all" %> 
 <!--[if lte IE 6]>
 <script type="text/javascript" src="/javascripts/supersleight-min.js"></script>
 <![endif]-->

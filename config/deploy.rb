@@ -65,7 +65,7 @@ deploy.task :after_deploy, :roles => :app do
   run "/bin/ln -s #{deploy_to}/shared/book_images #{deploy_to}/current/public/images/books"
   fix_perms
 #  run "/bin/mv #{deploy_to}/current/config/environment.rb.server #{deploy_to}/current/config/environment.rb"
-  Rake::Tast["gems:install"]
+  Rake::Task["gems:install"]
   Rake::Task["gems:unpack"]
   Rake::Task["gems:unpack:dependencies"]
   Rake::Task["gems:build"]

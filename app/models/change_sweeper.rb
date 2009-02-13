@@ -1,4 +1,5 @@
 class ChangeSweeper < ActionController::Caching::Sweeper
+  observe Change
   
   # Want to expire caches for person under the following conditions:
   # 1. User updates his trips

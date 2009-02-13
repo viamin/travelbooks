@@ -1,6 +1,6 @@
 class TripController < ApplicationController
   before_filter :authorize
-  cache_sweeper :trip_sweeper, :only => [:create]
+  cache_sweeper :trip_sweeper, :only => [:create, :update]
   
   # RESTful actions:
   # Get: list, show, new, edit

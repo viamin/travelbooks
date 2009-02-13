@@ -28,6 +28,7 @@ Rails::Initializer.run do |config|
 
 #  config.gem "hpricot", :source => "http://code.whytheluckystiff.net"
   config.gem "hoe"
+  config.gem "hpricot"
   config.gem "rmagick"
   config.gem "ar_mailer", :lib => "action_mailer/ar_mailer"
   config.gem "csspool"

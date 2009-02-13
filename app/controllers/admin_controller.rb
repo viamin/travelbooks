@@ -25,9 +25,7 @@ class AdminController < ApplicationController
     @photo.file_name = "book#{@item.id}.jpg"
     @photo.url = "/images/books/#{@photo.file_name}"
     @photo.path = "#{RAILS_ROOT}/public#{@photo.url}"
-    tf = File.new("#{@photo.path}", "w")
-    tf.write params[:photo][:data].read
-    tf.close
+    Photo.save_book_data(data, @photo.file_name)
     data = Image.read(@photo.path).first
     @photo.content_type = data.mime_type
     @photo.bytes = data.filesize
@@ -35,6 +33,8 @@ class AdminController < ApplicationController
     @photo.width = data.columns
     @photo.caption = @item.name
     @photo.save!
+    # Do scaling here
+    @photo.create_book_thumbnails
     redirect_to :action => 'books'
   end
   
@@ -242,6 +242,14 @@ class AdminController < ApplicationController
     expire_fragment(%r{show/\d*.action_suffix=items\d*.cache})
     expire_fragment(%r{show/\d*.action_suffix=map\d*.cache})
     flash[:notice] = "Caches have been deleted"
+    redirect_to :action => 'index'
+  end
+  
+  # Create thumbnails for photos that don't have them
+  def create_thumbnails
+    photos = Photo.find(:all)
+    photos.each {|p| p.create_thumbnails}
+    flash[:notice] = "Thumbnails created - check the log for any errors"
     redirect_to :action => 'index'
   end
   
