@@ -1,7 +1,4 @@
 <ul>
-	<li><%= link_to "Home", :controller => 'user', :action => 'home' %></li>
-	<li><%= link_to "Search", :controller => 'track', :action => 'search' %></li>
-	<li><%= link_to "Shop", :controller => 'shop', :action => 'store' %></li>
 	<% if session[:user_id].nil? -%>
 	  <li id="user_log"><%= link_to_function "Login", "var lb = $('loginbox');
 		if (lb.visible() == true) {
@@ -10,9 +7,14 @@
 			lb.visualEffect('slide_down');
 		}", :id => "login_flink" %>
 	   <%= render :partial => 'main/login' %></li>
+		<li><%= link_to "Store", :controller => 'shop', :action => 'store' %></li>	
 	<% else -%>
-	  <li><%= link_to "Profile", :controller => 'user', :action => 'edit' %></li>
-	<li><%= link_to "Messages", :controller => 'message', :action => 'list' %><%= "(#{@new_messages.length})" unless @new_messages.nil? || @new_messages.empty? %></li>
+		<li><%= link_to "Home", :controller => 'user', :action => 'home' %></li>
+		<li><%= link_to "Store", :controller => 'shop', :action => 'store' %></li>
+		<li><%= link_to "Search", :controller => 'track', :action => 'search' %></li>
+		<li><%= link_to "Profile", :controller => 'user', :action => 'edit' %></li>
+		<li><%= link_to "Messages", :controller => 'message', :action => 'list' %><%= "(#{@new_messages.length})" unless @new_messages.nil? || @new_messages.empty? %></li>
+		<li><%= link_to "Travels", :controller => 'trip', :action => 'list' %></li>
 	  <li id="user_log"><%= render :partial => 'main/user' %></li>
 	<% end -%>
 	

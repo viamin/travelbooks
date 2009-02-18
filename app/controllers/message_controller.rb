@@ -1,5 +1,5 @@
 class MessageController < ApplicationController
-  before_filter :authorize
+  before_filter :authorize, :except => [:invitation]
   
   def index
     redirect_to :action => 'list'
@@ -99,15 +99,29 @@ class MessageController < ApplicationController
   end
   
   def send_invites
-    @message = Message.new(params[:message])
-    UserMailer.deliver_invitation(@message)
+    @message = Message.create(params[:message])
+    @message.parse_recipients.each do |r|
+      # first make sure the emails aren't already in the system as existing users
+      
+      UserMailer.deliver_invitation(@message, r)
+    end
     flash[:notice] = "Your invitation has been sent to #{pluralize(@message.parse_recipients.length, 'person')}"
     redirect_to :action => 'invite'
   end
   
+  def invitation
+    @needs_search = true
+    unless (params[:id].nil? || params[:email].nil?)
+      @message = Message.find(:first, :conditions => {:id => params[:id]})
+      @needs_search = false unless (@message.nil? || @message.is_read?)
+    end
+    @person = Person.new
+    @person.email = params[:email] unless params[:email].nil?
+  end
+  
   def test
     @person = Person.find(session[:user_id])
-    render :text => UserMailer.create_welcome(@person), :layout => false
+    render :text => "<pre>#{UserMailer.create_welcome(@person)}</pre>", :layout => false
   end
   
 end

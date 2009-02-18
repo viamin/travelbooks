@@ -6,15 +6,14 @@ class UserMailer < ActionMailer::ARMailer
     @from       = 'TravellerBooks <do-not-reply@travellerbook.com>'
     @sent_on    = sent_at
     content_type "multipart/alternative"
-    @temp_pass = password
     part :content_type => "text/plain" do |p|
-      p.body = render_message("retreive.text.plain.erb")
+      p.body = render_message("retrieve.text.plain.erb", :temp_pass => password)
       p.transfer_encoding = "8bit"
     end
 
     part :content_type => "multipart/related" do |p|
         p.parts.unshift ActionMailer::Part.new(
-          :content_type => "text/html", :body => render_message("retrieve.text.html.erb", :part_container => p),
+          :content_type => "text/html", :body => render_message("retrieve.text.html.erb", :temp_pass => password, :part_container => p),
           :disposition => "",
           :charset => "UTF-8",
           :transfer_encoding => "8bit"
@@ -23,8 +22,8 @@ class UserMailer < ActionMailer::ARMailer
   end
 
   def welcome(person, sent_at = Time.now)
-    layout 'html-mail'
-    css ['reset-fonts-grids', 'main']
+    layout 'user_mailer'
+    css 'html-mail'
     @subject    = 'Welcome to TravellerBook.com'
     @recipients = person.email
     @from       = 'TravellerBooks <do-not-reply@travellerbook.com>'
@@ -53,15 +52,46 @@ class UserMailer < ActionMailer::ARMailer
     @from       = 'TravellerBooks <do-not-reply@travellerbook.com>'
     @sent_on    = sent_at
     @headers    = {}
+    
+    content_type "multipart/alternative"
+    
+    part :content_type => "text/plain" do |p|
+      p.body = render_message("friend_request.text.plain.erb", :person => person, :friend => friend)
+      p.transfer_encoding = "8bit"
+    end
+
+    part :content_type => "multipart/related" do |p|
+        p.parts.unshift ActionMailer::Part.new(
+          :content_type => "text/html", :body => render_message("friend_request.text.html.erb", :person => person, :friend => friend, :part_container => p),
+          :disposition => "",
+          :charset => "UTF-8",
+          :transfer_encoding => "8bit"
+        )
+    end
   end
   
-  def invitation(message, sent_at = Time.now)
+  def invitation(message, recipient, sent_at = Time.now)
     @subject    = message.subject
     @body       = message.body
-    @recipients = message.parse_recipients.join(',')
+    @recipients = recipient
     @from       = 'TravellerBooks <do-not-reply@travellerbook.com>'
     @sent_on    = sent_at
     @headers    = {}
+    content_type "multipart/alternative"
+    
+    part :content_type => "text/plain" do |p|
+      p.body = render_message("invitation.text.plain.erb", :recipient => recipient, :friend => friend, :message => message)
+      p.transfer_encoding = "8bit"
+    end
+
+    part :content_type => "multipart/related" do |p|
+        p.parts.unshift ActionMailer::Part.new(
+          :content_type => "text/html", :body => render_message("invitation.text.html.erb", :recipient => recipient, :friend => friend, :message => message, :part_container => p),
+          :disposition => "",
+          :charset => "UTF-8",
+          :transfer_encoding => "8bit"
+        )
+    end
   end
   
   def notification(person, message, sent_at = Time.now)
@@ -71,33 +101,20 @@ class UserMailer < ActionMailer::ARMailer
     @from       = 'TravellerBooks <do-not-reply@travellerbook.com>'
     @sent_on    = sent_at
     @headers    = {}
-  end
-end
-=begin
-def build_status(sender, train, html_summary, destination, builds, releases, hitlist, perf_hitlist)
-  email_subject = Time.now.strftime("#{train.name} Build Status - %m/%d/%Y")
+    content_type "multipart/alternative"
+    
+    part :content_type => "text/plain" do |p|
+      p.body = render_message("notification.text.plain.erb", :person => person)
+      p.transfer_encoding = "8bit"
+    end
 
-  # Standard ActionMailer configuration methods
-#    recipients("Leopard Announce <leopard-announce@group.apple.com>")
-  recipients(destination)
-  headers('Reply-to' => "Mac OS X Program Office <macosx-program@group.apple.com>")
-  from(sender)
-  subject(email_subject)
-  content_type "multipart/alternative"
-  
-  part :content_type => "text/plain" do |p|
-    p.body = render_message("build_status.text.plain.erb", :html_summary => html_summary, :subject => email_subject, :builds => builds, :releases => releases, :hitlist => hitlist, :perf_hitlist => perf_hitlist, :train => train)
-    p.transfer_encoding = "8bit"
+    part :content_type => "multipart/related" do |p|
+        p.parts.unshift ActionMailer::Part.new(
+          :content_type => "text/html", :body => render_message("notification.text.html.erb", :person => person, :part_container => p),
+          :disposition => "",
+          :charset => "UTF-8",
+          :transfer_encoding => "8bit"
+        )
+    end
   end
-  
-  part :content_type => "multipart/related" do |p|
-      p.parts.unshift ActionMailer::Part.new(
-        :content_type => "text/html", :body => render_message("build_status.text.html.erb", :html_summary => html_summary, :subject => email_subject, :builds => builds, :releases => releases, :hitlist => hitlist, :perf_hitlist => perf_hitlist, :train => train, :part_container => p),
-        :disposition => "",
-        :charset => "UTF-8",
-        :transfer_encoding => "8bit"
-      )
-  end
-  
 end
-=end

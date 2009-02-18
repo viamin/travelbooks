@@ -234,13 +234,23 @@ class AdminController < ApplicationController
   
   # Clean up all known caches
   def cache_purge
-    expire_fragment(%r{home.action_suffix=friends\d*.cache})
-    expire_fragment(%r{home.action_suffix=items\d*.cache})
-    expire_fragment(%r{home.action_suffix=map\d*.cache})
-    expire_fragment(%r{home.action_suffix=stats\d*.cache})
-    expire_fragment(%r{\d*.action_suffix=friends\d*.cache})
-    expire_fragment(%r{show/\d*.action_suffix=items\d*.cache})
-    expire_fragment(%r{show/\d*.action_suffix=map\d*.cache})
+    timing "Expiring friend caches"
+    Friend.all do |f|
+      expire_fragment(:controller => 'user', :action => 'home', :action_suffix => "friends#{f.id}")
+    end
+    timing "Expiring item caches"
+    Item.all do |i|
+      expire_fragment(:controller => 'user', :action => 'home', :action_suffix => "items#{i.id}")
+    end
+    timing "Expiring people caches"
+    Person.all do |p|
+      expire_fragment(:controller => 'user', :action => 'home', :action_suffix => "items#{p.id}")
+      expire_fragment(:controller => 'user', :action => 'home', :action_suffix => "map#{p.id}")
+      expire_fragment(:controller => 'user', :action => 'home', :action_suffix => "stats#{p.id}")
+      expire_fragment(:controller => 'user', :action => 'show', :action_suffix => "items#{p.id}")
+      expire_fragment(:controller => 'user', :action => 'show', :action_suffix => "map#{p.id}")
+    end
+    expire_fragment(%r{public/fragment_caches/.*})
     flash[:notice] = "Caches have been deleted"
     redirect_to :action => 'index'
   end

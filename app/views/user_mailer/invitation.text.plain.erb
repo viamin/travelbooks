@@ -1,0 +1,9 @@
+You're invited!
+
+<%= h @friend.display_name %> has sent you an invitation to join TravellerBook.com.
+
+TravellerBook.com is a social network built around sharing TravellerBooks and your experiences travelling around this wonderful world of ours.
+
+You can log in and confirm <%= h @friend.display_name %>'s invitation by visiting www.TravellerBook.com and going to this address: <%= url_for :host => 'www.travellerbook.com', :controller => 'message', :action => 'invitation', :id => @message.id, :email => @recipient %>. You've got nothing to lose, and it's free!
+
+<%= h @body %>

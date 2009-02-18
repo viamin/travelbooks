@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 37
+# Schema version: 20090214004612
 #
 # Table name: photos
 #
@@ -48,7 +48,7 @@ photos_012:
   height: "538"
   photo_type: "1"
   path: /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/public/images/books/book16.jpg
-  person_id:  
+  person_id: 
   width: "400"
 photos_001: 
   content_type: image/jpeg
@@ -63,7 +63,7 @@ photos_001:
   height: 
   photo_type: 
   path: public/images
-  person_id:  
+  person_id: 
   width: 
 photos_013: 
   content_type: image/jpeg
@@ -78,7 +78,7 @@ photos_013:
   height: "540"
   photo_type: "1"
   path: /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/public/images/books/book15.jpg
-  person_id:  
+  person_id: 
   width: "400"
 photos_002: 
   content_type: image/jpeg
@@ -91,9 +91,9 @@ photos_002:
   location_id: 
   caption: Fire Dancer
   height: "360"
-  photo_type: "1"
+  photo_type: "2"
   path: public/images/bart@sonic.net/temp_photo801
-  person_id: "1" 
+  person_id: "1"
   width: "240"
 photos_014: 
   content_type: image/jpeg
@@ -108,7 +108,7 @@ photos_014:
   height: "449"
   photo_type: "1"
   path: /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/public/images/books/book14.jpg
-  person_id:  
+  person_id: 
   width: "400"
 photos_003: 
   content_type: image/jpeg
@@ -123,7 +123,7 @@ photos_003:
   height: "270"
   photo_type: "2"
   path: public/images/bart@sonic.net/temp_photo404
-  person_id: "1" 
+  person_id: "1"
   width: "240"
 photos_015: 
   content_type: image/jpeg
@@ -138,7 +138,7 @@ photos_015:
   height: "439"
   photo_type: "1"
   path: /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/public/images/books/book13.jpg
-  person_id:  
+  person_id: 
   width: "400"
 photos_004: 
   content_type: image/jpeg
@@ -153,7 +153,7 @@ photos_004:
   height: "164"
   photo_type: "2"
   path: public/images/gokarte@yahoo.com/temp_photo472
-  person_id: "2" 
+  person_id: "2"
   width: "384"
 photos_016: 
   content_type: image/jpeg
@@ -168,13 +168,13 @@ photos_016:
   height: "534"
   photo_type: "1"
   path: /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/public/images/books/book3.jpg
-  person_id:  
+  person_id: 
   width: "400"
 photos_005: 
   content_type: image/jpeg
   bytes: "0"
   item_id: 
-  created_on: 2008-02-11 21:30:19
+  created_on: "2008-02-11"
   file_name: temp_photo115
   url: /images/bart@sonic.net/temp_photo115
   id: "23"
@@ -198,7 +198,7 @@ photos_017:
   height: "446"
   photo_type: "1"
   path: /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/public/images/books/book1.jpg
-  person_id:  
+  person_id: 
   width: "400"
 photos_006: 
   content_type: image/jpeg
@@ -213,23 +213,23 @@ photos_006:
   height: "360"
   photo_type: "1"
   path: public/images/gokarte@yahoo.com/temp_photo572
-  person_id: "2" 
+  person_id: "2"
   width: "240"
 photos_018: 
-  content_type: image/jpeg
-  bytes: "0"
-  item_id: 
-  created_on: 2008-03-07 21:56:01
-  file_name: temp_photo208
-  url: /images/users/bart@sonic.net/temp_photo208
-  id: "45"
+  content_type: image/png
+  bytes: "499991"
+  item_id: "21"
+  created_on: 2008-04-01 17:40:31
+  file_name: book21.jpg
+  url: /images/books/book21.jpg
+  id: "46"
   location_id: 
-  caption: Spear
-  height: "360"
-  photo_type: "2"
-  path: /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/public/images/users/bart@sonic.net/temp_photo208
-  person_id: "1" 
-  width: "240"
+  caption: New Book
+  height: "524"
+  photo_type: "1"
+  path: /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/public/images/books/book21.jpg
+  person_id: 
+  width: "400"
 photos_007: 
   content_type: image/jpeg
   bytes: "180955"
@@ -243,39 +243,9 @@ photos_007:
   height: "535"
   photo_type: "1"
   path: /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/public/images/books/book20.jpg
-  person_id:  
+  person_id: 
   width: "400"
 photos_019: 
-  content_type: image/png
-  bytes: "499991"
-  item_id: "21"
-  created_on: 2008-04-01 17:40:31
-  file_name: book21.jpg
-  url: /images/books/book21.jpg
-  id: "46"
-  location_id: 
-  caption: New Book
-  height: "524"
-  photo_type: "1"
-  path: /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/public/images/books/book21.jpg
-  person_id:  
-  width: "400"
-photos_008: 
-  content_type: image/jpeg
-  bytes: "144823"
-  item_id: "4"
-  created_on: "2008-03-06"
-  file_name: book4.jpg
-  url: /images/books/book4.jpg
-  id: "35"
-  location_id: 
-  caption: Red Leather
-  height: "525"
-  photo_type: "1"
-  path: /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/public/images/books/book4.jpg
-  person_id:  
-  width: "400"
-photos_020: 
   content_type: image/png
   bytes: "17470"
   item_id: "22"
@@ -290,6 +260,36 @@ photos_020:
   path: /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/public/images/books/book22.jpg
   person_id: 
   width: "101"
+photos_008: 
+  content_type: image/jpeg
+  bytes: "144823"
+  item_id: "4"
+  created_on: "2008-03-06"
+  file_name: book4.jpg
+  url: /images/books/book4.jpg
+  id: "35"
+  location_id: 
+  caption: Red Leather
+  height: "525"
+  photo_type: "1"
+  path: /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/public/images/books/book4.jpg
+  person_id: 
+  width: "400"
+photos_020: 
+  content_type: image/jpeg
+  bytes: "0"
+  item_id: 
+  created_on: "2009-01-18"
+  file_name: temp_photo761
+  url: /images/users/bart@sonic.net/temp_photo761
+  id: "48"
+  location_id: 
+  caption: Storm Trooper
+  height: "360"
+  photo_type: "1"
+  path: /Volumes/Data/Bart/Documents/Personal/Proj/travelbooks/public/images/users/bart@sonic.net/temp_photo761
+  person_id: "1"
+  width: "240"
 photos_009: 
   content_type: image/jpeg
   bytes: "168104"

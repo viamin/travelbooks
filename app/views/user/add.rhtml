@@ -3,7 +3,6 @@
 <%= image_tag "#{@friend.main_photo.url}", :class => "main_photo", :size => "80x120" %>
 <p>A message will be sent to <%= @friend.display_name %>, who will need to verify you as friends. Continue?</p>
 <%= form_tag :action => 'send_request' %>
-<%= hidden_field_tag 'id', @person.id %>
 <%= hidden_field_tag 'friend_id', @friend.id %>
 <%= submit_tag 'Confirm' %>
 <%= submit_tag 'Cancel' %>

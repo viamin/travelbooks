@@ -209,6 +209,7 @@
 	text-decoration: none;
 	font-size: 93%;
 	margin: .15em 0 -.15em 0;
+	padding-left: 2em;
 }
 .left_rlink {
 	float: right;
@@ -226,6 +227,19 @@
 	height: 592px;
 	z-index: 1000;
 	-webkit-box-shadow: 2px 2px 4px #633c1f;
+}
+#sflist {
+	overflow: auto;
+	height: 580px;
+	list-style: none;
+	margin: 0;
+	padding: 1em 0 1em 1em;
+}
+#sflist li {
+	float: left;
+}
+#sflist img {
+	border: 0;
 }
 /******** Profile Form section ***********/
 #profile_box {

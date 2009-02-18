@@ -1,115 +1,181 @@
 # == Schema Information
-# Schema version: 37
+# Schema version: 20090214004612
 #
 # Table name: people
 #
-#  id              :integer         not null, primary key
-#  first_name      :string(255)     not null
-#  middle_name     :string(255)
-#  last_name       :string(255)     not null
-#  email           :string(255)     not null
-#  hashed_password :text
-#  created_on      :date
-#  nickname        :string(255)
-#  salt            :string(255)
-#  privacy_flags   :integer         default(0)
-#  needs_reset     :boolean
-#  login_token     :string(255)
-#  private_profile :boolean
+#  id               :integer         not null, primary key
+#  first_name       :string(255)     not null
+#  middle_name      :string(255)
+#  last_name        :string(255)     not null
+#  email            :string(255)     not null
+#  hashed_password  :text
+#  created_on       :date
+#  nickname         :string(255)
+#  salt             :string(255)
+#  privacy_flags    :integer         default(0)
+#  needs_reset      :boolean
+#  login_token      :string(255)
+#  private_profile  :boolean
+#  last_login       :datetime
+#  mail_preferences :integer
 #
 
 --- 
-people_007: 
+barttest: 
   created_on: "2008-05-29"
   salt: 9994dc
-  hashed_password: df84349745f0be2d062bfab14124d72582ee8ebe9e180d359500e384e96417c59994dc
+  last_login: 2009-02-14 10:51:47
+  hashed_password: 8a41a4fb7f1bc82930a0f08fcee9ed34d996b7db8ba38a7ec9da2edb5e628921
   needs_reset: f
+  private_profile: f
   nickname: Bart Test
+  login_token: 3710770d0f28abd5866385ea07123268d2aa214a8a1cc37ae2f5bdb10a48fc89
   id: "8"
+  mail_preferences: 
   first_name: ""
   last_name: ""
   privacy_flags: "0"
   middle_name: ""
   email: bagapinan@apple.com
-people_008: 
+paristest: 
   created_on: "2008-08-30"
   salt: 59b77f
-  hashed_password: 8e2f209d14a916f2cdf06056aca6e917737c7594c330b493e3cefd4a09e29f2b59b77f
+  last_login: 2009-02-14 10:50:34
+  hashed_password: 1996b1acfdf53bfce85b2b1fb32c118e94f11b43c7e903e1b8a27bdb713f3d0f
   needs_reset: f
+  private_profile: f
   nickname: Paris Test
+  login_token: 71abfb2b0d9a9a4409f4aac9aa1482960dad2795e76498c58855145542e5d3c6
   id: "9"
+  mail_preferences: 
   first_name: ""
   last_name: ""
   privacy_flags: "0"
   middle_name: ""
   email: test1@newemail.com
-people_001: 
+nofriends2: 
+  created_on: 2009-02-13 17:16:42
+  salt: 3b2d4c
+  last_login: 2009-02-14 10:49:23
+  hashed_password: e3af43302c767e89a4ce575b13e8248480d3f406b0b1822de1d50e6528286aba
+  needs_reset: f
+  private_profile: f
+  nickname: No Friends 2
+  login_token: 7d186cd29be8fa88f6ebd496d96aac74a291626e22e402250c9535f5e7900957
+  id: "11"
+  mail_preferences: 
+  first_name: ""
+  last_name: ""
+  privacy_flags: "0"
+  middle_name: ""
+  email: nofriends2@yahoo.com
+nofriends: 
+  created_on: 2009-02-04 22:24:51
+  salt: fddc5f
+  last_login: 2009-02-14 10:47:20
+  hashed_password: 425254cb57b5dd51fdcc72c95d90d1bd0cc92f341fc1eb9d1b11eb7eaf1e62e1
+  needs_reset: f
+  private_profile: f
+  nickname: No Friends
+  login_token: 544d92c0c5850a4db5d04a206a7e771a64bdef295173e563534e1340e95e7bfd
+  id: "10"
+  mail_preferences: 
+  first_name: ""
+  last_name: ""
+  privacy_flags: "0"
+  middle_name: ""
+  email: nofriends@yahoo.com
+bart: 
   created_on: 
   salt: cefc9a
-  hashed_password: f871efc5da1f8e2184865a42f59dc5e2efe6d41062282b9d95fd5375134e3438cefc9a
+  last_login: 2009-02-14 10:52:18
+  hashed_password: 89ab072954436090d94e93c51dd0d699f068fa3a60a36cd3f175c8d4a7f589ce
   needs_reset: f
+  private_profile: f
   nickname: Bart
+  login_token: 8c8623bf827858736f07c04ad9baead8ea6396cde239f9ac786eab58fcb26c93
   id: "1"
+  mail_preferences: 
   first_name: Bart
   last_name: Agapinan
   privacy_flags: "64"
   middle_name: D.
   email: bart@sonic.net
-people_002: 
+kat: 
   created_on: 
   salt: cbfc9a
-  hashed_password: ca700c8aa0b8566b842c86c4c1ce298b8d8e62f1a91d4698dc0f6d468ac399e1cbfc9a
+  last_login: 
+  hashed_password: dd63de9ab8ccbf5c4c62b4b1b544a5380fde37c777dc13087e925ade18a3ec00
   needs_reset: 
+  private_profile: f
   nickname: Kat
+  login_token: 
   id: "2"
+  mail_preferences: 
   first_name: Kat
   last_name: Notimportant
   privacy_flags: "64"
   middle_name: 
   email: gokarte@yahoo.com
-people_003: 
+kline: 
   created_on: 
   salt: bbbbbb
-  hashed_password: a70a16a8bc2d53c926577af56d56bd58b05bf20747e36285927b3ac692c1eb85bbbbbb
+  last_login: 
+  hashed_password: 14fd6e8a2503b9cfd642a78625af83a037bd4f1271cf0a45a238a37b77afdfab
   needs_reset: 
+  private_profile: t
   nickname: Kline
+  login_token: 
   id: "3"
+  mail_preferences: 
   first_name: Kline
   last_name: Williamson
   privacy_flags: "0"
   middle_name: 
   email: kline@yahoo.com
-people_004: 
+nagib: 
   created_on: 
   salt: aaaaaa
-  hashed_password: 7b8777e75ed57490f5aa0955481c30d998245c64359218f078c63d3d8dda311aaaaaaa
-  needs_reset: 
+  last_login: 2009-02-14 10:53:44
+  hashed_password: 50a0e5fe37d3485b6d5a54140eeb5661bd452f3b58d528f566c40eac7ed630c6
+  needs_reset: f
+  private_profile: f
   nickname: Nagib
+  login_token: b16d50aba49a6473e5367f71f112f98efb05741afbfb8de3abd00d0a7170af14
   id: "4"
+  mail_preferences: 
   first_name: Nagib
   last_name: Tharani
   privacy_flags: "0"
   middle_name: 
   email: nagib@yahoo.com
-people_005: 
+nobody: 
   created_on: 2008-02-07 08:30:46
   salt: 74390d
+  last_login: 
   hashed_password: f871efc5da1f8e2184865a42f59dc5e2efe6d41062282b9d95fd5375134e3438
   needs_reset: 
+  private_profile: f
   nickname: Nobody
+  login_token: 
   id: "5"
+  mail_preferences: 
   first_name: ""
   last_name: ""
   privacy_flags: "0"
   middle_name: ""
   email: noemail@travellerbook.com
-people_006: 
+danny: 
   created_on: 2008-02-12 17:59:59
   salt: 38d0e0
-  hashed_password: f738af0e9b082bf43c4831f69abe1429f13b577dbf1f2d6e330bbe88a3f0723f
-  needs_reset: 
+  last_login: 2009-02-14 10:53:03
+  hashed_password: 6025f26e9b99a1b2ec17016ad02e295e0c7b64a58b2ca5d684244e4e689db28f
+  needs_reset: f
+  private_profile: f
   nickname: Danny
+  login_token: 88642505c901af4c0efa19d814df9dbd367ea415cb689ebcead51316be9d80ed
   id: "7"
+  mail_preferences: 
   first_name: ""
   last_name: ""
   privacy_flags: "0"

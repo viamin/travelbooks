@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 37
+# Schema version: 20090214004612
 #
 # Table name: messages
 #
@@ -148,6 +148,12 @@ class Message < ActiveRecord::Base
     self.save!
   end
   
+  # Adds the new user as a friend of the message sender and vice versa
+  def complete_invitation!(inv_recipient)
+    self.sender_p.add_friend(inv_recipient.id)
+    self.mark_read
+  end
+  
   def self.send_request(from_person, to_person)
     message = Message.new
     message.sender = from_person.id
@@ -185,7 +191,7 @@ class Message < ActiveRecord::Base
   end
   
   def parse_recipients
-    self.recipients.scan(/(\w.+)@((?:[-a-z0-9]+\.)+[a-z]{2,})/i)
+    self.recipients.scan(/(\w.+)@((?:[-a-z0-9]+\.)+[a-z]{2,})/i).unique
   end
   
 end

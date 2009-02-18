@@ -40,11 +40,14 @@ class ApplicationController < ActionController::Base
   end
   
   def check_cookie
-    unless (cookies[:user_email].nil? || cookies[:user_email] == "" && (cookies[:login].nil? || cookies[:login] == ""))
+    unless (!(session[:cookie_login].nil? || session[:cookie_login] == "") || ((cookies[:user_email].nil? || cookies[:user_email] == "") && (cookies[:login].nil? || cookies[:login] == "")))
       # check for valid cookies here
       person = Person.find_by_email(cookies[:user_email])
       if cookies[:login] == person.login_token
         session[:user_id] = person.id
+        session[:cookie_login] = Time.now
+        person.last_login = Time.now
+        person.save!
       end
     end
   end

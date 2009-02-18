@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 37
+# Schema version: 20090214004612
 #
 # Table name: destinations
 #
@@ -78,7 +78,7 @@ destinations_012:
 destinations_001: 
   name: Hale O Pua Lani Condo
   id: "1"
-  location_id: "12"
+  location_id: "47"
   notes: ""
   arrival: 2007-12-14 17:00:00
   position: "1"
@@ -98,7 +98,7 @@ destinations_013:
 destinations_002: 
   name: Nohonani Condo
   id: "2"
-  location_id: "13"
+  location_id: "48"
   notes: ""
   arrival: 2007-12-18 16:00:00
   position: "1"

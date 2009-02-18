@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 37
+# Schema version: 20090214004612
 #
 # Table name: locations
 #
@@ -225,6 +225,26 @@ locations_007:
   state: CA
   date_start: 
   date_end: 
+locations_019: 
+  item_id: 
+  city: Kailua Kona
+  public: 
+  icon: 
+  zip_code: "96740"
+  country: United States
+  altitude_feet: "0"
+  id: "47"
+  lng: "-155.970654"
+  description: Hale O Pua Lani Condo
+  address_line_1: 77-107 Queen Kalama Ave
+  loc_type: "1"
+  address_line_2: ""
+  status_id: 
+  person_id: 
+  lat: "19.58797"
+  state: HI
+  date_start: 
+  date_end: 
 locations_008: 
   item_id: 
   city: Paris
@@ -243,6 +263,26 @@ locations_008:
   person_id: "9"
   lat: "48.856925"
   state: ""
+  date_start: 
+  date_end: 
+locations_020: 
+  item_id: 
+  city: Lahaina
+  public: 
+  icon: 
+  zip_code: 96761-9311
+  country: United States
+  altitude_feet: "0"
+  id: "48"
+  lng: "-156.68536"
+  description: Nohonani Condo
+  address_line_1: 3723 Lower Honoapiilani Rd
+  loc_type: "1"
+  address_line_2: ""
+  status_id: 
+  person_id: 
+  lat: "20.956671"
+  state: HI
   date_start: 
   date_end: 
 locations_009: 
@@ -265,6 +305,26 @@ locations_009:
   state: ""
   date_start: 
   date_end: 
+locations_021: 
+  item_id: 
+  city: Chico
+  public: 
+  icon: 
+  zip_code: ""
+  country: United States
+  altitude_feet: "0"
+  id: "49"
+  lng: "-121.841985"
+  description: ""
+  address_line_1: ""
+  loc_type: "1"
+  address_line_2: ""
+  status_id: 
+  person_id: "10"
+  lat: "39.73201"
+  state: CAlifornia
+  date_start: 
+  date_end: 
 locations_010: 
   item_id: 
   city: Heredia
@@ -282,6 +342,26 @@ locations_010:
   status_id: 
   person_id: 
   lat: "10.473523"
+  state: ""
+  date_start: 
+  date_end: 
+locations_022: 
+  item_id: 
+  city: ""
+  public: 
+  icon: 
+  zip_code: ""
+  country: Armenia
+  altitude_feet: "0"
+  id: "50"
+  lng: "45.03989"
+  description: ""
+  address_line_1: ""
+  loc_type: "1"
+  address_line_2: ""
+  status_id: 
+  person_id: "11"
+  lat: "40.06617"
   state: ""
   date_start: 
   date_end: 

@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 37
+# Schema version: 20090214004612
 #
 # Table name: sale_items
 #
@@ -25,9 +25,9 @@ sale_items_001:
   created_on: 
   price: "19.95"
   sale_begins: "2008-04-02"
-  updated_on: 2008-03-02 16:32:10
+  updated_on: 2008-12-13 16:55:50
   id: "1"
-  quantity_in_stock: "0"
+  quantity_in_stock: "2"
   sale_ends: "2008-05-02"
   description: A really nice one
   category_id: "1"
@@ -75,3 +75,17 @@ sale_items_004:
   category_id: "1"
   for_sale: ""
   sale_price: "19.95"
+sale_items_005: 
+  name: Intricate Brown
+  status: "1"
+  created_on: 2008-12-13 16:36:55
+  price: "24.99"
+  sale_begins: "2010-01-13"
+  updated_on: 2008-12-13 16:36:55
+  id: "11"
+  quantity_in_stock: "1"
+  sale_ends: "2010-02-13"
+  description: A hard cover book with an intricate brown design
+  category_id: "1"
+  for_sale: ""
+  sale_price: "21.99"

@@ -128,7 +128,7 @@ module Cosinux
         yield *names
         
         # if there is no variable @controller, then we haven't done any request
-        raise NoRequestInBlockError.new("no request was send while executing block.") if @controller.nil?
+        raise NoRequestInBlockError.new("no request was sent while executing block.") if @controller.nil?
         
         names.each do |name|
           assert_block("#{name.inspect} is not cached after executing block") do

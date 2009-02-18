@@ -1,5 +1,19 @@
 module UserHelper
   
+  def last_login_string(datetime)
+    if datetime.day == Date.today.day
+      last_day = "Today"
+    elsif datetime.day == Date.today.day - 1
+      last_day = "Yesterday"
+    elsif ((Date.today.day - 7)..(Date.today.day - 2)) === datetime.day
+      last_day = datetime.strftime("%A")
+    else
+      last_day = datetime.strftime("%b %e")
+    end
+    last_time = datetime.to_formatted_s(:last_login_time)
+    "#{last_time} #{last_day}"
+  end
+  
   def add_person_marker(person, map)
     loc = person.current_location
     if person == Person.find(session[:user_id])

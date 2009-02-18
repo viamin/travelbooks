@@ -1,9 +1,8 @@
-<h1><%= @person.display_name %>'s Trip Logs</h1>
-<%= render :partial => 'user/profile_links' %>
+<h1><%= @person.display_name %>'s Travel Logs</h1>
 
 <div id="trip_page" class="yui-gd">
 	<div id="vacation_list" class="yui-u first">
-		<%= button_to 'Add a trip log', :action => 'new' %>
+		<%= button_to 'Add a trip', :action => 'new' %>
 		<ul>
 			<%= render :partial => 'trip', :collection => @trips %>
 		</ul>

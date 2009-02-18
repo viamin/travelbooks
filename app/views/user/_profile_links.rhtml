@@ -2,6 +2,5 @@
 	<%= link_to_unless_current "Edit my Details", :controller => 'user', :action => 'edit' %> |
 	<%= link_to_unless_current "Change my password", :controller => 'user', :action => 'reset_password' %> |
 	<%= link_to_unless_current "Edit my Photos", :action => "edit", :controller => 'photo', :id => @person.id %> |
-	<%= link_to_unless_current "Edit my Locations", :action => "list", :controller => 'location', :id => @person.id %> | 
-	<%= link_to_unless_current 'Edit my Trips', :controller => 'trip', :action => 'list' %>
+	<%= link_to_unless_current "Edit my Locations", :action => "list", :controller => 'location', :id => @person.id %>
 </div>

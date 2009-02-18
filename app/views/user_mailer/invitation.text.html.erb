@@ -1,0 +1,9 @@
+<h1>You're invited!</h1>
+
+<p><%= h @friend.display_name %> has sent you an invitation to join TravellerBook.com. </p>
+
+<p>TravellerBook.com is a social network built around sharing TravellerBooks and your experiences travelling around this wonderful world of ours. </p>
+
+<p>You can log in and confirm <%= h @friend.display_name %>'s invitation by clicking this link: <%= link_to "Join TravellerBook.com", :host => 'www.travellerbook.com', :controller => 'message', :action => 'invitation', :id => @message.id, :email => @recipient %>. You've got nothing to lose, and it's free!</p>
+
+<p><%= sanitize @body %></p>

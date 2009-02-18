@@ -28,9 +28,10 @@
 	<div class="yui-u">
 		<div id="friend_box">
 			
-			<% cache(:action => 'home', :action_suffix => "friends#{@person.id}") do %>
+			<% cache(:controller => 'user', :action => 'home', :action_suffix => "friends#{@person.id}") do %>
 			<div id="friend_bar">
 				<%= link_to "View All", {:controller => 'user', :action => 'list', :id => @person.id}, {:class => 'right_rlink'} %>
+				<%= link_to "Invite Friends", {:controller => 'message', :action => 'invite'}, {:class => 'right_rlink'} %>
 				<span class="header_title">My Friends (<%= @friends.length %>)</span>
 			</div>
 			<div id="friend_list">
@@ -47,7 +48,7 @@
 	<div class="yui-u first">
 		<div id="book_box">
 			
-			<% cache(:action => 'home', :action_suffix => "items#{@person.id}") do %>
+			<% cache(:controller => 'user', :action => 'home', :action_suffix => "items#{@person.id}") do %>
 			<div id="book_bar">
 				<%= link_to (@list_all_items ? "Details" : "View All"), {:controller => 'item', :action => 'list', :id => @person.id}, {:class => 'left_rlink'} %>
 				<span class="header_title"><%= @list_all_items ? "All" : "My" %> TravellerBooks (<%= @items.length %>)</span>
@@ -66,7 +67,7 @@
 			</div>
 			<div id="stat_list">
 				
-				<% cache(:action => 'home', :action_suffix => "stats#{@person.id}") do %>
+				<% cache(:controller => 'user', :action => 'home', :action_suffix => "stats#{@person.id}") do %>
 					<%= render :partial => 'user_stats', :action => 'user_stats', :object => @person %>
 				<% end %>
 				

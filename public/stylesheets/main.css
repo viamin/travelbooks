@@ -229,8 +229,8 @@ div.progressBar div.background {
 	position: absolute;
 	padding: 1em 1em 0 1em;
 	z-index: 10000;
-	top: 110px;
-	left: 200px;
+	top: 112px;
+	left: 1em;
 	clear: none;
 	width: 330px;
 	border: 1px solid black;

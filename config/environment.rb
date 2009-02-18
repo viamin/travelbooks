@@ -14,7 +14,7 @@ Rails::Initializer.run do |config|
 
   # Force all environments to use the same logger level 
   # (by default production uses :info, the others :debug)
-  # config.log_level = :warn
+  config.log_level = :warn
 
   # Use the database for sessions instead of the file system
   # (create the session table with 'rake db:sessions:create')
@@ -26,7 +26,6 @@ Rails::Initializer.run do |config|
   # like if you have constraints or database-specific column types
   config.active_record.schema_format = :sql
 
-#  config.gem "hpricot", :source => "http://code.whytheluckystiff.net"
   config.gem "hoe"
   config.gem "hpricot"
   config.gem "rmagick"
@@ -98,7 +97,9 @@ end
 
 ExceptionNotifier.exception_recipients = %w( support@travellerbook.com )
 ExceptionNotifier.sender_address = %("TravellerBook Application Error" <do-not-reply@travellerbook.com>)
-    
+
+Time::DATE_FORMATS[:last_login_time] = "%l:%M%p"
+
 # These defaults are used in GeoKit::Mappable.distance_to and in acts_as_mappable
 GeoKit::default_units = :miles
 GeoKit::default_formula = :sphere

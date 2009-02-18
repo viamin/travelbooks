@@ -8,7 +8,7 @@
 		<p><label for="message_recipients">Email addresses (separate them with commas or spaces):</label>
 			<%= text_area_tag 'message[recipients]', "", :cols => 120, :rows => 10 %>
 		</p>
-		<p><label for="message_body">You can enter a message to add to your invitation if you like.</label>
+		<p><label for="message_body">You can enter a personal message to add to your invitation if you like.</label>
 		<p><%= text_area_tag 'message[body]', @message.body, :cols => 120, :rows => 8 %></p>
 		<p class="nl"><%= submit_tag 'Send' %></p>
 		<p><%= submit_tag 'Cancel' %></p>

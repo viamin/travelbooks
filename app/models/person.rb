@@ -1,21 +1,23 @@
 # == Schema Information
-# Schema version: 37
+# Schema version: 20090214004612
 #
 # Table name: people
 #
-#  id              :integer         not null, primary key
-#  first_name      :string(255)     not null
-#  middle_name     :string(255)
-#  last_name       :string(255)     not null
-#  email           :string(255)     not null
-#  hashed_password :text
-#  created_on      :date
-#  nickname        :string(255)
-#  salt            :string(255)
-#  privacy_flags   :integer         default(0)
-#  needs_reset     :boolean
-#  login_token     :string(255)
-#  private_profile :boolean
+#  id               :integer         not null, primary key
+#  first_name       :string(255)     not null
+#  middle_name      :string(255)
+#  last_name        :string(255)     not null
+#  email            :string(255)     not null
+#  hashed_password  :text
+#  created_on       :date
+#  nickname         :string(255)
+#  salt             :string(255)
+#  privacy_flags    :integer         default(0)
+#  needs_reset      :boolean
+#  login_token      :string(255)
+#  private_profile  :boolean
+#  last_login       :datetime
+#  mail_preferences :integer
 #
 
 class Person < ActiveRecord::Base
@@ -90,6 +92,12 @@ class Person < ActiveRecord::Base
   ZIPONLY = 2**4
   COUNTRYONLY = 2**5
   SHAREVACATIONS = 2**6
+  
+  # Mail settings bits (On is block)
+  MESSAGE = 2**0
+  REQUEST = 2**1
+  ANNOUNCE = 2**2
+  
   
   LOCRESOLUTIONS = ["Full Address", "City Only", "State Only", "Postal Code Only", "Country Only"]
   
@@ -368,6 +376,15 @@ class Person < ActiveRecord::Base
     @friend.permissions = "rwrwrw"
     @friend.save
     @friend.create_symmetrical
+  end
+  
+  def map_icon
+    thumb = self.main_photo.thumb_url(18)
+    if thumb == self.main_photo.url
+      return '/images/personicon.png'
+    else
+      return thumb
+    end
   end
   
   def self.titles

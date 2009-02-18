@@ -29,7 +29,7 @@
 	
 	<div id="friend_box">
 		
-		<% cache(:action => 'show', :action_suffix => "friends#{@person.id}") do %>
+		<% cache(:controller => 'user', :action => 'show', :action_suffix => "friends#{@person.id}") do %>
 		<div id="friend_bar"><%= h(@person.display_name) %>'s Friends</div>
 		<div id="friend_list">
 			<ul id="flist">
@@ -47,7 +47,7 @@
 
 <div id="book_box">
 	
-	<% cache(:action => 'show', :action_suffix => "items#{@person.id}") do %>
+	<% cache(:controller => 'user', :action => 'show', :action_suffix => "items#{@person.id}") do %>
 	<div id="book_bar"><%= h(@person.display_name) %>'s Books</div>
 	<div id="book_list">
 		<ul id="blist">
@@ -61,7 +61,7 @@
 	<div id="stat_bar"><%= h(@person.display_name) %>'s Traveller Stats</div>
 	<div id="stat_list">
 		
-		<% cache(:action => 'home', :action_suffix => "stats#{@person.id}") do %>
+		<% cache(:controller => 'user', :action => 'home', :action_suffix => "stats#{@person.id}") do %>
 			<%= render :partial => 'user_stats', :action => 'user_stats', :object => @person %>
 		<% end %>
 		

@@ -14,7 +14,7 @@ class UsersTest < ActionController::IntegrationTest
     assert_template "user/join"
 
     post "/user/join", :name => "Bob", :user_name => "bob",
-      :password => "secret"
+      :password => "secret", :password_confirmation => "secret"
     assert_response :success
     assert_template "user/join"
   end

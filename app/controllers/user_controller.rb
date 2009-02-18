@@ -25,7 +25,7 @@ class UserController < ApplicationController
   	@map.marker_init(Marker.new([@location.lat, @location.lng], :icon => '/images/homeicon.png'))
   	@friends.each do |f|
   	  fl = f.current_location
-  	  @map.marker_init(Marker.new([fl.lat, fl.lng], :info_bubble => f.display_name, :icon => '/images/personicon.png'))
+  	  @map.marker_init(Marker.new([fl.lat, fl.lng], :info_bubble => f.display_name, :icon => f.map_icon))
 	  end
   end
 
@@ -46,17 +46,17 @@ class UserController < ApplicationController
     end
     @me = Person.find(session[:user_id])
     @location = @person.current_location
-    unless read_fragment(:action => 'show', :action_suffix => "items{@person.id}")
+    unless read_fragment(:controller => 'user', :action => 'show', :action_suffix => "items#{@person.id}")
       @items = @person.items
     end
-    unless read_fragment(:action => 'show', :action_suffix => "friends#{@person.id}")
+    unless read_fragment(:controller => 'user', :action => 'show', :action_suffix => "friends#{@person.id}")
       @friends = @person.friends
       @is_my_friend = @friends.include?(@me)
     end
     unless @is_my_friend
       @is_my_friend = Message.check_for_request(@me, @person)
     end
-    unless (read_fragment(:action => 'show', :action_suffix => "map#{@person.id}"))
+    unless (read_fragment(:controller => 'user', :action => 'show', :action_suffix => "map#{@person.id}"))
       @map = Mapstraction.new('user_map', MAP_TYPE)
       @map.control_init(:small => true)
       @map.center_zoom_init([@location.lat, @location.lng], 10)
@@ -116,7 +116,7 @@ class UserController < ApplicationController
       flash[:notice] = "#{flash[:notice].concat('<br />') if flash[:notice]}You have #{@new_messages.length} new message#{"s" if @new_messages.length > 1} in your <a href=\"/message/list\">inbox</a>." unless session[:settled_in] || @new_messages.empty?
       
       # Item section
-      unless read_fragment(:action => 'home', :action_suffix => "items{@person.id}")
+      unless read_fragment(:controller => 'user', :action => 'home', :action_suffix => "items#{@person.id}")
         @items = @person.items
         @list_all_items = false
         if @items.empty?
@@ -126,13 +126,13 @@ class UserController < ApplicationController
       end
       
       # friends section
-      unless read_fragment(:action => 'home', :action_suffix => "friends#{@person.id}")
+      unless read_fragment(:controller => 'user', :action => 'home', :action_suffix => "friends#{@person.id}")
         @friends = @person.friends
       end
       
       # Map section
       @location = @person.current_location
-      unless (read_fragment(:action => 'home', :action_suffix => "map#{@person.id}"))
+      unless (read_fragment(:controller => 'user', :action => 'home', :action_suffix => "map#{@person.id}"))
         @locations = @person.all_locations
         @map = Mapstraction.new('user_map', MAP_TYPE)
         @map.control_init(:small => true)
@@ -161,6 +161,8 @@ class UserController < ApplicationController
         if @person.kind_of?(Person)
           session[:user_id] = @person.id
           session[:user_email] = @person.email
+          @person.last_login = Time.now
+          @person.save!
           @login_status = :success
           next_action = :redirect
         else
@@ -198,7 +200,6 @@ class UserController < ApplicationController
   end
   
   def retrieve
-    
   end
   
   def iforgot
@@ -240,6 +241,13 @@ class UserController < ApplicationController
           flash[:notice] = "Thank you for joining TravellerBook.com."
           UserMailer.deliver_welcome(@person)
           session[:user_id] = @person.id
+          @person.last_login = Time.now
+          @person.save!
+          unless params[:id].nil?
+            # Should mean this is a join due to an invitation
+            message = Message.find(:first, :conditions => {:id => params[:id]})
+            message.complete_invitation!(@person) unless message.nil?
+          end
           redirect_to :action => :home
         else
           flash[:notice] = "Sorry, there was a problem creating your account."
@@ -290,7 +298,7 @@ class UserController < ApplicationController
   end
   
   def send_request
-    @person = Person.find(params[:id])
+    @person = Person.find(session[:user_id])
     @friend = Person.find(params[:friend_id])
     if params[:commit] == "Confirm"
       flash[:notice] = "A message has been sent to <a href=\"/user/show/#{@friend.id}\">#{@friend.display_name}</a>."
@@ -325,6 +333,8 @@ class UserController < ApplicationController
         redirect_to :action => 'home'
         return
       else
+        flash[:notice] = "The password you typed for your old password was not correct. If you need to reset your password, click <a href=\"#{url_for(:controller => 'user', :action => 'retrieve')}\">here</a>."
+        @needs_confirmation = true
         render :action => 'reset_password'
         return
       end
