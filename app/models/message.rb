@@ -191,7 +191,7 @@ class Message < ActiveRecord::Base
   end
   
   def parse_recipients
-    self.recipients.scan(/(\w.+)@((?:[-a-z0-9]+\.)+[a-z]{2,})/i).unique
+    self.recipients.scan(/\w[^@[:cntrl:][:space:]]+@(?:[-a-z0-9]+\.)+[a-z]{2,}/i).uniq
   end
   
 end

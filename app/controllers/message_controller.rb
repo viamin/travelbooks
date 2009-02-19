@@ -100,12 +100,21 @@ class MessageController < ApplicationController
   
   def send_invites
     @message = Message.create(params[:message])
+    @count = 0
     @message.parse_recipients.each do |r|
-      # first make sure the emails aren't already in the system as existing users
-      
-      UserMailer.deliver_invitation(@message, r)
+      # first make sure the emails aren't already in the system as existing users and already friends
+      person = Person.find_by_email(r)
+      if person.kind_of?(Person)
+        unless @message.sender_p.is_friend?(person)
+          Message.send_request(@message.sender_p, person)
+          @count = @count + 1
+        end
+      else
+        UserMailer.deliver_invitation(@message, r)
+        @count = @count + 1
+      end
     end
-    flash[:notice] = "Your invitation has been sent to #{pluralize(@message.parse_recipients.length, 'person')}"
+    flash[:notice] = "Your invitation has been sent to #{pluralize(@count, 'person')}"
     redirect_to :action => 'invite'
   end
   
@@ -121,7 +130,9 @@ class MessageController < ApplicationController
   
   def test
     @person = Person.find(session[:user_id])
-    render :text => "<pre>#{UserMailer.create_welcome(@person)}</pre>", :layout => false
+#    render :text => "<pre>#{UserMailer.create_welcome(@person)}</pre>", :layout => false
+    @message = Message.new(:message_type => Message::INVITATION, :sender => @person.id, :subject => "#{@person.display_name} has invited you to join TravellerBook.com")
+    render :text => "<pre>#{UserMailer.create_invitation(@message, "fake@person.com")}</pre>", :layout => false
   end
   
 end
