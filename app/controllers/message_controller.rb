@@ -100,6 +100,7 @@ class MessageController < ApplicationController
   
   def send_invites
     @message = Message.create(params[:message])
+    @message.sender = session[:user_id]
     @count = 0
     @message.parse_recipients.each do |r|
       # first make sure the emails aren't already in the system as existing users and already friends
@@ -114,7 +115,7 @@ class MessageController < ApplicationController
         @count = @count + 1
       end
     end
-    flash[:notice] = "Your invitation has been sent to #{pluralize(@count, 'person')}"
+    flash[:notice] = "Your invitation has been sent to #{help.pluralize(@count, 'person')}"
     redirect_to :action => 'invite'
   end
   

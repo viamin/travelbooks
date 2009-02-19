@@ -22,6 +22,8 @@ config.action_mailer.raise_delivery_errors = false
 # Person id of the "Nobody" user, where given away books stay
 NOBODY_USER = 5
 
+SHARED_ROOT = RAILS_ROOT
+
 # Put caches somewhere I can find them
 ActionController::Base.cache_store = :file_store, "public/fragment_caches/"
 

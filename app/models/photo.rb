@@ -36,11 +36,19 @@ class Photo < ActiveRecord::Base
   PERSON = 2
   ITEM = 3
   LOCATION = 4
+  
+  IMAGE_ROOT = "#{SHARED_ROOT}/public/images"
+  
+  TYPE_BASE_PATH = {
+    2 => "#{IMAGE_ROOT}/users",
+    3 => "#{IMAGE_ROOT}/books"
+  }
         
   # Thumbnail sizes
-  THUMB = {18 => 25, 
-           36 => 50, 
-           80 => 120}
+  THUMB = {18  => 25,  # for icons on maps
+           36  => 50,  # for books on home page
+           80  => 120, # for friends on home page
+           240 => 360} # Currently regular size
   
 #  def initialize(*params)
 #    super(*params)
@@ -59,14 +67,14 @@ class Photo < ActiveRecord::Base
         # Location photo, which currently has no thumbnail
         self.url
       else
-        if File.exists?("#{RAILS_ROOT}/public/images/books/#{size}/#{self.file_name}")
+        if File.exists?("#{IMAGE_ROOT}/books/#{size}/#{self.file_name}")
           "/images/books/#{size}/#{self.file_name}"
         else
           self.url
         end
       end
     else
-      if File.exists?("#{RAILS_ROOT}/public/images/users/#{self.person.email}/#{size}/#{self.file_name}")
+      if File.exists?("#{IMAGE_ROOT}/users/#{self.person.email}/#{size}/#{self.file_name}")
         "/images/users/#{self.person.email}/#{size}/#{self.file_name}"
       else
         self.url
@@ -146,14 +154,13 @@ class Photo < ActiveRecord::Base
     data = Magick::Image.read("#{Dir.tmpdir}/#{photo_params[:file_name]}").first
     data = data.resize(photo_params[:scale].to_f) unless photo_params[:scale].to_f == 0
     data = data.crop(photo_params[:offset_x].to_f.abs, photo_params[:offset_y].to_f.abs, 240, 360, true) unless (photo_params[:offset_x].to_f == 0 && photo_params[:offset_y].to_f == 0)
-    filename = "#{RAILS_ROOT}/public/images/users/#{person.email}/#{photo_params[:file_name]}"
+    filename = "#{IMAGE_ROOT}/users/#{person.email}/#{photo_params[:file_name]}"
     if File.exist?(filename)
       #flash[:error] = "That filename has already been used"
       timing "filename already used - not saving"
     else
-      #### FIX THIS - RAILS_ROOT points to releases/<date>, not current/
-      unless File.exist?("#{RAILS_ROOT}/public/images/users/#{person.email}")
-        Dir.mkdir("#{RAILS_ROOT}/public/images/users/#{person.email}")
+      unless File.exist?("#{IMAGE_ROOT}/users/#{person.email}")
+        Dir.mkdir("#{IMAGE_ROOT}/users/#{person.email}")
       end
       Photo.save_data(data, person, photo_params[:file_name])
       photo = Photo.new
@@ -192,14 +199,81 @@ class Photo < ActiveRecord::Base
     end
   end
   
+  def verify_thumbnails
+    # Currently there are only 2 kinds of photos: people and items
+    if self.person_id.nil?
+      if self.item_id.nil?
+        # must be a location photo - do nothing for now
+      else
+        # item photo
+        self.check_thumbnails([18,36])
+      end
+    else
+      # person photo
+      self.check_thumbnails([18,80])
+    end
+  end
+  
+  def check_thumbnails(sizes = [18,36,80])
+    if File.exists?(self.path)
+      data = Magick::Image.read(self.path).first
+    elsif File.exists?("#{SHARED_ROOT}/#{self.url}")
+      data = Magick::Image.read("#{SHARED_ROOT}/#{self.url}").first
+    else
+      RAILS_DEFAULT_LOGGER.warn "File not found - aborting thumbnail creation"
+      return
+    end
+    # first check regular size
+    if (data.cols == 240 && data.rows == Photo::THUMB[240])
+      # Photos are correct aspect ratio and can be resized safely
+      sizes.each do |size|
+        data = Magick::Image.read(self.thumb_path(size)).first
+        if data.nil?
+          self.regen_thumb(size)
+        else
+          unless (data.cols == size && data.rows == Photo::THUMB[size])
+            self.regen_thumb(size)
+          end
+        end
+      end
+    else
+      timing "Photo main size was wrong"
+#      self.resize(data, 240) # this will mess up photos that were cropped small
+    end
+  end
+  
+  def regen_thumb(size)
+    data = Magick::Image.read(self.path).first
+    if self.person_id.nil?
+      if self.item_id.nil?
+        # must be a location photo - do nothing for now
+      else
+        # item photo
+        Photo.save_book_data(data, self.file_name, size)
+      end
+    else
+      # person photo
+      Photo.save_data(data, self.person, self.file_name, size)
+    end
+  end
+  
+  # resize should only be used with photos of the expected aspect ratio
+  def resize(photo, size, path)
+    data.scale!(size, Photo::THUMB[size])
+    # TBD : write out the file to the right place
+    file = File.new(path, "rw")
+    data.write(file)
+    file.close
+  end
+  
   def create_person_thumbnails
     if self.url == "db"
       # figure this out later
     else
       if File.exists?(self.path)
         data = Magick::Image.read(self.path).first
-      elsif File.exists?("#{RAILS_ROOT}/../../shared/#{self.url}")
-        data = Magick::Image.read("#{RAILS_ROOT}/../../shared/#{self.url}").first
+      elsif File.exists?("#{SHARED_ROOT}/#{self.url}")
+        data = Magick::Image.read("#{SHARED_ROOT}/#{self.url}").first
       else
         RAILS_DEFAULT_LOGGER.warn "File not found - aborting thumbnail creation"
         return
@@ -216,8 +290,8 @@ class Photo < ActiveRecord::Base
     else
       if File.exists?(self.path)
         data = Magick::Image.read(self.path).first
-      elsif File.exists?("#{RAILS_ROOT}/../../shared/#{self.url}")
-        data = Magick::Image.read("#{RAILS_ROOT}/../../shared/#{self.url}").first
+      elsif File.exists?("#{SHARED_ROOT}/#{self.url}")
+        data = Magick::Image.read("#{SHARED_ROOT}/#{self.url}").first
       else
         RAILS_DEFAULT_LOGGER.warn "File not found - aborting book thumbnail creation"
         return
@@ -230,15 +304,15 @@ class Photo < ActiveRecord::Base
   
   def self.save_book_data(data, file_name, tag = false)
      if [18, 36, 80].include?(tag)
-       filename = "#{RAILS_ROOT}/public/images/books/#{tag}/#{file_name}"
+       filename = "#{IMAGE_ROOT}/books/#{tag}/#{file_name}"
      else
-       filename = "#{RAILS_ROOT}/public/images/books/#{file_name}"
+       filename = "#{IMAGE_ROOT}/books/#{file_name}"
      end
      if File.exists?(filename)
        timing "Thumbnail for file_name exists for size #{tag}"
      else
-       unless File.exists?("#{RAILS_ROOT}/public/images/books/#{tag}/")
-         Dir.mkdir("#{RAILS_ROOT}/public/images/books/#{tag}/")
+       unless File.exists?("#{IMAGE_ROOT}/books/#{tag}/")
+         Dir.mkdir("#{IMAGE_ROOT}/books/#{tag}/")
        end
        data.scale!(tag, Photo::THUMB[tag])
        tf = File.new(filename, "w")
@@ -250,18 +324,18 @@ class Photo < ActiveRecord::Base
   
   def self.save_data(data, person, filename, tag = false)
     if [18, 36, 80].include?(tag)
-      fname = "#{RAILS_ROOT}/public/images/users/#{person.email}/#{tag}/#{filename}"
+      fname = "#{IMAGE_ROOT}/users/#{person.email}/#{tag}/#{filename}"
     else
-      fname = "#{RAILS_ROOT}/public/images/users/#{person.email}/#{filename}"
+      fname = "#{IMAGE_ROOT}/users/#{person.email}/#{filename}"
     end
     if File.exists?(fname)
       timing "Thumbnail for file_name exists for size #{tag}"
     else
-      unless File.exists?("#{RAILS_ROOT}/public/images/users/#{person.email}/")
-        Dir.mkdir("#{RAILS_ROOT}/public/images/users/#{person.email}/")
+      unless File.exists?("#{IMAGE_ROOT}/users/#{person.email}/")
+        Dir.mkdir("#{IMAGE_ROOT}/users/#{person.email}/")
       end
-      unless File.exists?("#{RAILS_ROOT}/public/images/users/#{person.email}/#{tag}/")
-        Dir.mkdir("#{RAILS_ROOT}/public/images/users/#{person.email}/#{tag}/")
+      unless File.exists?("#{IMAGE_ROOT}/users/#{person.email}/#{tag}/")
+        Dir.mkdir("#{IMAGE_ROOT}/users/#{person.email}/#{tag}/")
       end
       data.scale!(tag, Photo::THUMB[tag])
       f = File.new(fname, "wb")
@@ -269,6 +343,21 @@ class Photo < ActiveRecord::Base
       f.close
     end
     File.chmod(0664, fname)
+  end
+  
+  private
+  
+  def thumb_path(size = 80)
+    if self.person_id.nil?
+      if self.item_id.nil?
+        # Location photo, which currently has no thumbnail
+        nil
+      else
+        "#{IMAGE_ROOT}/books/#{size}/#{self.file_name}"
+      end
+    else
+      "#{IMAGE_ROOT}/users/#{self.person.email}/#{size}/#{self.file_name}"
+    end
   end
   
 end

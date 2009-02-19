@@ -5,6 +5,15 @@ class ApplicationController < ActionController::Base
   include ExceptionNotifiable
   after_filter :after_action
   
+  def help
+    Helper.instance
+  end
+
+  class Helper
+    include Singleton
+    include ActionView::Helpers::TextHelper
+  end
+  
   protected  
 =begin
     def log_error(exception) 

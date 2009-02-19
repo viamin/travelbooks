@@ -1,0 +1,10 @@
+<h1>Trip Admin</h1>
+<%= render :partial => 'admin_links' %>
+<div id="admtrplst">
+	<ul id="along_list">
+		<p class="spacer">&nbsp;</p>
+		<%= render :partial => 'trip_small', :collection => @trips, :spacer_template => 'spacer' %>
+		<p class="spacer">&nbsp;</p>
+	</ul>
+</div>
+<%= render :partial => 'admin_links' %>

@@ -26,6 +26,8 @@ ActionController::Base.cache_store = :file_store, "public/fragment_caches/"
 # Person id of the "Nobody" user, where given away books stay
 NOBODY_USER = 5
 
+SHARED_ROOT = RAILS_ROOT
+
 # To workaround http://rails.lighthouseapp.com/projects/8994/tickets/1453-gets-in-integration-test-unless-you-are-using-cookie-sessions
 # From http://groups.google.com/group/rubyonrails-talk/browse_thread/thread/5519ca7fd4dde3c1
 class ActionController::RackRequest 

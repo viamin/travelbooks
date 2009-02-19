@@ -251,6 +251,7 @@ class AdminController < ApplicationController
       expire_fragment(:controller => 'user', :action => 'show', :action_suffix => "map#{p.id}")
     end
     expire_fragment(%r{public/fragment_caches/.*})
+    `cd #{RAILS_ROOT} && rake tmp:assets:clear`
     flash[:notice] = "Caches have been deleted"
     redirect_to :action => 'index'
   end
@@ -260,6 +261,13 @@ class AdminController < ApplicationController
     photos = Photo.find(:all)
     photos.each {|p| p.create_thumbnails}
     flash[:notice] = "Thumbnails created - check the log for any errors"
+    redirect_to :action => 'index'
+  end
+  
+  def verify_thumbnails
+    photos = Photo.find(:all)
+    photos.each {|p| p.verify_thumbnails}
+    flash[:notice] = "Thumbnails verified - check the log for any errors"
     redirect_to :action => 'index'
   end
   

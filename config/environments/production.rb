@@ -31,3 +31,5 @@ ActionMailer::Base.smtp_settings = {
 
 # Person id of the "Nobody" user, where given away books stay
 NOBODY_USER = 2
+
+SHARED_ROOT = "#{RAILS_ROOT}/../../shared/"

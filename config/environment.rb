@@ -99,6 +99,7 @@ ExceptionNotifier.exception_recipients = %w( support@travellerbook.com )
 ExceptionNotifier.sender_address = %("TravellerBook Application Error" <do-not-reply@travellerbook.com>)
 
 Time::DATE_FORMATS[:last_login_time] = "%l:%M%p"
+Time::DATE_FORMATS[:last_login] = "%l:%M%p %b %e"
 
 # These defaults are used in GeoKit::Mappable.distance_to and in acts_as_mappable
 GeoKit::default_units = :miles

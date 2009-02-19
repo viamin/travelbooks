@@ -34,4 +34,8 @@ class Trip < ActiveRecord::Base
   def person
     Person.find(self.person_id) unless self.person_id.nil?
   end
+  
+  def item
+    Item.find(self.item_id) unless self.item_id.nil?
+  end
 end

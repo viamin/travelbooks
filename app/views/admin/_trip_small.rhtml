@@ -1,0 +1,8 @@
+<!--[div:trip_small]-->
+<p><%= h(trip_small.id.to_s + ":" + trip_small.name)%></p>
+<p><%= h(trip_small.person.display_name) %></p>
+<p><%= h(trip_small.start_date.to_formatted_s(:short)) %> -
+<%= h(trip_small.end_date.to_formatted_s(:short)) %></p>
+<p><%= h(trip_small.companions) %></p>
+<p><%= h(trip_small.item.name) unless trip_small.item.nil? %></p>
+<!--[eodiv:trip_small]-->
