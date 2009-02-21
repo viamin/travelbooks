@@ -11,7 +11,7 @@ class UserMailerTest < ActionMailer::TestCase
     @expected.date    = Time.now
     @expected.from    = 'TravellerBooks <do-not-reply@travellerbook.com>'
 
-    @person = people(:people_007)
+    @person = people(:barttest)
     # Need to figure out how to do this with multipart/mime
 #    assert_equal @expected.encoded, UserMailer.create_retrieve(@person, "password").encoded
   end

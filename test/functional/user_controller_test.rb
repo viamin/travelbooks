@@ -16,14 +16,14 @@ class UserControllerTest < Test::Unit::TestCase
   end
 
   def test_index
-    session_vals = {:user_id => people(:people_001).id}
+    session_vals = {:user_id => people(:bart).id}
     get :index, {}, session_vals
     assert_response :redirect
     assert_redirected_to :action => 'home'
   end
 
   def test_list
-    session_vals = {:user_id => people(:people_001).id}
+    session_vals = {:user_id => people(:bart).id}
     get :list, {:id => @first_id}, session_vals
 
     assert_response :success
@@ -33,7 +33,7 @@ class UserControllerTest < Test::Unit::TestCase
   end
 
   def test_show
-    session_vals = {:user_id => people(:people_006).id}
+    session_vals = {:user_id => people(:kat).id}
     get :show, {:id => @first_id}, session_vals
 
     assert_response :success
@@ -44,7 +44,7 @@ class UserControllerTest < Test::Unit::TestCase
   end
 
   def test_new
-    session_vals = {:user_id => people(:people_001).id}
+    session_vals = {:user_id => people(:bart).id}
     get :new, {}, session_vals
 
     assert_response :success
@@ -55,7 +55,7 @@ class UserControllerTest < Test::Unit::TestCase
 
   def test_edit
     # populates the session hash
-    session_vals = {:user_id => people(:people_001).id}
+    session_vals = {:user_id => people(:bart).id}
     get :edit, {}, session_vals
 
     assert_response :success
@@ -66,7 +66,7 @@ class UserControllerTest < Test::Unit::TestCase
   end
 
   def test_update
-    session_vals = {:user_id => people(:people_001).id}
+    session_vals = {:user_id => people(:bart).id}
     post :update, {:id => @first_id}, session_vals
     assert_response :redirect
     assert_redirected_to :action => 'show', :id => @first_id
@@ -76,7 +76,7 @@ class UserControllerTest < Test::Unit::TestCase
     assert_nothing_raised {
       Person.find(@first_id)
     }
-    session_vals = {:user_id => people(:people_001).id}
+    session_vals = {:user_id => people(:bart).id}
     post :destroy, {:id => @first_id}, session_vals
     assert_response :redirect
     assert_redirected_to :action => 'list'
@@ -90,6 +90,6 @@ class UserControllerTest < Test::Unit::TestCase
     post :join, :person => {:email => "test@travellerbook.com", :nickname => "Test User", :password => "test123", :password_confirmation => "test123", :first_name => "TestUser"}, :location => {:country => "United States", :city => "Santa Clara", :state => "CA"}
     assert_equal("Thank you for joining TravellerBook.com.", flash[:notice])
     assert_redirected_to :action => 'home'
-    assert_equal(10, session[:user_id])
+    assert_equal(Person.all.length + 1, session[:user_id])
   end
 end

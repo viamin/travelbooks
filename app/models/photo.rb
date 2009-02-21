@@ -43,6 +43,8 @@ class Photo < ActiveRecord::Base
     2 => "#{IMAGE_ROOT}/users",
     3 => "#{IMAGE_ROOT}/books"
   }
+  
+  FORMATS = Magick.formats.keys.collect {|t| t.downcase }
         
   # Thumbnail sizes
   THUMB = {18  => 25,  # for icons on maps
@@ -67,18 +69,36 @@ class Photo < ActiveRecord::Base
         # Location photo, which currently has no thumbnail
         self.url
       else
-        if File.exists?("#{IMAGE_ROOT}/books/#{size}/#{self.file_name}")
+        if File.exists?(self.thumb_path(size))
           "/images/books/#{size}/#{self.file_name}"
         else
           self.url
         end
       end
     else
-      if File.exists?("#{IMAGE_ROOT}/users/#{self.person.email}/#{size}/#{self.file_name}")
+      if File.exists?(self.thumb_path(size))
         "/images/users/#{self.person.email}/#{size}/#{self.file_name}"
       else
         self.url
       end
+    end
+  end
+  
+  def thumb_path(size = 80)
+    if size == 0
+      return self.path
+    end
+    if self.person_id.nil?
+      if self.item_id.nil?
+        # Location photo, which currently has no thumbnail
+        nil
+      else
+        FileUtils.touch("#{IMAGE_ROOT}/books/#{size}/#{self.file_name}")
+        "#{IMAGE_ROOT}/books/#{size}/#{self.file_name}"
+      end
+    else
+      FileUtils.touch("#{IMAGE_ROOT}/users/#{self.person.email}/#{size}/#{self.file_name}")
+      "#{IMAGE_ROOT}/users/#{self.person.email}/#{size}/#{self.file_name}"
     end
   end
 
@@ -154,7 +174,8 @@ class Photo < ActiveRecord::Base
     data = Magick::Image.read("#{Dir.tmpdir}/#{photo_params[:file_name]}").first
     data = data.resize(photo_params[:scale].to_f) unless photo_params[:scale].to_f == 0
     data = data.crop(photo_params[:offset_x].to_f.abs, photo_params[:offset_y].to_f.abs, 240, 360, true) unless (photo_params[:offset_x].to_f == 0 && photo_params[:offset_y].to_f == 0)
-    filename = "#{IMAGE_ROOT}/users/#{person.email}/#{photo_params[:file_name]}"
+    short_name = Photo.change_extension(photo_params[:file_name], 'jpg')
+    filename = "#{IMAGE_ROOT}/users/#{person.email}/#{short_name}"
     if File.exist?(filename)
       #flash[:error] = "That filename has already been used"
       timing "filename already used - not saving"
@@ -162,18 +183,18 @@ class Photo < ActiveRecord::Base
       unless File.exist?("#{IMAGE_ROOT}/users/#{person.email}")
         Dir.mkdir("#{IMAGE_ROOT}/users/#{person.email}")
       end
-      Photo.save_data(data, person, photo_params[:file_name])
+      file_name = Photo.save_data(data, person, short_name)
       photo = Photo.new
       photo.path = filename
       photo.caption = photo_params[:caption]
-      photo.file_name = photo_params[:file_name]
+      photo.file_name = file_name
       photo.photo_type = Photo::PERSON
       photo.width = data.columns
       photo.height = data.rows
       photo.person_id = person.id
       photo.content_type = data.mime_type
       photo.bytes = data.filesize
-      photo.url = "/images/users/#{person.email}/#{photo_params[:file_name]}"
+      photo.url = "/images/users/#{person.email}/#{short_name}"
       photo.save!
       photo.create_thumbnails
       File.delete("#{Dir.tmpdir}/#{photo_params[:file_name]}") if File.exist?("#{Dir.tmpdir}/#{photo_params[:file_name]}")
@@ -219,30 +240,45 @@ class Photo < ActiveRecord::Base
       data = Magick::Image.read(self.path).first
     elsif File.exists?("#{SHARED_ROOT}/#{self.url}")
       data = Magick::Image.read("#{SHARED_ROOT}/#{self.url}").first
+    elsif File.exists?("#{self.path}.png")
+      data = Magick::Image.read("#{self.path}.png").first
+      self.path = "#{self.path}.png" unless self.path.end_with?('.png')
+      self.file_name = "#{self.file_name}.png" unless self.file_name.end_with?('.png')
+      self.save!
+    elsif File.exists?("#{self.path}.jpg")
+      data = Magick::Image.read("#{self.path}.jpg").first
+      self.path = "#{self.path}.jpg" unless self.path.end_with?('.jpg')
+      self.file_name = "#{self.file_name}.jpg" unless self.file_name.end_with?('.jpg')
+      self.save!
     else
-      RAILS_DEFAULT_LOGGER.warn "File not found - aborting thumbnail creation"
+      RAILS_DEFAULT_LOGGER.warn "File not found - aborting thumbnail verification"
       return
     end
-    # first check regular size
-    if (data.cols == 240 && data.rows == Photo::THUMB[240])
+    # first check regular size  SKIP since book images don't have to be that size
+#    if (data.columns == 240 && data.rows == Photo::THUMB[240])
       # Photos are correct aspect ratio and can be resized safely
       sizes.each do |size|
-        data = Magick::Image.read(self.thumb_path(size)).first
+        path_to_thumb = self.thumb_path(size)
+        data = Magick::Image.read(path_to_thumb).first if File.size?(path_to_thumb)
         if data.nil?
           self.regen_thumb(size)
         else
-          unless (data.cols == size && data.rows == Photo::THUMB[size])
+#          timing "#{path_to_thumb}: #{data.columns}x#{data.rows}"
+          unless (data.columns == size && data.rows == Photo::THUMB[size])
             self.regen_thumb(size)
           end
         end
       end
-    else
-      timing "Photo main size was wrong"
+#    else
+#      timing "Photo main size was wrong for #{self.path}"
 #      self.resize(data, 240) # this will mess up photos that were cropped small
-    end
+#    end
   end
   
-  def regen_thumb(size)
+  def regen_thumb(size = 0)
+    timing "Regenerating #{self.path} for size: #{size}"
+    path_to_thumb = self.thumb_path(size)
+    File.unlink(path_to_thumb) if File.exists?(path_to_thumb)
     data = Magick::Image.read(self.path).first
     if self.person_id.nil?
       if self.item_id.nil?
@@ -302,61 +338,62 @@ class Photo < ActiveRecord::Base
     end
   end
   
-  def self.save_book_data(data, file_name, tag = false)
-     if [18, 36, 80].include?(tag)
-       filename = "#{IMAGE_ROOT}/books/#{tag}/#{file_name}"
+  def self.save_book_data(data, file_name, size = false)
+     if [18, 36, 80].include?(size)
+       filename = "#{IMAGE_ROOT}/books/#{size}/#{file_name}"
      else
        filename = "#{IMAGE_ROOT}/books/#{file_name}"
      end
      if File.exists?(filename)
-       timing "Thumbnail for file_name exists for size #{tag}"
+       timing "Thumbnail for #{file_name} exists for size #{size}"
      else
-       unless File.exists?("#{IMAGE_ROOT}/books/#{tag}/")
-         Dir.mkdir("#{IMAGE_ROOT}/books/#{tag}/")
+       unless File.exists?("#{IMAGE_ROOT}/books/#{size}/")
+         Dir.mkdir("#{IMAGE_ROOT}/books/#{size}/")
        end
-       data.scale!(tag, Photo::THUMB[tag])
+       data.scale!(size, Photo::THUMB[size])
        tf = File.new(filename, "w")
        data.write(tf)
        tf.close
      end
      File.chmod(0664, filename)
+     return filename
    end
   
-  def self.save_data(data, person, filename, tag = false)
-    if [18, 36, 80].include?(tag)
-      fname = "#{IMAGE_ROOT}/users/#{person.email}/#{tag}/#{filename}"
+  def self.save_data(data, person, filename, size = false)
+    if [18, 36, 80].include?(size)
+      fname = "#{IMAGE_ROOT}/users/#{person.email}/#{size}/#{filename}"
     else
       fname = "#{IMAGE_ROOT}/users/#{person.email}/#{filename}"
     end
+    fname = Photo.change_extension(fname, 'png') unless (fname.end_with?('.jpg') && !([18,36,80].include?(size)))
     if File.exists?(fname)
-      timing "Thumbnail for file_name exists for size #{tag}"
+      timing "Thumbnail for file_name exists for size #{size}"
     else
       unless File.exists?("#{IMAGE_ROOT}/users/#{person.email}/")
         Dir.mkdir("#{IMAGE_ROOT}/users/#{person.email}/")
       end
-      unless File.exists?("#{IMAGE_ROOT}/users/#{person.email}/#{tag}/")
-        Dir.mkdir("#{IMAGE_ROOT}/users/#{person.email}/#{tag}/")
+      unless File.exists?("#{IMAGE_ROOT}/users/#{person.email}/#{size}/")
+        Dir.mkdir("#{IMAGE_ROOT}/users/#{person.email}/#{size}/")
       end
-      data.scale!(tag, Photo::THUMB[tag])
+      data.scale!(size, Photo::THUMB[size])
       f = File.new(fname, "wb")
-      data.write(f)
+      data.write(f) { self.quality = 50 }
       f.close
     end
     File.chmod(0664, fname)
+    return fname
   end
   
-  private
-  
-  def thumb_path(size = 80)
-    if self.person_id.nil?
-      if self.item_id.nil?
-        # Location photo, which currently has no thumbnail
-        nil
-      else
-        "#{IMAGE_ROOT}/books/#{size}/#{self.file_name}"
-      end
+  def self.change_extension(file_name, extension)
+    ex = file_name.split('.')
+    if ex.length == 1
+      return "#{file_name}.#{extension}"
     else
-      "#{IMAGE_ROOT}/users/#{self.person.email}/#{size}/#{self.file_name}"
+      if FORMATS.include?(ex.last.downcase)
+        return [ex[0..-2], extension].flatten.join('.')
+      else
+        return [ex, extension].flatten.join('.')
+      end
     end
   end
   

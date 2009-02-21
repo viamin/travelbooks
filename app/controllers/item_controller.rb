@@ -109,6 +109,7 @@ class ItemController < ApplicationController
         else
           filename = "#{RAILS_ROOT}/public#{main_photo.url}"
         end
+        FileUtils.touch filename
         send_file(filename,
                 :disposition => 'inline',
                 :type => main_photo.content_type,

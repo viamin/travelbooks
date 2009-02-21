@@ -9,10 +9,11 @@ Add popups to info box
 Fix caching
 Fix Error 500 page
 Improve book image loading performance
-Create thumbnails for photos: books     => 36x50
-							  users     => 80x120
-							  map icons => 18x25
+[DONE] Create thumbnails for photos: books     => 36x50
+[DONE]							     users     => 80x120
+[DONE]							     map icons => 18x25
 Add invitation system
 Add privacy settings page
 Get caching and sweeping working
 Add last login information
+Switch over/start using HAML/SASS

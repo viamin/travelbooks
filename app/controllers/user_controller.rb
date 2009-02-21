@@ -233,6 +233,7 @@ class UserController < ApplicationController
       @location.loc_type = 1
       if @location.has_good_info?
         @location.person = @person
+        @person.last_login = Time.now
    # Change this to put the @person and @location saves in a transaction to make sure both of them go through or none. 
         if @person.save
           if @location.has_good_info? && @location.save!
@@ -241,8 +242,6 @@ class UserController < ApplicationController
           flash[:notice] = "Thank you for joining TravellerBook.com."
           UserMailer.deliver_welcome(@person)
           session[:user_id] = @person.id
-          @person.last_login = Time.now
-          @person.save!
           unless params[:id].nil?
             # Should mean this is a join due to an invitation
             message = Message.find(:first, :conditions => {:id => params[:id]})

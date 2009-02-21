@@ -361,7 +361,7 @@ class Person < ActiveRecord::Base
   
   def is_friend?(person)
     person = Person.find(person) unless person.kind_of?(Person)
-    if self.friends.include?(person)
+    if self.friends.include?(person) || self == person # You are friends with yourself :)
       return true
     else
       return false

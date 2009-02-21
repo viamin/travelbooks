@@ -5,12 +5,12 @@ class PersonTest < ActiveSupport::TestCase
 
   # Replace this with your real tests.
   def test_truth
-    assert_kind_of Person, people(:people_007)
+    assert_kind_of Person, people(:barttest)
   end
   
   def test_id
-    assert people(:people_001).first_name == "Bart"
-    assert people(:people_001).id == 1
+    assert people(:bart).first_name == "Bart"
+    assert people(:bart).id == 1
   end
   
   def test_person
@@ -23,7 +23,7 @@ class PersonTest < ActiveSupport::TestCase
   
   def test_login
     person = Person.new
-    person.password = "rsh56w"
+    person.password = "bart"
     person.email = "bart@sonic.net"
     assert_kind_of Person, Person.email_login(person.email, person.password)
     assert Person.email_login(person.email, person.password) == Person.find(:first, ["id = ?", 1])

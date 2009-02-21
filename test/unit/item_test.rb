@@ -10,7 +10,7 @@ class ItemTest < ActiveSupport::TestCase
   
   def test_change_owners
     item = items(:items_006)
-    new_owner = people(:people_008)
+    new_owner = people(:paristest)
     time = Time.now
     item.change_owner(new_owner, time)
     item.reload
