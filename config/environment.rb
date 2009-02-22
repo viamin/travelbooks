@@ -28,7 +28,7 @@ Rails::Initializer.run do |config|
 
   config.gem "hoe"
   config.gem "hpricot"
-  config.gem "rmagick"
+  config.gem "rmagick", :lib => 'RMagick'
   config.gem "ar_mailer", :lib => "action_mailer/ar_mailer"
   config.gem "csspool"
   config.gem "inline_attachment"

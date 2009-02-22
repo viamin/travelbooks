@@ -70,6 +70,7 @@ deploy.task :after_deploy, :roles => :app do
   Rake::Task["gems:build"]
 #  Rake::Task["gems:unpack:dependencies"]
   Rake::Task["gems:refresh_specs"]
+  Rake::Task["gems"]
   fix_others
   restart
 #  use_ar_mailer

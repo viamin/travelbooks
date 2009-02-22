@@ -2622,7 +2622,7 @@ checked program was:
 "gcc -o conftest -I. -I/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/universal-darwin9.0 -I.  -I/usr/local/include/ImageMagick  -I/usr/local/include/ImageMagick  conftest.c  -L"." -L"/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib"  -L/usr/local/lib -L/usr/local/lib -L/usr/X11/lib -R/usr/X11/lib -L/usr/local/lib -lfreetype -lz    -L/usr/local/lib -lMagickCore -llcms -ltiff -lfreetype -ljpeg -L/usr/X11/lib -lfontconfig -lXext -lSM -lICE -lX11 -lXt -lbz2 -lz -lm -lpthread  -lMagick  -lruby -lMagick  -lpthread -ldl -lm  "
 Undefined symbols:
   "_rb_frame_this_func", referenced from:
-      _t in ccl4LGOi.o
+      _t in ccbxKmLK.o
 ld: symbol(s) not found
 collect2: ld returned 1 exit status
 checked program was:
@@ -2640,7 +2640,7 @@ checked program was:
 
 
 ======================================================================
-Sat 21Feb09 16:02:02
+Sat 21Feb09 16:14:49
 This installation of RMagick 2.9.1 is configured for
 Ruby 1.8.6 (universal-darwin9.0) and ImageMagick 6.4.9 Q8 
 ======================================================================
