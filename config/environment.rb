@@ -1,5 +1,3 @@
-#ENV['RAILS_ENV'] ||= 'production'
-
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
@@ -65,7 +63,7 @@ require 'csspool'
 =end
 require 'pp'
 #require 'rmagick'
-include Magick
+#include Magick
 
 # How many differences does a location need before creating a new location and change?
 DIFFERENCE_THRESHOLD = 1

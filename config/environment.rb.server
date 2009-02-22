@@ -2,9 +2,10 @@ ENV['RAILS_ENV'] ||= 'production'
 
 require 'pp'
 require 'action_mailer/ar_mailer'
-require "#{RAILS_ROOT}/vendor/rmagick-2.9.1/lib/RMagick.rb"
+require "#{RAILS_ROOT}/vendor/gems/rmagick-2.9.1/lib/RMagick.rb"
 include Magick
-require "#{RAILS_ROOT}/vendor/csspool-0.2.6/lib/csspool.rb"
+require "#{RAILS_ROOT}/vendor/gems/csspool-0.2.6/lib/csspool.rb"
+require "#{RAILS_ROOT}/vendor/gems/inline_attachment-0.4.0/lib/inline_attachment.rb"
 
 require File.join(File.dirname(__FILE__), 'boot')
 
