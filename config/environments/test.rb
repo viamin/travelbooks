@@ -27,7 +27,7 @@ ActionController::Base.cache_store = :file_store, "public/fragment_caches/"
 NOBODY_USER = 5
 
 SHARED_ROOT = RAILS_ROOT
-PUBLIC_ROOT = "#{SHARED_ROOT}/public/"
+PUBLIC_ROOT = "#{SHARED_ROOT}/public"
 
 # To workaround http://rails.lighthouseapp.com/projects/8994/tickets/1453-gets-in-integration-test-unless-you-are-using-cookie-sessions
 # From http://groups.google.com/group/rubyonrails-talk/browse_thread/thread/5519ca7fd4dde3c1
