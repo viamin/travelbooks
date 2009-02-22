@@ -67,10 +67,10 @@ deploy.task :after_deploy, :roles => :app do
 #  run "/bin/mv #{deploy_to}/current/config/environment.rb.server #{deploy_to}/current/config/environment.rb"
 #  Rake::Task["gems:install"]
 #  Rake::Task["gems:unpack"]
-  Rake::Task["gems:build"]
+#  Rake::Task["gems:build"]
 #  Rake::Task["gems:unpack:dependencies"]
-  Rake::Task["gems:refresh_specs"]
-  Rake::Task["gems"]
+#  Rake::Task["gems:refresh_specs"]
+#  Rake::Task["gems"]
   fix_others
   restart
 #  use_ar_mailer
