@@ -10,4 +10,5 @@
 <%= link_to_remote "Test Help", :url => {:controller => 'admin', :action => 'help_test'} %> |
 <%= link_to_unless_current "Delete Caches", :controller => 'admin', :action => 'cache_purge' %> |
 <%= link_to_unless_current "Create Thumbnails", :controller => 'admin', :action => 'create_thumbnails' %> |
-<%= link_to_unless_current "Verify Thumbnails", :controller => 'admin', :action => 'verify_thumbnails' %>
+<%= link_to_unless_current "Verify Thumbnails", :controller => 'admin', :action => 'verify_thumbnails' %> |
+<%= link_to_unless_current "Fix Photo Paths", :controller => 'admin', :action => 'fix_photo_paths' %>

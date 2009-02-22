@@ -63,6 +63,14 @@ class Photo < ActiveRecord::Base
 #    end
 #  end
 
+  def fix_path
+    return false if File.exists?(self.path)
+    # search for the photo file given the known info (path, file_name, url)
+    self.path = "#{PUBLIC_ROOT}#{self.url}" if File.exists?("#{PUBLIC_ROOT}#{self.url}")
+    # more involved versions can go here, but this should work for now
+    return self.save
+  end
+
   def thumb_url(size = 80)
     if self.person_id.nil?
       if self.item_id.nil?
@@ -238,8 +246,8 @@ class Photo < ActiveRecord::Base
   def check_thumbnails(sizes = [18,36,80])
     if File.exists?(self.path)
       data = Magick::Image.read(self.path).first
-    elsif File.exists?("#{SHARED_ROOT}/#{self.url}")
-      data = Magick::Image.read("#{SHARED_ROOT}/#{self.url}").first
+    elsif File.exists?("#{PUBLIC_ROOT}/#{self.url}")
+      data = Magick::Image.read("#{PUBLIC_ROOT}/#{self.url}").first
     elsif File.exists?("#{self.path}.png")
       data = Magick::Image.read("#{self.path}.png").first
       self.path = "#{self.path}.png" unless self.path.end_with?('.png')
@@ -308,8 +316,8 @@ class Photo < ActiveRecord::Base
     else
       if File.exists?(self.path)
         data = Magick::Image.read(self.path).first
-      elsif File.exists?("#{SHARED_ROOT}/#{self.url}")
-        data = Magick::Image.read("#{SHARED_ROOT}/#{self.url}").first
+      elsif File.exists?("#{PUBLIC_ROOT}/#{self.url}")
+        data = Magick::Image.read("#{PUBLIC_ROOT}/#{self.url}").first
       else
         RAILS_DEFAULT_LOGGER.warn "File not found - aborting thumbnail creation"
         return
@@ -326,8 +334,8 @@ class Photo < ActiveRecord::Base
     else
       if File.exists?(self.path)
         data = Magick::Image.read(self.path).first
-      elsif File.exists?("#{SHARED_ROOT}/#{self.url}")
-        data = Magick::Image.read("#{SHARED_ROOT}/#{self.url}").first
+      elsif File.exists?("#{PUBLIC_ROOT}/#{self.url}")
+        data = Magick::Image.read("#{PUBLIC_ROOT}/#{self.url}").first
       else
         RAILS_DEFAULT_LOGGER.warn "File not found - aborting book thumbnail creation"
         return

@@ -271,4 +271,9 @@ class AdminController < ApplicationController
     redirect_to :action => 'index'
   end
   
+  def fix_photo_paths
+    Photo.all.each {|p| p.fix_path }
+    flash[:notice] = "Fixed photo paths"
+    redirect_to :action => 'index'
+  end
 end

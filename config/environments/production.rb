@@ -33,3 +33,4 @@ ActionMailer::Base.smtp_settings = {
 NOBODY_USER = 2
 
 SHARED_ROOT = "#{RAILS_ROOT}/../../shared/"
+PUBLIC_ROOT = "#{SHARED_ROOT}/public/"
