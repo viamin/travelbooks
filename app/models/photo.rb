@@ -70,20 +70,21 @@ class Photo < ActiveRecord::Base
   end
 
   def thumb_url(size = 80)
+    # note that all thumbnails should end in '.png'
     if self.person_id.nil?
       if self.item_id.nil?
         # Location photo, which currently has no thumbnail
         self.url
       else
         if File.exists?(self.thumb_path(size))
-          "/images/books/#{size}/#{self.file_name}"
+          self.file_name.end_with?('.png') ? "/images/books/#{size}/#{self.file_name}" : "/images/books/#{size}/#{self.file_name}.png"
         else
           self.url
         end
       end
     else
       if File.exists?(self.thumb_path(size))
-        "/images/users/#{self.person.email}/#{size}/#{self.file_name}"
+        self.file_name.end_with?('.png') ? "/images/users/#{self.person.email}/#{size}/#{self.file_name}" : "/images/users/#{self.person.email}/#{size}/#{self.file_name}.png"
       else
         self.url
       end
@@ -415,7 +416,7 @@ class Photo < ActiveRecord::Base
       end
       data.scale!(size, Photo::THUMB[size])
       f = File.new(fname, "wb")
-      data.write(f) { self.quality = 50 }
+      data.write(f)
       f.close
     end
     File.chmod(0664, fname)
