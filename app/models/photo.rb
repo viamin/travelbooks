@@ -67,6 +67,8 @@ class Photo < ActiveRecord::Base
     return false if File.exists?(self.path)
     # search for the photo file given the known info (path, file_name, url)
     self.path = "#{PUBLIC_ROOT}#{self.url}" if File.exists?("#{PUBLIC_ROOT}#{self.url}")
+    self.path = "#{BOOK_ROOT}/#{self.file_name}" if File.exists?("#{BOOK_ROOT}/#{self.file_name}")
+    self.path = "#{PERSON_ROOT}/#{self.person.email}/#{self.file_name}" if File.exists?("#{PERSON_ROOT}/#{self.person.email}/#{self.file_name}") unless self.person_id.nil?
     # more involved versions can go here, but this should work for now
     return self.save
   end
@@ -318,6 +320,8 @@ class Photo < ActiveRecord::Base
         data = Magick::Image.read(self.path).first
       elsif File.exists?("#{PUBLIC_ROOT}/#{self.url}")
         data = Magick::Image.read("#{PUBLIC_ROOT}/#{self.url}").first
+      elsif File.exists?("#{PERSON_ROOT}/#{self.person.email}/#{self.file_name}")
+        data = Magick::Image.read("#{PERSON_ROOT}/#{self.person.email}/#{self.file_name}").first
       else
         RAILS_DEFAULT_LOGGER.warn "File not found - aborting thumbnail creation"
         return
@@ -336,6 +340,8 @@ class Photo < ActiveRecord::Base
         data = Magick::Image.read(self.path).first
       elsif File.exists?("#{PUBLIC_ROOT}/#{self.url}")
         data = Magick::Image.read("#{PUBLIC_ROOT}/#{self.url}").first
+      elsif File.exists?("#{BOOK_ROOT}/#{self.file_name}")
+        data = Magick::Image.read("#{BOOK_ROOT}/#{self.file_name}").first
       else
         RAILS_DEFAULT_LOGGER.warn "File not found - aborting book thumbnail creation"
         return

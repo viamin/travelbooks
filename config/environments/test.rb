@@ -28,6 +28,8 @@ NOBODY_USER = 5
 
 SHARED_ROOT = RAILS_ROOT
 PUBLIC_ROOT = "#{SHARED_ROOT}/public"
+BOOK_ROOT = "#{PUBLIC_ROOT}/images/books"
+PERSON_ROOT = "#{PUBLIC_ROOT}/images/users"
 
 # To workaround http://rails.lighthouseapp.com/projects/8994/tickets/1453-gets-in-integration-test-unless-you-are-using-cookie-sessions
 # From http://groups.google.com/group/rubyonrails-talk/browse_thread/thread/5519ca7fd4dde3c1

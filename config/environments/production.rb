@@ -34,3 +34,5 @@ NOBODY_USER = 2
 
 Dir.chdir("#{RAILS_ROOT}/../../shared") { SHARED_ROOT = Dir.pwd } # Due to capistrano's deployment setup
 PUBLIC_ROOT = "#{SHARED_ROOT}/public"
+BOOK_ROOT = "#{SHARED_ROOT}/book_images"
+PERSON_ROOT = "#{SHARED_ROOT}/user_images"

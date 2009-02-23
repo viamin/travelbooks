@@ -24,7 +24,7 @@ Rails::Initializer.run do |config|
   # like if you have constraints or database-specific column types
   config.active_record.schema_format = :sql
 
-  config.gem "rmagick"
+  config.gem "rmagick", :lib => 'RMagick'
   config.gem "ar_mailer", :lib => "action_mailer/ar_mailer"
   config.gem "csspool"
   config.gem "inline_attachment"

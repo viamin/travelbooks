@@ -24,6 +24,8 @@ NOBODY_USER = 5
 
 SHARED_ROOT = RAILS_ROOT
 PUBLIC_ROOT = "#{SHARED_ROOT}/public"
+BOOK_ROOT = "#{PUBLIC_ROOT}/images/books"
+PERSON_ROOT = "#{PUBLIC_ROOT}/images/users"
 
 # Put caches somewhere I can find them
 ActionController::Base.cache_store = :file_store, "public/fragment_caches/"

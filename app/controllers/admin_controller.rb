@@ -272,7 +272,7 @@ class AdminController < ApplicationController
   end
   
   def fix_photo_paths
-    Photo.all.each {|p| p.fix_path }
+    Photo.all.each {|p| timing p.fix_path ? "#{p.path}: Path changed" : "#{p.path}: Path not changed" }
     flash[:notice] = "Fixed photo paths"
     redirect_to :action => 'index'
   end
