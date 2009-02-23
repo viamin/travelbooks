@@ -37,13 +37,6 @@ class Photo < ActiveRecord::Base
   ITEM = 3
   LOCATION = 4
   
-  IMAGE_ROOT = "#{SHARED_ROOT}/public/images"
-  
-  TYPE_BASE_PATH = {
-    2 => "#{IMAGE_ROOT}/users",
-    3 => "#{IMAGE_ROOT}/books"
-  }
-  
   FORMATS = Magick.formats.keys.collect {|t| t.downcase }
         
   # Thumbnail sizes
@@ -69,6 +62,9 @@ class Photo < ActiveRecord::Base
     self.path = "#{PUBLIC_ROOT}#{self.url}" if File.exists?("#{PUBLIC_ROOT}#{self.url}")
     self.path = "#{BOOK_ROOT}/#{self.file_name}" if File.exists?("#{BOOK_ROOT}/#{self.file_name}")
     self.path = "#{PERSON_ROOT}/#{self.person.email}/#{self.file_name}" if File.exists?("#{PERSON_ROOT}/#{self.person.email}/#{self.file_name}") unless self.person_id.nil?
+    self.path = "#{PUBLIC_ROOT}#{self.url}.png" if File.exists?("#{PUBLIC_ROOT}#{self.url}.png")
+    self.path = "#{BOOK_ROOT}/#{self.file_name}.png" if File.exists?("#{BOOK_ROOT}/#{self.file_name}.png")
+    self.path = "#{PERSON_ROOT}/#{self.person.email}/#{self.file_name}.png" if File.exists?("#{PERSON_ROOT}/#{self.person.email}/#{self.file_name}.png") unless self.person_id.nil?
     # more involved versions can go here, but this should work for now
     return self.save
   end
@@ -101,17 +97,27 @@ class Photo < ActiveRecord::Base
     if self.person_id.nil?
       if self.item_id.nil?
         # Location photo, which currently has no thumbnail
-        nil
+        self.path
       else
         if File.exists?("#{BOOK_ROOT}/#{size}/#{self.file_name}")
           FileUtils.touch("#{BOOK_ROOT}/#{size}/#{self.file_name}")
           "#{BOOK_ROOT}/#{size}/#{self.file_name}"
+        elsif File.exists?("#{BOOK_ROOT}/#{size}/#{self.file_name}.png")
+          FileUtils.touch("#{BOOK_ROOT}/#{size}/#{self.file_name}.png")
+          "#{BOOK_ROOT}/#{size}/#{self.file_name}.png"
+        else
+          self.path
         end
       end
     else
       if File.exists?("#{PERSON_ROOT}/#{self.person.email}/#{size}/#{self.file_name}")
         FileUtils.touch("#{PERSON_ROOT}/#{self.person.email}/#{size}/#{self.file_name}")
         "#{PERSON_ROOT}/#{self.person.email}/#{size}/#{self.file_name}"
+      elsif File.exists?("#{PERSON_ROOT}/#{self.person.email}/#{size}/#{self.file_name}.png")
+        FileUtils.touch("#{PERSON_ROOT}/#{self.person.email}/#{size}/#{self.file_name}.png")
+        "#{PERSON_ROOT}/#{self.person.email}/#{size}/#{self.file_name}.png"
+      else
+        self.path
       end
     end
   end
@@ -254,6 +260,20 @@ class Photo < ActiveRecord::Base
       data = Magick::Image.read(self.path).first
     elsif File.exists?("#{PUBLIC_ROOT}/#{self.url}")
       data = Magick::Image.read("#{PUBLIC_ROOT}/#{self.url}").first
+    elsif File.exists?("#{BOOK_ROOT}/#{self.file_name}")
+      data = Magick::Image.read("#{BOOK_ROOT}/#{self.file_name}").first
+    elsif ((!self.person_id.nil?) && File.exists?("#{PERSON_ROOT}/#{self.person.email}/#{self.file_name}"))
+      data = Magick::Image.read("#{PERSON_ROOT}/#{self.person.email}/#{self.file_name}").first
+    elsif File.exists?("#{BOOK_ROOT}/#{self.file_name}.png")
+      data = Magick::Image.read("#{BOOK_ROOT}/#{self.file_name}.png").first
+      self.path = "#{BOOK_ROOT}/#{self.file_name}.png" unless self.path.end_with?('.png')
+      self.file_name = "#{self.file_name}.png" unless self.file_name.end_with?('.png')
+      self.save!
+    elsif ((!self.person_id.nil?) && File.exists?("#{PERSON_ROOT}/#{self.person.email}/#{self.file_name}.png"))
+      data = Magick::Image.read("#{PERSON_ROOT}/#{self.person.email}/#{self.file_name}.png").first
+      self.path = "#{PERSON_ROOT}/#{self.person.email}/#{self.file_name}.png" unless self.path.end_with?('.png')
+      self.file_name = "#{self.file_name}.png" unless self.file_name.end_with?('.png')
+      self.save!
     elsif File.exists?("#{self.path}.png")
       data = Magick::Image.read("#{self.path}.png").first
       self.path = "#{self.path}.png" unless self.path.end_with?('.png')
@@ -363,7 +383,7 @@ class Photo < ActiveRecord::Base
        filename = "#{BOOK_ROOT}/#{file_name}"
      end
      if File.exists?(filename)
-       timing "Thumbnail for #{file_name} exists for size #{size}"
+       RAILS_DEFAULT_LOGGER.warn "Thumbnail for #{file_name} exists for size #{size}"
      else
        unless File.exists?("#{BOOK_ROOT}/#{size}/")
          Dir.mkdir("#{BOOK_ROOT}/#{size}/")
@@ -385,7 +405,7 @@ class Photo < ActiveRecord::Base
     end
     fname = Photo.change_extension(fname, 'png') unless (fname.end_with?('.jpg') && !([18,36,80].include?(size)))
     if File.exists?(fname)
-      timing "Thumbnail for file_name exists for size #{size}"
+      RAILS_DEFAULT_LOGGER.warn "Thumbnail for file_name exists for size #{size}"
     else
       unless File.exists?("#{PERSON_ROOT}/#{person.email}/")
         Dir.mkdir("#{PERSON_ROOT}/#{person.email}/")
