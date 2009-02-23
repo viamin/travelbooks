@@ -24,9 +24,7 @@ Rails::Initializer.run do |config|
   # like if you have constraints or database-specific column types
   config.active_record.schema_format = :sql
 
-#  config.gem "hoe"
-#  config.gem "hpricot"
-  config.gem "rmagick"#, :lib => 'RMagick', :version => '2.3.0'
+  config.gem "rmagick"
   config.gem "ar_mailer", :lib => "action_mailer/ar_mailer"
   config.gem "csspool"
   config.gem "inline_attachment"
@@ -52,18 +50,7 @@ end
 #   inflect.uncountable %w( fish sheep )
 # end
 
-# Include your application configuration below
-=begin
-require 'action_mailer/ar_mailer'
-#require "#{RAILS_ROOT}/vendor/rmagick-2.9.1/lib/RMagick.rb"
-require 'rmagick'
-include Magick
-#require "#{RAILS_ROOT}/vendor/csspool-0.2.6/lib/csspool.rb"
-require 'csspool'
-=end
 require 'pp'
-#require 'rmagick'
-#include Magick
 
 # How many differences does a location need before creating a new location and change?
 DIFFERENCE_THRESHOLD = 1

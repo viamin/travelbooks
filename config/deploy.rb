@@ -67,6 +67,7 @@ deploy.task :after_deploy, :roles => :app do
 #  run "/bin/mv #{deploy_to}/current/config/environment.rb.server #{deploy_to}/current/config/environment.rb"
   run "echo \"ENV['RAILS_ENV'] ||= 'production'\" > #{deploy_to}/current/config/environment.rb.online"
   run "cat #{deploy_to}/current/config/environment.rb >> #{deploy_to}/current/config/environment.rb.online"
+  run "(echo ',s/rmagick/RMagick/'; echo 'wq') | ed -s #{deploy_to}/current/config/environment.rb.online"
   run "/bin/mv #{deploy_to}/current/config/environment.rb.online #{deploy_to}/current/config/environment.rb"
 #  Rake::Task["gems:install"]
 #  Rake::Task["gems:unpack"]

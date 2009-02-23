@@ -32,5 +32,5 @@ ActionMailer::Base.smtp_settings = {
 # Person id of the "Nobody" user, where given away books stay
 NOBODY_USER = 2
 
-Dir.chdir("#{RAILS_ROOT}/../../shared") { SHARED_ROOT = Dir.pwd }
+Dir.chdir("#{RAILS_ROOT}/../../shared") { SHARED_ROOT = Dir.pwd } # Due to capistrano's deployment setup
 PUBLIC_ROOT = "#{SHARED_ROOT}/public"

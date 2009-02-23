@@ -113,7 +113,7 @@ class UserController < ApplicationController
       redirect_to :action => 'login'
     else
       @new_messages = @person.messages.unread
-      flash[:notice] = "#{flash[:notice].concat('<br />') if flash[:notice]}You have #{@new_messages.length} new message#{"s" if @new_messages.length > 1} in your <a href=\"/message/list\">inbox</a>." unless session[:settled_in] || @new_messages.empty?
+      flash[:notice] = "#{flash[:notice].concat('<br />') if flash[:notice]}You have #{@new_messages.length} unread message#{"s" if @new_messages.length > 1} in your <a href=\"/message/list\">inbox</a>." unless session[:settled_in] || @new_messages.empty?
       
       # Item section
       unless read_fragment(:controller => 'user', :action => 'home', :action_suffix => "items#{@person.id}")
