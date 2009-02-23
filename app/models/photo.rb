@@ -103,12 +103,16 @@ class Photo < ActiveRecord::Base
         # Location photo, which currently has no thumbnail
         nil
       else
-        FileUtils.touch("#{IMAGE_ROOT}/books/#{size}/#{self.file_name}")
-        "#{IMAGE_ROOT}/books/#{size}/#{self.file_name}"
+        if File.exists?("#{BOOK_ROOT}/#{size}/#{self.file_name}")
+          FileUtils.touch("#{BOOK_ROOT}/#{size}/#{self.file_name}")
+          "#{BOOK_ROOT}/#{size}/#{self.file_name}"
+        end
       end
     else
-      FileUtils.touch("#{IMAGE_ROOT}/users/#{self.person.email}/#{size}/#{self.file_name}")
-      "#{IMAGE_ROOT}/users/#{self.person.email}/#{size}/#{self.file_name}"
+      if File.exists?("#{PERSON_ROOT}/#{self.person.email}/#{size}/#{self.file_name}")
+        FileUtils.touch("#{PERSON_ROOT}/#{self.person.email}/#{size}/#{self.file_name}")
+        "#{PERSON_ROOT}/#{self.person.email}/#{size}/#{self.file_name}"
+      end
     end
   end
 
@@ -185,13 +189,13 @@ class Photo < ActiveRecord::Base
     data = data.resize(photo_params[:scale].to_f) unless photo_params[:scale].to_f == 0
     data = data.crop(photo_params[:offset_x].to_f.abs, photo_params[:offset_y].to_f.abs, 240, 360, true) unless (photo_params[:offset_x].to_f == 0 && photo_params[:offset_y].to_f == 0)
     short_name = Photo.change_extension(photo_params[:file_name], 'jpg')
-    filename = "#{IMAGE_ROOT}/users/#{person.email}/#{short_name}"
+    filename = "#{PERSON_ROOT}/#{person.email}/#{short_name}"
     if File.exist?(filename)
       #flash[:error] = "That filename has already been used"
       timing "filename already used - not saving"
     else
-      unless File.exist?("#{IMAGE_ROOT}/users/#{person.email}")
-        Dir.mkdir("#{IMAGE_ROOT}/users/#{person.email}")
+      unless File.exist?("#{PERSON_ROOT}/#{person.email}")
+        Dir.mkdir("#{PERSON_ROOT}/#{person.email}")
       end
       file_name = Photo.save_data(data, person, short_name)
       photo = Photo.new
@@ -354,15 +358,15 @@ class Photo < ActiveRecord::Base
   
   def self.save_book_data(data, file_name, size = false)
      if [18, 36, 80].include?(size)
-       filename = "#{IMAGE_ROOT}/books/#{size}/#{file_name}"
+       filename = "#{BOOK_ROOT}/#{size}/#{file_name}"
      else
-       filename = "#{IMAGE_ROOT}/books/#{file_name}"
+       filename = "#{BOOK_ROOT}/#{file_name}"
      end
      if File.exists?(filename)
        timing "Thumbnail for #{file_name} exists for size #{size}"
      else
-       unless File.exists?("#{IMAGE_ROOT}/books/#{size}/")
-         Dir.mkdir("#{IMAGE_ROOT}/books/#{size}/")
+       unless File.exists?("#{BOOK_ROOT}/#{size}/")
+         Dir.mkdir("#{BOOK_ROOT}/#{size}/")
        end
        data.scale!(size, Photo::THUMB[size])
        tf = File.new(filename, "w")
@@ -375,19 +379,19 @@ class Photo < ActiveRecord::Base
   
   def self.save_data(data, person, filename, size = false)
     if [18, 36, 80].include?(size)
-      fname = "#{IMAGE_ROOT}/users/#{person.email}/#{size}/#{filename}"
+      fname = "#{PERSON_ROOT}/#{person.email}/#{size}/#{filename}"
     else
-      fname = "#{IMAGE_ROOT}/users/#{person.email}/#{filename}"
+      fname = "#{PERSON_ROOT}/#{person.email}/#{filename}"
     end
     fname = Photo.change_extension(fname, 'png') unless (fname.end_with?('.jpg') && !([18,36,80].include?(size)))
     if File.exists?(fname)
       timing "Thumbnail for file_name exists for size #{size}"
     else
-      unless File.exists?("#{IMAGE_ROOT}/users/#{person.email}/")
-        Dir.mkdir("#{IMAGE_ROOT}/users/#{person.email}/")
+      unless File.exists?("#{PERSON_ROOT}/#{person.email}/")
+        Dir.mkdir("#{PERSON_ROOT}/#{person.email}/")
       end
-      unless File.exists?("#{IMAGE_ROOT}/users/#{person.email}/#{size}/")
-        Dir.mkdir("#{IMAGE_ROOT}/users/#{person.email}/#{size}/")
+      unless File.exists?("#{PERSON_ROOT}/#{person.email}/#{size}/")
+        Dir.mkdir("#{PERSON_ROOT}/#{person.email}/#{size}/")
       end
       data.scale!(size, Photo::THUMB[size])
       f = File.new(fname, "wb")
