@@ -26,7 +26,7 @@ class SaleItem < ActiveRecord::Base
   validates_length_of :description, :maximum => 250
   validates_length_of :for_sale, :maximum => 250
   
-  STATUS = [["Normal Price", 1], ["On Sale", 2], ["Going on sale", 3], ["Not on Sale", 4]]
+  STATUS = [["Normal Price", 1], ["On Sale", 2], ["Going on sale", 3], ["Not for Sale", 4]]
 
   def initialize(*params)
     super(*params)

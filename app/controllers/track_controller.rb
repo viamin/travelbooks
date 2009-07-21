@@ -46,7 +46,7 @@ class TrackController < ApplicationController
   def item
     @books = Item.find(:all, :conditions => {:tbid => params[:tbid]})
     if @books.empty?
-      if (params[:tbid].length > 6)
+      if params[:tbid] && (params[:tbid].length > 6)
         @message = "Nothing found with that code"
       else
         @message = "Invalid code"

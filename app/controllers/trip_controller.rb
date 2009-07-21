@@ -103,7 +103,7 @@ class TripController < ApplicationController
   def sort
     @trip = Trip.find(params[:id])
     @trip.destinations.each do |dest|
-      dest.position = params['trip'].index(dest.id.to_s) + 1
+      dest.position = params['destination_list'].index(dest.id.to_s) + 1
       dest.save
     end
     render :nothing => true

@@ -7,7 +7,7 @@ class ShopController < ApplicationController
   end
 
   def store
-#    @items = SaleItem.find(:all, :conditions => ["status != 4 and quantity_in_stock > 0"])
+#    @items = SaleItem.find(:all, :conditions => ["status != ? and quantity_in_stock > 0", SaleItem::STATUS.to_h["Not for Sale"]])
     redirect_to :action => 'coming_soon'
   end
   

@@ -1,3 +1,5 @@
+RAILS_GEM_VERSION = '2.2.2' unless defined? RAILS_GEM_VERSION
+
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
@@ -27,6 +29,7 @@ Rails::Initializer.run do |config|
   config.gem "rmagick", :lib => 'RMagick'
   config.gem "ar_mailer", :lib => "action_mailer/ar_mailer"
   config.gem "csspool"
+  config.gem "haml"
   config.gem "inline_attachment"
   
   # Load awesome_email plugin last
@@ -137,3 +140,20 @@ GeoKit::Geocoders::geocoder_ca = false
 # various geocoders.  Make sure you read up on relevant Terms of Use for each
 # geocoder you are going to use.
 GeoKit::Geocoders::provider_order = [:yahoo,:google]
+
+class Array
+  # Return a hash from a nested array. The inverse of taking a hash and calling to_a on it
+  def to_h
+    if self.length == 0
+      return self
+    end
+    if self.length != (self.flatten.length / 2)
+      return {}
+    end
+    ret_hash = Hash.new
+    self.each do |suba|
+      ret_hash[suba[0]] = suba[1]
+    end
+    ret_hash
+  end
+end

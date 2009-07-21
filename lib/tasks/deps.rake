@@ -1,16 +1,9 @@
 require 'tmpdir'
 
 desc "Install releasenotes app non-gem dependencies"
-task :depstest => ["test:rmagick", "test:ldap"]
+task :deps => ["deps:rmagick"]
 
-namespace :test do
-  desc "Install Ruby/LDAP"
-  file "/Library/Ruby/Site/1.8/ldap/" do
-    `curl http://voxel.dl.sourceforge.net/sourceforge/ruby-ldap/ruby-ldap-0.9.7.tar.gz -o #{DOWNLOAD_DIR}/ruby-ldap.tar.gz` unless File.exists?("#{DOWNLOAD_DIR}/ruby-ldap.tar.gz")
-    `tar -xzf #{DOWNLOAD_DIR}/ruby-ldap.tar.gz -C #{DOWNLOAD_DIR}`
-    `cd #{DOWNLOAD_DIR}/ruby-ldap*/ && ./#{CONFIGURE} && make && sudo make install`
-    puts "Installed Ruby/LDAP"
-  end
+namespace :deps do
   
   desc "Install rmagick and all of its dependencies"
   task :rmagick => "rmagick:gem"
@@ -23,7 +16,7 @@ namespace :test do
     task :gem => "/usr/local/bin/Magick-config" do
       unless `gem list -i rmagick`.chomp == "true"
         puts "Installing the rmagick gem"
-        `sudo gem install rmagick`
+        system("sudo gem install rmagick")
         puts "Installed rmagick gem"
       else
         puts "rmagick gem already installed"
@@ -31,98 +24,147 @@ namespace :test do
     end
 
     desc "Install ImageMagick"
-    file "/usr/local/bin/Magick-config" => ["/usr/local/share/ghostscript", "/usr/local/share/ghostscript/fonts/", "/usr/local/lib/libfontconfig.a", "/usr/local/include/freetype2", "/usr/local/lib/libjpeg.a", "/usr/local/lib/liblcms.a", "/usr/local/lib/libtiff.a", "/usr/local/lib/libpng.a", "/usr/local/lib/libwmf.a", DOWNLOAD_DIR] do
+    file "/usr/local/bin/Magick-config" => ["/usr/local/bin/gs", "/usr/local/share/ghostscript/fonts/a010013l.afm", "/usr/local/lib/libfontconfig.a", "/usr/local/include/freetype2", "/usr/local/lib/libjpeg.a", "/usr/local/lib/liblcms.a", "/usr/local/lib/libtiff.a", "/usr/local/lib/libpng.a", "/usr/local/lib/libwmf.a", DOWNLOAD_DIR] do
       puts "Downloading and installing ImageMagick"
       # download and install ImageMagick from source
-      `curl ftp://ftp.imagemagick.org/pub/ImageMagick/ImageMagick.tar.gz -o #{DOWNLOAD_DIR}/ImageMagick.tar.gz` unless File.exists?("#{DOWNLOAD_DIR}/ImageMagick.tar.gz")
+      system("curl ftp://ftp.imagemagick.org/pub/ImageMagick/ImageMagick.tar.gz -o #{DOWNLOAD_DIR}/ImageMagick.tar.gz") unless File.exists?("#{DOWNLOAD_DIR}/ImageMagick.tar.gz")
 #      `curl ftp://ftp.imagemagick.org/pub/ImageMagick/ImageMagick.tar.gz -o #{DOWNLOAD_DIR}/ImageMagick.tar.gz` unless File.exists?("#{DOWNLOAD_DIR}/ImageMagick.tar.gz")
-      `tar -xzf #{DOWNLOAD_DIR}/ImageMagick.tar.gz -C #{DOWNLOAD_DIR}`
-      `cd #{DOWNLOAD_DIR}/ImageMagick*/ && export CPPFLAGS=-I/usr/local/include && export LDFLAGS=-L/usr/local/lib && ./#{CONFIGURE} --disable-static --with-modules --without-perl --without-magick-plus-plus --with-quantum-depth=8 --with-gs-font-dir=/usr/local/share/ghostscript/fonts && make && sudo make install`
+      system("tar -xzf #{DOWNLOAD_DIR}/ImageMagick.tar.gz -C #{DOWNLOAD_DIR}")
+      dir = `cd #{DOWNLOAD_DIR}/ImageMagick*/ && pwd`.chomp
+      Dir.chdir(dir) do
+        system("export CPPFLAGS=-I/usr/local/include")
+        system("export LDFLAGS=-L/usr/local/lib")
+        system("./#{CONFIGURE} --disable-static --with-modules --without-perl --without-magick-plus-plus --with-quantum-depth=8 --with-gs-font-dir=/usr/local/share/ghostscript/fonts")
+        system("make")
+        system("sudo make install")
+      end
     end
 
     desc "Install ghostscript and fonts"
-    file "/usr/local/share/ghostscript" => ["/usr/local/lib/libpng.a", "/usr/local/lib/libjpeg.a", DOWNLOAD_DIR] do
-      unless File.exists?()
-        puts "Downloading and installing ghostscript"
-        `curl http://ghostscript.com/releases/ghostscript-8.64.tar.bz2 -o #{DOWNLOAD_DIR}/ghostscript.tar.bz2` unless File.exists?("#{DOWNLOAD_DIR}/ghostscript.tar.bz2")
-        `tar -xjf #{DOWNLOAD_DIR}/ghostscript.tar.bz2 -C #{DOWNLOAD_DIR}`
-        `cd #{DOWNLOAD_DIR}/ghostscript*/ && ./#{CONFIGURE} && make && sudo make install`
-        puts "Finished installing ghostscript"
-      else
-        puts "Ghostscript already installed"
+    file "/usr/local/bin/gs" => ["/usr/local/lib/libpng.a", "/usr/local/lib/libjpeg.a", DOWNLOAD_DIR] do
+      puts "Downloading and installing ghostscript"
+      system("curl http://ghostscript.com/releases/ghostscript-8.64.tar.bz2 -o #{DOWNLOAD_DIR}/ghostscript.tar.bz2") unless File.exists?("#{DOWNLOAD_DIR}/ghostscript.tar.bz2")
+      system("tar -xjf #{DOWNLOAD_DIR}/ghostscript.tar.bz2 -C #{DOWNLOAD_DIR}")
+      dir = `cd #{DOWNLOAD_DIR}/ghostscript*/ && pwd`.chomp
+      Dir.chdir(dir) do
+        system("./#{CONFIGURE}")
+        system("make")
+        system("sudo make install")
       end
     end
 
     desc "Install ghostscript fonts"
-    file "/usr/local/share/ghostscript/fonts/" => [DOWNLOAD_DIR, "/usr/local/share/ghostscript"] do
+    file "/usr/local/share/ghostscript/fonts/a010013l.afm" => [DOWNLOAD_DIR, "/usr/local/bin/gs"] do
       puts "Downloading and installing ghostscript fonts"
-      if File.exists?("#{DOWNLOAD_DIR}/fonts/")
-        `cd #{DOWNLOAD_DIR}/fonts/ && svn cleanup && svn up -q`
+      dir = "#{DOWNLOAD_DIR}/fonts/"
+      if File.exists?(dir)
+        Dir.chdir(dir) do
+          system("svn cleanup")
+          system("svn up -q")
+        end
       else
-        `svn co -q http://svn.ghostscript.com/ghostscript/tags/ghostscript-fonts-std-8.11/ #{DOWNLOAD_DIR}/fonts`
+        system("svn co -q http://svn.ghostscript.com/ghostscript/tags/ghostscript-fonts-std-8.11/ #{DOWNLOAD_DIR}/fonts")
       end
-      `sudo mkdir -p /usr/local/share/ghostscript/fonts/`
-      `cd #{DOWNLOAD_DIR}/fonts && ls |grep -v COPYING|grep -v ChangeLog|grep -v README|grep -v TODO|xargs -IFONT sudo cp FONT /usr/local/share/ghostscript/fonts/`
+      system("sudo mkdir -p /usr/local/share/ghostscript/fonts/")
+      Dir.chdir(dir) { system("ls |grep -v COPYING|grep -v ChangeLog|grep -v README|grep -v TODO|xargs -IFONT sudo cp FONT /usr/local/share/ghostscript/fonts/") }
     end
 
     desc "Install libWMF (for SVG support)"
     file "/usr/local/lib/libwmf.a" => DOWNLOAD_DIR do
       puts "Downloading and installing libWMF"
-      `curl http://voxel.dl.sourceforge.net/sourceforge/wvware/libwmf-0.2.8.4.tar.gz -o #{DOWNLOAD_DIR}/libwmf.tar.gz` unless File.exists?("#{DOWNLOAD_DIR}/libwmf.tar.gz")
-      `tar -xzf #{DOWNLOAD_DIR}/libwmf.tar.gz -C #{DOWNLOAD_DIR}`
-      `cd #{DOWNLOAD_DIR}/libwmf*/ && ./#{CONFIGURE} && make clean && make && sudo make install`
+      system("curl http://voxel.dl.sourceforge.net/sourceforge/wvware/libwmf-0.2.8.4.tar.gz -o #{DOWNLOAD_DIR}/libwmf.tar.gz") unless File.exists?("#{DOWNLOAD_DIR}/libwmf.tar.gz")
+      system("tar -xzf #{DOWNLOAD_DIR}/libwmf.tar.gz -C #{DOWNLOAD_DIR}")
+      dir = `cd #{DOWNLOAD_DIR}/libwmf*/ && pwd`.chomp
+      Dir.chdir(dir) do
+        system("./#{CONFIGURE}")
+        system("make clean")
+        system("make")
+        system("sudo make install")
+      end
     end
 
     desc "Install FreeType"
-    file "/usr/local/include/freetype2" => DOWNLOAD_DIR do
+    file "/usr/local/lib/libfreetype.a" => DOWNLOAD_DIR do
       puts "Downloading and installing FreeType"
-      `curl http://download.savannah.gnu.org/releases-noredirect/freetype/freetype-2.3.8.tar.bz2 -o #{DOWNLOAD_DIR}/freetype.tar.bz2` unless File.exists?("#{DOWNLOAD_DIR}/freetype.tar.bz2")
-      `tar -xjf #{DOWNLOAD_DIR}/freetype.tar.bz2 -C #{DOWNLOAD_DIR}`
-      `cd #{DOWNLOAD_DIR}/freetype*/ && ./#{CONFIGURE} && make && sudo make install`
+      system("curl http://download.savannah.gnu.org/releases-noredirect/freetype/freetype-2.3.9.tar.bz2 -o #{DOWNLOAD_DIR}/freetype.tar.bz2") unless File.exists?("#{DOWNLOAD_DIR}/freetype.tar.bz2")
+      system("tar -xjf #{DOWNLOAD_DIR}/freetype.tar.bz2 -C #{DOWNLOAD_DIR}")
+      dir = `cd #{DOWNLOAD_DIR}/freetype*/ && pwd`.chomp
+      Dir.chdir(dir) do
+        system("./#{CONFIGURE}")
+        system("make")
+        system("sudo make install")
+      end
     end
+    
+    file "/usr/local/lib/libpng.a" => "/usr/local/lib/libpng12.a"
 
     desc "Install PNG Support library"
-    file "/usr/local/lib/libpng.a" => DOWNLOAD_DIR do
+    file "/usr/local/lib/libpng12.a" => DOWNLOAD_DIR do
       puts "Downloading and installing libPNG"
-      `curl ftp://ftp.simplesystems.org/pub/libpng/png/src/libpng-1.2.34.tar.bz2 -o #{DOWNLOAD_DIR}/libpng.tar.bz2` unless File.exists?("#{DOWNLOAD_DIR}/libpng.tar.bz2")
-      `tar -xjf #{DOWNLOAD_DIR}/libpng.tar.bz2 -C #{DOWNLOAD_DIR}`
-      `cd #{DOWNLOAD_DIR}/libpng*/ && ./#{CONFIGURE} && make && sudo make install`
+      system("curl ftp://ftp.simplesystems.org/pub/libpng/png/src/libpng-1.2.35.tar.bz2 -o #{DOWNLOAD_DIR}/libpng.tar.bz2") unless File.exists?("#{DOWNLOAD_DIR}/libpng.tar.bz2")
+      system("tar -xjf #{DOWNLOAD_DIR}/libpng.tar.bz2 -C #{DOWNLOAD_DIR}")
+      dir = `cd #{DOWNLOAD_DIR}/libpng*/ && pwd`.chomp
+      Dir.chdir(dir) do
+        system("./#{CONFIGURE}")
+        system("make")
+        system("sudo make install")
+      end
     end
 
     desc "Install JPEG support library"
     file "/usr/local/lib/libjpeg.a" => DOWNLOAD_DIR do
       puts "Downloading and installing libJPEG"
-      `curl http://www.ijg.org/files/jpegsrc.v6b.tar.gz -o #{DOWNLOAD_DIR}/jpegsrc.tar.gz` unless File.exists?("#{DOWNLOAD_DIR}/jpegsrc.tar.gz")
-      `tar -xzf #{DOWNLOAD_DIR}/jpegsrc.tar.gz -C #{DOWNLOAD_DIR}`
+      system("curl http://www.ijg.org/files/jpegsrc.v6b.tar.gz -o #{DOWNLOAD_DIR}/jpegsrc.tar.gz") unless File.exists?("#{DOWNLOAD_DIR}/jpegsrc.tar.gz")
+      system("tar -xzf #{DOWNLOAD_DIR}/jpegsrc.tar.gz -C #{DOWNLOAD_DIR}")
       glibtool = `which glibtool`.chomp
       target = `sw_vers -productVersion`.chomp.split(".")[0..1].join(".")
-      cwd = `cd #{DOWNLOAD_DIR}/jpeg*/ && pwd`.chomp
-      #puts cwd
-      `cd #{cwd}/ ; ln -s #{glibtool} ./libtool && export MACOSX_DEPLOYMENT_TARGET=#{target} && ./#{CONFIGURE} --enable-shared && make && sudo make install`
+      dir = `cd #{DOWNLOAD_DIR}/jpeg*/ && pwd`.chomp
+      Dir.chdir(dir) do 
+        system("ln -s #{glibtool} ./libtool") unless File.exists?("#{dir}/libtool")
+        system("export MACOSX_DEPLOYMENT_TARGET=#{target}")
+        system("./#{CONFIGURE} --enable-shared")
+        system("make")
+        system("sudo make install")
+      end
     end
 
     desc "Install TIFF support library"
     file "/usr/local/lib/libtiff.a" => DOWNLOAD_DIR do
       puts "Downloading and installing libTIFF"
-      `curl http://dl.maptools.org/dl/libtiff/tiff-3.8.2.tar.gz -o #{DOWNLOAD_DIR}/tiff.tar.gz` unless File.exists?("#{DOWNLOAD_DIR}/tiff.tar.gz")
-      `tar -xzf #{DOWNLOAD_DIR}/tiff.tar.gz -C #{DOWNLOAD_DIR}`
-      `cd #{DOWNLOAD_DIR}/tiff*/ && ./#{CONFIGURE} && make && sudo make install`
+      system("curl http://dl.maptools.org/dl/libtiff/tiff-3.8.2.tar.gz -o #{DOWNLOAD_DIR}/tiff.tar.gz") unless File.exists?("#{DOWNLOAD_DIR}/tiff.tar.gz")
+      system("tar -xzf #{DOWNLOAD_DIR}/tiff.tar.gz -C #{DOWNLOAD_DIR}")
+      dir = `cd #{DOWNLOAD_DIR}/tiff*/ && pwd`.chomp
+      Dir.chdir(dir) do
+        system("./#{CONFIGURE}")
+        system("make")
+        system("sudo make install")
+      end
     end
 
     desc "Install Little Color Management System"
-    file "/usr/local/lib/liblcms.a" => ["/usr/local/lib/libtiff.a", :jpeg, DOWNLOAD_DIR] do
+    file "/usr/local/lib/liblcms.a" => ["/usr/local/lib/libtiff.a", "/usr/local/lib/libjpeg.a", DOWNLOAD_DIR] do
       puts "Downloading and installing little CMS"
-      `curl http://www.littlecms.com/lcms-1.17.tar.gz -o #{DOWNLOAD_DIR}/lcms.tar.gz` unless File.exists?("#{DOWNLOAD_DIR}/lcms.tar.gz")
-      `tar -xzf #{DOWNLOAD_DIR}/lcms.tar.gz -C #{DOWNLOAD_DIR}`
-      `cd #{DOWNLOAD_DIR}/lcms*/ && ./#{CONFIGURE} && make && sudo make install`
+      system("curl http://www.littlecms.com/lcms-1.17.tar.gz -o #{DOWNLOAD_DIR}/lcms.tar.gz") unless File.exists?("#{DOWNLOAD_DIR}/lcms.tar.gz")
+      system("tar -xzf #{DOWNLOAD_DIR}/lcms.tar.gz -C #{DOWNLOAD_DIR}")
+      dir = `cd #{DOWNLOAD_DIR}/lcms*/ && pwd`.chomp
+      Dir.chdir(dir) do
+        system("./#{CONFIGURE}")
+        system("make")
+        system("sudo make install")
+      end
     end
 
     desc "Install fontconfig"
-    file "/usr/local/lib/libfontconfig.a" => [DOWNLOAD_DIR, :freetype] do
+    file "/usr/local/lib/libfontconfig.a" => [DOWNLOAD_DIR, "/usr/local/include/freetype2"] do
 	    puts "Downloading and installing fontconfig"
-      `curl http://fontconfig.org/release/fontconfig-2.6.0.tar.gz -o #{DOWNLOAD_DIR}/fontconfig.tar.gz` unless File.exists?("#{DOWNLOAD_DIR}/fontconfig.tar.gz")
-      `tar -xzf #{DOWNLOAD_DIR}/fontconfig.tar.gz -C #{DOWNLOAD_DIR}`
-      `cd #{DOWNLOAD_DIR}/fontconfig*/ && ./#{CONFIGURE} && make && sudo make install`
+      system("curl http://fontconfig.org/release/fontconfig-2.6.0.tar.gz -o #{DOWNLOAD_DIR}/fontconfig.tar.gz") unless File.exists?("#{DOWNLOAD_DIR}/fontconfig.tar.gz")
+      system("tar -xzf #{DOWNLOAD_DIR}/fontconfig.tar.gz -C #{DOWNLOAD_DIR}")
+      dir = `cd #{DOWNLOAD_DIR}/fontconfig*/ && pwd`.chomp
+      Dir.chdir(dir) do
+        system("./#{CONFIGURE}")
+        system("make")
+        system("sudo make install")
+      end
     end
   end
 end
