@@ -55,6 +55,10 @@ deploy.task :bart, :roles => :app do
   run "svn"
 end
 
+deploy.task :before_deploy, :roles => :app do
+  run "echo 'Did you edit elguapo's authorized_keys file before trying to deploy?'"
+end
+
 desc "Fixes symlinks and environment for production mode"
 deploy.task :after_deploy, :roles => :app do
   run "/bin/mkdir -p #{deploy_to}/shared/tmp_images"
