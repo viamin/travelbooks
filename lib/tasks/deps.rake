@@ -101,7 +101,7 @@ namespace :deps do
     desc "Install PNG Support library"
     file "/usr/local/lib/libpng12.a" => DOWNLOAD_DIR do
       puts "Downloading and installing libPNG"
-      system("curl ftp://ftp.simplesystems.org/pub/libpng/png/src/libpng-1.2.38.tar.bz2 -o #{DOWNLOAD_DIR}/libpng.tar.bz2") unless File.exists?("#{DOWNLOAD_DIR}/libpng.tar.bz2")
+      system("curl ftp://ftp.simplesystems.org/pub/libpng/png/src/libpng-1.2.35.tar.bz2 -o #{DOWNLOAD_DIR}/libpng.tar.bz2") unless File.exists?("#{DOWNLOAD_DIR}/libpng.tar.bz2")
       system("tar -xjf #{DOWNLOAD_DIR}/libpng.tar.bz2 -C #{DOWNLOAD_DIR}")
       dir = `cd #{DOWNLOAD_DIR}/libpng*/ && pwd`.chomp
       Dir.chdir(dir) do
@@ -114,7 +114,7 @@ namespace :deps do
     desc "Install JPEG support library"
     file "/usr/local/lib/libjpeg.a" => DOWNLOAD_DIR do
       puts "Downloading and installing libJPEG"
-      system("curl http://www.ijg.org/files/jpegsrc.v7.tar.gz -o #{DOWNLOAD_DIR}/jpegsrc.tar.gz") unless File.exists?("#{DOWNLOAD_DIR}/jpegsrc.tar.gz")
+      system("curl http://www.ijg.org/files/jpegsrc.v6b.tar.gz -o #{DOWNLOAD_DIR}/jpegsrc.tar.gz") unless File.exists?("#{DOWNLOAD_DIR}/jpegsrc.tar.gz")
       system("tar -xzf #{DOWNLOAD_DIR}/jpegsrc.tar.gz -C #{DOWNLOAD_DIR}")
       glibtool = `which glibtool`.chomp
       target = `sw_vers -productVersion`.chomp.split(".")[0..1].join(".")
