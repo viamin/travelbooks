@@ -11,9 +11,9 @@ set :application_root, "/home/travell0/#{application}/current"
 # your SCM below:
 # set :scm, :subversion
 
-role :app, "75.126.168.192"
-role :web, "75.126.168.192"
-role :db,  "75.126.168.192", :primary => true
+role :app, "66.84.0.135"
+role :web, "66.84.0.135"
+role :db,  "66.84.0.135", :primary => true
 
 # =============================================================================
 # OPTIONAL VARIABLES
@@ -41,7 +41,8 @@ role :db,  "75.126.168.192", :primary => true
 # must match the options given for the servers to select (like :primary => true)
 
 deploy.task :restart, :roles => :web do
-    run "killall -u `whoami` dispatch.fcgi"
+    # run "killall -u `whoami` dispatch.fcgi"
+    run "touch #{application_root}/tmp/restart.txt"
     run "killall -u `whoami` ar_sendmail"
 end
 
@@ -56,7 +57,7 @@ deploy.task :bart, :roles => :app do
 end
 
 deploy.task :before_deploy, :roles => :app do
-  run "echo 'Did you edit elguapo's authorized_keys file before trying to deploy?'"
+  run "echo 'Did you edit the authorized_keys file on elguapo before trying to deploy?'"
 end
 
 desc "Fixes symlinks and environment for production mode"
