@@ -10,5 +10,5 @@
 		<%= @message unless @message.nil? %>
 		<%= render :partial => 'prev_owners', :object => @owners unless @owners.empty? %>
 	</div>
-	<%= @map.div :class => 'yui-u' %>
+	<%= gmaps4rails(@json) %>
 </div>

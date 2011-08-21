@@ -16,13 +16,14 @@ class ItemsController < ApplicationController
     @items = @person.all_items
     @current_items = @person.items
     @old_items = @items - @current_items
-    @map = Mapstraction.new("item_map", MAP_TYPE)
-  	@map.control_init(:small => true)
-  	@map.center_zoom_init([@location.lat, @location.lng],10)
-  	@map.marker_init(Marker.new([@location.lat, @location.lng], :icon => '/images/homeicon.png'))
+    # @map = Mapstraction.new("item_map", MAP_TYPE)
+    # @map.control_init(:small => true)
+    # @map.center_zoom_init([@location.lat, @location.lng],10)
+    # @map.marker_init(Marker.new([@location.lat, @location.lng], :icon => '/images/homeicon.png'))
+    @json = @location.to_gmaps4rails
   	@items.each do |i|
   	  il = i.locations.current
-  	  @map.marker_init(Marker.new([il.lat, il.lng], :info_bubble => i.name, :icon => "/images/ambericonsh.png"))
+  	  # @map.marker_init(Marker.new([il.lat, il.lng], :info_bubble => i.name, :icon => "/images/ambericonsh.png"))
 	  end
   end
 
@@ -38,13 +39,14 @@ class ItemsController < ApplicationController
       end
     end
     @loc = @item.locations.current
-    @map = Mapstraction.new("item_map", MAP_TYPE)
-  	@map.control_init(:small => true)
-  	@map.center_zoom_init([@loc.lat, @loc.lng],10)
-  	@map.marker_init(Marker.new([@loc.lat, @loc.lng], :icon => "/images/ambericonsh.png"))
-  	@points = @item.locations.sorted.collect{ |p| LatLonPoint.new([p.lat, p.lng])}
-  	@line = Polyline.new(@points, :width => 5, :color => "#FF00AB", :opacity => 0.8)
-  	@map.polyline_init(@line)
+    # @map = Mapstraction.new("item_map", MAP_TYPE)
+    # @map.control_init(:small => true)
+    # @map.center_zoom_init([@loc.lat, @loc.lng],10)
+    # @map.marker_init(Marker.new([@loc.lat, @loc.lng], :icon => "/images/ambericonsh.png"))
+    @json = @loc.to_gmaps4rails
+    # @points = @item.locations.sorted.collect{ |p| LatLonPoint.new([p.lat, p.lng])}
+    # @line = Polyline.new(@points, :width => 5, :color => "#FF00AB", :opacity => 0.8)
+  	# @map.polyline_init(@line)
 #  	render :layout => 'user'
   end
   

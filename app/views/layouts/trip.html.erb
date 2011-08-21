@@ -7,8 +7,7 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<link rel="icon" href="/apple-touch-icon.png" type="image/png" />
 	<%= stylesheet_link_tag 'reset-fonts-grids', 'main', 'trip', :cache => "cache/trip" %>
-	<%= Mapstraction.header(MAP_TYPE) unless @map.nil? %>
-	<%= @map.to_html unless @map.nil? %>
+	<%= yield :head %>
 	<%= javascript_include_tag :defaults %>
 	<!--[if lte IE 6]>
 	<script type="text/javascript" src="/javascripts/supersleight-min.js"></script>
@@ -35,5 +34,6 @@
 		<%= render(:partial => 'main/flash', :locals => {:flash => flash}) if flash[:notice] %>
 		<div id="help"><%= render :partial => 'main/help' %></div>
 	</div>
+	<%= yield :scripts %>
 </body>
 </html>

@@ -1,4 +1,4 @@
-class TrackController < ApplicationController
+class TracksController < ApplicationController
   before_filter :authorize, :except => [:friend, :item]
   
   def index

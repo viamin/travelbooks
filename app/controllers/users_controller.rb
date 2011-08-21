@@ -1,4 +1,4 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
   before_filter :check_cookie
   before_filter :authorize, :except => [:login, :join, :retrieve, :mark_friends, :mark_items, :iforgot]
   after_filter :set_login_cookie, :only => [:login]
@@ -15,13 +15,14 @@ class UserController < ApplicationController
     @person = Person.find(params[:id])
     @location = @person.current_location
     @friends = @person.friends
-    @map = Mapstraction.new("friend_map", MAP_TYPE)
-  	@map.control_init(:small => true)
-  	@map.center_zoom_init([@location.lat, @location.lng],10)
-  	@map.marker_init(Marker.new([@location.lat, @location.lng], :icon => '/images/homeicon.png'))
+    # @map = Mapstraction.new("friend_map", MAP_TYPE)
+    # @map.control_init(:small => true)
+    # @map.center_zoom_init([@location.lat, @location.lng],10)
+    # @map.marker_init(Marker.new([@location.lat, @location.lng], :icon => '/images/homeicon.png'))
+    @json = @location.to_gmaps4rails
   	@friends.each do |f|
   	  fl = f.current_location
-  	  @map.marker_init(Marker.new([fl.lat, fl.lng], :info_bubble => f.display_name, :icon => f.map_icon))
+  	  # @map.marker_init(Marker.new([fl.lat, fl.lng], :info_bubble => f.display_name, :icon => f.map_icon))
 	  end
   end
 
@@ -32,11 +33,12 @@ class UserController < ApplicationController
     end
     @person = Person.find(params[:id])
     if @person.private_profile
-       @map = Mapstraction.new('user_map', MAP_TYPE)
-        @map.control_init(:small => true)
-        @location = Location.default
-        @map.center_zoom_init([@location.lat, @location.lng], 12)
+       # @map = Mapstraction.new('user_map', MAP_TYPE)
+       #  @map.control_init(:small => true)
+      @location = Location.default
+        # @map.center_zoom_init([@location.lat, @location.lng], 12)
 #        @map.marker_init(Marker.new([@location.lat, @location.lng], :info_bubble => @person.display_name, :icon => '/images/personicon.png'))
+      @json = @location.to_gmaps4rails
       render :action => 'private', :layout => false
       return
     end
@@ -53,10 +55,11 @@ class UserController < ApplicationController
       @is_my_friend = Message.check_for_request(@me, @person)
     end
     unless (read_fragment(:controller => 'user', :action => 'show', :action_suffix => "map#{@person.id}"))
-      @map = Mapstraction.new('user_map', MAP_TYPE)
-      @map.control_init(:small => true)
-      @map.center_zoom_init([@location.lat, @location.lng], 10)
-      @map.marker_init(Marker.new([@location.lat, @location.lng], :info_bubble => @person.display_name, :icon => '/images/personicon.png'))
+      # @map = Mapstraction.new('user_map', MAP_TYPE)
+      # @map.control_init(:small => true)
+      # @map.center_zoom_init([@location.lat, @location.lng], 10)
+      # @map.marker_init(Marker.new([@location.lat, @location.lng], :info_bubble => @person.display_name, :icon => '/images/personicon.png'))
+      @json = @location.to_gmaps4rails
     end
   end
 
@@ -130,13 +133,14 @@ class UserController < ApplicationController
       @location = @person.current_location
       unless (read_fragment(:controller => 'user', :action => 'home', :action_suffix => "map#{@person.id}"))
         @locations = @person.all_locations
-        @map = Mapstraction.new('user_map', MAP_TYPE)
-        @map.control_init(:small => true)
-        @map.center_zoom_init([@location.lat, @location.lng], 10)
-        @map.marker_init(Marker.new([@location.lat, @location.lng], :info_bubble => @location.description, :icon => '/images/homeicon.png'))
+        # @map = Mapstraction.new('user_map', MAP_TYPE)
+        # @map.control_init(:small => true)
+        # @map.center_zoom_init([@location.lat, @location.lng], 10)
+        # @map.marker_init(Marker.new([@location.lat, @location.lng], :info_bubble => @location.description, :icon => '/images/homeicon.png'))
+        @json = @location.to_gmaps4rails
         @locations.each do |l|
           unless l == @location
-            @map.marker_init(Marker.new([l.lat, l.lng], :info_bubble => l.description))
+            # @map.marker_init(Marker.new([l.lat, l.lng], :info_bubble => l.description))
           end
         end
       end
@@ -261,7 +265,7 @@ class UserController < ApplicationController
     @center = find_center(@friends_loc)
     width, height = params[:width], params[:height]
     @zoom = best_zoom(@friends_loc, @center, width, height)
-    @map = Variable.new("map")
+    # @map = Variable.new("map")
   end
   
   def mark_items
@@ -270,7 +274,7 @@ class UserController < ApplicationController
     @center = find_center(@items_loc)
     width, height = params[:width], params[:height]
     @zoom = best_zoom(@items_loc, @center, width, height)
-    @map = Variable.new("map")
+    # @map = Variable.new("map")
   end
   
   def show_trips
@@ -280,7 +284,7 @@ class UserController < ApplicationController
     else
       @trips = [Trip.new]
     end
-    @map = Variable.new("map")
+    # @map = Variable.new("map")
   end
   
   def add

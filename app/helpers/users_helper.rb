@@ -1,4 +1,4 @@
-module UserHelper
+module UsersHelper
   
   def last_login_string(datetime)
     if datetime.day == Date.today.day

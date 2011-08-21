@@ -1,14 +1,14 @@
 require 'test_helper'
-require 'user_controller'
+require 'users_controller'
 
 # Re-raise errors caught by the controller.
-class UserController; def rescue_action(e) raise e end; end
+class UsersController; def rescue_action(e) raise e end; end
 
-class UserControllerTest < ActionController::TestCase
+class UsersControllerTest < ActionController::TestCase
   # fixtures :people, :locations
 
   def setup
-    @controller = UserController.new
+    @controller = UsersController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 

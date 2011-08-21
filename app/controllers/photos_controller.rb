@@ -1,4 +1,4 @@
-class PhotoController < ApplicationController
+class PhotosController < ApplicationController
   before_filter :authorize
   
   # RESTful actions:

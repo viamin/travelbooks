@@ -39,8 +39,8 @@ class Location < ActiveRecord::Base
   validates_length_of :state, :maximum => 250
   validates_length_of :zip_code, :maximum => 250
   validates_length_of :country, :maximum => 250
-  before_save :geocode_address
-  acts_as_mappable
+  # before_save :geocode_address # probably handled by gmaps4rails
+  acts_as_gmappable
   
   include GeoKit::Geocoders
   
@@ -242,6 +242,10 @@ class Location < ActiveRecord::Base
     else
       return true
     end
+  end
+  
+  def gmaps4rails_address(person = nil)
+    address_to_geocode(person)
   end
   
   def address_to_geocode(person)

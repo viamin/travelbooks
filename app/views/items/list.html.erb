@@ -9,5 +9,5 @@
 			<%= render :partial => 'item_short', :collection => @old_items %>
 		</ul>
 	</div>
-	<%= @map.div :class => "yui-u" %>
+	<%= gmaps4rails(@json) %>
 </div>

@@ -1,4 +1,4 @@
-class TripController < ApplicationController
+class TripsController < ApplicationController
   before_filter :authorize
   cache_sweeper :trip_sweeper, :only => [:create, :update]
   
@@ -54,10 +54,11 @@ class TripController < ApplicationController
     @person = Person.find(session[:user_id])
     @location = @person.current_location
     @trips = @person.trips
-    @map = Mapstraction.new("vacation_map", MAP_TYPE)
-  	@map.control_init(:small => true)
-  	@map.center_zoom_init([@location.lat, @location.lng],9)
-  	@map.marker_init(Marker.new([@location.lat, @location.lng], :info_bubble => @location.description, :icon => '/images/homeicon.png'))
+    # @map = Mapstraction.new("vacation_map", MAP_TYPE)
+    # @map.control_init(:small => true)
+    # @map.center_zoom_init([@location.lat, @location.lng],9)
+    # @map.marker_init(Marker.new([@location.lat, @location.lng], :info_bubble => @location.description, :icon => '/images/homeicon.png'))
+    @json = @location.to_gmaps4rails
 #  	@trips.each do |v|
 #  	  points = get_markers_for(v)
 #  	  line = Polyline.new(points, :width => 5, :color => COLORS[rand(6)], :opacity => 0.8)
@@ -123,7 +124,7 @@ class TripController < ApplicationController
   
   def zoom
     @trip = Trip.find(params[:id])
-    @map = Variable.new("map")
+    # @map = Variable.new("map")
 #    @map = Mapstraction.new("vacation_map", MAP_TYPE)
 #  	@map.control_init(:small => true)
 	  @points = get_points_for(@trip)

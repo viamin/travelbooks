@@ -1,4 +1,4 @@
-class SaleItemController < ApplicationController
+class SaleItemsController < ApplicationController
   before_filter :admin_auth
   layout 'user'
   

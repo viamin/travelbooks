@@ -6,5 +6,5 @@
 			<%= render :partial => 'friend_short', :collection => @friends %>
 		</ul>
 	</div>
-	<%= @map.div :class => "yui-u" %>
+	<%= gmaps4rails(@json) %>
 </div>
