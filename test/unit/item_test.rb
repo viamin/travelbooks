@@ -1,4 +1,16 @@
-require File.dirname(__FILE__) + '/../test_helper'
+# == Schema Information
+#
+# Table name: items
+#
+#  id          :integer         not null, primary key
+#  tbid        :string(255)
+#  name        :string(255)     not null
+#  description :text            not null
+#  person_id   :integer
+#  created_on  :date
+#
+
+require 'test_helper'
 
 class ItemTest < ActiveSupport::TestCase
   fixtures :items, :people, :locations

@@ -1,5 +1,5 @@
 set :application, "travelbooks"
-set :repository,  "svn+ssh://bart@elguapo.homedns.org/home/Documents/subversion/#{application}/trunk"
+set :repository,  "svn+ssh://bart@elguapo.dyndns.info/home/Documents/subversion/#{application}/trunk"
 set :application_root, "/home/travell0/#{application}/current"
 
 # If you aren't deploying to /u/apps/#{application} on the target

@@ -1,0 +1,9 @@
+<h1>Editing a TravellerBook</h1>
+<%= render :partial => 'admin_links' %>
+<div id="book_form">
+	<%= form_for @book, :as => 'item':url => {:action => 'update_book'} do |f| %>
+		<%= f.hidden_field 'id' %>
+		<%= render :partial => 'form', :locals => {:f => f} %>
+		<%= f.submit 'Update' %>
+	<% end %>
+</div>

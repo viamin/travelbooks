@@ -1,0 +1,10 @@
+<h1>Adding a new TravellerBook</h1>
+
+<div id="book_form">
+	<%= form_for @book, :as => 'item' :url => {:action => 'create_book'} do |f| %>
+		<%= render :partial => 'form', :locals => {:f => f} %>
+		<p><label for="item_created_on">Created on</label><br/>
+		<%= f.date_select 'created_on'  %></p>
+		<%= f.submit 'Create' %>
+	<% end %>
+</div>

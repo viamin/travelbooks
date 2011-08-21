@@ -6,7 +6,7 @@ class AdminController < ApplicationController
   end
   
   def books
-    @books = Item.find(:all, :order => "id desc")
+    @books = Item.order("id desc")
   end
   
   def add_image
@@ -24,7 +24,7 @@ class AdminController < ApplicationController
     @photo.photo_type = Photo::MAIN
     @photo.file_name = "book#{@item.id}.jpg"
     @photo.url = "/images/books/#{@photo.file_name}"
-    @photo.path = "#{RAILS_ROOT}/public#{@photo.url}"
+    @photo.path = "#{Rails.root}/public#{@photo.url}"
     Photo.save_book_data(data, @photo.file_name)
     data = Image.read(@photo.path).first
     @photo.content_type = data.mime_type
@@ -110,41 +110,40 @@ class AdminController < ApplicationController
     Change.remove_duplicates
     Location.remove_duplicates
     # next, find any changes that reference people or places that no longer exist
-    @changes = Change.find(:all)
+    @changes = Change.all
     @changes.each do |change|
       case change.change_type
       when Change::OWNERSHIP
-        person = Person.find(:all, :conditions => {:id => change.new_value})
+        person = Person.where({:id => change.new_value})
         timing "Will destroy OWNERSHIP change #{change.pretty_inspect}" if person.empty?
         change.destroy if person.empty?
       when Change::PERSON_LOCATION
-        location = Location.find(:all, :conditions => {:id => change.new_value})
+        location = Location.where({:id => change.new_value})
         timing "Will destroy PERSON_LOCATION change #{change.pretty_inspect}" if location.empty?
         change.destroy if location.empty?
       when Change::PERSON_MAIN_LOCATION
-        location = Location.find(:all, :conditions => {:id => change.new_value})
+        location = Location.where({:id => change.new_value})
         timing "Will destroy PERSON_MAIN_LOCATION change #{change.pretty_inspect}" if location.empty?
         change.destroy if location.empty?
       when Change::ITEM_LOCATION
-        location = Location.find(:all, :conditions => {:id => change.new_value})
+        location = Location.where({:id => change.new_value})
         timing "Will destroy ITEM_LOCATION change #{change.pretty_inspect}" if location.empty?
         change.destroy if location.empty?
       end
     end
     # next, find any locations that aren't referenced by changes, people, or anywhere else there is a location_id field
-    @locations = Location.find(:all)
-    @locations.each do |location|
+    Location.all.each do |location|
       @location_info_changed = false
       loc_check = location.used_anywhere?
       timing "Will destroy Location #{location.description}" unless loc_check
       location.destroy unless loc_check
-      person_array = Person.find(:all, :conditions => {:id => location.person_id})
+      person_array = Person.where({:id => location.person_id})
       if person_array.empty? && !location.person_id.nil?
         location.person_id = nil
         timing "Will remove person info from Location #{location.description}"
         @location_info_changed = true
       end
-      item_array = Item.find(:all, :conditions => {:id => location.item_id})
+      item_array = Item.where({:id => location.item_id})
       if item_array.empty? && !location.item_id.nil?
         location.item_id = nil
         timing "Will remove item info from Location #{location.description}"
@@ -153,24 +152,23 @@ class AdminController < ApplicationController
       location.save if @location_info_changed
     end
     # Clean up friends table - make sure everyone exists
-    @friends = Friend.find(:all)
-    @friends.each do |friend|
-      friend.destroy unless Person.find(:first, :conditions => {:id => friend.owner_person_id}).kind_of?(Person)
-      friend.destroy unless Person.find(:first, :conditions => {:id => friend.entry_person_id}).kind_of?(Person)
+    Friend.all.each do |friend|
+      friend.destroy unless Person.where({:id => friend.owner_person_id}).kind_of?(Person)
+      friend.destroy unless Person.where({:id => friend.entry_person_id}).limit(1).kind_of?(Person)
     end
     # Clean up messages to and from users that don't exist
     timing "Checking messages for valid senders and recipients"
-    @messages = Message.find(:all)
+    @messages = Message.all
     @messages.each do |message|
-      message.destroy unless Person.find(:first, :conditions => {:id => message.person_id}).kind_of?(Person)
-      message.destroy unless Person.find(:first, :conditions => {:id => message.sender}).kind_of?(Person)
+      message.destroy unless Person.where({:id => message.person_id}).limit(1).kind_of?(Person)
+      message.destroy unless Person.where({:id => message.sender}).limit(1).kind_of?(Person)
     end
     flash[:notice] = "Cleaned up the database"
     redirect_to :action => 'index'
   end
   
   def users
-    @users = Person.find(:all)
+    @users = Person.all
   end
   
   def edit_user
@@ -189,13 +187,13 @@ class AdminController < ApplicationController
   end
   
   def locations
-    @locations = Location.find(:all)
+    @locations = Location.all
   end
   
   def test_email
     @person = Person.new
     @person.email = "info@travellerbook.com"
-    UserMailer.deliver_welcome(@person)
+    UserMailer.welcome(@person).deliver
     flash[:notice] = "A test email has been sent to #{@person.email}"
     redirect_to :action => 'index'
   end
@@ -205,8 +203,8 @@ class AdminController < ApplicationController
   end
   
   def friends
-    @users = Person.find(:all)
-    @messages = Message.find(:all, :conditions => {:message_type => Message::FRIENDREQUEST})
+    @users = Person.all
+    @messages = Message.where({:message_type => Message::FRIENDREQUEST})
   end
   
   def mark_message
@@ -221,7 +219,7 @@ class AdminController < ApplicationController
   end
   
   def trips
-    @trips = Trip.find(:all)
+    @trips = Trip.all
   end
   
   def flash_test
@@ -251,21 +249,21 @@ class AdminController < ApplicationController
       expire_fragment(:controller => 'user', :action => 'show', :action_suffix => "map#{p.id}")
     end
     expire_fragment(%r{public/fragment_caches/.*})
-    `cd #{RAILS_ROOT} && rake tmp:assets:clear`
+    `cd #{Rails.root} && rake tmp:assets:clear`
     flash[:notice] = "Caches have been deleted"
     redirect_to :action => 'index'
   end
   
   # Create thumbnails for photos that don't have them
   def create_thumbnails
-    photos = Photo.find(:all)
+    photos = Photo.all
     photos.each {|p| p.create_thumbnails}
     flash[:notice] = "Thumbnails created - check the log for any errors"
     redirect_to :action => 'index'
   end
   
   def verify_thumbnails
-    photos = Photo.find(:all)
+    photos = Photo.all
     photos.each {|p| p.verify_thumbnails}
     flash[:notice] = "Thumbnails verified - check the log for any errors"
     redirect_to :action => 'index'

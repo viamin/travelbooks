@@ -3,6 +3,10 @@ require 'tmpdir'
 desc "Install releasenotes app non-gem dependencies"
 task :deps => ["deps:rmagick"]
 
+# ghostscript installs jpeg, tiff, and jasper
+# ImageMagick installs little-cms
+# brew imagemagick doesn't seem to support png?
+
 namespace :deps do
   
   CURRENT_VERSIONS = {

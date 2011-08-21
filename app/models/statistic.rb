@@ -18,6 +18,7 @@ class Statistic < ActiveRecord::Base
   belongs_to :item
   belongs_to :location
   before_save :marshal_stats
+  after_find :compute_related
   
   attr_accessor :related_statistics
   
@@ -25,7 +26,7 @@ class Statistic < ActiveRecord::Base
     self.related_stats = Marshal.dump(@related_statistics)
   end
   
-  def after_find
+  def compute_related
     @related_statistics = Marshal.load(self.related_stats)
   end
   

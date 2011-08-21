@@ -1,5 +1,4 @@
 # == Schema Information
-# Schema version: 20090214004612
 #
 # Table name: people
 #
@@ -15,7 +14,7 @@
 #  privacy_flags    :integer         default(0)
 #  needs_reset      :boolean
 #  login_token      :string(255)
-#  private_profile  :boolean
+#  private_profile  :boolean         default(FALSE)
 #  last_login       :datetime
 #  mail_preferences :integer
 #
@@ -32,7 +31,7 @@ class Person < ActiveRecord::Base
   has_many :reviews
   has_many :statistics, :dependent => :destroy do
     def countries_visited
-      collection = find(:first, :conditions => {:stat_type => Statistic::COUNTRIES_VISITED_COUNT})
+      collection = where({:stat_type => Statistic::COUNTRIES_VISITED_COUNT}).first
       collection.nil? ? 0 : collection.count
     end
     def countries_books_visited
@@ -50,23 +49,23 @@ class Person < ActiveRecord::Base
   end
   has_many :statuses, :dependent => :destroy do
     def current(as_of = Time.now)
-      find :first, :order => "updated_at desc, created_at desc"
+      order("updated_at desc, created_at desc").first
     end
   end
   has_many :photos, :dependent => :nullify
   has_many :messages do
     def unread
-      find(:all, :conditions => {:state => Message::UNREAD})
+      where({:state => Message::UNREAD})
     end
     def inbox
-      find(:all, :conditions => ['state<?', Message::DELETEDBYRECIPIENT], :order => "id desc")
+      where(['state<?', Message::DELETEDBYRECIPIENT]).order("id desc")
     end
     def sent
-      Message.find(:all, :conditions => ["sender=? and state|?!=? and message_type|?!=?", proxy_owner.id, Message::DELETEDBYSENDER, Message::DELETEDBYSENDER, Message::FRIENDREQUEST, Message::FRIENDREQUEST])
+      Message.where(["sender=? and state|?!=? and message_type|?!=?", proxy_owner.id, Message::DELETEDBYSENDER, Message::DELETEDBYSENDER, Message::FRIENDREQUEST, Message::FRIENDREQUEST])
     end
   end
   def sent_messages
-    Message.find(:all, :conditions => {:sender => self.id}).delete_if {|m| (m.state == (m.state | Message::DELETEDBYSENDER) || (m.message_type == (m.message_type | Message::FRIENDREQUEST) ) ) }
+    Message.where({:sender => self.id}).delete_if {|m| (m.state == (m.state | Message::DELETEDBYSENDER) || (m.message_type == (m.message_type | Message::FRIENDREQUEST) ) ) }
   end
   validates_uniqueness_of :email, :on => :create, :message => "There is already an account using that email address"
   validates_presence_of :email, :on => :create, :message => "can't be blank"
@@ -81,6 +80,9 @@ class Person < ActiveRecord::Base
 #  validates_length_of :last_name, :maximum => 250
   validates_length_of :email, :maximum => 250
   validates_length_of :nickname, :maximum => 250
+  
+  before_create :set_hashed_password
+  after_save :clear_password
 
   attr_accessor :password
   
@@ -115,30 +117,21 @@ class Person < ActiveRecord::Base
   end
   
   def all_items
-    item_array = Change.find(:all, :conditions => {:change_type => Change::OWNERSHIP, :new_value => self.id})
+    item_array = Change.where({:change_type => Change::OWNERSHIP, :new_value => self.id})
     items = item_array.collect { |change| Item.find(change.item_id) unless change.item_id.nil?}.concat(self.items).compact.uniq
     items
   end
   
   def items_given
-    item_array = Change.find(:all, :conditions => {:change_type => Change::OWNERSHIP, :old_value => self.id})
+    item_array = Change.where({:change_type => Change::OWNERSHIP, :old_value => self.id})
     items = item_array.collect {|change| Item.find(change.item_id) unless change.item_id.nil?}
   end
   
   def items_received(from = nil)
     not_from = "and old_value=#{from}" unless from.nil?
     old_value_string = "(old_value != #{NOBODY_USER} #{not_from unless not_from.nil?})"
-    item_array = Change.find(:all, :conditions => ["change_type = ? and new_value=? and #{old_value_string}", Change::OWNERSHIP, self.id])
+    item_array = Change.where(["change_type = ? and new_value=? and #{old_value_string}", Change::OWNERSHIP, self.id])
     items = item_array.collect {|change| Item.find(change.item_id) unless change.item_id.nil?}
-  end
-  
-  def before_create
-    self.hashed_password = Person.hash_password(self.password)
-  end
-  
-  def after_save
-#    timing "Clearing password"
-    @password = nil
   end
   
   def invisible
@@ -207,12 +200,12 @@ class Person < ActiveRecord::Base
   end
   
   def self.is_valid_login?(login)
-    count = Person.find(:all, :conditions => {:email => login}).length
+    count = Person.where({:email => login}).length
     return (count > 0)
   end
 
   def self.email_login(email, password)
-    person = Person.find(:first, :conditions => {:email => email})
+    person = Person.where({:email => email}).first
     unless person.nil?
       hashed_password = Person.hash_password("#{password}#{person.salt}" || "")
       if person.hashed_password == hashed_password
@@ -355,7 +348,7 @@ class Person < ActiveRecord::Base
   end
   
   def friends
-    friends = Friend.find(:all, :conditions => {:owner_person_id => self.id})
+    friends = Friend.where({:owner_person_id => self.id})
     friends.map! {|f| Person.find(f.entry_person_id) unless f.nil?}
   end
   
@@ -397,7 +390,7 @@ class Person < ActiveRecord::Base
   
   def send_reset_email(password = Person.random_password)
     self.reset_password(password)
-    UserMailer.deliver_retrieve(self, password)
+    UserMailer.retrieve(self, password).deliver
   end
   
   def reset_password(new_password = Person.random_password)
@@ -412,6 +405,16 @@ class Person < ActiveRecord::Base
   end
 
   private
+  
+  def set_hashed_password
+    self.hashed_password = Person.hash_password(self.password)
+  end
+  
+  def clear_password
+#    timing "Clearing password"
+    @password = nil
+  end
+  
   def self.hash_password(password)
     main = Digest::SHA2.hexdigest(password)
   end

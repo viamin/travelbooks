@@ -7,7 +7,7 @@ class SaleItemController < ApplicationController
   end
   
   def list
-    @sale_items = SaleItem.find(:all)
+    @sale_items = SaleItem.all
   end
   
   def show

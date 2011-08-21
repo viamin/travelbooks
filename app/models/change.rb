@@ -37,15 +37,15 @@ class Change < ActiveRecord::Base
   end
   
   def old_person
-    Person.find(:first, :conditions => {:id => self.old_value})
+    Person.where({:id => self.old_value}).first
   end
   
   def old_location
-    Location.find(:first, :conditions => {:id => self.old_value})
+    Location.where({:id => self.old_value}).first
   end
   
   def self.remove_duplicates
-    @changes = Change.find(:all, :order => :id)
+    @changes = Change.all.order(:id)
     @remaining_changes = @changes.dup
     @same_as = Hash.new {|hash, key| hash[key] = Array.new}
     @changes.each do |change|
@@ -67,7 +67,7 @@ class Change < ActiveRecord::Base
     @same_as.each do |original, duplicate|
       # find all changes, references to duplicate, etc. and replace them with original
       duplicate.each do |change|
-        destinations = Destination.find(:all, :conditions => {:change_id => change})
+        destinations = Destination.where({:change_id => change})
         begin
           destinations.each {|destination| (destination.change_id = original) && destination.save!}
         end
@@ -86,7 +86,7 @@ class Change < ActiveRecord::Base
       change_hash = change.attributes.delete_if{|col, val| col == "id" || col == "created_on" || val.nil?}
     end
     change_hash.each { |column, value| difference_count += 1 unless self.send(column).to_s.strip == value.to_s.strip }
-    if difference_count >= DIFFERENCE_THRESHOLD
+    if difference_count >= Travelbooks::DIFFERENCE_THRESHOLD
       return false
     else
       return true

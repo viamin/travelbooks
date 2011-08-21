@@ -1,0 +1,6 @@
+<h1>New Sale Item</h1>
+
+<%= form_for @sale_item, :url => {:controller => 'sale_item', :action => 'create'} do |f| %>
+	<%= render :partial => 'sale_item/form', :object => @sale_item, :locals => {:f => f} %>
+	<%= f.submit "Create Sale Item" %>
+<% end %>

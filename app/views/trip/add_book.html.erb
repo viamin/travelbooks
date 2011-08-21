@@ -1,0 +1,9 @@
+<h1>Adding a TravellerBook to <%= @trip.name %></h1>
+<%= render :partial => 'user/profile_links'%>
+<div id="dest_form">
+	<%= form_for @trip, :url => {:action => 'insert_book', :id => @trip}, :html => {:class => 'gen_form'} do |f| %>
+	<%= image_tag "/images/books/book#{@items.first.id}.jpg", :size => "36x50", :id => 'book_image' %>
+	<%= select_tag  'book', options_for_select(@items.collect!{|i| [i.name, i.id]}), :onchange => "updatePhoto(this.form, 'book_image');"%>
+	<%= f.submit 'Add TravellerBook' %>
+	<% end %>
+</div>

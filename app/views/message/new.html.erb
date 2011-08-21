@@ -1,0 +1,9 @@
+<h1>Send a message</h1>
+<%= render :partial => 'mail_actions' %>
+<div id="new_message">
+	<%= form_tag( {:action => 'create'}, {:id => 'compose_form'}) do %>
+		<%= render :partial => 'compose', :locals => {:message => @reply_to, :friends => @friends, :recipient => @reply_to.sender} %>
+		<p class="nl"><%= submit_tag 'Send' %></p>
+		<p><%= submit_tag 'Cancel' %></p>
+	<% end %>
+</div>

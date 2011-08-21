@@ -1,5 +1,4 @@
 # == Schema Information
-# Schema version: 20090214004612
 #
 # Table name: people
 #
@@ -15,7 +14,7 @@
 #  privacy_flags    :integer         default(0)
 #  needs_reset      :boolean
 #  login_token      :string(255)
-#  private_profile  :boolean
+#  private_profile  :boolean         default(FALSE)
 #  last_login       :datetime
 #  mail_preferences :integer
 #

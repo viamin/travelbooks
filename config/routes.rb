@@ -1,10 +1,16 @@
-ActionController::Routing::Routes.draw do |map|
-  map.resources :locations, :photos, :categories
-  
-  map.connect ':controller/service.wsdl', :action => 'wsdl'
+Travelbooks::Application.routes.draw do
+  # The priority is based upon order of creation:
+  # first created -> highest priority.
 
-  map.connect '', :controller => 'main', :action => 'index'
+  resources :locations, :photos, :categories
 
-  # Install the default route as the lowest priority.
-  map.connect ':controller/:action/:id'
+  # You can have the root of your site routed with "root"
+  # just remember to delete public/index.html.
+  root :to => "main#index"
+
+  # See how all your routes lay out with "rake routes"
+
+  # This is a legacy wild controller route that's not recommended for RESTful applications.
+  # Note: This route will make all actions in every controller accessible via GET requests.
+  match ':controller(/:action(/:id(.:format)))'
 end

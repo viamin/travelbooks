@@ -1,0 +1,7 @@
+<h1>Editing Sale Item <%= @sale_item.name %></h1>
+
+<%= form_for @sale_item, :url => {:action => 'update', :id => @sale_item.id } do |f| %>
+	<%= f.hidden_field 'id' %>
+	<%= render :partial => 'form', :object => @sale_item, :locals => {:f => f} %>
+	<%= f.submit "Update Item" %>
+<% end %>

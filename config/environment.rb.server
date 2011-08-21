@@ -2,10 +2,10 @@ ENV['RAILS_ENV'] ||= 'production'
 
 require 'pp'
 require 'action_mailer/ar_mailer'
-require "#{RAILS_ROOT}/vendor/gems/rmagick-2.9.1/lib/RMagick.rb"
+require "#{Rails.root}/vendor/gems/rmagick-2.9.1/lib/RMagick.rb"
 include Magick
-require "#{RAILS_ROOT}/vendor/gems/csspool-0.2.6/lib/csspool.rb"
-require "#{RAILS_ROOT}/vendor/gems/inline_attachment-0.4.0/lib/inline_attachment.rb"
+require "#{Rails.root}/vendor/gems/csspool-0.2.6/lib/csspool.rb"
+require "#{Rails.root}/vendor/gems/inline_attachment-0.4.0/lib/inline_attachment.rb"
 
 require File.join(File.dirname(__FILE__), 'boot')
 
@@ -28,9 +28,9 @@ SAMPLE_LOCATION = { :address_line_1 => "1600 Pennsylvania Ave.",
                     :lat => 38.89859,
                     :lng => -77.035971 }
 COLORS = ['#fff', '#633c1f', '#394876', '#2f4380', '#ffe7a5', '#000']
-ENV['TMPDIR'] = "#{RAILS_ROOT}/public/images/tmp"
-ENV['TEMP'] = "#{RAILS_ROOT}/public/images/tmp"
-ENV['TMP'] = "#{RAILS_ROOT}/public/images/tmp"
+ENV['TMPDIR'] = "#{Rails.root}/public/images/tmp"
+ENV['TEMP'] = "#{Rails.root}/public/images/tmp"
+ENV['TMP'] = "#{Rails.root}/public/images/tmp"
 APPLICATION_ERROR_EMAIL = "support@travellerbook.com"
 MAP_TYPE = :yahoo
 

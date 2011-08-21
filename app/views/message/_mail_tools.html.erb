@@ -1,0 +1,9 @@
+<div class="mail_tools">
+	<%= mail_tools.is_friend_request? ? button_to("Accept", {:action => 'accept', :controller => 'user', :message_id => mail_tools.id, :acceptance => "Accept"}, {:method => :post}) : button_to("Read", {:action => 'show', :id => mail_tools.id}, {:method => :get}) %>
+	<%= form_for mail_tools, :as => 'message', :url => {:action => 'new'}, :html => {:method => :get} do |f| %>
+		<%= hidden_field_tag 'message_id', mail_tools.id %>
+		<%= hidden_field_tag 'sent_at', mail_tools.created_at.to_formatted_s(:long_ordinal) %>
+		<%= submit_tag 'Reply' %>
+	<% end unless (@no_reply || mail_tools.is_friend_request?) %>
+	<%= mail_tools.is_friend_request? ? button_to("Deny", {:action => 'accept', :controller => 'user', :message_id => mail_tools.id, :acceptance => "Deny"}, {:method => :post}) : button_to("Delete", {:action => 'delete', :id => mail_tools.id}, {:confirm => 'Are you sure you want to permanently remove this message from this mailbox?'}) %>
+</div>

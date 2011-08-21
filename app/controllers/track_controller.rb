@@ -13,7 +13,7 @@ class TrackController < ApplicationController
   end
 
   def find
-    @books = Item.find(:all, :conditions => {:tbid => params[:search_box]})
+    @books = Item.where({:tbid => params[:search_box]})
     if @books.nil? || @books.empty?
       if (params[:search_box].length > 6)
         @message = "Nothing found with that code"
@@ -29,7 +29,7 @@ class TrackController < ApplicationController
   def friend
     @user = Person.find(session[:user_id]) if logged_in?
     search_term = params[:name_search_box]
-    @people = Person.find(:all, :conditions => ["email like ?", "%#{search_term.downcase}%"]).concat(Person.find(:all, :conditions => ["nickname like ?", "%#{search_term}%"])).uniq.delete_if {|p| p.email == "noemail@travellerbook.com"} unless (search_term.nil? || search_term == String.new)
+    @people = Person.where(["email like ?", "%#{search_term.downcase}%"]).concat(Person.where(["nickname like ?", "%#{search_term}%"])).uniq.delete_if {|p| p.email == "noemail@travellerbook.com"} unless (search_term.nil? || search_term == String.new)
 #    @people = Person.find(:all, :conditions => {:email => search_term}).concat(Person.find(:all, :conditions => {:nickname => search_term})).uniq
     if (@people.nil? || @people.empty?)
       @message = "No one was found for the search term \"#{search_term}\""
@@ -44,7 +44,7 @@ class TrackController < ApplicationController
   end
   
   def item
-    @books = Item.find(:all, :conditions => {:tbid => params[:tbid]})
+    @books = Item.where({:tbid => params[:tbid]})
     if @books.empty?
       if params[:tbid] && (params[:tbid].length > 6)
         @message = "Nothing found with that code"
@@ -65,7 +65,7 @@ class TrackController < ApplicationController
   
   def map
     @user = Person.find(session[:user_id])
-    @location = Location.find(:first, :conditions => ["person_id = ?", @user.id])
+    @location = Location.where(["person_id = ?", @user.id]).first
   end
   
   # new will allow a user to find a book and add it to his or her trail

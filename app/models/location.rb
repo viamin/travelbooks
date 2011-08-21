@@ -39,6 +39,7 @@ class Location < ActiveRecord::Base
   validates_length_of :state, :maximum => 250
   validates_length_of :zip_code, :maximum => 250
   validates_length_of :country, :maximum => 250
+  before_save :geocode_address
   acts_as_mappable
   
   include GeoKit::Geocoders
@@ -61,7 +62,7 @@ class Location < ActiveRecord::Base
   end
   
   # Geocode the address and save the lat/lng returned
-  def before_save
+  def geocode_address
     @person = Person.find(self.person_id) unless self.person_id.nil?
     loc = MultiGeocoder.geocode(self.address_to_geocode(@person))
     if loc.success
@@ -174,7 +175,7 @@ class Location < ActiveRecord::Base
     #compare each item in params_hash against the data in self
     difference_count = 0
     params_hash.delete_if{|c,v| c == "id"}.each { |param, value| difference_count += 1 unless (self.send(param).to_s.downcase.strip == value.to_s.downcase.strip) }
-    return true if difference_count >= DIFFERENCE_THRESHOLD
+    return true if difference_count >= Travelbooks::DIFFERENCE_THRESHOLD
     return false
   end
   
@@ -236,7 +237,7 @@ class Location < ActiveRecord::Base
       loc_hash = location.attributes.delete_if{|col, val| col == "id" || col == "description" || val.nil?}
     end
     loc_hash.each { |column, value| difference_count += 1 unless self.send(column).to_s.strip == value.to_s.strip }
-    if difference_count >= DIFFERENCE_THRESHOLD
+    if difference_count >= Travelbooks::DIFFERENCE_THRESHOLD
       return false
     else
       return true

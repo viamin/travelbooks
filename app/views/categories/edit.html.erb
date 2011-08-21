@@ -2,7 +2,7 @@
 
 <%= error_messages_for :category %>
 
-<% form_for(@category) do |f| %>
+<%= form_for(@category) do |f| %>
   <p>
 	<%= render :partial => 'form', :object => @category, :locals => {:f => f} %>
     <%= f.submit "Update" %>

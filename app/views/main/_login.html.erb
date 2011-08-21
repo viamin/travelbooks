@@ -1,0 +1,14 @@
+<div id="loginbox" style="display:none;">
+	<%= form_for @person, :url => {:controller => 'user', :action => 'login'} do |f| %>
+		<label for="person_email">Email:</label>
+		<%= f.text_field :email, {:class => "txinput"} %>
+		<label for="person_password">Password:</label>
+		<%= f.password_field :password, {:class => "txinput"} %>
+		<p class="remember_me"><%= check_box_tag :remember %>
+			<label for="person_remember">Remember me</label>
+		</p>
+		<%= submit_tag 'Login', {:class => 'lgnbut'} %>
+	<% end -%>
+	<%= #render :partial => 'open_id_login', :object => @person 
+	%>
+</div>

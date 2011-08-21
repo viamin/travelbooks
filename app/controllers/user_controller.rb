@@ -11,10 +11,6 @@ class UserController < ApplicationController
     redirect_to :action => 'home'
   end
 
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :home }
-
   def list
     @person = Person.find(params[:id])
     @location = @person.current_location
@@ -207,7 +203,7 @@ class UserController < ApplicationController
       redirect_to :action => 'retrieve'
       return
     else
-      @person = Person.find(:first, :conditions => {:email => params[:retrieve][:email_address]})
+      @person = Person.where({:email => params[:retrieve][:email_address]}).first
       if @person.nil?
         flash[:notice] = "There was no user found with that email address."
         render :action => 'retrieve'
@@ -240,11 +236,11 @@ class UserController < ApplicationController
             @person.changes.create( :location => @location, :person => @person, :effective_date => Time.now, :change_type => Change::PERSON_LOCATION, :new_value => @location.id.to_s)
           end
           flash[:notice] = "Thank you for joining TravellerBook.com."
-          UserMailer.deliver_welcome(@person)
+          UserMailer.welcome(@person).deliver
           session[:user_id] = @person.id
           unless params[:id].nil?
             # Should mean this is a join due to an invitation
-            message = Message.find(:first, :conditions => {:id => params[:id]})
+            message = Message.where({:id => params[:id]}).first
             message.complete_invitation!(@person) unless message.nil?
           end
           redirect_to :action => :home

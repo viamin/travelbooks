@@ -1,3 +1,4 @@
+Replace RMagick with something else
 Add RSS feeds to individual books
 Fix up statistics
 [DONE v2.0] Fix CSS to use YUI reset+font+grid

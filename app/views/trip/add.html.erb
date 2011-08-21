@@ -1,0 +1,8 @@
+<h1>Adding a destination to <%= @trip.name %></h1>
+<%= render :partial => 'user/profile_links'%>
+<div id="dest_form">
+	<%= form_for @destination, :url => {:action => 'insert', :id => @trip}, :html => {:class => 'gen_form'} do |f| %>
+	<%= render :partial => 'dst_form', :object => @destination, :locals => {:f => f} %>
+	<label for="destination_submit">&nbsp;</label><%= f.submit 'Add Destination' %>
+	<% end %>
+</div>

@@ -1,0 +1,22 @@
+<h1>&nbsp;</h1>
+<%= render :partial => 'mail_actions' %>
+<div id="show_message" class="yui-gd">
+	<div id="message_header" class="yui-u first">
+		<%= image_tag("#{@sender.main_photo.url}", :class => "sender_photo", :size => "80x120") %><%= link_to  @sender.display_name, {:controller => :user, :action => :show, :id => @sender.id}, {:class => 'msg_link'} %>
+		<p class="msg_subject">Subject: <%= h @message.subject %></p>
+		<p class="msg_date">Sent: <%= @message.created_at.to_formatted_s(:long_ordinal) %></p>
+		<div class="message_tools">
+			<%= form_for @message, :url => {:action => 'new'}, :html => {:method => :get} do |f| %>
+				<%= hidden_field_tag 'message_id', @message.id %>
+				<%= hidden_field_tag 'sent_at', @message.created_at.to_formatted_s(:long_ordinal) %>
+				<%= submit_tag 'Reply' unless @no_reply %>
+			<% end %>
+			<%= button_to "Delete", {:action => 'delete', :id => @message.id}, {:confirm => 'Are you sure you want to permanently delete this message?', :class => 'end_button'} %>
+		</div>
+	</div>
+	<div id="message_body" class="yui-u">
+		<p class="msg_body"><%= auto_link sanitize @message.body %></p>
+	</div>
+</div>
+
+<%= link_to "Back to List", :action => 'list' %>

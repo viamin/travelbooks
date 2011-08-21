@@ -1,4 +1,25 @@
-require File.dirname(__FILE__) + '/../test_helper'
+# == Schema Information
+#
+# Table name: people
+#
+#  id               :integer         not null, primary key
+#  first_name       :string(255)     not null
+#  middle_name      :string(255)
+#  last_name        :string(255)     not null
+#  email            :string(255)     not null
+#  hashed_password  :text
+#  created_on       :date
+#  nickname         :string(255)
+#  salt             :string(255)
+#  privacy_flags    :integer         default(0)
+#  needs_reset      :boolean
+#  login_token      :string(255)
+#  private_profile  :boolean         default(FALSE)
+#  last_login       :datetime
+#  mail_preferences :integer
+#
+
+require 'test_helper'
 
 class PersonTest < ActiveSupport::TestCase
   fixtures :people, :locations

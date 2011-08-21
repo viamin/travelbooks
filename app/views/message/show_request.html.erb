@@ -1,0 +1,20 @@
+<%= render :partial => 'mail_actions' %>
+<div id="show_message">
+	<div id="message_header">
+		<%= link_to image_tag("#{@sender.main_photo.url}", :class => "sender_photo", :size => "80x120"), :controller => :user, :action => :show, :id => @sender.id  %><%= @sender.display_name %>
+		<p class="msg_subject">Subject: <%= h @message.subject %></p>
+		<p class="msg_date">Date Sent: <%= @message.created_at %></p>
+	</div>
+	<div id="message_body">
+		<p><%= @sender.display_name %> would like to be added as one of your friends. If you accept, you will be able to exchange messages with this person and see their TravellerBook activity.</p>
+	</div>
+	<div id="message_tools">
+		<%= form_for @message, :url => {:action => 'accept', :controller => 'user'} do |f| %>
+			<%= hidden_field_tag 'message_id', @message.id %>
+			<%= submit_tag 'Accept' %>
+			<%= submit_tag 'Deny' %>
+		<% end %>
+	</div>
+</div>
+
+<%= link_to "Back to List", :action => 'list' %>

@@ -18,14 +18,17 @@ class Item < ActiveRecord::Base
   belongs_to :person
   has_many :statuses, :dependent => :destroy do 
     def current(as_of = Time.now)
-      find :first, :order => "updated_at desc, created_at desc"
+      order("updated_at desc, created_at desc")
     end
   end
   has_many :photos do
     def main
-      find(:first, :conditions => {:photo_type => [Photo::MAIN, Photo::ITEM]})
+      where({:photo_type => [Photo::MAIN, Photo::ITEM]})
     end
   end
+  
+  before_save :set_current_owner
+  
   has_many :reviews
   has_many :statistics
   has_and_belongs_to_many :trips
@@ -34,7 +37,7 @@ class Item < ActiveRecord::Base
   validates_length_of :name, :maximum => 250
   has_many :locations, :through => :changes do
     def current(as_of = Time.now)
-      change = Change.find(:first, :conditions => ["change_type=? and effective_date<=? and item_id=?", Change::ITEM_LOCATION, as_of, proxy_owner.id], :order => "effective_date DESC")
+      change = Change.where(["change_type=? and effective_date<=? and item_id=?", Change::ITEM_LOCATION, as_of, proxy_owner.id]).("effective_date DESC").first
       if change.nil?
         Location.default
       else
@@ -42,7 +45,7 @@ class Item < ActiveRecord::Base
       end
     end
     def sorted(how="ASC") 
-      @changes = Change.find(:all, :conditions => {:change_type => Change::ITEM_LOCATION, :item_id => proxy_owner.id}, :order => "effective_date #{how}")
+      @changes = Change.where({:change_type => Change::ITEM_LOCATION, :item_id => proxy_owner.id}).("effective_date #{how}")
       proxy_owner.trips.each {|trip| trip.destinations.each {|d| @changes << Change.new({:new_value => d.location.id, :effective_date => (d.arrival.to_date || Date.now)}) if d.has_location? } } unless proxy_owner.trips.empty?
 #      timing @changes.pretty_inspect
       @changes.sort!{ |x,y| x.effective_date <=> y.effective_date } if @changes.length > 1
@@ -51,7 +54,7 @@ class Item < ActiveRecord::Base
   end
   has_many :people, :through => :changes do
     def owners(how = "ASC")
-      changes = Change.find(:all, :conditions => {:item_id => proxy_owner.id, :change_type => Change::OWNERSHIP}, :order => "effective_date #{how}")
+      changes = Change.where({:item_id => proxy_owner.id, :change_type => Change::OWNERSHIP}).order("effective_date #{how}")
       changes.collect!{ |c| Person.find(c.new_value)}
       changes.delete_if {|p| p.id == NOBODY_USER }
     end
@@ -121,13 +124,13 @@ class Item < ActiveRecord::Base
     person_moves = Array.new
     # Two ways this can change: a person can give an item to someone else in a different location,
     # or a person with the item can move to another location. Both cases need to be accounted for.
-    switches = Change.find(:all, :conditions => ["change_type = ? and item_id = ? and effective_date >= ? and effective_date <= ?", Change::PERSON_LOCATION, self.id, start_date, end_date], :order => "effective_date")
+    switches = Change.where(["change_type = ? and item_id = ? and effective_date >= ? and effective_date <= ?", Change::PERSON_LOCATION, self.id, start_date, end_date]).order("effective_date")
     unless switches.empty?
       switches.each_with_index do |change, index|
         next_index = index + 1
         switches.last == change ? next_change = nil : next_change = switches[next_index]
         next_change.nil? ? range_end = end_date : range_end = next_change.effective_date
-        moves = Change.find(:all, :conditions => ["change_type = ? and person_id = ? and effective_date >= ? and effective_date < ?", Change::PERSON_LOCATION, change.item.person, change.effective_date, range_end])
+        moves = Change.where(["change_type = ? and person_id = ? and effective_date >= ? and effective_date < ?", Change::PERSON_LOCATION, change.item.person, change.effective_date, range_end])
         moves.each { |move| person_moves << move } unless moves.empty?
       end
     end
@@ -199,15 +202,9 @@ class Item < ActiveRecord::Base
     new_location_id
   end
   
-  def before_save
-    set_current_owner
-    # Calculate mileage here
-    
-  end
-  
   private
   def set_current_owner
-    changes = Change.find(:all, :conditions => {:change_type => Change::OWNERSHIP, :item_id => self.id}, :order => "effective_date")
+    changes = Change.where({:change_type => Change::OWNERSHIP, :item_id => self.id}).order("effective_date")
     latest_owner = changes.last.new_value unless changes.empty?
     self.person_id = latest_owner unless changes.empty?
   end

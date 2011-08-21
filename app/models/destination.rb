@@ -22,7 +22,7 @@ class Destination < ActiveRecord::Base
   validates_length_of :name, :maximum => 250
   
   def location
-    Location.find(:first, :conditions => {:id => self.location_id})
+    Location.where({:id => self.location_id}).first
   end
   
   def location=(value)

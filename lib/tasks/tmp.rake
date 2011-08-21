@@ -9,7 +9,7 @@ namespace :tmp do
   namespace :images do
     desc "Clears temp images in public/images/tmp older than 7 days"
     task :clear => :environment do
-      `/usr/bin/find #{RAILS_ROOT}/public/images/tmp -type f -mtime +7 -delete`
+      `/usr/bin/find #{Rails.root}/public/images/tmp -type f -mtime +7 -delete`
     end
   end
 end

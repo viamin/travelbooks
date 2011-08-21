@@ -1,9 +1,0 @@
-<li id="book<%= book.id %>" class="abook">
-	<div id="blink<%= book.id %>" class="blink">
-		<%= image_tag(book.photos.find(:first, :conditions => {:item_id => book.id, :photo_type => [Photo::MAIN, Photo::ITEM]}).url, :size => '36x50') %>
-	</div>
-	<div class="binfo">
-		<%= book.name %> 
-		<%= link_to 'Show', :controller => 'item', :action => 'show', :id => book.id %>
-	</div>
-</li>

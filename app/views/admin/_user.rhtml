@@ -1,9 +1,0 @@
-<li id="book<%= user.id %>" class="abook">
-	<div id="blink<%= user.id %>" class="blink"><%= user.main_photo.nil? ? link_to_remote('Add Photo', :update => "blink#{user.id}", :url => {:action => 'add_image', :id => user.id} ) : link_to_remote(image_tag(user.main_photo.url, :size => '36x50'), :update => "blink#{user.id}", :url => {:action => 'add_image', :id => user.id} ) %></div>
-	<div class="binfo">
-	<%= user.display_name %> (<%= user.email %>) - <%= user.last_login.to_formatted_s(:last_login) unless user.last_login.nil? %>
-	<%= link_to 'Switch to', :action => 'edit_user', :id => user.id %>
-	<%= link_to 'Show', :controller => 'user', :action => 'show', :id => user.id %>
-	<%= link_to 'Delete', {:action => 'destroy_user', :id => user.id}, :confirm => 'Are you sure?' %>
-	</div>
-</li>

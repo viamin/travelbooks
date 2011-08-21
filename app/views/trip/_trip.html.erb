@@ -1,0 +1,7 @@
+<li>
+	<p class="separated larger"><%= trip.name %></p>
+	<p>(<%= trip.start_date.to_s(:long) %> - <%= trip.end_date.to_s(:long) %>)</p>
+	<p><%= link_to 'Edit', :action => 'edit', :id => trip.id %>
+	<%= link_to 'Zoom To', :url => {:action => 'zoom', :id => trip.id}, :remote => true unless #trip.destinations.with_locations.length == 0 
+	trip.destinations.length == 0 %></p>
+</li>

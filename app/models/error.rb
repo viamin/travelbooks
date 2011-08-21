@@ -1,4 +1,5 @@
-class Error < ActionMailer::ARMailer
+class Error < ActionMailer::Base
+  default :from => "TravellerBook.com errors <support@travellerbook.com>"
   # Error informs the address contained by APPLICATION_ERROR_EMAIL (defined in config/environment.rb) when application errors occur.
   
   # Sends a email detailing the given exception. 
@@ -7,7 +8,6 @@ class Error < ActionMailer::ARMailer
     @subject    = "TravellerBook.com had a problem: #{exception.message}"
     @body       = { :exception => exception }
     @recipients = APPLICATION_ERROR_EMAIL
-    @from       = "TravellerBook.com errors <support@travellerbook.com>"
   end
 
 end

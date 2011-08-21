@@ -13,10 +13,6 @@ class TripController < ApplicationController
     render :action => 'list'
   end
   
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update, :insert],
-         :redirect_to => { :action => :list }
-  
   def new
     @person = Person.find(session[:user_id])
     

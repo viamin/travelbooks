@@ -1,0 +1,85 @@
+<div class="yui-gd">
+	<div class="yui-u first">
+		<div id="user_box">
+	<div id="welcome_bar"><%= h(@person.display_name) %>'s Profile</div>
+	<div id="info_box">
+		<div id="user_photo">
+			<%= link_to(image_tag("#{@person.main_photo.url}", :class => "main_photo", :size => "80x120", :alt => @person.display_name), :controller => 'photo', :action => 'list', :id => @person.id) %>
+		</div>
+		<div id="user_info">
+			<ul id="ilist">
+      			<li><%= h(@person.first_name) %></li>
+      			<li><%= h(@location.address_line_1) %></li>
+      			<li><%= h(@location.city) %></li>
+      			<li><%= h(@location.state) %></li>
+      			<li><%= h(@location.country) %></li>
+    		</ul>
+			<div id="show_list">
+				<ul id="options_list">
+					<li><%= link_to "Send a message", :controller => 'message', :action => 'new', :id => @person.id %></li>
+					<li><%= link_to("Add to my friends", :action => 'add', :id => @person.id) unless @is_my_friend %>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+<div class="yui-u">
+	
+	<div id="friend_box">
+		
+		<% cache(:controller => 'user', :action => 'show', :action_suffix => "friends#{@person.id}") do %>
+		<div id="friend_bar"><%= h(@person.display_name) %>'s Friends</div>
+		<div id="friend_list">
+			<ul id="flist">
+				<%= render :partial => "friend", :collection => @friends %>
+			</ul>
+		</div>
+		<% end %>
+		
+	</div>
+
+	</div>
+</div>
+<div class="yui-gd">
+	<div class="yui-u first">
+
+<div id="book_box">
+	
+	<% cache(:controller => 'user', :action => 'show', :action_suffix => "items#{@person.id}") do %>
+	<div id="book_bar"><%= h(@person.display_name) %>'s Books</div>
+	<div id="book_list">
+		<ul id="blist">
+			<%= render :partial => 'item', :collection => @items %>
+		</ul>
+	</div>
+	<% end %>
+	
+</div>
+<div id="stat_box">
+	<div id="stat_bar"><%= h(@person.display_name) %>'s Traveller Stats</div>
+	<div id="stat_list">
+		
+		<% cache(:controller => 'user', :action => 'home', :action_suffix => "stats#{@person.id}") do %>
+			<%= render :partial => 'user_stats', :action => 'user_stats', :object => @person %>
+		<% end %>
+		
+	</div>
+</div>
+
+	</div>
+	<div class="yui-u">
+		
+		<div id="map_box">
+			<div id="map_bar">
+				<%= h(@person.display_name) %>'s World 
+				<%= link_to "Show Trips", :url => {:controller => 'user', :action => 'show_trips', :id => @person.id#, :width => 456, :height => 207
+					}, :html => {:class => 'right_rlink', :id => 'mvacation'}, :remote => true if @person.share_trips %>
+			</div>
+			<div id="user_map"></div>
+		</div>
+		
+	</div>
+</div>
+	

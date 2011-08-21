@@ -1,0 +1,13 @@
+<h1>Edit Destination</h1>
+<%= render :partial => 'user/profile_links' %>
+	<%= form_for @destination, :url => {:action => 'update_dest', :id => @destination}, :html => {:class => 'gen_form'} do |f| %>
+		<%= render :partial => 'dst_form', :object => @destination, :locals => {:f => f} %>
+		<label for="destination_submit">&nbsp;</label><%= f.submit 'Update Destination' %>
+	<% end %>
+	<% if @destination.has_location? %>
+		<%= form_for @destination.location, :as => 'location', :url => {:action => 'update_dest_loc', :id => @destination.location}, :html => {:class => 'gen_form'} do |f| %>
+			<%= hidden_field_tag 'destination_id', @destination.id %>
+			<%= render :partial => 'location/form', :object => @destination.location, :locals => {:f => f} %>
+			<label for="location_submit">&nbsp;</label><%= f.submit 'Update Location' %>
+		<% end %>
+	<% end %>

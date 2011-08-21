@@ -124,11 +124,11 @@ class Photo < ActiveRecord::Base
   end
 
   def person
-    Person.find(:first, :conditions => {:id => self.person_id})
+    Person.where({:id => self.person_id}).first
   end
   
   def item
-    Item.find(:first, :conditions => {:id => self.item_id})
+    Item.where({:id => self.item_id}).first
   end
   
   def is_primary
@@ -286,7 +286,7 @@ class Photo < ActiveRecord::Base
       self.file_name = "#{self.file_name}.jpg" unless self.file_name.end_with?('.jpg')
       self.save!
     else
-      RAILS_DEFAULT_LOGGER.warn "File not found - aborting thumbnail verification"
+      Rails.logger.warn "File not found - aborting thumbnail verification"
       return
     end
     # first check regular size  SKIP since book images don't have to be that size
@@ -348,7 +348,7 @@ class Photo < ActiveRecord::Base
       elsif File.exists?("#{PERSON_ROOT}/#{self.person.email}/#{self.file_name}")
         data = Magick::Image.read("#{PERSON_ROOT}/#{self.person.email}/#{self.file_name}").first
       else
-        RAILS_DEFAULT_LOGGER.warn "File not found - aborting thumbnail creation"
+        Rails.logger.warn "File not found - aborting thumbnail creation"
         return
       end
       Photo.save_data(data, self.person, self.file_name, 80)
@@ -368,7 +368,7 @@ class Photo < ActiveRecord::Base
       elsif File.exists?("#{BOOK_ROOT}/#{self.file_name}")
         data = Magick::Image.read("#{BOOK_ROOT}/#{self.file_name}").first
       else
-        RAILS_DEFAULT_LOGGER.warn "File not found - aborting book thumbnail creation"
+        Rails.logger.warn "File not found - aborting book thumbnail creation"
         return
       end
 #      Photo.save_book_data(data, self.person, self.file_name, 80)
@@ -384,11 +384,9 @@ class Photo < ActiveRecord::Base
        filename = "#{BOOK_ROOT}/#{file_name}"
      end
      if File.exists?(filename)
-       RAILS_DEFAULT_LOGGER.warn "Thumbnail for #{file_name} exists for size #{size}"
+       Rails.logger.warn "Thumbnail for #{file_name} exists for size #{size}"
      else
-       unless File.exists?("#{BOOK_ROOT}/#{size}/")
-         Dir.mkdir("#{BOOK_ROOT}/#{size}/")
-       end
+       Dir.mkdir("#{BOOK_ROOT}/#{size}/") unless File.exists?("#{BOOK_ROOT}/#{size}/")
        data.scale!(size, Photo::THUMB[size])
        tf = File.new(filename, "w")
        data.write(tf)
@@ -396,7 +394,7 @@ class Photo < ActiveRecord::Base
      end
      File.chmod(0664, filename)
      return filename
-   end
+  end
   
   def self.save_data(data, person, filename, size = false)
     if [18, 36, 80].include?(size)
@@ -406,7 +404,7 @@ class Photo < ActiveRecord::Base
     end
     fname = Photo.change_extension(fname, 'png') unless (fname.end_with?('.jpg') && !([18,36,80].include?(size)))
     if File.exists?(fname)
-      RAILS_DEFAULT_LOGGER.warn "Thumbnail for file_name exists for size #{size}"
+      Rails.logger.warn "Thumbnail for file_name exists for size #{size}"
     else
       unless File.exists?("#{PERSON_ROOT}/#{person.email}/")
         Dir.mkdir("#{PERSON_ROOT}/#{person.email}/")
