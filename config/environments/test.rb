@@ -33,3 +33,11 @@ Travelbooks::Application.configure do
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
 end
+
+# Person id of the "Nobody" user, where given away books stay
+NOBODY_USER = 5
+ 
+SHARED_ROOT = Rails.root
+PUBLIC_ROOT = "#{SHARED_ROOT}/public"
+BOOK_ROOT = "#{PUBLIC_ROOT}/images/books"
+PERSON_ROOT = "#{PUBLIC_ROOT}/images/users"

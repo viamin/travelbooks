@@ -1,5 +1,4 @@
 # == Schema Information
-# Schema version: 20090214004612
 #
 # Table name: locations
 #
@@ -22,6 +21,7 @@
 #  lng            :float
 #  icon           :string(255)
 #  status_id      :integer
+#  gmaps          :boolean
 #
 
 class Location < ActiveRecord::Base
@@ -40,9 +40,7 @@ class Location < ActiveRecord::Base
   validates_length_of :zip_code, :maximum => 250
   validates_length_of :country, :maximum => 250
   # before_save :geocode_address # probably handled by gmaps4rails
-  acts_as_gmappable
-  
-  include GeoKit::Geocoders
+  acts_as_gmappable :lat => "lat", :lng => "lng", :address => "address_to_geocode"
   
   # Locations types
   ADDRESS = 1
@@ -81,7 +79,7 @@ class Location < ActiveRecord::Base
   end
   
   def self.default
-    Location.new(SAMPLE_LOCATION)
+    Location.new(Travelbooks::SAMPLE_LOCATION)
   end
   
   # Determines if the location is used in more than one place. 
@@ -244,11 +242,7 @@ class Location < ActiveRecord::Base
     end
   end
   
-  def gmaps4rails_address(person = nil)
-    address_to_geocode(person)
-  end
-  
-  def address_to_geocode(person)
+  def address_to_geocode(person = nil)
     unless person.nil?
       case person.location_resolution
       when "City Only"

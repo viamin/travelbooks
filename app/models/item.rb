@@ -37,7 +37,7 @@ class Item < ActiveRecord::Base
   validates_length_of :name, :maximum => 250
   has_many :locations, :through => :changes do
     def current(as_of = Time.now)
-      change = Change.where(["change_type=? and effective_date<=? and item_id=?", Change::ITEM_LOCATION, as_of, proxy_owner.id]).("effective_date DESC").first
+      change = Change.where(["change_type=? and effective_date<=? and item_id=?", Change::ITEM_LOCATION, as_of, proxy_owner.id]).order("effective_date DESC").first
       if change.nil?
         Location.default
       else

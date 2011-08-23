@@ -47,3 +47,8 @@ Travelbooks::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 end
+
+Dir.chdir("#{Rails.root}/../../shared") { SHARED_ROOT = Dir.pwd } # Due to capistrano's deployment setup
+PUBLIC_ROOT = "#{SHARED_ROOT}/public"
+BOOK_ROOT = "#{SHARED_ROOT}/book_images"
+PERSON_ROOT = "#{SHARED_ROOT}/user_images"

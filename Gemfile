@@ -13,7 +13,7 @@ gem "haml"
 gem 'exception_notification'
 gem 'capistrano'
 gem 'ruby-debug19', :require => 'ruby-debug'
-gem 'geokit-rails3'
+# gem 'geokit-rails3'
 gem 'gmaps4rails'
 gem 'smurf'
 gem 'ar_mailer_rails3'

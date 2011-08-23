@@ -9,7 +9,8 @@
 	<%= stylesheet_link_tag 'reset-fonts-grids', 'main', 'user', :cache => "cache/user" %>
 
 	<% cache(:controller => 'user', :action => params[:action], :action_suffix => "map#{@person.id}") do %>
-	<%= yield :head %>
+  	<%= yield :head %>
+	<% end %>
 	<%= javascript_include_tag :defaults %>
 	<!--[if lte IE 6]>
 	<script type="text/javascript" src="/javascripts/supersleight-min.js"></script>

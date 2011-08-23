@@ -1,5 +1,4 @@
 # == Schema Information
-# Schema version: 20090214004612
 #
 # Table name: locations
 #
@@ -22,6 +21,7 @@
 #  lng            :float
 #  icon           :string(255)
 #  status_id      :integer
+#  gmaps          :boolean
 #
 
 --- 

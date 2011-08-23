@@ -13,25 +13,6 @@ class ApplicationController < ActionController::Base
     include ActionView::Helpers::TextHelper
   end
   
-  protected  
-=begin
-    def log_error(exception) 
-      super(exception)
-
-      begin
-        session_block = @session.instance_variable_get("@data") unless @session.nil?
-        request_env = @request.env unless @request.nil?
-        Error.warn(
-          exception, 
-          clean_backtrace(exception), 
-          session_block, 
-          @params, 
-          request_env).deliver
-      rescue => e
-        logger.error(e)
-      end
-    end
-=end
   private
   
   def after_action

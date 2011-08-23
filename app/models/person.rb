@@ -258,7 +258,7 @@ class Person < ActiveRecord::Base
   
   #checks all location changes for this person and find the current information
   def latest_location
-    self.all_locations.last || Location.new(SAMPLE_LOCATION)
+    self.all_locations.last || Location.new(Travelbooks::SAMPLE_LOCATION)
   end
   
   def current_location

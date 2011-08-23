@@ -36,7 +36,7 @@ module UsersHelper
         line << LatLonPoint.new([d.location.lat, d.location.lng])
       end
     end
-    polyline = Polyline.new(line, :width => 5, :color => COLORS[rand(6)], :opacity => 0.8)
+    polyline = Polyline.new(line, :width => 5, :color => Travelbooks::COLORS[rand(6)], :opacity => 0.8)
     map.add_polyline(polyline)
   end
   
