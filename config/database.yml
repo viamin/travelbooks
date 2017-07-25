@@ -1,0 +1,16 @@
+development:
+  adapter: sqlite3
+  database: db/development.sqlite3
+
+test: &test
+  adapter: sqlite3
+  database: db/test.sqlite3
+
+production:
+  adapter: mysql
+  database: travell0_travelbooks
+  username: travell0_bartkat
+  password: ENV['DB_PASSWORD']
+
+cucumber:
+  <<: *test
